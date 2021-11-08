@@ -3,9 +3,17 @@ package com.myspring.mypet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.mypet.service.MemberService;
+import com.mypet.vo.MemberVO;
 @Controller
 public class MemberController {
 	
+	@Autowired
+	private MemberService MemberService;
 	
 	//회원가입
 	@RequestMapping(value="/join.do")
@@ -14,21 +22,23 @@ public class MemberController {
 	}
 	
 	//회원가입_proc
-	/*
-	 * @RequestMapping(value="/join_proc.do", method=RequestMethod.POST) public
-	 * ModelAndView join_proc(MemberVO vo) { ModelAndView mv = new ModelAndView();
-	 * 
-	 * String security_pass = pwdEncoder.encode(vo.getPass());
-	 * vo.setPass(security_pass);
-	 * 
-	 * boolean result = MemberService.getJoinResult(vo);
-	 * 
-	 * if (result) { //신규가입 쿠폰 발행 CouponService.getNewCoupon(vo.getId());
-	 * 
-	 * mv.setViewName("member/success"); } else { mv.setViewName("member/fail"); }
-	 * 
-	 * return mv; }
-	 */
+
+	@ResponseBody
+	 @RequestMapping(value="/join_proc.do", method=RequestMethod.POST) public
+	 ModelAndView join_proc(MemberVO vo) { 
+		 ModelAndView mv = new ModelAndView();		 
+		 
+		 boolean result = MemberService.getJoinResult(vo);
+		 
+		 if (result) {			 
+			 mv.setViewName("index"); 
+		} else {
+			mv.setViewName("join/join");
+		}
+		
+		 return mv; 
+	}
+	 
 	
 	
 

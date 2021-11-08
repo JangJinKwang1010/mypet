@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Mypet</title>
-<script src="../js/jquery-3.6.0.min.js"></script>
+<script src="http://localhost:9000/mypet/js/jquery-3.6.0.min.js"></script>
 <style>
 section {
 	width:100%;
@@ -96,7 +96,7 @@ section {
 		<div class="mainbox">
 			<p class="title">회원가입<span>Sign up</span></p>
 			<div class="joinbox">
-				<form name= "joinform" action= "joinProcess.jsp" method="post">
+				<form name= "joinform" action= "join_proc.do" method="post">
 					<ul>
 						<li><label>아이디</label></li>
 						<li><input type="text" placeholder="아이디" name="id"></li>
