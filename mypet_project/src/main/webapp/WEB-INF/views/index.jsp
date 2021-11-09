@@ -6,8 +6,10 @@
 <meta charset="UTF-8">
 <title>Mypet</title>
 <style>
-.logo{
-
+section { text-align:center; }
+.logo {
+	text-align:center;
+	display:inline-block;
 }
 .logo>div {
 	display:inline-block;
@@ -15,16 +17,15 @@
 .indexname{	
 	width:715px;
 	height:500px;
-	float:left;
 	text-align:center;
 }
-.indexcat{
-	float:Right;
+.indexcat {
+	float:right;
 }
-.indexdog{
+.indexdog {
 	float:left;
 }
-.loginbox{
+.loginbox {
 	margin-top:20px;
 	display:inline-block;
 	border:1px solid lightgray;
@@ -161,6 +162,7 @@
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
+<section>
 	<div class="logo">
 		<div class="indexdog">
 			<img src="images/indexdog.jpg" width=400px; height=500px;>
@@ -211,6 +213,6 @@
 			</div>
 		</div>
 	</div>
-
+</section>
 </body>
 </html>
