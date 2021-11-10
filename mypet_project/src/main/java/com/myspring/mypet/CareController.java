@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CareController {
 	@RequestMapping(value="/care.do")
 	public String care() {
-		return "care";
+		return "care/care";
 	}
 }

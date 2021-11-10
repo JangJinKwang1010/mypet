@@ -33,21 +33,21 @@ section { text-align:center; }
 	width:70%;
 	height:90%;
 }
-.loginboxhigh{
+.loginboxhigh {
 	background-color:rgb(245,245,245);
 	border-top-left-radius:20px;
 	border-top-right-radius:20px;
 	width:100%;
 	height:25%;
 }
-.loginboxhigh>p{
+.loginboxhigh>p {
 	font-size:40px;
 	font-weight:bold;
 	display:inline-block;
 	float:left;
 	margin: 25px;
 }
-.loginboxhigh>a{
+.loginboxhigh>a {
 	border:2px solid black;
 	border-radius:30px;
 	background-color:white;
@@ -58,52 +58,52 @@ section { text-align:center; }
 	text-decoration:none;
 	color:black;
 }
-.loginboxhigh>a:hover{
+.loginboxhigh>a:hover {
 	color:white;
 	background-color:rgb(72,115,210);
 }
-.loginboxmiddle{
+.loginboxmiddle {
 	text-align:center;
 	width:100%;
 	height:70%;
 }
-.login{
+.login {
 	display:inline-block;
 	width:80%;
 	height:200px;
 	background-color:rgb(245,245,245);
 	margin-top:30px;
 }
-#id{
+#id {
 	background-image:url("http://localhost:9000/mypet/images/usericon.png");
 	background-position:5px center;
 	background-repeat:no-repeat;
 }
-#pass{
+#pass {
 	background-image:url("http://localhost:9000/mypet/images/passicon.png");
 	background-position:5px center;
 	background-repeat:no-repeat;
 }
-.login ul{
+.login ul {
 	list-style:none;
 }
-.login input{
+.login input {
 	border:none;
 	width:80%;
 	height:45px;
 	margin-top: 10px;
 	padding-left:40px;
 }
-.login li:first-child input{
+.login li:first-child input {
 	margin-top:20px;
 }
-.login a{
+.login a {
 	text-decoration:underline;
 	float:right;
 	margin:15px 40px;
 	
 }
-.loginboxmiddle button{
+.loginboxmiddle button {
 	background-color:rgb(72,115,210);
 	width:20%;
 	height:50px;
@@ -113,7 +113,7 @@ section { text-align:center; }
 	border:none;
 	margin-top:30px;
 }
-.banner{
+.banner {
 	width:100%;
 	height:250px;
 	background-image:url("http://localhost:9000/mypet/images/banner.png");

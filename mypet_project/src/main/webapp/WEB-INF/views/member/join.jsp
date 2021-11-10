@@ -12,21 +12,19 @@ section {
 	width:100%;
 	text-align:center;
 }
-.mainbox{
+.mainbox {
 	border:1px solid white;
 	width:65%;
-	height:1000px;
 	display:inline-block;
-
 }
-.title{
+.title {
 	margin-top:60px;
 	margin-left:100px;
 	float:left;
 	font-weight:bold;
 	font-size:30px;
 }
-.title>span{
+.title>span {
 	margin-left:20px;
 	color:gray;
 	font-weight:normal;
@@ -35,7 +33,6 @@ section {
 .joinbox{
 	border:1px solid white;
 	width:80%;
-	height:800px;
 	display:inline-block;
 	margin-top:50px;
 }
@@ -61,6 +58,8 @@ section {
 	height:35px;
 	border-radius:10px;
 	font-weight:bold;
+	background-color:rgb(250,250,250);
+	font-size:14px;
 }
 .joinbox li>button:hover{
 	background-color:rgb(147,196,228);
@@ -73,6 +72,8 @@ section {
 	border-radius:10px;
 	font-weight:bold;
 	margin-top:50px;
+	background-color:rgb(250,250,250);
+	font-size:14px;
 }
 .joinbox form>button:hover{
 	background-color:rgb(147,196,228);
@@ -96,37 +97,38 @@ section {
 		<div class="mainbox">
 			<p class="title">회원가입<span>Sign up</span></p>
 			<div class="joinbox">
-				<form name= "joinform" action= "join_proc.do" method="post">
+				<form name= "joinform" action= "join_proc.do" method="post"  autocomplete="off" >
 					<ul>
 						<li><label>아이디</label></li>
-						<li><input type="text" placeholder="아이디" name="id"></li>
+						<li><input type="text" placeholder="아이디" name="id" class="form-control"></li>
 						<li><button>중복확인</button></li>
 					</ul>
 					<ul>
 						<li><label>비밀번호</label></li>
-						<li><input type="text" placeholder="비밀번호" name="pass"></li>
+						<li><input type="password" placeholder="비밀번호" name="pass" class="form-control"></li>
 					</ul>
 					<ul>
 						<li><label>비밀번호 확인</label></li>
-						<li><input type="text" placeholder="비밀번호 확인"></li>
+						<li><input type="password" placeholder="비밀번호 확인" class="form-control"></li>
 						<li class="pass1">비밀번호 확인을 위해 다시 한번 입력 해 주세요.</li>
 					</ul>
 					<ul>
 						<li><label>이름</label></li>
-						<li><input type="text" placeholder="이름" name="name"></li>
+						<li><input type="text" placeholder="이름" name="name" class="form-control"></li>
 					</ul>
 					<ul>
 						<li><label>전화 번호</label></li>
-						<li><input type="text" placeholder="전화 번호" name="hp"></li>
+						<li><input type="text" placeholder="전화 번호" name="hp" class="form-control"></li>
 					</ul>
 					<ul>
 						<li><label>이메일 주소</label></li>
-						<li><input type="text" placeholder="이메일 주소" name="email"></li>
+						<li><input type="text" placeholder="이메일 주소" name="email" class="form-control"></li>
 					</ul>
 					<button type="button" class="join_btn">가입완료</button>
 				</form>
 			</div>
 		</div>
 	</section>
+	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

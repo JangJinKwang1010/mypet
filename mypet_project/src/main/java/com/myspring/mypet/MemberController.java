@@ -18,7 +18,7 @@ public class MemberController {
 	//회원가입
 	@RequestMapping(value="/join.do")
 	public String join() {
-		return "join/join";
+		return "member/join";
 	}
 	
 	//회원가입_proc
@@ -33,7 +33,7 @@ public class MemberController {
 		 if (result) {			 
 			 mv.setViewName("index"); 
 		} else {
-			mv.setViewName("join/join");
+			mv.setViewName("member/join");
 		}
 		
 		 return mv; 
