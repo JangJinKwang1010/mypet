@@ -195,11 +195,11 @@
 		<div class="banner">	
 			<div class="bannermenu1">
 				<img src="http://localhost:9000/mypet/images/bannericon1.png">
-				<p>돌봐주기</p>
+				<p>돌보미 등록</p>
 			</div>
 			<div class="bannermenu2">
 				<img src="http://localhost:9000/mypet/images/bannericon4.png">
-				<p>펫 등록하기</p>
+				<p>펫 등록</p>
 			</div>
 			<div class="bannermenu3">
 				<img src="http://localhost:9000/mypet/images/bannericon3.png">

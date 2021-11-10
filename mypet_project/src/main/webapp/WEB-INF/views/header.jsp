@@ -25,10 +25,10 @@ border-bottom:1px solid lightgray;
 	margin-right:30px;
 	padding: 5px 0;
 }
-.menu1 a{
+.menu1 a,.menu2 a{
 	color:black;
 }
-.menu1 a:hover{
+.menu1 a:hover,.menu2 a:hover{
 	color:rgb(147,196,228);
 }
 .menu1 ul{
@@ -44,6 +44,7 @@ border-bottom:1px solid lightgray;
 .menu2 ul{
 	text-align:center;
 }
+
 </style>
 
 </head>
@@ -51,13 +52,13 @@ border-bottom:1px solid lightgray;
 <body>
 	<div class="menu1">
 		<ul>
-			<a href="http://localhost:9000/mypet/index.jsp"><li>HOME</li></a>
+			<a href="http://localhost:9000/mypet/index.do"><li>HOME</li></a>
 		</ul>
 	</div>
 	<div class="menu2">
 		<ul>
-			<li>돌봐주기</li>
-			<li>펫 등록하기</li>
+			<a href="http://localhost:9000/mypet/care.do"><li>돌보미 등록</li></a>
+			<li>펫 등록</li>
 			<li>내 근처의 펫</li>
 			<li>펫 일기</li>
 			<li>마이페이지</li>
