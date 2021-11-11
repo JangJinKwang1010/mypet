@@ -87,12 +87,13 @@ section { text-align:center; }
 .login ul {
 	list-style:none;
 }
-.login input {
+.login input.form-control {
 	border:none;
 	width:80%;
 	height:45px;
 	margin-top: 10px;
 	padding-left:40px;
+	display:inline-block; 
 }
 .login li:first-child input {
 	margin-top:20px;
@@ -178,10 +179,10 @@ section { text-align:center; }
 						<div class="login">
 							<ul>
 								<li>
-									<input type="text" placeholder="아이디를 입력하세요."id="id">
+									<input type="text" placeholder="아이디를 입력하세요."id="id" class="form-control">
 								</li>
 								<li>
-									<input type="password" placeholder="비밀번호를 입력하세요."id="pass">
+									<input type="password" placeholder="비밀번호를 입력하세요."id="pass" class="form-control">
 								</li>
 							</ul>
 							<a>아이디/비밀번호 찾기</a>
