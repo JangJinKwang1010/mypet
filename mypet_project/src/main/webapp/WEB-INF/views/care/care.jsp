@@ -1,12 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+  %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Mypet</title>
+<script src="http://localhost:9000/mypet/js/jquery-3.6.0.min.js"></script>
 <style>
-section {
+.section {
 	text-align:center;
 }
 .mainbox {
@@ -59,7 +61,14 @@ section {
 	height:165px;
 	margin-bottom:30px;
 }
-.personalinf2>div {
+.personalinf3 {
+	border:1px solid lightgray;
+	background-color:rgb(250,250,250);
+	display:inline-block;
+	width:1000px;
+	margin-bottom:30px;
+}
+.personalinf2>div, .personalinf3 div {
 	border:1px solid lightgray;
 	background-color:white;
 }
@@ -117,96 +126,133 @@ section {
 	background-color:rgb(147,196,228);
 	color:white;
 }
-.personalinf2 input{
-	border:none;
-	height:30px;
-}
-.personalinf2 label{
-	font-size:9px;
-	float:left;
-	margin:5px 0 5px 10px;
-}
-.personalinf2 select{
+.personalinf2 input,.personalinf2 select, .personalinf3 input,.personalinf3 select {
 	border:none;
 	height:30px;
 	font-size:14px;
 }
+.personalinf2 label, .personalinf3 label{
+	font-size:12px;
+	float:left;
+	margin:5px 0 5px 10px;
+}
+.personalinf3>section {
+	width:100%; height:50%;
+}
+.add {
+	background-color:white;
+	width:100%;
+	height:50px;
+	border:none;
+	border-top:1px solid lightgray;
+	margin-top:10px;
+}
 </style>
+<script>
+	$(document).ready(function() {
+		$(".add").click(function() {
+			var html = "<section>";
+			html += "<div class='inf1'>";
+			html += "<label>ë°˜ë ¤ë™ë¬¼ ì„ íƒ</label>";
+			html += "<select class='form-select'>";
+			html += "<option>ê°•ì•„ì§€</option><option>ê³ ì–‘ì´</option></select></div>";
+			html += "<div class='inf2'>";
+			html += "<label>í’ˆì¢…</label>";
+			html += "<input type='text' class='form-control'>";
+			html += "</div>";
+			html += "<div class='inf3'>";
+			html += "<label>í¬ê¸°</label>";
+			html += "<select class='form-select'>";
+			html += "<option>ì†Œí˜•</option><option>ì¤‘í˜•</option><option>ëŒ€í˜•</option></select></div>";
+			html += "<div class='inf4'>";
+			html += "<label>ì…ì–‘ë‚ ì§œ</label>";
+			html += "<input type='date' class='form-control'>";
+			html += "</div></section>";
+			
+			$(".add_section").append(html);
+			
+		});
+	});
+</script>
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
-	<section>
+	<section class="section">
 		<div class="mainbox">
-			<p class="title">µ¹º¸¹Ì µî·Ï<span>Register as a caregiver</span></p>
+			<p class="title">ëŒë³´ë¯¸ ë“±ë¡<span>Register as a caregiver</span></p>
 			<div class="information">
 				<div class="personalinf">
-					<p class="p1">ÀÎÀû»çÇ×</p>
-					<p class="p2">*ÇÊ¼öÀÔ·Â Á¤º¸ÀÔ´Ï´Ù.
+					<p class="p1">ì¸ì ì‚¬í•­</p>
+					<p class="p2">*í•„ìˆ˜ì…ë ¥ ì •ë³´ì…ë‹ˆë‹¤.
 				</div>
 				<div class="personalinf2">
 						<div class="inf1">
-							<label>ÀÌ¸§</label>
+							<label>ì´ë¦„</label>
 							<input type="text" class="form-control">
 						</div>
 						<div class="inf2">
-							<label>»ı³â¿ùÀÏ</label>
+							<label>ìƒë…„ì›”ì¼</label>
 							<input type="text" class="form-control">
 						</div>
 						<div class="inf3">
-							<label>¼ºº°</label>
+							<label>ì„±ë³„</label>
 							<select class="form-select">
-								<option>³²ÀÚ</option>
-								<option>¿©ÀÚ</option>
+								<option>ë‚¨ì</option>
+								<option>ì—¬ì</option>
 							</select>
 						</div>
 						<div class="inf4">
-							<label>ÀÌ¸ŞÀÏ</label>
+							<label>ì´ë©”ì¼</label>
 							<input type="text" class="form-control">
 						</div>
 						<div class="inf5">
-							<label>»çÁø</label>
+							<label>ì‚¬ì§„</label>
 						</div>
 						<div class="inf6">
-							<label>ÀüÈ­¹øÈ£</label>
+							<label>ì „í™”ë²ˆí˜¸</label>
 							<input type="text" class="form-control">
 						</div>
 						<div class="inf7">
-							<label>ÈŞ´ëÆù¹øÈ£</label>
+							<label>íœ´ëŒ€í°ë²ˆí˜¸</label>
 							<input type="text" class="form-control">
 						</div>
 						<div class="inf8">
-							<label>ÁÖ¼Ò</label>
+							<label>ì£¼ì†Œ</label>
 						</div>
 				</div>
 				
 				<div class="personalinf">
-					<p class="p1">°æ·Â»çÇ×</p>
+					<p class="p1">ê²½ë ¥ì‚¬í•­</p>
 				</div>
-				<div class="personalinf2">
+				<div class="personalinf3">
+					<section class="add_section">
 						<div class="inf1">
-							<label>¹İ·Áµ¿¹° ¼±ÅÃ</label>
+							<label>ë°˜ë ¤ë™ë¬¼ ì„ íƒ</label>
 							<select class="form-select">
-								<option>°­¾ÆÁö</option>
-								<option>°í¾çÀÌ</option>
+								<option>ê°•ì•„ì§€</option>
+								<option>ê³ ì–‘ì´</option>
 							</select>
 						</div>
 						<div class="inf2">
-							<label>Ç°Á¾</label>
+							<label>í’ˆì¢…</label>
 							<input type="text" class="form-control">
 						</div>
 						<div class="inf3">
-							<label>Å©±â</label>
+							<label>í¬ê¸°</label>
 							<select class="form-select">
-								<option>¼ÒÇü</option>
-								<option>ÁßÇü</option>
-								<option>´ëÇü</option>
+								<option>ì†Œí˜•</option>
+								<option>ì¤‘í˜•</option>
+								<option>ëŒ€í˜•</option>
 							</select>
 						</div>
 						<div class="inf4">
-							<label>ÀÔ¾ç³¯Â¥</label>
+							<label>ì…ì–‘ë‚ ì§œ</label>
+							<input type="date" class="form-control">
 						</div>
+					</section>
+					<button class="add">+ ì¶”ê°€</button>
 				</div>				
-				<button>µî·ÏÇÏ±â</button>				
+				<button>ë“±ë¡í•˜ê¸°</button>				
 			</div>			
 		</div>
 	</section>
