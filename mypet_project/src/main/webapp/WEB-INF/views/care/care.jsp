@@ -117,6 +117,20 @@ section {
 	background-color:rgb(147,196,228);
 	color:white;
 }
+.personalinf2 input{
+	border:none;
+	height:30px;
+}
+.personalinf2 label{
+	font-size:9px;
+	float:left;
+	margin:5px 0 5px 10px;
+}
+.personalinf2 select{
+	border:none;
+	height:30px;
+	font-size:14px;
+}
 </style>
 </head>
 <body>
@@ -131,28 +145,37 @@ section {
 				</div>
 				<div class="personalinf2">
 						<div class="inf1">
-						
+							<label>이름</label>
+							<input type="text" class="form-control">
 						</div>
 						<div class="inf2">
-						
+							<label>생년월일</label>
+							<input type="text" class="form-control">
 						</div>
 						<div class="inf3">
-						
+							<label>성별</label>
+							<select class="form-select">
+								<option>남자</option>
+								<option>여자</option>
+							</select>
 						</div>
 						<div class="inf4">
-						
+							<label>이메일</label>
+							<input type="text" class="form-control">
 						</div>
 						<div class="inf5">
-						
+							<label>사진</label>
 						</div>
 						<div class="inf6">
-						
+							<label>전화번호</label>
+							<input type="text" class="form-control">
 						</div>
 						<div class="inf7">
-						
+							<label>휴대폰번호</label>
+							<input type="text" class="form-control">
 						</div>
 						<div class="inf8">
-						
+							<label>주소</label>
 						</div>
 				</div>
 				
@@ -161,16 +184,26 @@ section {
 				</div>
 				<div class="personalinf2">
 						<div class="inf1">
-						
+							<label>반려동물 선택</label>
+							<select class="form-select">
+								<option>강아지</option>
+								<option>고양이</option>
+							</select>
 						</div>
 						<div class="inf2">
-						
+							<label>품종</label>
+							<input type="text" class="form-control">
 						</div>
 						<div class="inf3">
-						
+							<label>크기</label>
+							<select class="form-select">
+								<option>소형</option>
+								<option>중형</option>
+								<option>대형</option>
+							</select>
 						</div>
 						<div class="inf4">
-						
+							<label>입양날짜</label>
 						</div>
 				</div>				
 				<button>등록하기</button>				
