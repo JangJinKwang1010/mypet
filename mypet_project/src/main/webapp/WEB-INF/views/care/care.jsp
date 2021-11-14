@@ -53,6 +53,11 @@
 	float:right;
 	margin:15px 10px 0 0;
 }
+.p3 {
+	font-size:12px;
+	color:red;
+	float:left;
+}
 .personalinf2 {
 	border:1px solid lightgray;
 	background-color:rgb(250,250,250);
@@ -154,14 +159,17 @@
 			var html = "<section>";
 			html += "<div class='inf1'>";
 			html += "<label>반려동물 선택</label>";
+			html += "<p class='p3'>*</p>";
 			html += "<select class='form-select'>";
 			html += "<option>강아지</option><option>고양이</option></select></div>";
 			html += "<div class='inf2'>";
 			html += "<label>품종</label>";
+			html += "<p class='p3'>*</p>";
 			html += "<input type='text' class='form-control'>";
 			html += "</div>";
 			html += "<div class='inf3'>";
 			html += "<label>크기</label>";
+			html += "<p class='p3'>*</p>";
 			html += "<select class='form-select'>";
 			html += "<option>소형</option><option>중형</option><option>대형</option></select></div>";
 			html += "<div class='inf4'>";
@@ -188,14 +196,17 @@
 				<div class="personalinf2">
 						<div class="inf1">
 							<label>이름</label>
+							<p class="p3">*</p>
 							<input type="text" class="form-control">
 						</div>
 						<div class="inf2">
 							<label>생년월일</label>
+							<p class="p3">*</p>
 							<input type="text" class="form-control">
 						</div>
 						<div class="inf3">
 							<label>성별</label>
+							<p class="p3">*</p>
 							<select class="form-select">
 								<option>남자</option>
 								<option>여자</option>
@@ -206,6 +217,7 @@
 							<input type="text" class="form-control">
 						</div>
 						<div class="inf5">
+						<p class="p3">*</p>
 							<label>사진</label>
 						</div>
 						<div class="inf6">
@@ -214,10 +226,12 @@
 						</div>
 						<div class="inf7">
 							<label>휴대폰번호</label>
+							<p class="p3">*</p>
 							<input type="text" class="form-control">
 						</div>
 						<div class="inf8">
 							<label>주소</label>
+							<p class="p3">*</p>
 						</div>
 				</div>
 				
@@ -228,6 +242,7 @@
 					<section class="add_section">
 						<div class="inf1">
 							<label>반려동물 선택</label>
+							<p class="p3">*</p>
 							<select class="form-select">
 								<option>강아지</option>
 								<option>고양이</option>
@@ -235,10 +250,12 @@
 						</div>
 						<div class="inf2">
 							<label>품종</label>
+							<p class="p3">*</p>
 							<input type="text" class="form-control">
 						</div>
 						<div class="inf3">
 							<label>크기</label>
+							<p class="p3">*</p>
 							<select class="form-select">
 								<option>소형</option>
 								<option>중형</option>
