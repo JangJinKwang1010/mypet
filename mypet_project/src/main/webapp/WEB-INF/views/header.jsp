@@ -60,9 +60,9 @@ border-bottom:1px solid lightgray;
 	<div class="menu2">
 		<ul>
 			<a href="http://localhost:9000/mypet/care.do"><li>돌보미 등록</li></a>
-			<li>펫 등록</li>
+			<a href="http://localhost:9000/mypet/pet.do"><li>펫 등록</li></a>
 			<a href="http://localhost:9000/mypet/near.do"><li>내 근처의 펫</li></a>
-			<li>펫 일기</li>
+			<a href="http://localhost:9000/mypet/diary.do"><li>펫 일기</li>
 			<li>마이페이지</li>
 		</ul>
 	</div>

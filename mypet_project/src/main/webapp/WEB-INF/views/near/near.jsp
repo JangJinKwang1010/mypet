@@ -81,7 +81,7 @@ $(document).ready(function() {
 					<span><img src="http://localhost:9000/mypet/images/paw.png">경력 1년이상</span>
 					<span><img src="http://localhost:9000/mypet/images/calendar.png">2021/11/13 - 2021/12/31</span>
 				</p>
-				<p class="user">tmfql4428(이**)</p>
+				<p class="user">qoolp79(장**)</p>
 			</div>
 			<div>
 				<p class="title"><span class="logo">강아지</span>[강아지] 비숑<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
@@ -89,7 +89,7 @@ $(document).ready(function() {
 					<span><img src="http://localhost:9000/mypet/images/paw.png">경력 1년이상</span>
 					<span><img src="http://localhost:9000/mypet/images/calendar.png">2021/11/13 - 2021/12/31</span>
 				</p>
-				<p class="user">tmfql4428(이**)</p>
+				<p class="user">qoolp79(장**)</p>
 			</div>
 			<div>
 				<p class="title"><span class="logo">강아지</span>[강아지] 비숑<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
@@ -97,7 +97,7 @@ $(document).ready(function() {
 					<span><img src="http://localhost:9000/mypet/images/paw.png">경력 1년이상</span>
 					<span><img src="http://localhost:9000/mypet/images/calendar.png">2021/11/13 - 2021/12/31</span>
 				</p>
-				<p class="user">tmfql4428(이**)</p>
+				<p class="user">qoolp79(장**)</p>
 			</div>
 			<div>
 				<p class="title"><span class="logo">강아지</span>[강아지] 비숑<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
@@ -105,7 +105,7 @@ $(document).ready(function() {
 					<span><img src="http://localhost:9000/mypet/images/paw.png">경력 1년이상</span>
 					<span><img src="http://localhost:9000/mypet/images/calendar.png">2021/11/13 - 2021/12/31</span>
 				</p>
-				<p class="user">tmfql4428(이**)</p>
+				<p class="user">qoolp79(장**)</p>
 			</div>
 		</div>
 	</section>
