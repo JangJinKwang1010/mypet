@@ -9,5 +9,9 @@
 	<insert id="join" parameterType="com.mypet.vo.MemberVO">
 		insert into mypet_member values(#{id}, #{pass}, #{name}, #{hp}, #{email}, sysdate)
 	</insert>
+	
+	<select id="login" parameterType="com.mypet.vo.MemberVO" resultType="java.lang.Integer">
+		select count(*) from mypet_member where id=#{id} and pass=#{pass}
+	</select>
 
 </mapper>

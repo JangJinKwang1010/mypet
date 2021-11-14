@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Mypet</title>
+<script src="http://localhost:9000/mypet/js/jquery-3.6.0.min.js"></script>
 <style>
 section { text-align:center; }
 .logo {
@@ -159,7 +161,13 @@ section { text-align:center; }
 	color:white;
 }
 </style>
-
+<script>
+	$(document).ready(function() {
+		$(".login_btn").click(function() {
+			loginform.submit();
+		});
+	});
+</script>
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
@@ -169,28 +177,35 @@ section { text-align:center; }
 			<img src="images/indexdog.jpg" width=400px; height=500px;>
 		</div>
 		<div class="indexname">
-			<div class="loginbox">
-				<div class="loginboxhigh">
-					<p>로그인</p>
-					<a href="http://localhost:9000/mypet/join.do">회원가입</a>
+			<c:if test = "${empty session_id }">
+				<div class="loginbox">
+					<div class="loginboxhigh">
+						<p>로그인</p>
+						<a href="http://localhost:9000/mypet/join.do">회원가입</a>
+					</div>
+					<div class="loginboxmiddle">
+						<form name="loginform" action="login_proc.do" method="post">
+							<div class="login">
+								<ul>
+									<li>
+										<input type="text" placeholder="아이디를 입력하세요."id="id" name="id" class="form-control">
+									</li>
+									<li>
+										<input type="password" placeholder="비밀번호를 입력하세요."id="pass" name="pass" class="form-control">
+									</li>
+								</ul>
+								<a>아이디/비밀번호 찾기</a>
+							</div>
+						<button type="button" class="login_btn">로그인</button>
+						</form>
+					</div>
 				</div>
-				<div class="loginboxmiddle">
-					<form>
-						<div class="login">
-							<ul>
-								<li>
-									<input type="text" placeholder="아이디를 입력하세요."id="id" class="form-control">
-								</li>
-								<li>
-									<input type="password" placeholder="비밀번호를 입력하세요."id="pass" class="form-control">
-								</li>
-							</ul>
-							<a>아이디/비밀번호 찾기</a>
-						</div>
-					<button>로그인</button>
-					</form>
-				</div>
-			</div>
+			</c:if>
+			<c:if test="${!empty session_id }">
+				<div class="loginbox">
+				
+				</div>			
+			</c:if>
 		</div>
 		<div class="indexcat">
 			<img src="images/indexcat.jpg" width=400px; height=500px;>

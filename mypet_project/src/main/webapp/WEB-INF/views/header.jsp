@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,7 +55,13 @@ border-bottom:1px solid lightgray;
 <body>
 	<div class="menu1">
 		<ul>
-			<a href="http://localhost:9000/mypet/index.do"><li>HOME</li></a>
+			<c:if test = "${empty session_id }">
+				<a href="http://localhost:9000/mypet/index.do"><li>HOME</li></a>
+			</c:if>
+			<c:if test = "${!empty session_id }">
+				<a href="http://localhost:9000/mypet/index.do"><li>HOME</li></a>
+				<a><li>로그아웃</li></a>
+			</c:if>
 		</ul>
 	</div>
 	<div class="menu2">

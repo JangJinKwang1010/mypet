@@ -23,6 +23,17 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 	
+	public boolean getLoginResult(MemberVO vo) {
+		int val = MemberDAO.getLoginResult(vo);
+		boolean result = false;
+		
+		if (val == 1) {
+			result = true;
+		}
+		
+		return result;
+	}
+	
 	
 
 }

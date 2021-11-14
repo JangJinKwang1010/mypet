@@ -18,6 +18,10 @@ public class MemberDAO {
 		return sqlSession.insert(namespace+".join", vo);
 	}
 	
+	public int getLoginResult(MemberVO vo) {
+		return sqlSession.selectOne(namespace+".login", vo);
+	}
+	
 	
 
 }
