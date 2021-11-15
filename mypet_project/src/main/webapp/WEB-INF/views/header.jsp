@@ -60,7 +60,7 @@ border-bottom:1px solid lightgray;
 			</c:if>
 			<c:if test = "${!empty session_id }">
 				<a href="http://localhost:9000/mypet/index.do"><li>HOME</li></a>
-				<a><li>로그아웃</li></a>
+				<a href="http://localhost:9000/mypet/logout.do"><li>로그아웃</li></a>
 			</c:if>
 		</ul>
 	</div>

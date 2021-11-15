@@ -64,6 +64,19 @@ public class MemberController {
 		return mv;
 	}
 	
+	//·Î±×¾Æ¿ô proc
+	@RequestMapping(value = "/logout.do", method=RequestMethod.GET)
+	 public ModelAndView logout(HttpServletRequest request) {
+		 ModelAndView mv = new ModelAndView();
+		 HttpSession session = request.getSession();
+	     session.invalidate();
+	     
+	     mv.setViewName("redirect:/index.do");
+
+	     return mv;
+
+	 }
+	
 	
 
 }
