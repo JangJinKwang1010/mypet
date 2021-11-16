@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,10 +63,13 @@
 $(document).ready(function() {
 	var mapContainer = document.getElementById('map');
 	var mapOptions = {
-		center: new kakao.maps.LatLng(37.566400, 126.978573),
+
+		center: new kakao.maps.LatLng(${vo.latitude}, ${vo.longitude}),
 		level: 3
 	};
 	var map = new kakao.maps.Map(mapContainer, mapOptions);		
+	
+
 });
 </script>
 </head>
