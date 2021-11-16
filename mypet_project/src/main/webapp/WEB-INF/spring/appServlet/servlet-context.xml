@@ -24,8 +24,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<!-- Service Object -->
-	<beans:bean id="MemberService" class="com.mypet.service.MemberServiceImpl"></beans:bean>
 	
 	<context:component-scan base-package="com.myspring.mypet" />
 	<context:component-scan base-package="com.mypet.dao" />

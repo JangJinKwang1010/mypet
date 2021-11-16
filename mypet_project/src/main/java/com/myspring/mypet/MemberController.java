@@ -11,13 +11,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mypet.dao.MemberDAO;
-import com.mypet.service.MemberService;
 import com.mypet.vo.MemberVO;
+
 @Controller
-public class MemberController {
-	
-	@Autowired
-	private MemberService MemberService;
+public class MemberController {	
 	
 	@Autowired
 	private MemberDAO MemberDAO;
@@ -34,9 +31,9 @@ public class MemberController {
 	public ModelAndView join_proc(MemberVO vo) { 
 		 ModelAndView mv = new ModelAndView();		 
 		 
-		 boolean result = MemberService.getJoinResult(vo);
+		 int result = MemberDAO.getJoinResult(vo);
 		 
-		 if (result) {			 
+		 if (result != 0) {			 
 			 mv.setViewName("redirect:/index.do"); 
 		} else {
 			mv.setViewName("redirect:/join.do");
