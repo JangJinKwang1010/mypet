@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Mypet</title>
-<script src="http://14.47.84.2:9000/mypet/js/jquery-3.6.0.min.js"></script>
+<script src="http://14.47.84.213:9000/mypet/js/jquery-3.6.0.min.js"></script>
 <style>
 section { text-align:center; }
 .logo {
@@ -78,12 +78,12 @@ section { text-align:center; }
 	margin-top:30px;
 }
 #id {
-	background-image:url("http://14.47.84.2:9000/mypet/images/usericon.png");
+	background-image:url("http://14.47.84.213:9000/mypet/images/usericon.png");
 	background-position:5px center;
 	background-repeat:no-repeat;
 }
 #pass {
-	background-image:url("http://14.47.84.2:9000/mypet/images/passicon.png");
+	background-image:url("http://14.47.84.213:9000/mypet/images/passicon.png");
 	background-position:5px center;
 	background-repeat:no-repeat;
 }
@@ -120,7 +120,7 @@ section { text-align:center; }
 .banner {
 	width:100%;
 	height:250px;
-	background-image:url("http://14.47.84.2:9000/mypet/images/banner.png");
+	background-image:url("http://14.47.84.213:9000/mypet/images/banner.png");
 	margin-top:250px;
 	text-align:center;
 }
@@ -182,7 +182,7 @@ section { text-align:center; }
 				<div class="loginbox">
 					<div class="loginboxhigh">
 						<p>로그인</p>
-						<a href="http://14.47.84.2:9000/mypet/join.do">회원가입</a>
+						<a href="http://14.47.84.213:9000/mypet/join.do">회원가입</a>
 					</div>
 					<div class="loginboxmiddle">
 						<form name="loginform" action="login_proc.do" method="post">
@@ -213,19 +213,19 @@ section { text-align:center; }
 		</div>
 		<div class="banner">	
 			<div class="bannermenu1">
-				<img src="http://14.47.84.2:9000/mypet/images/bannericon1.png">
+				<img src="images/bannericon1.png">
 				<p>돌보미 등록</p>
 			</div>
 			<div class="bannermenu2">
-				<img src="http://14.47.84.2:9000/mypet/images/bannericon4.png">
+				<img src="images/bannericon4.png">
 				<p>펫 등록</p>
 			</div>
 			<div class="bannermenu3">
-				<img src="http://14.47.84.2:9000/mypet/images/bannericon3.png">
+				<img src="images/bannericon3.png">
 				<p>내 근처의 펫</p>
 			</div>
 			<div class="bannermenu4">
-				<img src="http://14.47.84.2:9000/mypet/images/bannericon2.png">
+				<img src="images/bannericon2.png">
 				<p>펫 일기</p>
 			</div>
 		</div>

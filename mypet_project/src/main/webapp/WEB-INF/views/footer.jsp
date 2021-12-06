@@ -10,7 +10,7 @@
 	.footer {
 		width:100%;
 		height:250px;
-		background-image:url("http://14.47.84.2:9000/mypet/images/banner.png");
+		background-image:url("images/banner.png");
 		margin-top:250px;
 		text-align:center;
 	}
