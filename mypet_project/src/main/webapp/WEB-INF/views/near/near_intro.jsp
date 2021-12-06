@@ -21,7 +21,7 @@
 	}
 </style>
 <script>
-$(document).ready(function() {	
+$(document).ready(function() {		
 	
 	function getLocation() {
 		  if (navigator.geolocation) { // GPS를 지원하면
