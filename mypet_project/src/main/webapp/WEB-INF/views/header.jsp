@@ -56,20 +56,20 @@ border-bottom:1px solid lightgray;
 	<div class="menu1">
 		<ul>
 			<c:if test = "${empty session_id }">
-				<a href="http://localhost:9000/mypet/index.do"><li>HOME</li></a>
+				<a href="http://14.47.84.2:9000/mypet/index.do"><li>HOME</li></a>
 			</c:if>
 			<c:if test = "${!empty session_id }">
-				<a href="http://localhost:9000/mypet/index.do"><li>HOME</li></a>
-				<a href="http://localhost:9000/mypet/logout.do"><li>로그아웃</li></a>
+				<a href="http://14.47.84.2:9000/mypet/index.do"><li>HOME</li></a>
+				<a href="http://14.47.84.2:9000/mypet/logout.do"><li>로그아웃</li></a>
 			</c:if>
 		</ul>
 	</div>
 	<div class="menu2">
 		<ul>
-			<a href="http://localhost:9000/mypet/care.do"><li>돌보미 등록</li></a>
-			<a href="http://localhost:9000/mypet/pet.do"><li>펫 등록</li></a>
-			<a href="http://localhost:9000/mypet/near_intro.do"><li>내 근처의 펫</li></a>
-			<a href="http://localhost:9000/mypet/diary.do"><li>펫 일기</li></a>
+			<a href="http://14.47.84.2:9000/mypet/care.do"><li>돌보미 등록</li></a>
+			<a href="http://14.47.84.2:9000/mypet/pet.do"><li>펫 등록</li></a>
+			<a href="http://14.47.84.2:9000/mypet/near_intro.do"><li>내 근처의 펫</li></a>
+			<a href="http://14.47.84.2:9000/mypet/diary.do"><li>펫 일기</li></a>
 			<li>마이페이지</li>
 		</ul>
 	</div>

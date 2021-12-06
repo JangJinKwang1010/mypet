@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Mypet</title>
-<script src="http://localhost:9000/mypet/js/jquery-3.6.0.min.js"></script>
+<script src="http://14.47.84.2:9000/mypet/js/jquery-3.6.0.min.js"></script>
 <style>
 .section {
 	text-align:center;
