@@ -34,12 +34,18 @@ public class MemberController {
 		 int result = MemberDAO.getJoinResult(vo);
 		 
 		 if (result != 0) {			 
-			 mv.setViewName("redirect:/index.do"); 
+			 mv.setViewName("redirect:/success.do"); 
 		} else {
 			mv.setViewName("redirect:/join.do");
 		}
 		
 		 return mv; 
+	}
+	
+	//성공페이지
+	@RequestMapping(value="/success.do")
+	public String success() {
+		return "member/success";
 	}
 	
 	//로그인 proc

@@ -11,8 +11,11 @@
 		width:100%;
 		height:250px;
 		background-image:url("images/banner.png");
-		margin-top:250px;
+		margin-top:150px;
 		text-align:center;
+	}
+	@media (max-width : 500px) {
+		.footer { display:none; }
 	}
 </style>
 <body>

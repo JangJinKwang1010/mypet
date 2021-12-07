@@ -2,7 +2,24 @@ package com.mypet.vo;
 
 public class MemberVO {
 	
-	String id, pass, name, hp, email, mdate;
+	String id, pass, name, hp, email, addr1, addr2, mdate;
+
+	
+	public String getAddr1() {
+		return addr1;
+	}
+
+	public void setAddr1(String addr1) {
+		this.addr1 = addr1;
+	}
+
+	public String getAddr2() {
+		return addr2;
+	}
+
+	public void setAddr2(String addr2) {
+		this.addr2 = addr2;
+	}
 
 	public String getId() {
 		return id;

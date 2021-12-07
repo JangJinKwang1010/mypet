@@ -18,15 +18,17 @@ section { text-align:center; }
 .logo>div {
 	display:inline-block;
 }
-.indexname{	
-	width:715px;
+.indexname {	
+	width:48%;
 	height:500px;
 	text-align:center;
 }
 .indexcat {
 	float:right;
+	width:25%;
 }
 .indexdog {
+	width:25%;
 	float:left;
 }
 
@@ -66,6 +68,7 @@ section { text-align:center; }
 .loginboxhigh>a:hover {
 	color:white;
 	background-color:rgb(72,115,210);
+	border:2px solid rgb(72,115,210);
 }
 .loginboxmiddle {
 	text-align:center;
@@ -162,6 +165,10 @@ section { text-align:center; }
 	background-color:rgb(247,179,42);
 	color:white;
 }
+@media (min-width: 600px) {
+	.m-index { display:none; }
+	.m-index img { display:none; }
+}
 @media (max-width : 500px) {
 	.indexname { width:100%; }
 	.indexcat>img, .indexdog>img { display:none;	}
@@ -170,10 +177,11 @@ section { text-align:center; }
 	#id, #pass { width:90%; }
 	.loginboxmiddle button { width:50%; }
 	.banner { background-image:none; }
-	.m-footer { 
-		width:100%; height:250px;
-		background-image:url("http://14.47.84.213:9000/mypet/images/banner.png"); 
-	}
+	
+	.m-index { width:100%; height:150px; }
+	.m-index img { width:40%; height:100%; }
+	.m-index img:first-child { float:left; }
+	.m-index img:last-child { float:right; }
 } 
 </style>
 <script>
@@ -189,7 +197,11 @@ section { text-align:center; }
 <section>
 	<div class="logo">
 		<div class="indexdog">
-			<img src="images/indexdog.jpg" width=400px; height=500px;>
+			<img src="images/indexdog.jpg" width=100%; height=500px;>
+		</div>
+		<div class="m-index">
+			<img src="images/indexdog.jpg">
+			<img src="images/indexcat.jpg">
 		</div>
 		<div class="indexname">
 			<c:if test = "${empty session_id }">
@@ -223,7 +235,7 @@ section { text-align:center; }
 			</c:if>
 		</div>
 		<div class="indexcat">
-			<img src="images/indexcat.jpg" width=400px; height=500px;>
+			<img src="images/indexcat.jpg" width=100%; height=500px;>
 		</div>
 		<div class="banner">	
 			<div class="bannermenu1">
@@ -244,7 +256,6 @@ section { text-align:center; }
 			</div>
 		</div>
 	</div>
-	<div class="m-footer"></div>
 </section>
 </body>
 </html>
