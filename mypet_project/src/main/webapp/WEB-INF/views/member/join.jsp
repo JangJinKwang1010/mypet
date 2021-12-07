@@ -60,7 +60,7 @@ section {
 	height:35px;
 	border-radius:10px;
 	font-weight:bold;
-	background-color:rgb(250,250,250);
+	background-color:white;
 	font-size:14px;
 	color:rgb(0,128,255);
 }
@@ -70,7 +70,7 @@ section {
 	color:white;
 }
 .joinbox form>button{
-	background-color:rgb(147,196,228);
+	background-color:rgb(0,89,171);
 	width:20%;
 	height:50px;
 	color:white;
@@ -81,7 +81,7 @@ section {
 	margin-top:50px;
 }
 .joinbox form>button:hover{
-	background-color:rgb(147,196,228);
+	background-color:rgb(0,68,130);
 	color:white;
 }
 .passmsg { color:gray;}
@@ -103,6 +103,8 @@ section {
 }
 </style>
 <script>
+var id_result = 0; // 중복확인 했는지 체크하기 위한 변수
+
 	$(document).ready(function() {
 		$(".join_btn").click(function() {
 			if ($("#id").val() == "" ) {
@@ -129,7 +131,10 @@ section {
 			} else if ($("#addr2").val() == "") {
 				alert("상세 주소를 입력해주세요");
 				$("#addr2").focus();				
-			} else {				
+			} else if(id_result == 0) {
+				alert("아이디 중복확인 버튼을 클릭해주세요");
+				$(".id_check").focus();
+			} else {
 				joinform.submit();				
 			}
 		});
@@ -141,6 +146,35 @@ section {
 				$("#cpass").val("").focus();
 			} else { //비밀번호와 비밀번호 확인이 같으면~
 				$(".passmsg").text("비밀번호가 동일합니다.").css("color","blue");
+			}
+		});
+		
+		/** 중복확인 **/
+		$(".id_check").click(function() {
+			var id = $("#id").val();
+			if($("#id").val() == "") {
+				alert("아이디를 입력해주세요");
+				$("#id").focus();
+			} else {
+				$.ajax({
+			        url:"id_check.do",
+			        type:"post",
+			        data: {
+			     	 	 id: id,
+			        }, 
+			        dataType:"json",
+			      success:function(result){
+			      		if (result) { //true이면 사용 가능 아이디
+			      			alert("사용 가능한 아이디입니다");
+			      			id_result = 1;
+			      			$("#pass").focus();
+			      		} else { //false이면 이미 존재하는 아이디
+			      			alert("이미 존재하는 아이디입니다.")
+			      			$("#id").val("").focus(); 
+			      		}
+			        },
+			        
+			     });  
 			}
 		});
 	});
@@ -156,7 +190,7 @@ section {
 					<ul>
 						<li><label>아이디</label></li>
 						<li><input type="text" placeholder="아이디" name="id" class="form-control" id="id"></li>
-						<li><button type="button">중복확인</button></li>
+						<li><button type="button" class="id_check">중복확인</button></li>
 					</ul>
 					<ul>
 						<li><label>비밀번호</label></li>

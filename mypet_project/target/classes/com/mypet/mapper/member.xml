@@ -13,5 +13,9 @@
 	<select id="login" parameterType="com.mypet.vo.MemberVO" resultType="java.lang.Integer">
 		select count(*) from mypet_member where id=#{id} and pass=#{pass}
 	</select>
+	
+	<select id="id_check" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from mypet_member where id=#{id}
+	</select>
 
 </mapper>

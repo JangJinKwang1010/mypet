@@ -22,6 +22,10 @@ public class MemberDAO {
 		return sqlSession.selectOne(namespace+".login", vo);
 	}
 	
+	public int getIdCheck(String id) {
+		return sqlSession.selectOne(namespace+".id_check", id);
+	}
+	
 	
 
 }

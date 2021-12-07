@@ -211,7 +211,7 @@ section { text-align:center; }
 						<a href="http://14.47.84.213:9000/mypet/join.do">회원가입</a>
 					</div>
 					<div class="loginboxmiddle">
-						<form name="loginform" action="login_proc.do" method="post">
+						<form name="loginform" action="login_proc.do" method="post" autocomplete="off" >
 							<div class="login">
 								<ul>
 									<li>

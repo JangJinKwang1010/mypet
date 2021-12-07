@@ -80,6 +80,20 @@ public class MemberController {
 
 	 }
 	
+	//아이디 중복확인
+	@ResponseBody
+	@RequestMapping(value="/id_check.do", method=RequestMethod.POST)
+	public boolean id_check(HttpServletRequest request) {
+		boolean result = false;
+		
+		int value = MemberDAO.getIdCheck(request.getParameter("id"));
+		if (value == 0) {
+			result = true;
+		}
+		
+		return result;
+	}
+	
 	
 
 }
