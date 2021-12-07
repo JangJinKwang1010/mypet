@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mypet</title>
 <script src="js/jquery-3.6.0.min.js"></script>
 <style>
@@ -28,6 +29,7 @@ section { text-align:center; }
 .indexdog {
 	float:left;
 }
+
 .loginbox {
 	margin-top:20px;
 	display:inline-block;
@@ -104,8 +106,7 @@ section { text-align:center; }
 .login a {
 	text-decoration:underline;
 	float:right;
-	margin:15px 40px;
-	
+	margin:15px 40px;	
 }
 .loginboxmiddle button {
 	background-color:rgb(72,115,210);
@@ -161,6 +162,19 @@ section { text-align:center; }
 	background-color:rgb(247,179,42);
 	color:white;
 }
+@media (max-width : 500px) {
+	.indexname { width:100%; }
+	.indexcat>img, .indexdog>img { display:none;	}
+	.loginbox { width:95%;	}
+	.login { width:90%; }
+	#id, #pass { width:90%; }
+	.loginboxmiddle button { width:50%; }
+	.banner { background-image:none; }
+	.m-footer { 
+		width:100%; height:250px;
+		background-image:url("http://14.47.84.213:9000/mypet/images/banner.png"); 
+	}
+} 
 </style>
 <script>
 	$(document).ready(function() {
@@ -230,6 +244,7 @@ section { text-align:center; }
 			</div>
 		</div>
 	</div>
+	<div class="m-footer"></div>
 </section>
 </body>
 </html>

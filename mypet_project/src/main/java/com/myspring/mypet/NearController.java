@@ -10,18 +10,12 @@ import com.mypet.vo.NearVO;
 @Controller
 public class NearController {
 	
-	@RequestMapping(value="/near.do", method=RequestMethod.POST)
-	public ModelAndView near(NearVO vo) {
+	@RequestMapping(value="/near.do")
+	public ModelAndView near() {
 		ModelAndView mv = new ModelAndView();
 		
-		mv.addObject("vo", vo);		
 		mv.setViewName("near/near");
 		return mv;
-	}
-	
-	@RequestMapping(value="/near_intro.do")
-	public String near_intro() {
-		return "near/near_intro";
 	}
 
 }

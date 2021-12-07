@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>My pet</title>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e8fa4fd6bbcee08087de03a2b386eba"></script>
-<script src="http://localhost:9000/mypet/js/jquery-3.6.0.min.js"></script>
+<script src="js/jquery-3.6.0.min.js"></script>
 <style>
 	section { text-align:center; }
 	#map {
@@ -61,10 +61,11 @@
 </style>
 <script>
 $(document).ready(function() {
+	
 	var mapContainer = document.getElementById('map');
 	var mapOptions = {
 
-		center: new kakao.maps.LatLng(${vo.latitude}, ${vo.longitude}),
+		center: new kakao.maps.LatLng(33.450701, 126.570667),
 		level: 3
 	};
 	var map = new kakao.maps.Map(mapContainer, mapOptions);		
