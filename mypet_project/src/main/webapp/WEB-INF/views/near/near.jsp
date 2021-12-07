@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>My pet</title>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e8fa4fd6bbcee08087de03a2b386eba"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e8fa4fd6bbcee08087de03a2b386eba&libraries=services"></script>
 <script src="js/jquery-3.6.0.min.js"></script>
 <style>
 	section { text-align:center; }
@@ -15,8 +15,7 @@
 		width:1200px; height:500px;
 		display:inline-block; 		
 		margin-top:50px;
-	}
-	
+	}	
 	.list {
 		width:1200px;
 		display:inline-block;
@@ -58,6 +57,14 @@
 		margin-right:20px;
 	}
 	.user { text-align:left; margin:15px 30px; font-size:15px; }
+	
+	@media (max-width : 500px) {
+		#map { width:90%; }
+		.list { width:90%; margin-bottom:50px; }
+		.title { font-size:18px; }
+		.title> .text { font-size:15px; }
+		.option { font-size:12px; margin:15px; }
+	}
 </style>
 <script>
 $(document).ready(function() {
@@ -69,6 +76,33 @@ $(document).ready(function() {
 		level: 3
 	};
 	var map = new kakao.maps.Map(mapContainer, mapOptions);		
+	
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+	
+	geocoder.addressSearch("${addr}", function(result, status) {
+
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === kakao.maps.services.Status.OK) {
+
+	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new kakao.maps.Marker({
+	            map: map,
+	            position: coords
+	        });
+
+	        // 인포윈도우로 장소에 대한 설명을 표시합니다
+	        var infowindow = new kakao.maps.InfoWindow({
+	            content: '<div style="width:150px;text-align:center;padding:6px 0;">내 주소 위치</div>'
+	        });
+	        infowindow.open(map, marker);
+
+	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	        map.setCenter(coords);
+	    } 
+	});	
 	
 
 });

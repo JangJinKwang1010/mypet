@@ -177,6 +177,7 @@ var id_result = 0; // 중복확인 했는지 체크하기 위한 변수
 			     });  
 			}
 		});
+		
 	});
 </script>
 </head>
@@ -215,8 +216,8 @@ var id_result = 0; // 중복확인 했는지 체크하기 위한 변수
 					</ul>
 					<ul>
 						<li><label>주소</label></li>
-						<li><input type="text" placeholder="주소" name="addr1" class="form-control " id="addr1"></li>
-						<li><input type="text" placeholder="상세 주소" name="addr2" class="form-control " id="addr2"></li>
+						<li><input type="text" placeholder="주소" name="addr1" class="form-control " id="addr1" onclick="addr()"></li>
+						<li><input type="text" placeholder="상세 주소" name="addr2" class="form-control " id="addr2" ></li>
 						<li><button type="button" onclick="addr()">주소검색</button></li>
 					</ul>
 					<button type="button" class="join_btn">가입완료</button>
