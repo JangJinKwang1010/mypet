@@ -70,10 +70,60 @@ section { text-align:center; }
 	background-color:rgb(72,115,210);
 	border:2px solid rgb(72,115,210);
 }
+.loginboxhigh2>p{
+	font-size:25px;
+	margin-top:20px;
+}
+.loginboxhigh2>p>span{
+	font-size:45px;
+}
 .loginboxmiddle {
 	text-align:center;
 	width:100%;
 	height:70%;
+}
+.loginboxmiddle2{
+	border:1px solid lightgray;
+	width:100%;
+	height:70%;
+}
+.loginpicture{
+	display:inline-block;
+	border:1px solid lightgray;
+	width:150px;
+	height:150px;
+	float:left;
+	border-radius:5px;
+	margin:10px 0 0 10px;
+}
+.loginpicture>img{
+	margin-top:5px;
+}
+.loginmyinf{
+	display:inline-block;
+	border:1px solid lightgray;
+	width:300px;
+	height:150px;
+	float:left;
+	border-radius:5px;
+	margin:10px 0 0 10px;
+	text-align:left;
+	background-color:rgb(245,245,245);
+}
+.loginmyinf>p{
+	margin:3px 0 0 5px;
+}
+.loginmyinf>button{
+	float:right;
+	margin-right:10px;
+	border-radius:5px;
+	background-color:white;
+	font-size:14px;
+	font-weight:bold;
+}
+.loginmyinf>button:hover{
+	background-color:rgb(247,179,42);
+	color:white;
 }
 .login {
 	display:inline-block;
@@ -230,7 +280,21 @@ section { text-align:center; }
 			</c:if>
 			<c:if test="${!empty session_id }">
 				<div class="loginbox">
-				
+				 	<div class="loginboxhigh loginboxhigh2">
+				 		<p><span>${session_id}</span>님 환영합니다.</p>
+				 		<a href="http://14.47.84.213:9000/mypet/logout.do">로그아웃</a>
+				 	</div>
+				 	<div class="loginboxmiddle2">
+				 		<div class="loginpicture">
+				 			<img src="images/human2.png" width=90% height=90%>
+				 		</div>
+				 		<div class="loginmyinf">
+				 			<p>이름</p>
+				 			<button>내정보</button>
+				 			<p>${session_id}</p>
+				 			<p>마이펫</p>
+				 		</div>
+				 	</div>
 				</div>			
 			</c:if>
 		</div>
