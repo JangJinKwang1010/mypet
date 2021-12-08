@@ -10,9 +10,9 @@
 	.footer {
 		width:100%;
 		height:250px;
-		background-image:url("images/banner.png");
-		margin-top:150px;
-		text-align:center;
+		background-color:rgb(220,220,220);
+		margin-top:50px;
+
 	}
 	@media (max-width : 500px) {
 		.footer { display:none; }

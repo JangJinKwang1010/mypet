@@ -6,59 +6,66 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Mypet</title>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
 <style>
-.section {
-	text-align:center;
-}
-.mainbox {
-	width:1200px;
-	display:inline-block;
-	margin-top:50px;
-	text-align:center;
-}
-.title {
-	margin-top:60px;
-	margin-left:100px;
-	float:left;
-	font-weight:bold;
-	font-size:30px;
-}
-.title>span {
-	margin-left:20px;
-	color:gray;
-	font-weight:normal;
-	font-size:20px;
-}
-.mainbox2{
-	display:inline-block;
-	width:1200px;
-}
-.subtitle {
-	margin-top:60px;
-	margin-left:130px;
-	float:left;
-	font-weight:bold;
-	font-size:20px;
-}
-.subtitle>span {
-	margin-left:20px;
-	color:gray;
-	font-weight:normal;
-	font-size:20px;
-}
-.board{
-	border:1px solid lightgray;
-	display:inline-block;
-	width:1000px;
-	height:500px;	
-}
-.pagenum{
-	display:inline-block;
-}
-
+	.section {
+		text-align:center;
+	}
+	.mainbox {
+		width:1200px;
+		display:inline-block;
+		margin-top:50px;
+		text-align:center;
+	}
+	.title {
+		margin-top:60px;
+		margin-left:100px;
+		float:left;
+		font-weight:bold;
+		font-size:30px;
+	}
+	.title>span {
+		margin-left:20px;
+		color:gray;
+		font-weight:normal;
+		font-size:20px;
+	}
+	.mainbox2 {
+		display:inline-block;
+		width:1200px;
+	}
+	.subtitle {
+		margin-top:60px;
+		margin-left:130px;
+		float:left;
+		font-weight:bold;
+		font-size:20px;
+	}
+	.subtitle>span {
+		margin-left:20px;
+		color:gray;
+		font-weight:normal;
+		font-size:20px;
+	}
+	.board {
+		border-top:1px solid lightgray;
+		display:inline-block;
+		width:1000px;
+		height:500px;	
+	}
+	.board>table { font-size:14px; }
+	.pagenum {
+		display:inline-block;
+	}
+	.page { text-align:center; }
+	.page>nav { display:inline-block; }
+	.page>button {
+		float:right;
+		border:1px solid lightgray;
+		background-color:rgb(0,89,171);
+	}
 </style>
 </head>
 <body>
@@ -105,11 +112,84 @@
 								<td>3</td>
 								<td>15</td>
 							</tr>
+							<tr>
+								<th>2</th>
+								<td>냥냥펀치</td>
+								<td>냥이귀엽죠~</td>
+								<td>21/12/06</td>
+								<td>3</td>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>냥냥펀치</td>
+								<td>냥이귀엽죠~</td>
+								<td>21/12/06</td>
+								<td>3</td>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>냥냥펀치</td>
+								<td>냥이귀엽죠~</td>
+								<td>21/12/06</td>
+								<td>3</td>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>냥냥펀치</td>
+								<td>냥이귀엽죠~</td>
+								<td>21/12/06</td>
+								<td>3</td>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>냥냥펀치</td>
+								<td>냥이귀엽죠~</td>
+								<td>21/12/06</td>
+								<td>3</td>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>냥냥펀치</td>
+								<td>냥이귀엽죠~</td>
+								<td>21/12/06</td>
+								<td>3</td>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>냥냥펀치</td>
+								<td>냥이귀엽죠~</td>
+								<td>21/12/06</td>
+								<td>3</td>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>냥냥펀치</td>
+								<td>냥이귀엽죠~</td>
+								<td>21/12/06</td>
+								<td>3</td>
+								<td>15</td>
+							</tr>
 						</tbody>
 					</table>
-					<button type="button" class="btn btn-outline-success">이전 페이지</button>
-					<p class="pagenum"><1></p>
-					<button type="button" class="btn btn-outline-success">다음 페이지</button>
+					<div class="page">
+						<nav aria-label="...">
+						  <ul class="pagination pagination-sm">
+						    <li class="page-item active" aria-current="page">
+						      <span class="page-link">1</span>
+						    </li>
+						    <li class="page-item"><a class="page-link" href="#">2</a></li>
+						    <li class="page-item"><a class="page-link" href="#">3</a></li>
+						  </ul>
+						</nav>
+						<button class="btn btn-success">글쓰기</button>
+					</div>
 				</div>
 			</div>				
 		</div>
