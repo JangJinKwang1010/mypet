@@ -59,6 +59,8 @@ public class MemberController {
 		if (result == 1) {
 			mv.setViewName("redirect:/index.do");
 			session.setAttribute("session_id", vo.getId());
+			String name = MemberDAO.getName(vo.getId());
+			session.setAttribute("session_name", name);
 			
 		} else {
 			mv.setViewName("redirect:/join.do");

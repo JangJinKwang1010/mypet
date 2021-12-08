@@ -26,6 +26,10 @@ public class MemberDAO {
 		return sqlSession.selectOne(namespace+".id_check", id);
 	}
 	
+	public String getName(String id) {
+		return sqlSession.selectOne(namespace+".name", id);
+	}
+	
 	
 
 }

@@ -63,7 +63,7 @@ border-bottom:1px solid lightgray;
 		margin-right:30px;
 		padding: 5px 0;
 	}
-	.m-menu1 a.logout { color:white; float:right; margin-right:-15px; }
+	.m-menu1 a.logout { color:white; float:right; }
 	
 	.menu2 { display:none; }
 	.m-menu2 { display:none; width:300px; height:2100px; background-color:rgb(250,250,250); border:1px solid lightgray; position:absolute; top:0; z-index:999; }

@@ -17,5 +17,9 @@
 	<select id="id_check" parameterType="java.lang.String" resultType="java.lang.Integer">
 		select count(*) from mypet_member where id=#{id}
 	</select>
+	
+	<select id="name" parameterType="java.lang.String" resultType="java.lang.String">
+		select name from mypet_member where id=#{id}
+	</select>
 
 </mapper>

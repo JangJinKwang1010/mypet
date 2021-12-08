@@ -71,7 +71,7 @@ section { text-align:center; }
 	border:2px solid rgb(72,115,210);
 }
 .loginboxhigh2>p{
-	font-size:25px;
+	font-size:22px;
 	margin-top:20px;
 }
 .loginboxhigh2>p>span{
@@ -82,12 +82,12 @@ section { text-align:center; }
 	width:100%;
 	height:70%;
 }
-.loginboxmiddle2{
-	border:1px solid lightgray;
+.loginboxmiddle2 {
 	width:100%;
 	height:70%;
+	text-align:center;
 }
-.loginpicture{
+.loginpicture {
 	display:inline-block;
 	border:1px solid lightgray;
 	width:150px;
@@ -96,13 +96,13 @@ section { text-align:center; }
 	border-radius:5px;
 	margin:10px 0 0 10px;
 }
-.loginpicture>img{
+.loginpicture>img {
 	margin-top:5px;
 }
-.loginmyinf{
+.loginmyinf {
 	display:inline-block;
 	border:1px solid lightgray;
-	width:300px;
+	width:330px;
 	height:150px;
 	float:left;
 	border-radius:5px;
@@ -122,8 +122,16 @@ section { text-align:center; }
 	font-weight:bold;
 }
 .loginmyinf>button:hover{
+	border:2px solid rgb(247,179,42);
 	background-color:rgb(247,179,42);
 	color:white;
+}
+.loginmybell {
+	border:1px solid lightgray;
+	width:95%; height:150px;
+	display:inline-block;
+	margin-top:15px;
+	border-radius:5px;
 }
 .login {
 	display:inline-block;
@@ -218,6 +226,7 @@ section { text-align:center; }
 @media (min-width: 600px) {
 	.m-index { display:none; }
 	.m-index img { display:none; }
+	.loginmyinf { margin-top:5px; }
 }
 @media (max-width : 500px) {
 	.indexname { width:100%; }
@@ -232,6 +241,12 @@ section { text-align:center; }
 	.m-index img { width:40%; height:100%; }
 	.m-index img:first-child { float:left; }
 	.m-index img:last-child { float:right; }
+	
+	.loginboxhigh2>p>span { font-size:30px; }
+	.loginboxhigh2>p { font-size:20px; margin-top:30px; }
+	.loginboxhigh2>a { margin:30px 10px 0 0; }
+	.loginmyinf { width:175px; }
+	
 } 
 </style>
 <script>
@@ -281,7 +296,7 @@ section { text-align:center; }
 			<c:if test="${!empty session_id }">
 				<div class="loginbox">
 				 	<div class="loginboxhigh loginboxhigh2">
-				 		<p><span>${session_id}</span>님 환영합니다.</p>
+				 		<p><span>${session_name}</span>님 환영합니다.</p>
 				 		<a href="http://14.47.84.213:9000/mypet/logout.do">로그아웃</a>
 				 	</div>
 				 	<div class="loginboxmiddle2">
@@ -289,10 +304,13 @@ section { text-align:center; }
 				 			<img src="images/human2.png" width=90% height=90%>
 				 		</div>
 				 		<div class="loginmyinf">
-				 			<p>이름</p>
+				 			<p>${session_name }</p>
 				 			<button>내정보</button>
 				 			<p>${session_id}</p>
 				 			<p>마이펫</p>
+				 		</div>
+				 		<div class="loginmybell">
+				 			
 				 		</div>
 				 	</div>
 				</div>			

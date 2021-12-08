@@ -61,10 +61,20 @@
 	}
 	.page { text-align:center; }
 	.page>nav { display:inline-block; }
-	.page>button {
+	.write {
 		float:right;
 		border:1px solid lightgray;
 		background-color:rgb(0,89,171);
+		color:white;
+		border-radius:5px; 
+		padding:5px;
+	}
+	
+	@media (max-width : 500px) {
+		.mainbox { width:85%; margin-bottom:100px; }
+		.mainbox2, .board { width:100%; }
+		.title, .mainbox2>p { margin-left:0; }
+		.board>table { font-size:12px; }
 	}
 </style>
 </head>
@@ -187,9 +197,9 @@
 						    <li class="page-item"><a class="page-link" href="#">2</a></li>
 						    <li class="page-item"><a class="page-link" href="#">3</a></li>
 						  </ul>
-						</nav>
-						<button class="btn btn-success">글쓰기</button>
+						</nav>						
 					</div>
+					<button class="write">글쓰기</button>
 				</div>
 			</div>				
 		</div>
