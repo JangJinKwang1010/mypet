@@ -333,7 +333,7 @@ section { text-align:center; }
 				 			<img src="images/human2.png" width=90% height=90%>
 				 		</div>
 				 		<div class="loginmyinf">
-				 			<p>${session_name }</p>
+				 			<p>${session_name}</p>
 				 			<button>내정보</button>
 				 			<p>${session_id}</p>
 				 			<p>test2@naver.com</p>
