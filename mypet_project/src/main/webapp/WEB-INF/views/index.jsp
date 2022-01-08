@@ -126,13 +126,42 @@ section { text-align:center; }
 	background-color:rgb(247,179,42);
 	color:white;
 }
-.loginmybell {
+.loginmypet {
 	border:1px solid lightgray;
 	width:95%; height:150px;
 	display:inline-block;
 	margin-top:15px;
 	border-radius:5px;
+	background-color:rgb(245,245,245);
 }
+.loginmypet>p{
+	text-align:left;
+	margin:5px 0 0 150px;
+}
+.loginmypet>button{
+	float:right;
+	margin-right:10px;
+	border-radius:5px;
+	background-color:white;
+	font-size:14px;
+	font-weight:bold;
+}
+.loginmypet>button:hover{
+	border:2px solid rgb(168,199,123);
+	background-color:rgb(168,199,123);
+	color:white;
+}
+.loginpetpicture{
+	display:inline-block;
+	border:1px solid lightgray;
+	width:125px;
+	height:125px;
+	float:left;
+	border-radius:5px;
+	margin:10px 0 0 15px;
+	background-color:white;
+}
+
 .login {
 	display:inline-block;
 	width:80%;
@@ -307,10 +336,19 @@ section { text-align:center; }
 				 			<p>${session_name }</p>
 				 			<button>내정보</button>
 				 			<p>${session_id}</p>
-				 			<p>마이펫</p>
+				 			<p>test2@naver.com</p>
+				 			<p>주소</p>
 				 		</div>
-				 		<div class="loginmybell">
-				 			
+				 		<div class="loginmypet">
+				 			<div class="loginpetpicture">
+				 				<img src="images/loginpet.png" width=95% height=95%>
+				 			</div>
+				 			<p>반련동물 이름</p>
+				 			<button>대표 반려동물 변경</button>
+				 			<p>반련동물 품종</p>
+				 			<p>반련동물 크기</p>
+				 			<p>반련동물 생년월일</p>
+				 			<p>반련동물 특이사항</p>
 				 		</div>
 				 	</div>
 				</div>			
