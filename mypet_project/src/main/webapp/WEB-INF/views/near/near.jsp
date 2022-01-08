@@ -9,17 +9,32 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e8fa4fd6bbcee08087de03a2b386eba&libraries=services"></script>
 <script src="js/jquery-3.6.0.min.js"></script>
 <style>
-	section { text-align:center; }
+	.section { text-align:center; background-color:rgb(200,171,217); }
+	.back { background-color:white; width:1300px; display:inline-block; text-align:center; }
 	#map {
 		border:1px solid lightgray;
 		width:1200px; height:500px;
 		display:inline-block; 		
 		margin-top:50px;
 	}	
+	.back>.title {
+		margin-top:110px;
+		float:left;
+		font-weight:bold;
+		font-size:30px;
+		margin-left:100px;
+	}
+	.title>span {
+		margin-left:20px;
+		color:gray;
+		font-weight:normal;
+		font-size:20px;
+	}
 	.list {
 		width:1200px;
 		display:inline-block;
 		margin-top:30px;
+		background-color:white;
 	}
 	.list>div {
 		display:inline-block;
@@ -111,7 +126,9 @@ $(document).ready(function() {
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
 	
-	<section>
+	<section class="section">
+		<div class="back">
+		<p class="title">내 근처의 펫<span>A pet near me</span></p>
 		<div id="map"></div>
 		<div class="list">
 			<div>
@@ -146,6 +163,7 @@ $(document).ready(function() {
 				</p>
 				<p class="user">qoolp79(장**)</p>
 			</div>
+		</div>
 		</div>
 	</section>
 	

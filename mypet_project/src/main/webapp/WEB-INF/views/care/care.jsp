@@ -10,19 +10,20 @@
 <style>
 .section {
 	text-align:center;
+	background-color:rgb(147,196,228);
 }
 .mainbox {
-	width:1200px;
+	width:1300px;
 	display:inline-block;
-	margin-top:50px;
 	text-align:center;
+	background-color:white;	
 }
 .title {
-	margin-top:60px;
-	margin-left:100px;
+	margin-top:110px;
 	float:left;
 	font-weight:bold;
 	font-size:30px;
+	margin-left:100px;
 }
 .title>span {
 	margin-left:20px;
@@ -32,7 +33,6 @@
 }
 .information {
 	width:1000px;
-	height:210px;
 	margin-top:40px;
 	text-align:center;
 	display:inline-block;
@@ -60,7 +60,6 @@
 }
 .personalinf2 {
 	border:1px solid lightgray;
-	background-color:rgb(250,250,250);
 	display:inline-block;
 	width:1000px;
 	height:165px;
@@ -68,7 +67,6 @@
 }
 .personalinf3 {
 	border:1px solid lightgray;
-	background-color:rgb(250,250,250);
 	display:inline-block;
 	width:1000px;
 	margin-bottom:30px;
@@ -120,15 +118,19 @@
 	float:left;
 } 
 .information>button {
-	border:1px solid;
-	width:80px;
-	height:35px;
+	border:none;
+	width:20%;
+	height:50px;
 	border-radius:10px;
 	font-weight:bold;
 	margin-top:50px;
+	background-color:rgb(72,115,210);
+	color:white;
+	font-size:20px;
+	margin-bottom:110px;
 }
 .information>button:hover {
-	background-color:rgb(147,196,228);
+	background-color:rgb(0,68,130);
 	color:white;
 }
 .personalinf2 input,.personalinf2 select, .personalinf3 input,.personalinf3 select {
@@ -145,7 +147,7 @@
 	width:100%; height:50%;
 }
 .add {
-	background-color:white;
+	background-color:rgb(245,245,245);
 	width:100%;
 	height:50px;
 	border:none;

@@ -10,15 +10,16 @@
 <style>
 .section {
 	text-align:center;
+	background-color:rgb(168,199,123);
 }
 .mainbox {
-	width:1200px;
+	width:1300px;
 	display:inline-block;
-	margin-top:50px;
 	text-align:center;
+	background-color:white;
 }
 .title {
-	margin-top:60px;
+	margin-top:110px;
 	margin-left:100px;
 	float:left;
 	font-weight:bold;
@@ -32,7 +33,6 @@
 }
 .information {
 	width:1000px;
-	height:210px;
 	margin-top:40px;
 	text-align:center;
 	display:inline-block;
@@ -120,15 +120,19 @@
 	float:left;
 } 
 .information>button {
-	border:1px solid;
-	width:80px;
-	height:35px;
+	border:none;
+	width:20%;
+	height:50px;
 	border-radius:10px;
 	font-weight:bold;
 	margin-top:50px;
+	background-color:rgb(72,115,210);
+	color:white;
+	font-size:20px;
+	margin-bottom:110px;
 }
 .information>button:hover {
-	background-color:rgb(147,196,228);
+	background-color:rgb(0,68,130);
 	color:white;
 }
 .personalinf2 input,.personalinf2 select, .personalinf3 input,.personalinf3 select {

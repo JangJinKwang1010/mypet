@@ -10,8 +10,7 @@
 	.footer {
 		width:100%;
 		height:250px;
-		background-color:rgb(220,220,220);
-		margin-top:50px;
+		background-color:rgb(240,240,240);
 
 	}
 	@media (max-width : 500px) {

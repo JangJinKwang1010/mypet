@@ -1,8 +1,7 @@
 package com.mypet.vo;
 
 public class MemberVO {
-	
-	String id, pass, name, hp, email, addr1, addr2, mdate;
+String id, pass, name, hp, email, addr1, addr2, mdate;
 
 	
 	public String getAddr1() {
@@ -68,7 +67,4 @@ public class MemberVO {
 	public void setMdate(String mdate) {
 		this.mdate = mdate;
 	}
-	
-	
-
 }

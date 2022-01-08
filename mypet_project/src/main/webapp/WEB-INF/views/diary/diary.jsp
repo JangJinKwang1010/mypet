@@ -12,15 +12,16 @@
 <style>
 	.section {
 		text-align:center;
+		background-color:rgb(247,179,42);
 	}
 	.mainbox {
-		width:1200px;
+		width:1300px;
 		display:inline-block;
-		margin-top:50px;
 		text-align:center;
+		background-color:white;
 	}
 	.title {
-		margin-top:60px;
+		margin-top:110px;
 		margin-left:100px;
 		float:left;
 		font-weight:bold;
