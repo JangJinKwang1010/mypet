@@ -26,10 +26,20 @@ public class CareController {
 		
 		if (!id.equals("")) {
 			CareVO vo = CareDAO.getCare(id);
+			
+			vo.setBirth1(vo.getBirth().substring(0, 4));
+			vo.setBirth2(vo.getBirth().substring(4, 6));
+			vo.setBirth3(vo.getBirth().substring(6, 8));
+			
 			mv.addObject("vo", vo);
 			mv.setViewName("care/care");
 		}
 		
 		return mv;
+	}
+	
+	@RequestMapping(value="/care_profile.do")
+	public String care_profile() {
+		return "care/care_profile";
 	}
 }

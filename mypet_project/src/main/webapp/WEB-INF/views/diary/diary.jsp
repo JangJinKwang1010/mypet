@@ -89,7 +89,27 @@
 	.picturebox{
 		display:none;
 	}
-	
+	.picture_div {
+		width:200px;
+		height:280px;
+		display:inline-block;
+		color:black;
+		margin-top:15px; 
+	}
+	.picture {
+		border:1px solid lightgray;
+		width:200px;
+		height:200px;
+		display:inline-block;
+		border-radius:5px;
+	}
+	.picture_div p { text-align:left; }
+	.pictrue_title {
+		font-weight:bold;
+	}
+	.picture_title>span { color:red; }
+	.picture_title:hover { text-decoration:underline; }
+	.picture_name, .picture_date { color:gray; font-size:14px; }
 	@media (min-width : 600px) {		
 		.section { background-color:rgb(247,179,42); }
 		.mainbox { width:1300px; }
@@ -243,108 +263,76 @@
 			<div class ="mainbox2 picturebox">
 				<p class="subtitle"><span class="free_diary">자유게시판</span>사진게시판</p>
 				<div class="board">
-					<table class="board2 table table-striped table-hover">
-						<thead>
-							<tr>
-								<th>번호</th>
-								<th>글쓴이</th>
-								<th>제목</th>
-								<th>등록일</th>
-								<th>추천수</th>
-								<th>조회수</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th>1</th>
-								<td>간식킬러</td>
-								<td>강쥐귀엽죠~</td>
-								<td>21/12/06</td>
-								<td>3</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<th>2</th>
-								<td>냥냥펀치</td>
-								<td>냥이귀엽죠~</td>
-								<td>21/12/06</td>
-								<td>3</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<th>2</th>
-								<td>냥냥펀치</td>
-								<td>냥이귀엽죠~</td>
-								<td>21/12/06</td>
-								<td>3</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<th>2</th>
-								<td>냥냥펀치</td>
-								<td>냥이귀엽죠~</td>
-								<td>21/12/06</td>
-								<td>3</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<th>2</th>
-								<td>냥냥펀치</td>
-								<td>냥이귀엽죠~</td>
-								<td>21/12/06</td>
-								<td>3</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<th>2</th>
-								<td>냥냥펀치</td>
-								<td>냥이귀엽죠~</td>
-								<td>21/12/06</td>
-								<td>3</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<th>2</th>
-								<td>냥냥펀치</td>
-								<td>냥이귀엽죠~</td>
-								<td>21/12/06</td>
-								<td>3</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<th>2</th>
-								<td>냥냥펀치</td>
-								<td>냥이귀엽죠~</td>
-								<td>21/12/06</td>
-								<td>3</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<th>2</th>
-								<td>냥냥펀치</td>
-								<td>냥이귀엽죠~</td>
-								<td>21/12/06</td>
-								<td>3</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<th>2</th>
-								<td>냥냥펀치</td>
-								<td>냥이귀엽죠~</td>
-								<td>21/12/06</td>
-								<td>3</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<th>2</th>
-								<td>냥냥펀치</td>
-								<td>냥이귀엽죠~</td>
-								<td>21/12/06</td>
-								<td>3</td>
-								<td>15</td>
-							</tr>
-						</tbody>
-					</table>
+					<a href="#">
+						<div class="picture_div">
+							<div class="picture">
+								<img src="images/demo.jpg" width=100%; height=100%; >
+							</div>
+							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
+							<p class="picture_name">우리집사는똥멍청이</p>
+							<p class="picture_date">2022.01.09 <span>조회 55</span></p>
+						</div>					
+					</a>
+					<a href="#">
+						<div class="picture_div">
+							<div class="picture">
+								<img src="images/demo.jpg" width=100%; height=100%; >
+							</div>
+							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
+							<p class="picture_name">우리집사는똥멍청이</p>
+							<p class="picture_date">2022.01.09 <span>조회 55</span></p>
+						</div>					
+					</a>
+					<a href="#">
+						<div class="picture_div">
+							<div class="picture">
+								<img src="images/demo.jpg" width=100%; height=100%; >
+							</div>
+							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
+							<p class="picture_name">우리집사는똥멍청이</p>
+							<p class="picture_date">2022.01.09 <span>조회 55</span></p>
+						</div>					
+					</a>
+					<a href="#">
+						<div class="picture_div">
+							<div class="picture">
+								<img src="images/demo.jpg" width=100%; height=100%; >
+							</div>
+							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
+							<p class="picture_name">우리집사는똥멍청이</p>
+							<p class="picture_date">2022.01.09 <span>조회 55</span></p>
+						</div>					
+					</a>
+					<a href="#">
+						<div class="picture_div">
+							<div class="picture">
+								<img src="images/demo.jpg" width=100%; height=100%; >
+							</div>
+							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
+							<p class="picture_name">우리집사는똥멍청이</p>
+							<p class="picture_date">2022.01.09 <span>조회 55</span></p>
+						</div>					
+					</a>
+					<a href="#">
+						<div class="picture_div">
+							<div class="picture">
+								<img src="images/demo.jpg" width=100%; height=100%; >
+							</div>
+							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
+							<p class="picture_name">우리집사는똥멍청이</p>
+							<p class="picture_date">2022.01.09 <span>조회 55</span></p>
+						</div>					
+					</a>
+					<a href="#">
+						<div class="picture_div">
+							<div class="picture">
+								<img src="images/demo.jpg" width=100%; height=100%; >
+							</div>
+							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
+							<p class="picture_name">우리집사는똥멍청이</p>
+							<p class="picture_date">2022.01.09 <span>조회 55</span></p>
+						</div>					
+					</a>
 					<div class="page">
 						<nav aria-label="...">
 						  <ul class="pagination pagination-sm">

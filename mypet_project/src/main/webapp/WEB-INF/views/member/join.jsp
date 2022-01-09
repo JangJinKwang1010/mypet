@@ -119,6 +119,12 @@ var id_result = 0; // 중복확인 했는지 체크하기 위한 변수
 			} else if ($("#name").val() == "") {
 				alert("이름을 입력해주세요");
 				$("#name").focus();
+			} else if ($("#birth").val() == "") {
+				alert("생년월일을 입력해주세요");
+				$("#birth").focus();
+			} else if ($("#gender").val() == "null") {
+				alert("성별을 선택해주세요");
+				$("#gender").focus();
 			} else if ($("#hp").val() == "") {
 				alert("휴대폰 번호를 입력해주세요");
 				$("#hp").focus();
@@ -200,7 +206,7 @@ var id_result = 0; // 중복확인 했는지 체크하기 위한 변수
 					<ul>
 						<li><label>비밀번호 확인</label></li>
 						<li><input type="password" placeholder="비밀번호 확인" class="form-control" id="cpass"></li>
-						<li class="passmsg">비밀번호 확인을 위해 다시 한번 입력 해 주세요.</li>
+						<li class="passmsg">비밀번호 확인을 위해 다시 한번 입력 해주세요.</li>
 					</ul>
 					<ul>
 						<li><label>이름</label></li>

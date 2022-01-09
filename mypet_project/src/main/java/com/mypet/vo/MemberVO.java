@@ -1,9 +1,25 @@
 package com.mypet.vo;
 
 public class MemberVO {
-String id, pass, name, hp, email, addr1, addr2, mdate;
+String id, pass, name, hp, email, addr1, addr2, mdate, birth, gender;
 
 	
+	public String getBirth() {
+		return birth;
+	}
+	
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
+	
+	public String getGender() {
+		return gender;
+	}
+	
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
 	public String getAddr1() {
 		return addr1;
 	}

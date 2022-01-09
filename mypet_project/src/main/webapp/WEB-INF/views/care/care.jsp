@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
   %>
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,6 +101,7 @@
 		margin:15px 10px 0 0;
 		display:inline-block;
 		float:right;
+		cursor:pointer;
 	}
 	.inf6 {
 		width:180px;
@@ -185,6 +187,13 @@
 			$(".add_section").append(html);
 			
 		});
+		
+		$(".inf5").click(function() {
+			 var url = "care_profile.do";
+	         var name = "popup test";
+	         var option = "width = 500, height = 500, top = 150, left = 500, location = no"
+	         window.open(url, name, option);
+		});
 	});
 </script>
 </head>
@@ -202,39 +211,45 @@
 						<div class="inf1">
 							<label>이름</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control" value="${vo.name }" >
+							<input type="text" class="form-control" value="${vo.name }"  readonly>
 						</div>
 						<div class="inf2">
 							<label>생년월일</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${vo.birth1 }년 ${vo.birth2}월 ${vo.birth3}일" readonly>
 						</div>
 						<div class="inf3">
 							<label>성별</label>
 							<p class="p3">*</p>
-							<select class="form-select">
-								<option>선택</option>
-								<option>남자</option>
-								<option>여자</option>
+							<select class="form-select" disabled>
+								<c:if test="${vo.gender eq 'man' }">
+									<option selected>남자</option>
+									<option>여자</option>
+								</c:if>
+								<c:if test="${vo.gender eq 'woman' }">
+									<option>남자</option>
+									<option selected>여자</option>
+								</c:if>
 							</select>
 						</div>
 						<div class="inf4">
 							<label>이메일</label>
-							<input type="text" class="form-control" value="${vo.email }">
+							<p class="p3">*</p>
+							<input type="text" class="form-control" value="${vo.email }" readonly>
 						</div>
 						<div class="inf5">
-						<p class="p3">*</p>
 							<label>사진</label>
+							<p class="p3">*</p>
 						</div>
 						<div class="inf6">
 							<label>휴대폰번호</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control" value="${vo.hp }">
+							<input type="text" class="form-control" value="${vo.hp }" readonly>
 						</div>
 						<div class="inf7">
 							<label>주소</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control" value="${vo.addr1} ${vo.addr2 }">
+							<input type="text" class="form-control" value="${vo.addr1} ${vo.addr2 }" readonly>
 						</div>
 				</div>
 				
