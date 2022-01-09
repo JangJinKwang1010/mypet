@@ -169,6 +169,7 @@ section { text-align:center; }
 	background-color:rgb(245,245,245);
 	margin-top:30px;
 }
+.login a { color:black; }
 #id {
 	background-image:url("http://14.47.84.213:9000/mypet/images/usericon.png");
 	background-position:5px center;
@@ -315,7 +316,7 @@ section { text-align:center; }
 										<input type="password" placeholder="비밀번호를 입력하세요."id="pass" name="pass" class="form-control">
 									</li>
 								</ul>
-								<a>아이디/비밀번호 찾기</a>
+								<a href="find.do">아이디/비밀번호 찾기</a>
 							</div>
 						<button type="button" class="login_btn">로그인</button>
 						</form>
@@ -358,19 +359,19 @@ section { text-align:center; }
 			<img src="images/indexcat.jpg" width=100%; height=500px;>
 		</div>
 		<div class="banner">	
-			<div class="bannermenu1">
+			<div class="bannermenu1" onclick="location.href='care.do'">
 				<img src="images/bannericon1.png">
 				<p>돌보미 등록</p>
 			</div>
-			<div class="bannermenu2">
+			<div class="bannermenu2" onclick="location.href='pet.do'">
 				<img src="images/bannericon4.png">
 				<p>펫 등록</p>
 			</div>
-			<div class="bannermenu3">
+			<div class="bannermenu3" onclick="location.href='near.do'">
 				<img src="images/bannericon3.png">
 				<p>내 근처의 펫</p>
 			</div>
-			<div class="bannermenu4">
+			<div class="bannermenu4" onclick="location.href='diary.do'">
 				<img src="images/bannericon2.png">
 				<p>펫 일기</p>
 			</div>

@@ -107,21 +107,21 @@ border-bottom:1px solid lightgray;
 	</div>
 	<div class="menu2">
 		<ul>
-			<a href="http://14.47.84.213:9000/mypet/care.do"><li>돌보미 등록</li></a>
-			<a href="http://14.47.84.213:9000/mypet/pet.do"><li>펫 등록</li></a>
-			<a href="http://14.47.84.213:9000/mypet/near.do"><li>내 근처의 펫</li></a>
-			<a href="http://14.47.84.213:9000/mypet/diary.do"><li>펫 일기</li></a>
-			<a href="#"><li>마이페이지</li></a>
+			<a href="care.do"><li>돌보미 등록</li></a>
+			<a href="pet.do"><li>펫 등록</li></a>
+			<a href="near.do"><li>내 근처의 펫</li></a>
+			<a href="diary.do"><li>펫 일기</li></a>
+			<a href="mypage.do"><li>마이페이지</li></a>
 		</ul>
 	</div>	
 	<div class="m-menu2">
 		<img class="closed" src="images/m-menu.png">	
 		<ul>
-			<a href="http://14.47.84.213:9000/mypet/care.do"><li>돌보미 등록</li></a>
-			<a href="http://14.47.84.213:9000/mypet/pet.do"><li>펫 등록</li></a>
-			<a href="http://14.47.84.213:9000/mypet/near.do"><li>내 근처의 펫</li></a>
-			<a href="http://14.47.84.213:9000/mypet/diary.do"><li>펫 일기</li></a>
-			<a href="#"><li>마이페이지</li></a>
+			<a href="care.do"><li>돌보미 등록</li></a>
+			<a href="pet.do"><li>펫 등록</li></a>
+			<a href="near.do"><li>내 근처의 펫</li></a>
+			<a href="diary.do"><li>펫 일기</li></a>
+			<a href="mypage.do"><li>마이페이지</li></a>
 		</ul>
 	</div>
 </body>
