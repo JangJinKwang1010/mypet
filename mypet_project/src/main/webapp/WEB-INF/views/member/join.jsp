@@ -10,97 +10,97 @@
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="js/address.js"></script>
 <style>
-section {
-	width:100%;
-	text-align:center;
-}
-.mainbox {
-	width:65%;
-	display:inline-block;
-}
-.title {
-	margin-top:60px;
-	margin-left:100px;
-	float:left;
-	font-weight:bold;
-	font-size:30px;
-}
-.title>span {
-	margin-left:20px;
-	color:gray;
-	font-weight:normal;
-	font-size:20px;
-}
-.joinbox {
-	border:1px solid white;
-	width:90%;
-	display:inline-block;
-	margin-top:50px;
-}
-.joinbox ul {
-	list-style:none;
-	text-align:left;
-	margin-top:30px;
-}
-.joinbox label {
-	font-weight:bold;
-}
-#addr { width:40%; }
-.joinbox input{
-	width:100%;
-	height:35px;
-	margin-left:3px;
-	margin-top:3px;
-}
-.joinbox li>button{
-	border:1px solid rgb(0,128,255);
-	margin-top:5px;
-	margin-left:10px;
-	width:80px;
-	height:35px;
-	border-radius:10px;
-	font-weight:bold;
-	background-color:white;
-	font-size:14px;
-	color:rgb(0,128,255);
-}
-.joinbox li>button:hover{
-	background-color:rgb(0,128,255);
-	border:none;
-	color:white;
-}
-.joinbox form>button{
-	background-color:rgb(0,89,171);
-	width:20%;
-	height:50px;
-	color:white;
-	font-weight:bold;
-	font-size:20px;
-	border:none;
-	border-radius:10px;
-	margin-top:50px;
-}
-.joinbox form>button:hover{
-	background-color:rgb(0,68,130);
-	color:white;
-}
-.passmsg { color:gray;}
-
-@media (min-width : 600px) {
-	.mainbox { border:1px solid lightgray; border-radius:30px; margin-top:50px; padding-bottom:40px; margin-bottom:50px; }
-	.joinbox { background-color:rgb(245,245,245); text-align:center; }
-	.joinbox input { display:inline-block; }
-	.joinbox ul { width:90%; display:inline-block; }
-	.joinbox form>button { margin-bottom:20px; }
-}
-
-@media (max-width : 500px) {
-	.mainbox { width:85%; margin-bottom:50px; }
-	.title { margin-left:0; }
-	.joinbox { width:100%; }
-	.joinbox input { height:40px; }
-	.joinbox form>button { width:50%; }
-}
+	section {
+		width:100%;
+		text-align:center;
+	}
+	.mainbox {
+		width:65%;
+		display:inline-block;
+	}
+	.title {
+		margin-top:60px;
+		margin-left:100px;
+		float:left;
+		font-weight:bold;
+		font-size:30px;
+	}
+	.title>span {
+		margin-left:20px;
+		color:gray;
+		font-weight:normal;
+		font-size:20px;
+	}
+	.joinbox {
+		border:1px solid white;
+		width:90%;
+		display:inline-block;
+		margin-top:50px;
+	}
+	.joinbox ul {
+		list-style:none;
+		text-align:left;
+		margin-top:30px;
+	}
+	.joinbox label {
+		font-weight:bold;
+	}
+	#addr { width:40%; }
+	.joinbox input{
+		width:100%;
+		height:35px;
+		margin-left:3px;
+		margin-top:3px;
+	}
+	.joinbox li>button{
+		border:1px solid rgb(0,128,255);
+		margin-top:5px;
+		margin-left:10px;
+		width:80px;
+		height:35px;
+		border-radius:10px;
+		font-weight:bold;
+		background-color:white;
+		font-size:14px;
+		color:rgb(0,128,255);
+	}
+	.joinbox li>button:hover{
+		background-color:rgb(0,128,255);
+		border:none;
+		color:white;
+	}
+	.joinbox form>button{
+		background-color:rgb(0,89,171);
+		width:20%;
+		height:50px;
+		color:white;
+		font-weight:bold;
+		font-size:20px;
+		border:none;
+		border-radius:10px;
+		margin-top:50px;
+	}
+	.joinbox form>button:hover{
+		background-color:rgb(0,68,130);
+		color:white;
+	}
+	.passmsg { color:gray;}
+	
+	@media (min-width : 600px) {
+		.mainbox { border:1px solid lightgray; border-radius:30px; margin-top:50px; padding-bottom:40px; margin-bottom:50px; }
+		.joinbox { background-color:rgb(245,245,245); text-align:center; }
+		.joinbox input { display:inline-block; }
+		.joinbox ul { width:90%; display:inline-block; }
+		.joinbox form>button { margin-bottom:20px; }
+	}
+	
+	@media (max-width : 500px) {
+		.mainbox { width:85%; margin-bottom:50px; }
+		.title { margin-left:0; }
+		.joinbox { width:100%; }
+		.joinbox input { height:40px; }
+		.joinbox form>button { width:50%; }
+	}
 </style>
 <script>
 var id_result = 0; // 중복확인 했는지 체크하기 위한 변수
@@ -195,7 +195,7 @@ var id_result = 0; // 중복확인 했는지 체크하기 위한 변수
 					</ul>
 					<ul>
 						<li><label>비밀번호</label></li>
-						<li><input type="password" placeholder="비밀번호" name="pass" class="form-control" id="pass"></li>
+						<li><input type="password" placeholder="비밀번호" name="pass" class="form-control" id="pass" ></li>
 					</ul>
 					<ul>
 						<li><label>비밀번호 확인</label></li>
@@ -205,6 +205,20 @@ var id_result = 0; // 중복확인 했는지 체크하기 위한 변수
 					<ul>
 						<li><label>이름</label></li>
 						<li><input type="text" placeholder="이름" name="name" class="form-control" id="name"></li>
+					</ul>
+					<ul>
+						<li><label>생년월일</label></li>
+						<li><input type="text" placeholder="생년월일(8자리)" name="birth" class="form-control" id="birth"></li>
+					</ul>
+					<ul>
+						<li><label>성별</label></li>
+						<li>
+							<select class="form-select" name="gender" id="gender">
+								<option value="null">선택</option>
+								<option value="man">남자</option>
+								<option value="woman">여자</option>
+							</select>
+						</li>
 					</ul>
 					<ul>
 						<li><label>휴대폰 번호</label></li>

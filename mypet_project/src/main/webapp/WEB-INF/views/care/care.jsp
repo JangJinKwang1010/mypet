@@ -8,152 +8,155 @@
 <title>Mypet</title>
 <script src="js/jquery-3.6.0.min.js"></script>
 <style>
-.section {
-	text-align:center;
-	background-color:rgb(147,196,228);
-}
-.mainbox {
-	width:1300px;
-	display:inline-block;
-	text-align:center;
-	background-color:white;	
-}
-.title {
-	margin-top:110px;
-	float:left;
-	font-weight:bold;
-	font-size:30px;
-	margin-left:100px;
-}
-.title>span {
-	margin-left:20px;
-	color:gray;
-	font-weight:normal;
-	font-size:20px;
-}
-.information {
-	width:1000px;
-	margin-top:40px;
-	text-align:center;
-	display:inline-block;
-}
-.personalinf {
-	width:100%;
-	height:40px;
-	float:left;
-}
-.p1 {
-	font-size:20px;
-	font-weight:bold;
-	float:left;
-}
-.p2 {
-	font-size:12px;
-	color:red;
-	float:right;
-	margin:15px 10px 0 0;
-}
-.p3 {
-	font-size:12px;
-	color:red;
-	float:left;
-}
-.personalinf2 {
-	border:1px solid lightgray;
-	display:inline-block;
-	width:1000px;
-	height:165px;
-	margin-bottom:30px;
-}
-.personalinf3 {
-	border:1px solid lightgray;
-	display:inline-block;
-	width:1000px;
-	margin-bottom:30px;
-}
-.personalinf2>div, .personalinf3 div {
-	border:1px solid lightgray;
-	background-color:white;
-}
-.inf1,.inf2 {
-	width:180px;
-	height:60px;
-	margin:15px 0 0 10px;
-	display:inline-block;
-	float:left;
-}
-.inf3 {
-	width:140px;
-	height:60px;
-	margin:15px 0 0 10px;
-	display:inline-block;
-	float:left;
-}
-.inf4 {
-	width:270px;
-	height:60px;
-	margin:15px 0 0 10px;
-	display:inline-block;
-	float:left;
-}
-.inf5 {
-	width:150px;
-	height:138px;
-	margin:15px 10px 0 0;
-	display:inline-block;
-	float:right;
-}
-.inf6,.inf7 {
-	width:180px;
-	height:60px;
-	margin:15px 0 0 10px;
-	display:inline-block;
-	float:left;
-}
-.inf8 {
-	width:420px;
-	height:60px;
-	margin:15px 0 0 10px;
-	display:inline-block;
-	float:left;
-} 
-.information>button {
-	border:none;
-	width:20%;
-	height:50px;
-	border-radius:10px;
-	font-weight:bold;
-	margin-top:50px;
-	background-color:rgb(72,115,210);
-	color:white;
-	font-size:20px;
-	margin-bottom:110px;
-}
-.information>button:hover {
-	background-color:rgb(0,68,130);
-	color:white;
-}
-.personalinf2 input,.personalinf2 select, .personalinf3 input,.personalinf3 select {
-	border:none;
-	height:30px;
-	font-size:14px;
-}
-.personalinf2 label, .personalinf3 label{
-	font-size:12px;
-	float:left;
-	margin:5px 0 5px 10px;
-}
-.personalinf3>section {
-	width:100%; height:50%;
-}
-.add {
-	background-color:rgb(245,245,245);
-	width:100%;
-	height:50px;
-	border:none;
-	border-top:1px solid lightgray;
-	margin-top:10px;
-}
+	.section {
+		text-align:center;
+	}
+	.mainbox {
+		display:inline-block;
+		text-align:center;
+		background-color:white;	
+	}
+	.title {
+		margin-top:110px;
+		float:left;
+		font-weight:bold;
+		font-size:30px;
+		margin-left:100px;
+	}
+	.title>span {
+		margin-left:20px;
+		color:gray;
+		font-weight:normal;
+		font-size:20px;
+	}
+	.information {
+		width:1000px;
+		margin-top:40px;
+		text-align:center;
+		display:inline-block;
+	}
+	.personalinf {
+		width:100%;
+		height:40px;
+		float:left;
+	}
+	.p1 {
+		font-size:20px;
+		font-weight:bold;
+		float:left;
+	}
+	.p2 {
+		font-size:12px;
+		color:red;
+		float:right;
+		margin:15px 10px 0 0;
+	}
+	.p3 {
+		font-size:12px;
+		color:red;
+		float:left;
+	}
+	.personalinf2 {
+		border:1px solid lightgray;
+		display:inline-block;
+		width:1000px;
+		height:165px;
+		margin-bottom:30px;
+	}
+	.personalinf3 {
+		border:1px solid lightgray;
+		display:inline-block;
+		width:1000px;
+		margin-bottom:30px;
+	}
+	.personalinf2>div, .personalinf3 div {
+		border:1px solid lightgray;
+		background-color:white;
+	}
+	.inf1,.inf2 {
+		width:180px;
+		height:60px;
+		margin:15px 0 0 10px;
+		display:inline-block;
+		float:left;
+	}
+	.inf3 {
+		width:140px;
+		height:60px;
+		margin:15px 0 0 10px;
+		display:inline-block;
+		float:left;
+	}
+	.inf4 {
+		width:270px;
+		height:60px;
+		margin:15px 0 0 10px;
+		display:inline-block;
+		float:left;
+	}
+	.inf5 {
+		width:150px;
+		height:138px;
+		margin:15px 10px 0 0;
+		display:inline-block;
+		float:right;
+	}
+	.inf6 {
+		width:180px;
+		height:60px;
+		margin:15px 0 0 10px;
+		display:inline-block;
+		float:left;
+	}
+	.inf7 {
+		width:610px;
+		height:60px;
+		margin:15px 0 0 10px;
+		display:inline-block;
+		float:left;
+	} 
+	.information>button {
+		border:none;
+		width:20%;
+		height:50px;
+		border-radius:10px;
+		font-weight:bold;
+		margin-top:50px;
+		background-color:rgb(72,115,210);
+		color:white;
+		font-size:20px;
+		margin-bottom:110px;
+	}
+	.information>button:hover {
+		background-color:rgb(0,68,130);
+		color:white;
+	}
+	.personalinf2 input,.personalinf2 select, .personalinf3 input,.personalinf3 select {
+		border:none;
+		height:30px;
+		font-size:14px;
+	}
+	.personalinf2 label, .personalinf3 label{
+		font-size:12px;
+		float:left;
+		margin:5px 0 5px 10px;
+	}
+	.personalinf3>section {
+		width:100%; height:50%;
+	}
+	.add {
+		background-color:rgb(245,245,245);
+		width:100%;
+		height:50px;
+		border:none;
+		border-top:1px solid lightgray;
+		margin-top:10px;
+	}
+
+	@media (min-width : 600px) {		
+		.section { background-color:rgb(147,196,228); }
+		.mainbox { width:1300px; }
+	}
 </style>
 <script>
 	$(document).ready(function() {
@@ -199,7 +202,7 @@
 						<div class="inf1">
 							<label>이름</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${vo.name }" >
 						</div>
 						<div class="inf2">
 							<label>생년월일</label>
@@ -210,30 +213,28 @@
 							<label>성별</label>
 							<p class="p3">*</p>
 							<select class="form-select">
+								<option>선택</option>
 								<option>남자</option>
 								<option>여자</option>
 							</select>
 						</div>
 						<div class="inf4">
 							<label>이메일</label>
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${vo.email }">
 						</div>
 						<div class="inf5">
 						<p class="p3">*</p>
 							<label>사진</label>
 						</div>
 						<div class="inf6">
-							<label>전화번호</label>
-							<input type="text" class="form-control">
-						</div>
-						<div class="inf7">
 							<label>휴대폰번호</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${vo.hp }">
 						</div>
-						<div class="inf8">
+						<div class="inf7">
 							<label>주소</label>
 							<p class="p3">*</p>
+							<input type="text" class="form-control" value="${vo.addr1} ${vo.addr2 }">
 						</div>
 				</div>
 				

@@ -9,8 +9,7 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e8fa4fd6bbcee08087de03a2b386eba&libraries=services"></script>
 <script src="js/jquery-3.6.0.min.js"></script>
 <style>
-	.section { text-align:center; background-color:rgb(200,171,217); }
-	.back { background-color:white; width:1300px; display:inline-block; text-align:center; }
+	.section { text-align:center; }
 	#map {
 		border:1px solid lightgray;
 		width:1200px; height:500px;
@@ -43,13 +42,13 @@
 		border-radius:5px;
 		margin-bottom:10px;
 	}
-	.title {
+	.p_title {
 		text-align:left;
 		font-size:20px;
 		font-weight:bold;
 		margin:10px;
 	}
-	.title>.logo {
+	.p_title>.logo {
 		font-size:13px;
 		font-weight:normal;
 		background-color:gray;
@@ -58,7 +57,7 @@
 		margin:5px;
 		padding:3px;
 	}
-	.title>.text {
+	.p_title>.text {
 		font-size:17px;
 		font-weight:normal;
 		margin-left:10px;
@@ -73,11 +72,18 @@
 	}
 	.user { text-align:left; margin:15px 30px; font-size:15px; }
 	
+	@media (min-width : 600px ) {
+		.back { background-color:white; width:1300px; display:inline-block; text-align:center; }
+		.section { background-color:rgb(200,171,217); }
+		.list { margin-bottom:50px; }
+	}
+	
 	@media (max-width : 500px) {
 		#map { width:90%; }
 		.list { width:90%; margin-bottom:50px; }
-		.title { font-size:18px; }
-		.title> .text { font-size:15px; }
+		.back>.title {  margin-left:20px; }
+		.p_title { font-size:18px; }
+		.p_title> .text { font-size:15px; }
 		.option { font-size:12px; margin:15px; }
 	}
 </style>
@@ -132,7 +138,7 @@ $(document).ready(function() {
 		<div id="map"></div>
 		<div class="list">
 			<div>
-				<p class="title"><span class="logo">강아지</span>[강아지] 비숑<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
+				<p class="p_title"><span class="logo">강아지</span>[강아지] 비숑<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
 				<p class="option">
 					<span><img src="images/paw.png">경력 1년이상</span>
 					<span><img src="images/calendar.png">2021/11/13 - 2021/12/31</span>
@@ -140,7 +146,7 @@ $(document).ready(function() {
 				<p class="user">qoolp79(장**)</p>
 			</div>
 			<div>
-				<p class="title"><span class="logo">강아지</span>[강아지] 비숑<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
+				<p class="p_title"><span class="logo">강아지</span>[강아지] 비숑<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
 				<p class="option">
 					<span><img src="images/paw.png">경력 1년이상</span>
 					<span><img src="images/calendar.png">2021/11/13 - 2021/12/31</span>
@@ -148,7 +154,7 @@ $(document).ready(function() {
 				<p class="user">qoolp79(장**)</p>
 			</div>
 			<div>
-				<p class="title"><span class="logo">강아지</span>[강아지] 비숑<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
+				<p class="p_title"><span class="logo">강아지</span>[강아지] 비숑<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
 				<p class="option">
 					<span><img src="images/paw.png">경력 1년이상</span>
 					<span><img src="images/calendar.png">2021/11/13 - 2021/12/31</span>
@@ -156,13 +162,14 @@ $(document).ready(function() {
 				<p class="user">qoolp79(장**)</p>
 			</div>
 			<div>
-				<p class="title"><span class="logo">강아지</span>[강아지] 비숑<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
+				<p class="p_title"><span class="logo">강아지</span>[강아지] 비숑<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
 				<p class="option">
 					<span><img src="images/paw.png">경력 1년이상</span>
 					<span><img src="images/calendar.png">2021/11/13 - 2021/12/31</span>
 				</p>
 				<p class="user">qoolp79(장**)</p>
 			</div>
+			
 		</div>
 		</div>
 	</section>

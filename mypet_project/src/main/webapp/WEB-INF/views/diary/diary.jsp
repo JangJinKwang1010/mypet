@@ -12,10 +12,9 @@
 <style>
 	.section {
 		text-align:center;
-		background-color:rgb(247,179,42);
 	}
 	.mainbox {
-		width:1300px;
+		width:1200px;
 		display:inline-block;
 		text-align:center;
 		background-color:white;
@@ -39,7 +38,7 @@
 	}
 	.subtitle {
 		margin-top:60px;
-		margin-left:130px;
+		margin-left:70px;
 		float:left;
 		font-weight:bold;
 		font-size:20px;
@@ -53,8 +52,7 @@
 	.board {
 		border-top:1px solid lightgray;
 		display:inline-block;
-		width:1000px;
-		height:500px;	
+		width:1100px;
 	}
 	.board>table { font-size:14px; }
 	.pagenum {
@@ -64,13 +62,26 @@
 	.page>nav { display:inline-block; }
 	.write {
 		float:right;
-		border:1px solid lightgray;
-		background-color:rgb(0,89,171);
+		border:none;
+		width:20%;
+		height:50px;
+		border-radius:10px;
+		font-weight:bold;
+		margin-top:50px;
+		background-color:rgb(72,115,210);
 		color:white;
-		border-radius:5px; 
-		padding:5px;
+		font-size:20px;
+		margin-bottom:110px;		
+	}
+	.write:hover {
+		background-color:rgb(0,68,130);
+		color:white;
 	}
 	
+	@media (min-width : 600px) {		
+		.section { background-color:rgb(247,179,42); }
+		.mainbox { width:1300px; }
+	}
 	@media (max-width : 500px) {
 		.mainbox { width:85%; margin-bottom:100px; }
 		.mainbox2, .board { width:100%; }
