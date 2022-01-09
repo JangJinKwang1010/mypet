@@ -63,6 +63,9 @@
 		display:inline-block;
 		width:1100px;
 	}
+	.board a{
+		text-decoration:none;
+	}
 	.board>table { font-size:14px; }
 	.pagenum {
 		display:inline-block;
@@ -266,7 +269,7 @@
 					<a href="#">
 						<div class="picture_div">
 							<div class="picture">
-								<img src="images/demo.jpg" width=100%; height=100%; >
+								<img src="images/dog_ex1.png" width=100%; height=100%; >
 							</div>
 							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
 							<p class="picture_name">우리집사는똥멍청이</p>
@@ -276,7 +279,7 @@
 					<a href="#">
 						<div class="picture_div">
 							<div class="picture">
-								<img src="images/demo.jpg" width=100%; height=100%; >
+								<img src="images/dog_ex1.png" width=100%; height=100%; >
 							</div>
 							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
 							<p class="picture_name">우리집사는똥멍청이</p>
@@ -286,7 +289,7 @@
 					<a href="#">
 						<div class="picture_div">
 							<div class="picture">
-								<img src="images/demo.jpg" width=100%; height=100%; >
+								<img src="images/dog_ex2.png" width=100%; height=100%; >
 							</div>
 							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
 							<p class="picture_name">우리집사는똥멍청이</p>
@@ -296,7 +299,7 @@
 					<a href="#">
 						<div class="picture_div">
 							<div class="picture">
-								<img src="images/demo.jpg" width=100%; height=100%; >
+								<img src="images/dog_ex2.png" width=100%; height=100%; >
 							</div>
 							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
 							<p class="picture_name">우리집사는똥멍청이</p>
@@ -306,7 +309,7 @@
 					<a href="#">
 						<div class="picture_div">
 							<div class="picture">
-								<img src="images/demo.jpg" width=100%; height=100%; >
+								<img src="images/dog_ex3.png" width=100%; height=100%; >
 							</div>
 							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
 							<p class="picture_name">우리집사는똥멍청이</p>
@@ -316,7 +319,7 @@
 					<a href="#">
 						<div class="picture_div">
 							<div class="picture">
-								<img src="images/demo.jpg" width=100%; height=100%; >
+								<img src="images/dog_ex3.png" width=100%; height=100%; >
 							</div>
 							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
 							<p class="picture_name">우리집사는똥멍청이</p>
@@ -326,7 +329,7 @@
 					<a href="#">
 						<div class="picture_div">
 							<div class="picture">
-								<img src="images/demo.jpg" width=100%; height=100%; >
+								<img src="images/dog_ex1.png" width=100%; height=100%; >
 							</div>
 							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
 							<p class="picture_name">우리집사는똥멍청이</p>
