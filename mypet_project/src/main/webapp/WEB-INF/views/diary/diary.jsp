@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Mypet</title>
+<script src="js/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
 <style>
@@ -35,6 +36,7 @@
 	.mainbox2 {
 		display:inline-block;
 		width:1200px;
+		background-color:white;
 	}
 	.subtitle {
 		margin-top:60px;
@@ -42,9 +44,16 @@
 		float:left;
 		font-weight:bold;
 		font-size:20px;
+		cursor:pointer;
 	}
-	.subtitle>span {
+	.subtitle>.picture_diary {
 		margin-left:20px;
+		color:gray;
+		font-weight:normal;
+		font-size:20px;
+	}
+	.subtitle>.free_diary {
+		margin-right:20px;
 		color:gray;
 		font-weight:normal;
 		font-size:20px;
@@ -77,6 +86,9 @@
 		background-color:rgb(0,68,130);
 		color:white;
 	}
+	.picturebox{
+		display:none;
+	}
 	
 	@media (min-width : 600px) {		
 		.section { background-color:rgb(247,179,42); }
@@ -89,14 +101,27 @@
 		.board>table { font-size:12px; }
 	}
 </style>
+<script>
+	$(document).ready(function(){
+		$(".picture_diary").click(function(){
+			$(".picturebox").css("display","inline-block");
+			$(".freebox").css("display","none");
+		});
+		
+		$(".free_diary").click(function(){
+			$(".freebox").css("display","inline-block");
+			$(".picturebox").css("display","none");
+		});
+	})
+</script>
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
 		<section class="section">
 		<div class="mainbox">
 			<p class="title">펫 일기<span>Pet Diary</span></p>
-			<div class ="mainbox2">
-				<p class="subtitle">자유게시판<span>사진게시판</span></p>
+			<div class ="mainbox2 freebox">
+				<p class="subtitle">자유게시판<span class="picture_diary">사진게시판</span></p>
 				<div class="board">
 					<table class="board2 table table-striped table-hover">
 						<thead>
@@ -214,7 +239,127 @@
 					<button class="write">글쓰기</button>
 				</div>
 			</div>				
-		</div>
+		
+			<div class ="mainbox2 picturebox">
+				<p class="subtitle"><span class="free_diary">자유게시판</span>사진게시판</p>
+				<div class="board">
+					<table class="board2 table table-striped table-hover">
+						<thead>
+							<tr>
+								<th>번호</th>
+								<th>글쓴이</th>
+								<th>제목</th>
+								<th>등록일</th>
+								<th>추천수</th>
+								<th>조회수</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>1</th>
+								<td>간식킬러</td>
+								<td>강쥐귀엽죠~</td>
+								<td>21/12/06</td>
+								<td>3</td>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>냥냥펀치</td>
+								<td>냥이귀엽죠~</td>
+								<td>21/12/06</td>
+								<td>3</td>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>냥냥펀치</td>
+								<td>냥이귀엽죠~</td>
+								<td>21/12/06</td>
+								<td>3</td>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>냥냥펀치</td>
+								<td>냥이귀엽죠~</td>
+								<td>21/12/06</td>
+								<td>3</td>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>냥냥펀치</td>
+								<td>냥이귀엽죠~</td>
+								<td>21/12/06</td>
+								<td>3</td>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>냥냥펀치</td>
+								<td>냥이귀엽죠~</td>
+								<td>21/12/06</td>
+								<td>3</td>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>냥냥펀치</td>
+								<td>냥이귀엽죠~</td>
+								<td>21/12/06</td>
+								<td>3</td>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>냥냥펀치</td>
+								<td>냥이귀엽죠~</td>
+								<td>21/12/06</td>
+								<td>3</td>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>냥냥펀치</td>
+								<td>냥이귀엽죠~</td>
+								<td>21/12/06</td>
+								<td>3</td>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>냥냥펀치</td>
+								<td>냥이귀엽죠~</td>
+								<td>21/12/06</td>
+								<td>3</td>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>냥냥펀치</td>
+								<td>냥이귀엽죠~</td>
+								<td>21/12/06</td>
+								<td>3</td>
+								<td>15</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="page">
+						<nav aria-label="...">
+						  <ul class="pagination pagination-sm">
+						    <li class="page-item active" aria-current="page">
+						      <span class="page-link">1</span>
+						    </li>
+						    <li class="page-item"><a class="page-link" href="#">2</a></li>
+						    <li class="page-item"><a class="page-link" href="#">3</a></li>
+						  </ul>
+						</nav>						
+					</div>
+					<button class="write">글쓰기</button>
+				</div>
+			</div>	
+		</div>			
 	</section>
 	<jsp:include page="../footer.jsp"></jsp:include>
 </body>

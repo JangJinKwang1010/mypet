@@ -95,7 +95,26 @@ public class MemberController {
 		
 		return result;
 	}
-	
+	//아이디/비밀번호찾기
+	@RequestMapping(value="/find.do")
+	public String find() {
+		return "member/find";
+	}
+	//아이디/비밀번호찾기 실패창
+	@RequestMapping(value="/find_fail.do")
+	public String find_fail() {
+		return "member/find_fail";
+	}
+	//아이디찾기 성공
+	@RequestMapping(value="/success_id.do")
+	public String success_id() {
+		return "member/success_id";
+	}
+	//비밀번호찾기 성공
+	@RequestMapping(value="/success_pass.do")
+	public String success_pass() {
+		return "member/success_pass";
+	}
 	
 
 }
