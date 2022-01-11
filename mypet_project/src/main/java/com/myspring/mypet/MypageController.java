@@ -15,4 +15,12 @@ public class MypageController {
 	public String mypage_update() {
 		return "mypage/mypage_update";
 	}
+	@RequestMapping(value="/pass_change.do") 
+	public String pass_change() {
+		return "mypage/pass_change";
+	}
+	@RequestMapping(value="/membership_withdrawal.do") 
+	public String membership_withdrawal() {
+		return "mypage/membership_withdrawal";
+	}
 }
