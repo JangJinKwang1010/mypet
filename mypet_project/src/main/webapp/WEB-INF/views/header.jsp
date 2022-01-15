@@ -83,6 +83,21 @@ border-bottom:1px solid lightgray;
 		$(".closed").click(function() {
 			$(".m-menu2").css("display","none");
 		});
+		
+		$(".care, .pet").click(function() {
+			$.ajax({
+                url:"login_check.do",
+                type: "post",
+              success:function(result){
+                	if (result == "true") {
+                		
+                	} else {
+                		alert("로그인 후 이용부탁드립니다");
+                	}
+                },                   
+             });  
+		});
+		
 	});
 </script>
 </head>
@@ -107,8 +122,8 @@ border-bottom:1px solid lightgray;
 	</div>
 	<div class="menu2">
 		<ul>
-			<a href="care.do"><li>돌보미 등록</li></a>
-			<a href="pet.do"><li>펫 등록</li></a>
+			<a href="care.do" class="care"><li>돌보미 등록</li></a>
+			<a href="pet.do" class="pet"><li>펫 등록</li></a>
 			<a href="near.do"><li>내 근처의 펫</li></a>
 			<a href="diary.do"><li>펫 일기</li></a>
 			<a href="mypage.do"><li>마이페이지</li></a>
@@ -117,8 +132,8 @@ border-bottom:1px solid lightgray;
 	<div class="m-menu2">
 		<img class="closed" src="images/m-menu.png">	
 		<ul>
-			<a href="care.do"><li>돌보미 등록</li></a>
-			<a href="pet.do"><li>펫 등록</li></a>
+			<a href="care.do" class="care"><li>돌보미 등록</li></a>
+			<a href="pet.do" class="pet"><li>펫 등록</li></a>
 			<a href="near.do"><li>내 근처의 펫</li></a>
 			<a href="diary.do"><li>펫 일기</li></a>
 			<a href="mypage.do"><li>마이페이지</li></a>

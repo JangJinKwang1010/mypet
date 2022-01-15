@@ -32,6 +32,10 @@
 			<mapping path="/care*"/>
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
+		<interceptor>
+			<mapping path="/pet*"/>
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
 	</interceptors>
 	
 	
