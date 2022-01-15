@@ -78,8 +78,8 @@
 				<li>이용현황</li>
 			</ul>
 			<ul class="menu_ul">
-				<a href=""><li>내 근처의 펫</li></a>
-				<a href="#"><li>게시물 관리</li></a>
+				<a href="mypage_nearpet.do"><li>내 근처의 펫</li></a>
+				<a href="mypage_postmanager.do"><li>게시물 관리</li></a>
 			</ul>		
 		</div>			
 	</div>

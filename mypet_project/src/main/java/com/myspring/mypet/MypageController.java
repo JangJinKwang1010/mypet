@@ -23,4 +23,12 @@ public class MypageController {
 	public String mypage_delete() {
 		return "mypage/mypage_delete";
 	}
+	@RequestMapping(value="/mypage_postmanager.do") 
+	public String mypage_postmanager() {
+		return "mypage/mypage_postmanager";
+	}
+	@RequestMapping(value="/mypage_nearpet.do") 
+	public String mypage_nearpet() {
+		return "mypage/mypage_nearpet";
+	}
 }
