@@ -31,7 +31,7 @@
 		margin:20px;
 	}
 	.box button {
-		background-color:black;
+		background-color:rgb(72,115,210);
 		color:white;
 		border:none;
 		border-radius:4px;
@@ -48,7 +48,7 @@
 <section class="background">
 	<div class="back_div">
 		<div class="box">
-			<img src="images/check.png" width=22%; height=25%; >
+			<img src="images/check_blue.png" width=22%; height=25%; >
 			<p>회원가입이 완료 되었습니다.</p>
 			<button onclick="location.href='index.do' ">로그인</button>
 		</div>

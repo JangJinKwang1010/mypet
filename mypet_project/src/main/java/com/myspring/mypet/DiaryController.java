@@ -17,4 +17,8 @@ public class DiaryController {
 	public String diary_reading_contents() {
 		return "diary/diary_reading_contents";
 	}
+	@RequestMapping(value="/diary_reading_pictures.do")
+	public String diary_reading_pictures() {
+		return "diary/diary_reading_pictures";
+	}
 }
