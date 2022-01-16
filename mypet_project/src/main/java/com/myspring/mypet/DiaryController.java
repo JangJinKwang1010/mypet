@@ -9,5 +9,12 @@ public class DiaryController {
 	public String diary() {
 		return "diary/diary";
 	}
-	
+	@RequestMapping(value="/diary_writing.do")
+	public String diary_writing() {
+		return "diary/diary_writing";
+	}
+	@RequestMapping(value="/diary_reading_contents.do")
+	public String diary_reading_contents() {
+		return "diary/diary_reading_contents";
+	}
 }
