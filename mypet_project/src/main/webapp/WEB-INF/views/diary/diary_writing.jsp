@@ -81,9 +81,6 @@
 		background-color:rgb(0,68,130);
 		color:white;
 	}
-	.editor{
-	display:inline-block;
-	}
 	@media (min-width : 600px) {		
 		.section { background-color:rgb(247,179,42); }
 		.mainbox { width:1300px; }
@@ -112,7 +109,6 @@ $(document).ready(function() {
 				<p class="subtitle">글쓰기</p>
 				<div class="writing_line"></div>
 				<input type="text" class="writing_title form-control" placeholder="제목을 입력해주세요.">
-				<div id="editor"></div>
 				<form method="post">
 					<!-- <textarea class="writing_content form-control" id="summernote" name="editordata"></textarea> -->
 					<textarea id="summernote"></textarea>
