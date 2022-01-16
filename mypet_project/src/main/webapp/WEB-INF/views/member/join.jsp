@@ -221,8 +221,8 @@ var id_result = 0; // 중복확인 했는지 체크하기 위한 변수
 						<li>
 							<select class="form-select" name="gender" id="gender">
 								<option value="null">선택</option>
-								<option value="man">남자</option>
-								<option value="woman">여자</option>
+								<option value="male">남자</option>
+								<option value="female">여자</option>
 							</select>
 						</li>
 					</ul>

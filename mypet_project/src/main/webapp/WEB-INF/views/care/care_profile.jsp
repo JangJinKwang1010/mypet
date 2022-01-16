@@ -7,6 +7,7 @@
 <title>Mypet</title>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
+<script src="js/jquery-3.6.0.min.js"></script>
 </head>
 <style>
 	section { text-align:center; }
@@ -22,7 +23,9 @@
 		width:80%;
 		height:300px;
 		margin-top:10px;
+		text-align:center;
 	}
+	#img { margin-top:15px; }
 	button {
 		border:none;
 		width:20%;
@@ -39,14 +42,37 @@
 		color:white;
 	}
 </style>
+<script>
+$(document).ready(function() {
+	var img_name;
+	$("#file").change(function(e){
+			img_name = this.files[0].name;
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$("#img").attr("src", e.target.result); 
+			}
+			reader.readAsDataURL(this.files[0]);
+		
+	});
+	
+	$(".ok").click(function() {
+		$("#file", opener.document).val(img_name);
+		opener.document.location.reload();
+		window.close(); //창 닫기
+	});
+	
+
+});
+
+</script>
 <body>
 <section>
 	<p>사진 등록</p>
-	<input type="file" class="form-control" name="file">
+	<input type="file" class="form-control" name="file" id="file">
 	<div>
-		미리보기
+		<img id="img" src="images/image.png" width=90%; height=90%; >
 	</div>
-	<button>선택</button>
+	<button class="ok" >선택</button>
 </section>
 </body>
 </html>

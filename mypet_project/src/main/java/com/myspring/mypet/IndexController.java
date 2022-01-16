@@ -23,7 +23,8 @@ public class IndexController {
 		
 		HttpSession session = request.getSession(); //技记 积己
 		System.out.print(session.getAttribute("session_id"));
-		if (session.getAttribute("seesion_id") != null) {
+		String id = (String)session.getAttribute("session_id");
+		if (id != null) {
 			result = true;
 		}
 		

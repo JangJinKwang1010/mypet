@@ -88,15 +88,16 @@ border-bottom:1px solid lightgray;
 			$.ajax({
                 url:"login_check.do",
                 type: "post",
+                dataType: 'json',
               success:function(result){
-                	if (result == "true") {
+                	if (result) {
                 		
                 	} else {
                 		alert("로그인 후 이용부탁드립니다");
                 	}
                 },                   
              });  
-		});
+		});	
 		
 	});
 </script>

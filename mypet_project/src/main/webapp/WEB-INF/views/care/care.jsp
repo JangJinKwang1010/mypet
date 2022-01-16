@@ -194,6 +194,8 @@
 	         var option = "width = 500, height = 500, top = 150, left = 500, location = no"
 	         window.open(url, name, option);
 		});
+			
+	
 	});
 </script>
 </head>
@@ -240,6 +242,7 @@
 						<div class="inf5">
 							<label>사진</label>
 							<p class="p3">*</p>
+							<img id="img" width=100%; height=100%;>
 						</div>
 						<div class="inf6">
 							<label>휴대폰번호</label>
