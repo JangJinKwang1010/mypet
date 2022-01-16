@@ -204,7 +204,7 @@
 						  </ul>
 						</nav>						
 					</div>
-					<button class="write">글쓰기</button>
+					<button class="write" onclick="location.href='diary_writing.do' ">글쓰기</button>
 				</div>
 			</div>				
 		
@@ -292,7 +292,7 @@
 						  </ul>
 						</nav>						
 					</div>
-					<button class="write">글쓰기</button>
+					<button class="write" onclick="location.href='diary_writing.do' ">글쓰기</button>
 				</div>
 			</div>	
 		</div>			
