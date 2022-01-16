@@ -113,11 +113,11 @@
 	.loginmyinf>p{
 		margin:3px 0 0 10px;
 	}
-	.loginmyinf>p:nth-child(3) {
+	.loginmyinf>p:first-child {
 		font-weight:bold;
 		font-size:18px;
 	}
-	.loginmyinf>p:nth-child(3)>span {
+	.loginmyinf>p:first-child>span {
 		font-weight:normal;
 		color:gray;
 		font-size:15px;
@@ -138,14 +138,14 @@
 		background-color:white;
 		font-size:14px;
 		font-weight:bold;
-		margin-top:5px;
+		margin-top:30px;
 	}
-	.loginmyinf>button:first-child:hover{
+	.loginmyinf>button:nth-child(2):hover{
 		border:2px solid rgb(147,196,228);
 		background-color:rgb(147,196,228);
 		color:white;
 	}	
-	.loginmyinf>button:nth-child(2):hover{
+	.loginmyinf>button:nth-child(3):hover{
 		border:2px solid rgb(247,179,42);
 		background-color:rgb(247,179,42);
 		color:white;
@@ -317,7 +317,7 @@
 	function chat_open() {
 		 var url = "chat_list.do";
         var name = "popup test";
-        var option = "width = 800, height = 1000, top = 200, left = 600, location = no"
+        var option = "width = 800, height = 1000, top = 200, left = 350, location = no"
         window.open(url, name, option);
 	};
 </script>
@@ -368,10 +368,10 @@
 				 		<div class="loginpicture">
 				 			<img src="images/human2.png" width=90% height=90%>
 				 		</div>
-				 		<div class="loginmyinf">
+				 		<div class="loginmyinf">				 			
+				 			<p>${session_id}<span>(${vo.email })</span></p>
 				 			<button>내정보</button>
 				 			<button onclick="chat_open()">채팅목록</button>
-				 			<p>${session_id}<span>(${vo.email })</span></p>
 				 			<p>가입 ${vo.mdate }</p>
 				 			<p><img src="images/visit.png" width=15px; height=15px;>방문 1회</p>
 				 			<p><img src="images/write.png" width=15px; height=15px;>내가 쓴 글 5개</p>

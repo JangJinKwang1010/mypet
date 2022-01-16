@@ -63,6 +63,7 @@
 		display:inline-block;
 		width:1100px;
 	}
+	.board td:nth-child(2):hover { text-decoration:underline; }
 	.board a{
 		text-decoration:none;
 	}
@@ -89,7 +90,7 @@
 		background-color:rgb(0,68,130);
 		color:white;
 	}
-	.picturebox{
+	.picturebox {
 		display:none;
 	}
 	.picture_div {
@@ -146,103 +147,47 @@
 			<div class ="mainbox2 freebox">
 				<p class="subtitle">자유게시판<span class="picture_diary">사진게시판</span></p>
 				<div class="board">
-					<table class="board2 table table-striped table-hover">
-						<thead>
+					<table class="board2 table table-hover">
+						<thead style="border-bottom:1px solid; ">
 							<tr>
 								<th>번호</th>
+								<th width=700px;>제목</th>
 								<th>글쓴이</th>
-								<th>제목</th>
-								<th>등록일</th>
-								<th>추천수</th>
-								<th>조회수</th>
+								<th width=150px;>등록일</th>
+								<th width=60px;>추천수</th>
+								<th width=60px;>조회수</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+							<tr onclick="location.href='diary_reading_contents.do' " style="border-bottom:1px solid lightgray;">
 								<th>1</th>
-								<td onclick="location.href='diary_reading_contents.do' ">간식킬러</td>
-								<td>강쥐귀엽죠~</td>
-								<td>21/12/06</td>
+								<td>강쥐귀엽죠~<span style="color:red">[3]</span></td>
+								<td>간식킬러</td>
+								<td>2022.01.16</td>
 								<td>3</td>
 								<td>15</td>
 							</tr>
-							<tr>
-								<th>2</th>
-								<td>냥냥펀치</td>
-								<td>냥이귀엽죠~</td>
-								<td>21/12/06</td>
+							<tr onclick="location.href='diary_reading_contents.do' " style="border-bottom:1px solid lightgray;">
+								<th>1</th>
+								<td>강쥐귀엽죠~<span style="color:red">[3]</span></td>
+								<td>간식킬러</td>
+								<td>2022.01.16</td>
 								<td>3</td>
 								<td>15</td>
 							</tr>
-							<tr>
-								<th>2</th>
-								<td>냥냥펀치</td>
-								<td>냥이귀엽죠~</td>
-								<td>21/12/06</td>
+							<tr onclick="location.href='diary_reading_contents.do' " style="border-bottom:1px solid lightgray;">
+								<th>1</th>
+								<td>강쥐귀엽죠~<span style="color:red">[3]</span></td>
+								<td>간식킬러</td>
+								<td>2022.01.16</td>
 								<td>3</td>
 								<td>15</td>
 							</tr>
-							<tr>
-								<th>2</th>
-								<td>냥냥펀치</td>
-								<td>냥이귀엽죠~</td>
-								<td>21/12/06</td>
-								<td>3</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<th>2</th>
-								<td>냥냥펀치</td>
-								<td>냥이귀엽죠~</td>
-								<td>21/12/06</td>
-								<td>3</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<th>2</th>
-								<td>냥냥펀치</td>
-								<td>냥이귀엽죠~</td>
-								<td>21/12/06</td>
-								<td>3</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<th>2</th>
-								<td>냥냥펀치</td>
-								<td>냥이귀엽죠~</td>
-								<td>21/12/06</td>
-								<td>3</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<th>2</th>
-								<td>냥냥펀치</td>
-								<td>냥이귀엽죠~</td>
-								<td>21/12/06</td>
-								<td>3</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<th>2</th>
-								<td>냥냥펀치</td>
-								<td>냥이귀엽죠~</td>
-								<td>21/12/06</td>
-								<td>3</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<th>2</th>
-								<td>냥냥펀치</td>
-								<td>냥이귀엽죠~</td>
-								<td>21/12/06</td>
-								<td>3</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<th>2</th>
-								<td>냥냥펀치</td>
-								<td>냥이귀엽죠~</td>
-								<td>21/12/06</td>
+							<tr onclick="location.href='diary_reading_contents.do' " style="border-bottom:1px solid lightgray;">
+								<th>1</th>
+								<td>강쥐귀엽죠~<span style="color:red">[3]</span></td>
+								<td>간식킬러</td>
+								<td>2022.01.16</td>
 								<td>3</td>
 								<td>15</td>
 							</tr>

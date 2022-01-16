@@ -15,7 +15,7 @@
 	        vertical-align: baseline;
 	        background: transparent;
 	}
-	section { width:800px; height:910px; }
+	section { width:800px; height:700px; }
 	.title {
 		background-color:rgb(72,115,210);
 		color:white;
@@ -50,7 +50,7 @@
 	.left_box>p:last-child { font-size:14px; margin-top:5px; color:gray; }
 	
 	.center { background-color:rgb(240,240,240); width:500px; height:95%; display:inline-block; float:right; }
-	.center_chat { width:100%; height:800px; overflow-y: scroll; overflow-x: hidden; }
+	.center_chat { width:100%; height:90%; overflow-y: scroll; overflow-x: hidden; }
 	.center_chat>.you { float:left; width:300px; height:50px; border-radius:10px; background-color:white; margin:10px; }
 	.center_chat>.me { float:right; width:300px; height:50px; border-radius:10px; background-color:white; margin:10px; }
 	.center_enter { background-color:white; width:100%; height:100px; }

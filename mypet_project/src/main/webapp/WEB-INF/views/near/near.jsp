@@ -137,7 +137,7 @@ $(document).ready(function() {
 		<p class="title">내 근처의 펫<span>A pet near me</span></p>
 		<div id="map"></div>
 		<div class="list">
-			<div>
+			<div onclick="location.href='near_contents.do' ">
 				<p class="p_title"><span class="logo">강아지</span>[강아지] 비숑<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
 				<p class="option">
 					<span><img src="images/paw.png">경력 1년이상</span>

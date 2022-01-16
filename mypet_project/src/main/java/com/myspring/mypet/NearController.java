@@ -28,5 +28,10 @@ public class NearController {
 		mv.setViewName("near/near");
 		return mv;
 	}
+	
+	@RequestMapping(value="/near_contents.do")
+	public String near_contents() {
+		return "near/near_contents";
+	}
 
 }
