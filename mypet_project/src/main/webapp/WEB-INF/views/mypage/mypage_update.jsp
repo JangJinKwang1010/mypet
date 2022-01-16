@@ -123,7 +123,7 @@
 				<form name= "joinform" action= "join_proc.do" method="post"  autocomplete="off" >
 					<ul>						
 						<li><label>아이디</label></li>
-						<li><input type="text" value="${session_id}" class="form-control" readonly></li>
+						<li><input type="text" value="${vo.id}" class="form-control" readonly></li>
 					</ul>
 					<ul>
 						<li><label>비밀번호</label></li>						
@@ -132,19 +132,20 @@
 					</ul>
 					<ul>
 						<li><label>이름</label></li>
-						<li><input type="text" value="${session_name}" class="form-control" readonly></li>
+						<li><input type="text" value="${vo.name}" class="form-control" readonly></li>
 					</ul>
 					<ul>
 						<li><label>휴대폰 번호</label></li>
-						<li><input type="text" value="010-1212-1212" class="form-control" readonly></li>
+						<li><input type="text" value="${vo.hp }" class="form-control" readonly></li>
 					</ul>
 					<ul>
 						<li><label>이메일 주소</label></li>
-						<li><input type="text" value="test2@naver.com" class="form-control"></li>
+						<li><input type="text" value="${vo.email }" class="form-control"></li>
 					</ul>
 					<ul>
 						<li><label>주소</label></li>
-						<li><input type="text" placeholder="주소" name="addr1" class="form-control " id="addr1" onclick="addr()" readonly></li>						<li><input type="text" placeholder="상세 주소" name="addr2" class="form-control " id="addr2" ></li>
+						<li><input type="text" placeholder="${vo.addr1 }" name="addr1" class="form-control " id="addr1" onclick="addr()" readonly></li>
+						<li><input type="text" placeholder="${vo.addr2 }" name="addr2" class="form-control " id="addr2" ></li>
 						<li><button type="button" class="ad" onclick="addr()">주소변경</button></li>
 					</ul>
 					<button type="button" class="join_btn">수정완료</button>
