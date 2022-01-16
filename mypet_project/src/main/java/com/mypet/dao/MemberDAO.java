@@ -30,6 +30,10 @@ public class MemberDAO {
 		return sqlSession.selectOne(namespace+".name", id);
 	}
 	
+	public MemberVO getIndexInfo(String id) {
+		return sqlSession.selectOne(namespace+".index_info", id);
+	}
+	
 	
 
 }
