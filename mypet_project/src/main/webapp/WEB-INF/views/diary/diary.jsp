@@ -160,7 +160,7 @@
 						<tbody>
 							<tr>
 								<th>1</th>
-								<td>간식킬러</td>
+								<td onclick="location.href='diary_reading_contents.do' ">간식킬러</td>
 								<td>강쥐귀엽죠~</td>
 								<td>21/12/06</td>
 								<td>3</td>

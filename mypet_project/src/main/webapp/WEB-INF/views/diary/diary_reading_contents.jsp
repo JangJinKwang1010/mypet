@@ -170,85 +170,99 @@
 	font-weight:bold;
 	}
 	.thumb_number2{
-	margin-top:50px;
-	margin-right:20px;
-	float:right;
-	color:red;
-	font-weight:bold;
+		margin-top:50px;
+		margin-right:20px;
+		float:right;
+		color:red;
+		font-weight:bold;
 	}
 	.commentsbox{
-	display:inline-block;
-	border:1px solid white;
-	width:90%
+		display:inline-block;
+		border:1px solid white;
+		width:90%
 	}
 	.commentsbox>p{
-	display:inline-block;
-	float:left;
-	font-weight:bold;
-	font-size:13px;
+		display:inline-block;
+		float:left;
+		font-weight:bold;
+		font-size:13px;
 	}
 	.all_comments_number{
-	display:inline-block;
-	font-weight:bold;
-	font-size:13px;
-	color:red
+		display:inline-block;
+		font-weight:bold;
+		font-size:13px;
+		color:red
 	}
 	.commentsbox2{
-	margin-top:10px;
-	display:inline-block;
-	border-top:2px solid rgb(247,179,42);
-	width:100%;
-	height:150px;
+		margin-top:10px;
+		display:inline-block;
+		border-top:2px solid rgb(247,179,42);
+		width:100%;
+		height:150px;
 	}
 	.commentsbox3{
-	display:inline-block;
-	width:100%;
-	height:30px;
-	border-bottom:1px solid lightgray;
+		display:inline-block;
+		width:100%;
+		height:30px;
+		border-bottom:1px solid lightgray;
 	}
 	.commentsbox3>p{
-	font-size:13px;
-	margin-top:4px;
+		font-size:13px;
+		margin-top:4px;
 	}
 	.commentsbox3>p:first-child{
-	float:left;
+		float:left;
 	}
 	.commentsbox3>p:nth-child(2){
-	float:left;
-	margin-left:100px;
+		float:left;
+		margin-left:100px;
 	}
 	.commentsbox3>p:last-child{
-	float:right;
+		float:right;
 	}
-	.write_comment{
-	display:inline-block;
-	border-top:2px solid rgb(247,179,42);
-	border-bottom:2px solid rgb(247,179,42);
-	background-color:rgb(245,245,245);
-	width:90%;
-	height:150px;
+	.write_comment {
+		display:inline-block;
+		border-top:2px solid rgb(247,179,42);
+		border-bottom:2px solid rgb(247,179,42);
+		background-color:rgb(245,245,245);
+		width:90%;
 	}
-	.write_comment>.comment_area{
-	display:iniline-block;
-	width:85%;
-	height:100px;
-	float:right;
-	margin-right:10px;
-	margin-top:10px;
+	.write_comment .comment_area {
+		display:block;
+		width:85%;
+		height:100px;
+		float:right;
+		margin-right:10px;
+		margin-top:10px;
 	}
-	.comment_name{
-	margin-top:15px;
-	margin-left:15px;
-	display:iniline-block;
-	float:left;
-	font-weight:bold;
-	font-size:15px;
+	.comment_name_div {
+		width:100%;
+		float:left;
 	}
-	.comment_button{
-	border-radius:10px;
-	border:none;
-	background-color:rgb(72,115,210);
-	float:right;
+	.comment_name {
+		margin-top:15px;
+		margin-left:15px;
+		display:iniline-block;
+		float:left;
+		font-weight:bold;
+		font-size:15px;
+	}
+	.comment_button_div {
+		width:100%;
+		text-align:right;
+		float:left;
+	}
+	.comment_button {
+		display:inline-block; 
+		border-radius:10px;
+		border:none;
+		background-color:rgb(72,115,210);
+		margin:10px;
+		color:white;
+	}
+	.comment_button:hover {
+		background-color:rgb(0,68,130);
+		color:white;
 	}
 	@media (min-width : 600px) {		
 		.section { background-color:rgb(247,179,42); }
@@ -278,11 +292,11 @@
 				<div class="recommendbox">
 					<p class="thumb_number">2</p>
 					<button class="thumb">
-					<img src="images/thumb.png">
+					<img src="images/thumb_blue.png">
 					<p>추천</p>
 					</button>
 					<button class="thumb">
-					<img src="images/thumb2.png">
+					<img src="images/thumb_red.png">
 					<p>비추천</p>
 					</button>
 					<p class="thumb_number2">3</p>
@@ -298,9 +312,13 @@
 					</div>
 				</div>	
 				<div class="write_comment">
-					<p class="comment_name">이름</p>
-					<textarea class="comment_area form-control" placeholder="댓글을 입력해주세요."></textarea>
-					<button class="comment_button">등록하기</button>
+					<div class="comment_name_div">
+						<p class="comment_name">이름</p>
+						<textarea class="comment_area form-control" placeholder="댓글을 입력해주세요."></textarea>
+					</div>
+					<div class="comment_button_div">
+						<button class="comment_button">등록하기</button>
+					</div>
 				</div>
 			</div>
 		</div>
