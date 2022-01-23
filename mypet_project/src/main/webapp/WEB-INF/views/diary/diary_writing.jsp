@@ -76,10 +76,15 @@
 		color:white;
 		font-size:20px;
 		margin-bottom:25px;		
-	}
+	}`
 	.writing_button:hover {
 		background-color:rgb(0,68,130);
 		color:white;
+	}
+	.summernote1{
+		width:90%;
+		display:inline-block;
+		
 	}
 	@media (min-width : 600px) {		
 		.section { background-color:rgb(247,179,42); }
@@ -111,7 +116,9 @@ $(document).ready(function() {
 				<input type="text" class="writing_title form-control" placeholder="제목을 입력해주세요.">
 				<form method="post">
 					<!-- <textarea class="writing_content form-control" id="summernote" name="editordata"></textarea> -->
-					<textarea id="summernote"></textarea>
+					<div class="summernote1">
+						<textarea id="summernote"></textarea>
+					</div>
 				</form>
 				<button class="writing_button">글쓰기</button>
 			</div>
