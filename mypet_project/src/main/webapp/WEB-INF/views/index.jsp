@@ -277,6 +277,10 @@
 		background-color:rgb(247,179,42);
 		color:white;
 	}
+	.banner .bannertext{
+		font-size:12px;
+		font-weight:normal;
+	}
 	@media (min-width: 1600px) {
 		.loginmyinf { width:450px; }
 		.loginmypet { margin-left:-8px; width:95.5%; }
@@ -399,18 +403,22 @@
 			<div class="bannermenu1" onclick="location.href='care.do'">
 				<img src="images/bannericon1.png">
 				<p>돌보미 등록</p>
+				<p class="bannertext">나의 인적사항과 경력사항을 등록해서 마이펫의 돌보미가 되어 내 주변의 반려동물을 돌봐주는 서비스를 제공해보세요.</p>
 			</div>
 			<div class="bannermenu2" onclick="location.href='pet.do'">
 				<img src="images/bannericon4.png">
 				<p>펫 등록</p>
+				<p class="bannertext">돌보미 서비스를 위해 나의 반려동물을 등록해서 내 근처의 돌보미에게 반려동물을 맡기고 걱정없이 즐거운 여행 및 여가생활을 보내세요.</p>
 			</div>
 			<div class="bannermenu3" onclick="location.href='near.do'">
 				<img src="images/bannericon3.png">
 				<p>내 근처의 펫</p>
+				<p class="bannertext">내가 등록한 주소를 기반으로 돌보미 서비스를 원하는 주변의 사람들과 채팅을 통해 가격및 기간을 합의하여 반려동물을 맡겨보거나 나의 반려동물을 위해 돌보미를 구해보세요.</p>
 			</div>
 			<div class="bannermenu4" onclick="location.href='diary.do'">
 				<img src="images/bannericon2.png">
 				<p>펫 일기</p>
+				<p class="bannertext">반려동물을 사랑하는 사람들과 소통하고 나의 반려동물의 사진을 올려 자랑해보세요.</p>
 			</div>
 		</div>
 	</div>
