@@ -74,28 +74,49 @@
 		border:1px solid lightgray;
 		background-color:white;
 	}
-	.inf1,.inf2 {
+	.personalinf2 .inf1,.inf2 {
 		width:180px;
 		height:60px;
 		margin:15px 0 0 10px;
 		display:inline-block;
 		float:left;
 	}
-	.inf3 {
+	.personalinf3 .inf1 {
+		width:120px;
+		height:60px;
+		margin:15px 0 0 10px;
+		display:inline-block;
+		float:left;
+	}
+	.personalinf2 .inf3 {
 		width:140px;
 		height:60px;
 		margin:15px 0 0 10px;
 		display:inline-block;
 		float:left;
 	}
-	.inf4 {
+	.personalinf3 .inf3 {
+		width:80px;
+		height:60px;
+		margin:15px 0 0 10px;
+		display:inline-block;
+		float:left;
+	}
+	.personalinf2 .inf4 {
 		width:270px;
 		height:60px;
 		margin:15px 0 0 10px;
 		display:inline-block;
 		float:left;
 	}
-	.inf5 {
+	.personalinf3 .inf4 {
+		width:220px;
+		height:60px;
+		margin:15px 0 0 10px;
+		display:inline-block;
+		float:left;
+	}	
+	.personalinf2 .inf5 {
 		width:150px;
 		height:138px;
 		margin:15px 10px 0 0;
@@ -103,13 +124,32 @@
 		float:right;
 		cursor:pointer;
 	}
-	.inf6 {
+	#img { display:none;	}
+	.personalinf3 .inf5 {
+		width:100px;
+		height:60px;
+		margin:15px 0 0 10px;
+		display:inline-block;
+		float:left;
+		border:none;
+	}
+	.personalinf3 .inf5>div {
+		display:inline-block;
+		margin-top:15px;
+		border:none;
+		float:left;
+		font-size:14px;
+	}
+	.personalinf3 .inf5>div:last-child { margin-left:5px; }
+	.personalinf3 .inf5>div>p { margin-top:3px; }
+	.personalinf3 .inf5>div>img { cursor:pointer; }
+	.personalinf2 .inf6 {
 		width:180px;
 		height:60px;
 		margin:15px 0 0 10px;
 		display:inline-block;
 		float:left;
-	}
+	}	
 	.inf7 {
 		width:610px;
 		height:60px;
@@ -163,8 +203,7 @@
 <script>
 	$(document).ready(function() {
 		$(".add").click(function() {
-			var html = "<section>";
-			html += "<div class='inf1'>";
+			var html = "<div class='inf1'>";
 			html += "<label>반려동물 선택</label>";
 			html += "<p class='p3'>*</p>";
 			html += "<select class='form-select'>";
@@ -182,20 +221,39 @@
 			html += "<div class='inf4'>";
 			html += "<label>입양날짜</label>";
 			html += "<input type='date' class='form-control'>";
-			html += "</div></section>";
+			html += "</div>";
+			html += "<div class='inf4'>";
+			html += "<label>양육종료날짜</label>";
+			html += "<input type='date' class='form-control' id = 'end_date'>";
+			html += "</div>";
+			html += "<div class='inf5'>";
+			html += "<div><img src='images/black_check.png' width=25px; height=25px; class='check' id='black'></div>";
+			html += "<div><p>양육중</p></div>";
+			html += "</div>";
 			
 			$(".add_section").append(html);
 			
 		});
 		
-		$(".inf5").click(function() {
+		$(".care_profile").click(function() {
 			 var url = "care_profile.do";
 	         var name = "popup test";
 	         var option = "width = 500, height = 500, top = 150, left = 500, location = no"
 	         window.open(url, name, option);
-		});
-			
-	
+		});			
+		
+		$(document).on("click",".check",function(){ 
+			if ($(this).attr("id") == "black") {
+				$(this).attr("id", "blue"); 
+				$(this).attr("src", "images/blue_check.png");
+				$("#end_date").attr("disabled",true);
+			} else {
+				$(this).attr("id", "black"); 
+				$(this).attr("src", "images/black_check.png");
+				$("#end_date").removeAttr("disabled"); 				
+			}
+		 });
+		
 	});
 </script>
 </head>
@@ -224,11 +282,11 @@
 							<label>성별</label>
 							<p class="p3">*</p>
 							<select class="form-select" disabled>
-								<c:if test="${vo.gender eq 'man' }">
+								<c:if test="${vo.gender eq 'male' }">
 									<option selected>남자</option>
 									<option>여자</option>
 								</c:if>
-								<c:if test="${vo.gender eq 'woman' }">
+								<c:if test="${vo.gender eq 'female' }">
 									<option>남자</option>
 									<option selected>여자</option>
 								</c:if>
@@ -239,9 +297,9 @@
 							<p class="p3">*</p>
 							<input type="text" class="form-control" value="${vo.email }" readonly>
 						</div>
-						<div class="inf5">
-							<label>사진</label>
-							<p class="p3">*</p>
+						<div class="inf5 care_profile">
+							<label id="text">사진</label>
+							<p id="*" class="p3">*</p>
 							<img id="img" width=100%; height=100%;>
 						</div>
 						<div class="inf6">
@@ -286,6 +344,14 @@
 						<div class="inf4">
 							<label>입양날짜</label>
 							<input type="date" class="form-control">
+						</div>
+						<div class="inf4">
+							<label>양육종료날짜</label>
+							<input type="date" class="form-control"  id="end_date">
+						</div>
+						<div class="inf5">
+							<div><img src="images/black_check.png" width=25px; height=25px; class="check" id="black"></div>
+							<div><p>양육중</p></div>
 						</div>
 					</section>
 					<button class="add">+ 추가</button>

@@ -45,19 +45,23 @@
 <script>
 $(document).ready(function() {
 	var img_name;
+	var img_src;
 	$("#file").change(function(e){
 			img_name = this.files[0].name;
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				$("#img").attr("src", e.target.result); 
+				img_src = e.target.result;
 			}
 			reader.readAsDataURL(this.files[0]);
 		
 	});
 	
 	$(".ok").click(function() {
-		$("#file", opener.document).val(img_name);
-		opener.document.location.reload();
+		opener.document.getElementById('text').style.display = "none";
+		opener.document.getElementById('*').style.display = "none";
+		opener.document.getElementById('img').style.display = "block";
+		opener.document.getElementById('img').src = img_src;
 		window.close(); //창 닫기
 	});
 	
