@@ -57,6 +57,15 @@
 		width:90%;
 		height:40px;
 	}
+	.mainbox2 .logo {
+		font-size:13px;
+		font-weight:normal;
+		background-color:gray;
+		color:white;
+		border-radius:4px;
+		margin:5px;
+		padding:3px;
+	}
 	.mainbox2>.writing_content {
 		display:inline-block;
 		margin-top:3px;
@@ -156,24 +165,24 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 	
 	<section class="section">
-			<div class="mainbox">
+		<div class="mainbox">
 			<p class="title">내 근처의 펫<span>A pet near me</span></p>
 			<div class ="mainbox2 freebox">
-			<div class="top">				
-				<button>채팅하기</button>
-			</div>
-			<div class="writing_line"></div>
-			<p class="post_title">저희 비숑 잠시 맡겨주실분~</p>
-			<p class="name">이름</p>
-			<div class="post_line"></div>
-			<p class="post_date">게시한날짜</p>
-			<button class="comments">채팅 0</button>
-			<div class="post_line2"></div>
-			<p class="recommend">관심 0</p>
-			<div class="post_line2"></div>
-			<p class="view">조회 4</p>
-			<div class="writing_line2"></div>
-			<div class="contentsbox"></div>		
+				<div class="top">				
+					<button>채팅하기</button>
+				</div>
+				<div class="writing_line"></div>
+				<p class="post_title"><span class="logo">강아지</span>저희 비숑 잠시 맡겨주실분~</p>
+				<p class="name">이름</p>
+				<div class="post_line"></div>
+				<p class="post_date">게시한날짜</p>
+				<button class="comments">채팅 0</button>
+				<div class="post_line2"></div>
+				<p class="recommend">관심 0</p>
+				<div class="post_line2"></div>
+				<p class="view">조회 4</p>
+				<div class="writing_line2"></div>
+				<div class="contentsbox"></div>		
 			</div>
 		</div>
 	</section>

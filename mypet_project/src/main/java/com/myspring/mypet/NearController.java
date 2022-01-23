@@ -33,5 +33,9 @@ public class NearController {
 	public String near_contents() {
 		return "near/near_contents";
 	}
+	@RequestMapping(value="/near_writing.do")
+	public String near_writing() {
+		return "near/near_writing";
+	}
 
 }

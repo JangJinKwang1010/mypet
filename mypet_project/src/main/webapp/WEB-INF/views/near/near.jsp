@@ -70,6 +70,19 @@
 	.option>span {
 		margin-right:20px;
 	}
+	.writing_button {
+		float:center;
+		border:none;
+		width:20%;
+		height:50px;
+		border-radius:10px;
+		font-weight:bold;
+		margin-top:20px;
+		background-color:rgb(72,115,210);
+		color:white;
+		font-size:20px;
+		margin-bottom:25px;		
+	}
 	.user { text-align:left; margin:15px 30px; font-size:15px; }
 	
 	@media (min-width : 600px ) {
@@ -134,43 +147,43 @@ $(document).ready(function() {
 	
 	<section class="section">
 		<div class="back">
-		<p class="title">내 근처의 펫<span>A pet near me</span></p>
-		<div id="map"></div>
-		<div class="list">
-			<div onclick="location.href='near_contents.do' ">
-				<p class="p_title"><span class="logo">강아지</span>[강아지] 비숑<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
-				<p class="option">
-					<span><img src="images/paw.png">경력 1년이상</span>
-					<span><img src="images/calendar.png">2021/11/13 - 2021/12/31</span>
-				</p>
-				<p class="user">qoolp79(장**)</p>
+			<p class="title">내 근처의 펫<span>A pet near me</span></p>
+			<div id="map"></div>
+			<div class="list">
+				<div onclick="location.href='near_contents.do' ">
+					<p class="p_title"><span class="logo">강아지</span>[비숑]<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
+					<p class="option">
+						<span><img src="images/paw.png">경력 1년이상</span>
+						<span><img src="images/calendar.png">2021/11/13 - 2021/12/31</span>
+					</p>
+					<p class="user">qoolp79(장**)</p>
+				</div>
+				<div>
+					<p class="p_title"><span class="logo">강아지</span>[비숑]<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
+					<p class="option">
+						<span><img src="images/paw.png">경력 1년이상</span>
+						<span><img src="images/calendar.png">2021/11/13 - 2021/12/31</span>
+					</p>
+					<p class="user">qoolp79(장**)</p>
+				</div>
+				<div>
+					<p class="p_title"><span class="logo">강아지</span>[비숑]<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
+					<p class="option">
+						<span><img src="images/paw.png">경력 1년이상</span>
+						<span><img src="images/calendar.png">2021/11/13 - 2021/12/31</span>
+					</p>
+					<p class="user">qoolp79(장**)</p>
+				</div>
+				<div>
+					<p class="p_title"><span class="logo">강아지</span>[비숑]<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
+					<p class="option">
+						<span><img src="images/paw.png">경력 1년이상</span>
+						<span><img src="images/calendar.png">2021/11/13 - 2021/12/31</span>
+					</p>
+					<p class="user">qoolp79(장**)</p>
+				</div>
+				<button onclick="location.href='near_writing.do'" class="writing_button">글쓰기</button>
 			</div>
-			<div>
-				<p class="p_title"><span class="logo">강아지</span>[강아지] 비숑<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
-				<p class="option">
-					<span><img src="images/paw.png">경력 1년이상</span>
-					<span><img src="images/calendar.png">2021/11/13 - 2021/12/31</span>
-				</p>
-				<p class="user">qoolp79(장**)</p>
-			</div>
-			<div>
-				<p class="p_title"><span class="logo">강아지</span>[강아지] 비숑<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
-				<p class="option">
-					<span><img src="images/paw.png">경력 1년이상</span>
-					<span><img src="images/calendar.png">2021/11/13 - 2021/12/31</span>
-				</p>
-				<p class="user">qoolp79(장**)</p>
-			</div>
-			<div>
-				<p class="p_title"><span class="logo">강아지</span>[강아지] 비숑<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
-				<p class="option">
-					<span><img src="images/paw.png">경력 1년이상</span>
-					<span><img src="images/calendar.png">2021/11/13 - 2021/12/31</span>
-				</p>
-				<p class="user">qoolp79(장**)</p>
-			</div>
-			
-		</div>
 		</div>
 	</section>
 	

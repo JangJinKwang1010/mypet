@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>mypet</title>
 <script src="js/jquery-3.6.0.min.js"></script>
 <style>
 	.section {
@@ -44,17 +44,24 @@
 		float:left;
 		font-weight:bold;
 		font-size:25px;
-		margin-bottom:-20px;
+		margin-bottom:-10px;
 	}
 	.writing_line{
 		display:inline-block;
 		border-top:1px solid;
 		width:90%;
 		}
-	.mainbox2>.writing_select{
+	.mainbox2>.pet_select{
 		display:inline-block;
-		width:90%;
+		width:31%;
 		height:40px;
+		margin:3px 0 1px 0;
+	}
+	.mainbox2>.date{
+		display:inline-block;
+		width:27%;
+		height:40px;
+		margin:3px 0 1px 0;
 	}
 	.mainbox2>.writing_title{
 		display:inline-block;
@@ -85,7 +92,7 @@
 		color:white;
 	}
 	@media (min-width : 600px) {		
-		.section { background-color:rgb(247,179,42); }
+		.section { background-color:rgb(200,171,217); }
 		.mainbox { width:1300px; }
 	}
 </style>
@@ -94,14 +101,24 @@
 <jsp:include page="../header.jsp"></jsp:include>
 		<section class="section">
 		<div class="mainbox">
-			<p class="title">펫 일기<span>Pet Diary</span></p>
+			<p class="title">내 근처의 펫<span>A pet near me</span></p>
 			<div class ="mainbox2 freebox">
 				<p class="subtitle">글쓰기</p>
 				<div class="writing_line"></div>
-				<select class="writing_select form-select">
-					<option>자유게시판</option>
-					<option>사진게시판</option>
+				<select class="pet_select form-select">
+					<option>펫 선택</option>
+					<option>강아지</option>
+					<option>고양이</option>
 				</select>
+				<select class="pet_select form-select">
+					<option>경력 선택</option>
+					<option>1년 이하</option>
+					<option>2년</option>
+					<option>3년</option>
+					<option>4년</option>
+					<option>5년 이상</option>
+				</select>
+				<input type="date" class="date form-control">
 				<input type="text" class="writing_title form-control" placeholder="제목을 입력해주세요.">
 				<textarea class="writing_content form-control" placeholder="내용을 입력해주세요."></textarea>
 				<button class="writing_button">글쓰기</button>
