@@ -217,12 +217,12 @@
 						<div class="inf1">
 							<label>이름</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${vo.name }">
 						</div>
 						<div class="inf2">
 							<label>생년월일</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${vo.birth }">
 						</div>
 						<div class="inf3">
 							<label>성별</label>
@@ -234,7 +234,7 @@
 						</div>
 						<div class="inf4">
 							<label>이메일</label>
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${vo.email }">
 						</div>
 						<div class="inf5">
 							<label>사진</label>
@@ -247,7 +247,7 @@
 						<div class="inf7">
 							<label>휴대폰번호</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" value="${vo.hp }">
 						</div>
 						<div class="inf8">
 							<label>주소</label>
