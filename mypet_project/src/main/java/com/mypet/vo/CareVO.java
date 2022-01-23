@@ -86,6 +86,5 @@ public class CareVO {
 		this.addr2 = addr2;
 	}
 	
-	
 
 }
