@@ -6,8 +6,8 @@
     
 <mapper namespace="mapper.care">
 
-	<select id="care" parameterType="java.lang.String" resultType="com.mypet.vo.CareVO">
-		select name, hp, birth, gender, email, addr1, addr2 from mypet_member where id=#{id} 
+	<select id="care" parameterType="java.lang.String" resultType="com.mypet.vo.MemberVO">
+		select * from mypet_member where id=#{id} 
 	</select>
 
 

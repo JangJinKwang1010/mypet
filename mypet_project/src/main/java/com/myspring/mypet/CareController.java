@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mypet.dao.CareDAO;
-import com.mypet.vo.CareVO;
+import com.mypet.vo.MemberVO;
 
 @Controller
 public class CareController {
@@ -25,7 +25,7 @@ public class CareController {
 		String id = (String)session.getAttribute("session_id");
 		
 		if (!id.equals("")) {
-			CareVO vo = CareDAO.getCare(id);
+			MemberVO vo = CareDAO.getCare(id);
 			
 			vo.setBirth1(vo.getBirth().substring(0, 4));
 			vo.setBirth2(vo.getBirth().substring(4, 6));

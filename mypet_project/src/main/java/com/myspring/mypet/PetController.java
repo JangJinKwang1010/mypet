@@ -25,6 +25,11 @@ public class PetController {
 		String id = (String)session.getAttribute("session_id");
 		
 		MemberVO vo = petdao.getinfo(id);
+		
+		vo.setBirth1(vo.getBirth().substring(0, 4));
+		vo.setBirth2(vo.getBirth().substring(4, 6));
+		vo.setBirth3(vo.getBirth().substring(6, 8));
+		
 		mv.addObject("vo", vo);
 		mv.setViewName("pet/pet");
 		

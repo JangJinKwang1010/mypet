@@ -140,9 +140,12 @@
 		float:left;
 		font-size:14px;
 	}
-	.personalinf3 .inf5>div:last-child { margin-left:5px; }
+	.personalinf3 .inf5>div.inf5_text { margin-left:5px; }
 	.personalinf3 .inf5>div>p { margin-top:3px; }
 	.personalinf3 .inf5>div>img { cursor:pointer; }
+	.personalinf3 .inf5>div.inf5_x { float:right; margin-right:-10px; }
+	.personalinf3 .inf5>div.inf5_x>img { margin-top:3px; }
+	
 	.personalinf2 .inf6 {
 		width:180px;
 		height:60px;
@@ -203,7 +206,7 @@
 <script>
 	$(document).ready(function() {
 		$(".add").click(function() {
-			var html = "<div class='inf1'>";
+			var html = "<section><div class='inf1'>";
 			html += "<label>반려동물 선택</label>";
 			html += "<p class='p3'>*</p>";
 			html += "<select class='form-select'>";
@@ -228,8 +231,9 @@
 			html += "</div>";
 			html += "<div class='inf5'>";
 			html += "<div><img src='images/black_check.png' width=25px; height=25px; class='check' id='black'></div>";
-			html += "<div><p>양육중</p></div>";
-			html += "</div>";
+			html += "<div class='inf5_text'><p>양육중</p></div>";
+			html += "<div class='inf5_x'><img src='images/cross.png' width=20px; height=20px; class='close'></div>"
+			html += "</div></section>";
 			
 			$(".add_section").append(html);
 			
@@ -246,13 +250,17 @@
 			if ($(this).attr("id") == "black") {
 				$(this).attr("id", "blue"); 
 				$(this).attr("src", "images/blue_check.png");
-				$("#end_date").attr("disabled",true);
+				$(this).parent().parent().prev().children("input").attr("disabled", true);
 			} else {
 				$(this).attr("id", "black"); 
 				$(this).attr("src", "images/black_check.png");
-				$("#end_date").removeAttr("disabled"); 				
+				$(this).parent().parent().prev().children("input").removeAttr("disabled"); 				
 			}
 		 });
+		
+		$(document).on("click", ".close", function() {
+			$(this).parent().parent().parent().remove();
+		});
 		
 	});
 </script>
@@ -351,7 +359,7 @@
 						</div>
 						<div class="inf5">
 							<div><img src="images/black_check.png" width=25px; height=25px; class="check" id="black"></div>
-							<div><p>양육중</p></div>
+							<div class="inf5_text"><p>양육중</p></div>
 						</div>
 					</section>
 					<button class="add">+ 추가</button>

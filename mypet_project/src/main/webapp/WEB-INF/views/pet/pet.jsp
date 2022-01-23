@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
   %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,7 +61,7 @@
 }
 .personalinf2 {
 	border:1px solid lightgray;
-	background-color:rgb(250,250,250);
+	background-color:white;
 	display:inline-block;
 	width:1000px;
 	height:165px;
@@ -68,7 +69,7 @@
 }
 .personalinf3 {
 	border:1px solid lightgray;
-	background-color:rgb(250,250,250);
+	background-color:white;
 	display:inline-block;
 	width:1000px;
 	margin-bottom:30px;
@@ -104,14 +105,23 @@
 	margin:15px 10px 0 0;
 	display:inline-block;
 	float:right;
+	cursor:pointer;
 }
-.inf6,.inf7 {
+#img { display:none;	}
+.inf6, .personalinf3 .inf7 {
 	width:180px;
 	height:60px;
 	margin:15px 0 0 10px;
 	display:inline-block;
 	float:left;
 }
+.personalinf2 .inf7 {
+		width:610px;
+		height:60px;
+		margin:15px 0 0 10px;
+		display:inline-block;
+		float:left;
+	} 
 .inf8 {
 	width:420px;
 	height:60px;
@@ -149,13 +159,13 @@
 	width:100%; height:50%;
 }
 .add {
-	background-color:white;
-	width:100%;
-	height:50px;
-	border:none;
-	border-top:1px solid lightgray;
-	margin-top:10px;
-}
+		background-color:rgb(245,245,245);
+		width:100%;
+		height:50px;
+		border:none;
+		border-top:1px solid lightgray;
+		margin-top:10px;
+	}
 </style>
 <script>
 	$(document).ready(function() {
@@ -217,41 +227,45 @@
 						<div class="inf1">
 							<label>이름</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control" value="${vo.name }">
+							<input type="text" class="form-control" value="${vo.name }" disabled>
 						</div>
 						<div class="inf2">
 							<label>생년월일</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control" value="${vo.birth }">
+							<input type="text" class="form-control" value="${vo.birth1 }년 ${vo.birth2}월 ${vo.birth3}일" disabled>
 						</div>
 						<div class="inf3">
 							<label>성별</label>
 							<p class="p3">*</p>
-							<select class="form-select">
-								<option>남자</option>
-								<option>여자</option>
+							<select class="form-select" disabled>
+								<c:if test = "${vo.gender eq 'male' }">
+									<option selected>남자</option>
+									<option>여자</option>
+								</c:if>
+								<c:if test = "${vo.gender eq 'female' }">
+									<option>남자</option>
+									<option selected>여자</option>
+								</c:if>
 							</select>
 						</div>
 						<div class="inf4">
 							<label>이메일</label>
-							<input type="text" class="form-control" value="${vo.email }">
+							<input type="text" class="form-control" value="${vo.email }" disabled>
 						</div>
-						<div class="inf5">
-							<label>사진</label>
-							<p class="p3">*</p>
+						<div class="inf5 care_profile">
+							<label id="text">사진</label>
+							<p id="*" class="p3">*</p>
+							<img id="img" width=100%; height=100%;>
 						</div>
 						<div class="inf6">
-							<label>전화번호</label>
-							<input type="text" class="form-control">
-						</div>
-						<div class="inf7">
 							<label>휴대폰번호</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control" value="${vo.hp }">
+							<input type="text" class="form-control" value="${vo.hp }" readonly>
 						</div>
-						<div class="inf8">
+						<div class="inf7">
 							<label>주소</label>
 							<p class="p3">*</p>
+							<input type="text" class="form-control" value="${vo.addr1} ${vo.addr2 }" readonly>
 						</div>
 				</div>
 				
