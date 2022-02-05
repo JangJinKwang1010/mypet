@@ -17,5 +17,9 @@ public class MypageDAO {
 	public MemberVO getMemberInfo(String id) {
 		return sqlSession.selectOne(namespace+".member_info", id);
 	}
+	
+	public int getMypageinpass(MemberVO vo) {
+		return sqlSession.selectOne(namespace+".Mypage_inpass", vo);
+	}
 
 }

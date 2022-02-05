@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mypet.dao.MypageDAO;
@@ -21,6 +22,26 @@ public class MypageController {
 	public String mypage() {
 		return "mypage/mypage";
 	}
+	
+	@RequestMapping(value="/ok_proc.do", method=RequestMethod.POST)
+	public String mypage_pass_ok(MemberVO vo, HttpServletRequest request) {
+		
+		String result = "";
+		
+		HttpSession session = request.getSession(); //技记 积己
+		vo.setId((String)session.getAttribute("session_id"));
+		
+		int value = MypageDAO.getMypageinpass(vo);
+		
+		if (value!=0) {
+			result = "mypage/mypage_update";
+		} else {
+			result = "mypage/mypage";
+		}
+		
+		return result;
+	}
+	
 
 	@RequestMapping(value="/mypage_update.do") 
 	public ModelAndView mypage_update(HttpServletRequest request) {

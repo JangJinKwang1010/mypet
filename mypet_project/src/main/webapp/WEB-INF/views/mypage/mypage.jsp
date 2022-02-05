@@ -99,6 +99,10 @@
 				$(".passmsg").text("비밀번호가 동일합니다.").css("color","blue");
 			}
 		});
+		
+		$(".ok_btn").click(function() {
+			okform.submit();
+		});
 	})
 </script>
 </head>
@@ -110,12 +114,12 @@
 		<div class="main id_pass">
 			<p class="title">비밀번호확인</p>
 			<div class="findbox">
-				<form name= "findform" action= "find_proc.do" method="post"  autocomplete="off" >
+				<form name= "okform" action= "ok_proc.do" method="post"  autocomplete="off" >
 					<ul>
 						<li><label>비밀번호입력</label></li>
 						<li><input type="password" placeholder="비밀번호" name="pass" class="form-control" id="pass"></li>
 					</ul>
-					<button type="button" class="join_btn">확인</button>
+					<button type="button" class="ok_btn">확인</button>
 				</form>
 			</div>
 		</div>
