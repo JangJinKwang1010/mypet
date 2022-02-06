@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -307,7 +308,13 @@
 		.loginboxhigh2>p>span { font-size:30px; }
 		.loginboxhigh2>p { font-size:20px; margin-top:30px; }
 		.loginboxhigh2>a { margin:30px 10px 0 0; }
-		.loginmyinf { width:175px; }
+		.loginmyinf { width:90%; }
+		.loginpicture{display:none;}
+		.loginmypet>p {font-size:13px;}
+		.loginmypet>button{font-size:12px; margin-top:-20px;}
+		.banner .bannertext {color:black;}
+		.banner .bannertext:hover {color:white;}
+		
 		
 	} 
 </style>

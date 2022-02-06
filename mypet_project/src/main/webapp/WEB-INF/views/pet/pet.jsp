@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
   %>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,9 +58,15 @@
 	color:red;
 	float:left;
 }
+.p4 {
+	font-size:12px;
+	color:red;
+	float:right;
+	margin:15px 10px 0 0;
+}
 .personalinf2 {
 	border:1px solid lightgray;
-	background-color:white;
+	background-color:rgb(250,250,250);
 	display:inline-block;
 	width:1000px;
 	height:165px;
@@ -69,7 +74,7 @@
 }
 .personalinf3 {
 	border:1px solid lightgray;
-	background-color:white;
+	background-color:rgb(250,250,250);
 	display:inline-block;
 	width:1000px;
 	margin-bottom:30px;
@@ -105,23 +110,14 @@
 	margin:15px 10px 0 0;
 	display:inline-block;
 	float:right;
-	cursor:pointer;
 }
-#img { display:none;	}
-.inf6, .personalinf3 .inf7 {
+.inf6,.inf7 {
 	width:180px;
 	height:60px;
 	margin:15px 0 0 10px;
 	display:inline-block;
 	float:left;
 }
-.personalinf2 .inf7 {
-		width:610px;
-		height:60px;
-		margin:15px 0 0 10px;
-		display:inline-block;
-		float:left;
-	} 
 .inf8 {
 	width:420px;
 	height:60px;
@@ -159,13 +155,36 @@
 	width:100%; height:50%;
 }
 .add {
-		background-color:rgb(245,245,245);
-		width:100%;
-		height:50px;
-		border:none;
-		border-top:1px solid lightgray;
-		margin-top:10px;
-	}
+	background-color:white;
+	width:100%;
+	height:50px;
+	border:none;
+	border-top:1px solid lightgray;
+	margin-top:10px;
+}
+
+@media (max-width : 500px) {
+		.information{float:left; margin-left:20px;}
+		.personalinf>.p2{float:left; margin-left:165px;}
+		.personalinf>.p4{float:left; margin-left:90px;}
+		.personalinf2{float:left;width:342px; height:400px;}
+		.personalinf2>.inf1{width:150px;}
+		.personalinf2>.inf2{width:160px;}
+		.personalinf2>.inf4{width:170px;}
+		.personalinf2>.inf5{float:left; margin-left:10px;}
+		.personalinf2>.inf6{width:150px;}
+		.personalinf2>.inf7{width:150px;}
+		.personalinf2>.inf8{float:left; width:320px;}
+		.personalinf3{float:left;width:342px; height:440px;}
+		.personalinf3 .inf1{width:130px;}
+		.personalinf3 .inf3{width:130px;}
+		.personalinf3 .inf4{width:180px;}
+		.personalinf3 .inf5{float:left; margin-left:10px;}
+		.personalinf3 .inf6{width:150px;}
+		.personalinf3 .inf7{width:150px;}
+		.personalinf3 .inf8{width:320px;}
+		.title{margin-left:50px;}
+}
 </style>
 <script>
 	$(document).ready(function() {
@@ -227,51 +246,47 @@
 						<div class="inf1">
 							<label>이름</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control" value="${vo.name }" disabled>
+							<input type="text" class="form-control" value="${vo.name }">
 						</div>
 						<div class="inf2">
 							<label>생년월일</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control" value="${vo.birth1 }년 ${vo.birth2}월 ${vo.birth3}일" disabled>
+							<input type="text" class="form-control" value="${vo.birth }">
 						</div>
 						<div class="inf3">
 							<label>성별</label>
 							<p class="p3">*</p>
-							<select class="form-select" disabled>
-								<c:if test = "${vo.gender eq 'male' }">
-									<option selected>남자</option>
-									<option>여자</option>
-								</c:if>
-								<c:if test = "${vo.gender eq 'female' }">
-									<option>남자</option>
-									<option selected>여자</option>
-								</c:if>
+							<select class="form-select">
+								<option>남자</option>
+								<option>여자</option>
 							</select>
 						</div>
 						<div class="inf4">
 							<label>이메일</label>
-							<input type="text" class="form-control" value="${vo.email }" disabled>
+							<input type="text" class="form-control" value="${vo.email }">
 						</div>
-						<div class="inf5 care_profile">
-							<label id="text">사진</label>
-							<p id="*" class="p3">*</p>
-							<img id="img" width=100%; height=100%;>
+						<div class="inf5">
+							<label>사진</label>
+							<p class="p3">*</p>
 						</div>
 						<div class="inf6">
-							<label>휴대폰번호</label>
-							<p class="p3">*</p>
-							<input type="text" class="form-control" value="${vo.hp }" readonly>
+							<label>전화번호</label>
+							<input type="text" class="form-control">
 						</div>
 						<div class="inf7">
+							<label>휴대폰번호</label>
+							<p class="p3">*</p>
+							<input type="text" class="form-control" value="${vo.hp }">
+						</div>
+						<div class="inf8">
 							<label>주소</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control" value="${vo.addr1} ${vo.addr2 }" readonly>
 						</div>
 				</div>
 				
 				<div class="personalinf">
 					<p class="p1">반려동물 상세정보</p>
-					<p class="p2">*필수입력 정보입니다.</p>
+					<p class="p4">*필수입력 정보입니다.</p>
 				</div>
 				<div class="personalinf3">
 					<section class="add_section">
