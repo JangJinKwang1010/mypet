@@ -9,6 +9,17 @@
 	<select id="care" parameterType="java.lang.String" resultType="com.mypet.vo.MemberVO">
 		select * from mypet_member where id=#{id} 
 	</select>
+	
+	<insert id="care_upload" parameterType="com.mypet.vo.CareVO">
+		insert into mypet_care values(#{id}, #{name}, #{birth}, #{gender}, #{hp}, #{email}, #{addr}, #{cfile}, #{sfile}, sysdate)
+	</insert>
+	
+	<insert id="career_upload" parameterType="com.mypet.vo.CareVO">
+		insert into mypet_career values(#{id}, #{category}, #{kind}, #{bulk}, #{startdate}, #{enddate})
+	</insert>
 
+	<select id="care_result" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from mypet_care where id=#{id}
+	</select>
 
 </mapper>

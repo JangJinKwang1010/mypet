@@ -46,7 +46,7 @@
 $(document).ready(function() {
 	var img_name;
 	var img_src;
-	$("#file").change(function(e){
+	$("#cfile").change(function(e){
 			img_name = this.files[0].name;
 			var reader = new FileReader();
 			reader.onload = function(e) {
@@ -59,9 +59,11 @@ $(document).ready(function() {
 	
 	$(".ok").click(function() {
 		opener.document.getElementById('text').style.display = "none";
-		opener.document.getElementById('*').style.display = "none";
+		opener.document.getElementById('별').style.display = "none";
 		opener.document.getElementById('img').style.display = "block";
 		opener.document.getElementById('img').src = img_src;
+		opener.document.getElementById('append').append(document.getElementById('cfile'));
+		opener.document.getElementById('cfile').style.display="none";
 		window.close(); //창 닫기
 	});
 	
@@ -72,7 +74,7 @@ $(document).ready(function() {
 <body>
 <section>
 	<p>사진 등록</p>
-	<input type="file" class="form-control" name="file" id="file">
+	<input type="file" class="form-control" name="file" id="cfile">
 	<div>
 		<img id="img" src="images/image.png" width=90%; height=90%; >
 	</div>

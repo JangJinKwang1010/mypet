@@ -124,7 +124,7 @@
 		float:right;
 		cursor:pointer;
 	}
-	#img { display:none;	}
+	#img { display:none; }
 	.personalinf3 .inf5 {
 		width:100px;
 		height:60px;
@@ -160,7 +160,7 @@
 		display:inline-block;
 		float:left;
 	} 
-	.information>button {
+	.upload {
 		border:none;
 		width:20%;
 		height:50px;
@@ -172,7 +172,19 @@
 		font-size:20px;
 		margin-bottom:110px;
 	}
-	.information>button:hover {
+	.noupload {
+		border:none;
+		width:20%;
+		height:50px;
+		border-radius:10px;
+		font-weight:bold;
+		margin-top:50px;
+		background-color:lightgray;
+		color:white;
+		font-size:20px;
+		margin-bottom:110px;
+	}
+	.upload:hover {
 		background-color:rgb(0,68,130);
 		color:white;
 	}
@@ -196,6 +208,19 @@
 		border:none;
 		border-top:1px solid lightgray;
 		margin-top:10px;
+	}
+	.nouploaddiv {
+		background-color:white;
+		border:1px solid lightgray;
+		position:absolute;
+		left:700px;
+		margin-top:-100px;
+		padding:10px;
+		font-size:14px;
+		display:none;
+	}
+	.nouploaddiv>span {
+		font-size:13px; color:blue;
 	}
 
 	@media (min-width : 600px) {		
@@ -237,14 +262,14 @@
 			
 			$(".add_section").append(html);
 			
-		});
+		});		
 		
 		$(".care_profile").click(function() {
-			 var url = "care_profile.do";
-	         var name = "popup test";
-	         var option = "width = 500, height = 500, top = 150, left = 500, location = no"
-	         window.open(url, name, option);
-		});			
+	          var url = "care_profile.do";
+	          var name = "popup test";
+	          var option = "width = 500, height = 500, top = 150, left = 500, location = no"
+	          window.open(url, name, option);
+	      });
 		
 		$(document).on("click",".check",function(){ 
 			if ($(this).attr("id") == "black") {
@@ -262,7 +287,38 @@
 			$(this).parent().parent().parent().remove();
 		});
 		
+		$(".upload").click(function() {
+			 var form = $("#form")[0];        
+		     var formData = new FormData(form);
+			
+			$.ajax({
+		        url:"care_upload.do",
+		        type:"post",
+		        enctype:"multipart/form-data", 
+		        data: formData,
+		        contentType: false,
+		        processData: false,
+		        success:function(result){
+		       		if (result) {
+		       			alert("돌보미 등록이 완료되었습니다");
+		       		} else {
+		       			alert("돌보미 등록에 실패하였습니다");		       		 
+		       		}
+		       		location.reload();
+		       	},		
+		    });
+		});
+		
+		$(".noupload").hover(function(){
+			$(".nouploaddiv").css("display","block");
+	    }, function() {
+	    	$(".nouploaddiv").css("display","none");
+	    });
+			
+		
 	});
+	
+	
 </script>
 </head>
 <body>
@@ -274,22 +330,23 @@
 				<div class="personalinf">
 					<p class="p1">인적사항</p>
 					<p class="p2">*필수입력 정보입니다.
-				</div>
-				<div class="personalinf2">
+				</div>				
+				<form id="form" name="care"  >
+				<div class="personalinf2" id="append">				
 						<div class="inf1">
 							<label>이름</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control" value="${vo.name }"  readonly>
+							<input type="text" class="form-control" value="${vo.name }" name="name" readonly>
 						</div>
 						<div class="inf2">
 							<label>생년월일</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control" value="${vo.birth1 }년 ${vo.birth2}월 ${vo.birth3}일" readonly>
+							<input type="text" class="form-control" value="${vo.birth1 }년 ${vo.birth2}월 ${vo.birth3}일" name="birth" readonly>
 						</div>
 						<div class="inf3">
 							<label>성별</label>
 							<p class="p3">*</p>
-							<select class="form-select" disabled>
+							<select class="form-select" disabled >
 								<c:if test="${vo.gender eq 'male' }">
 									<option selected>남자</option>
 									<option>여자</option>
@@ -299,26 +356,27 @@
 									<option selected>여자</option>
 								</c:if>
 							</select>
+							<input type="text" name="gender" value="${vo.gender }" style="display:none;">
 						</div>
 						<div class="inf4">
 							<label>이메일</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control" value="${vo.email }" readonly>
+							<input type="text" class="form-control" value="${vo.email }" name="email" readonly>
 						</div>
 						<div class="inf5 care_profile">
 							<label id="text">사진</label>
-							<p id="*" class="p3">*</p>
+							<p id="별" class="p3">*</p>
 							<img id="img" width=100%; height=100%;>
 						</div>
 						<div class="inf6">
 							<label>휴대폰번호</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control" value="${vo.hp }" readonly>
+							<input type="text" class="form-control" value="${vo.hp }" name="hp" readonly>
 						</div>
 						<div class="inf7">
 							<label>주소</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control" value="${vo.addr1} ${vo.addr2 }" readonly>
+							<input type="text" class="form-control" value="${vo.addr1} ${vo.addr2 }" name="addr" readonly>
 						</div>
 				</div>
 				
@@ -330,32 +388,32 @@
 						<div class="inf1">
 							<label>반려동물 선택</label>
 							<p class="p3">*</p>
-							<select class="form-select">
-								<option>강아지</option>
-								<option>고양이</option>
+							<select class="form-select" name="category">
+								<option value="강아지">강아지</option>
+								<option value="고양이">고양이</option>
 							</select>
 						</div>
 						<div class="inf2">
 							<label>품종</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" name="kind">
 						</div>
 						<div class="inf3">
 							<label>크기</label>
 							<p class="p3">*</p>
-							<select class="form-select">
-								<option>소형</option>
-								<option>중형</option>
-								<option>대형</option>
+							<select class="form-select" name="bulk">
+								<option value="소형">소형</option>
+								<option value="중형">중형</option>
+								<option value="대형">대형</option>
 							</select>
 						</div>
 						<div class="inf4">
 							<label>입양날짜</label>
-							<input type="date" class="form-control">
+							<input type="date" class="form-control" name="startdate">
 						</div>
 						<div class="inf4">
 							<label>양육종료날짜</label>
-							<input type="date" class="form-control"  id="end_date">
+							<input type="date" class="form-control"  id="end_date" name="enddate">
 						</div>
 						<div class="inf5">
 							<div><img src="images/black_check.png" width=25px; height=25px; class="check" id="black"></div>
@@ -364,7 +422,14 @@
 					</section>
 					<button class="add">+ 추가</button>
 				</div>				
-				<button>등록하기</button>				
+				<c:if test="${val eq 0 }">
+					<button class="upload" type="button">등록하기</button>					
+				</c:if>
+				<c:if test="${val eq 1 }">
+					<button class="noupload" type="button" >등록하기</button>	
+					<div class="nouploaddiv">이미 등록된 회원입니다<br><span>수정은 마이페이지에서 가능합니다</span></div>	
+				</c:if>
+				</form>			
 			</div>			
 		</div>
 	</section>
