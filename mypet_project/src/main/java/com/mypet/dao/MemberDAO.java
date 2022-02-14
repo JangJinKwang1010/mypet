@@ -34,6 +34,22 @@ public class MemberDAO {
 		return sqlSession.selectOne(namespace+".index_info", id);
 	}
 	
+	public int getIdfindCheck(MemberVO vo) {
+		return sqlSession.selectOne(namespace+".id_find_check", vo);
+	}
+	
+	public String getIdfindInfo(MemberVO vo) {
+		return sqlSession.selectOne(namespace+".id_find_info", vo);
+	}
+	
+	public int getPassfindCheck(MemberVO vo) {
+		return sqlSession.selectOne(namespace+".pass_find_check", vo);
+	}
+	
+	public int getPassChange(MemberVO vo) {
+		return sqlSession.update(namespace+".pass_change", vo);
+	}
+	
 	
 
 }

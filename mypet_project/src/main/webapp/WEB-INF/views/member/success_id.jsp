@@ -40,6 +40,7 @@ section {
 }
 .findbox label {
 	font-weight:bold;
+	font-size:20px;
 }
 .findbox input{
 	width:100%;
@@ -95,7 +96,7 @@ section {
 				<form name= "findform" action= "find_proc.do" method="post"  autocomplete="off" >
 					<ul>
 						<li><label>보유 계정</label></li>
-						<li>고객님의 아이디는 @@@@3432 입니다.</li>
+						<li>고객님의 아이디는 ${id } 입니다.</li>
 					</ul>
 					<button type="button" class="find_btn" onclick="location.href='index.do'">로그인</button>
 				</form>

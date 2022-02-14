@@ -25,6 +25,8 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<beans:bean id="SendEmailService" class="com.mypet.service.SendEmailServiceImpl"></beans:bean> 	
+	
 	<!-- multipartResolver -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	</beans:bean>

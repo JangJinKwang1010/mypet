@@ -113,6 +113,33 @@ section {
 				$(".passmsg").text("비밀번호가 동일합니다.").css("color","blue");
 			}
 		});
+		
+		$(".change_btn").click(function() {
+			if ($("#pass").val() == "") {
+				alert("비밀번호를 입력해주세요");
+				$("#pass").focus();
+			} else if ($("#cpass").val() == "") {
+				alert("비밀번호 확인을 입력해주세요");
+				$("#cpass").focus();
+			} else {
+				$.ajax({
+	                   url:"pass_change_proc.do",
+	                   type:"post",
+	                   data: {
+	                	   	pass:$("#pass").val(),
+	                	   	id:"${vo.id}"
+	                   }, 
+	                   success:function(result){
+		   		       		if (result) {
+			   		       		alert("비밀번호가 변경되었습니다");
+		   		       		} else {
+		   		       			alert("비밀번호가 변경되지 않았습니다");	
+		   		       		}
+		   		       	location.replace('index.do');
+	   		       		}
+	                });  
+			}
+		});
 	})
 </script>
 </head>
@@ -122,7 +149,7 @@ section {
 		<div class="mainbox id_pass">
 			<p class="title"><span class="id_span">아이디 찾기</span>비밀번호 찾기</p>
 			<div class="findbox">
-				<form name= "findform" action= "find_proc.do" method="post"  autocomplete="off" >
+				<form name= "passchange" action= "pass_change_proc.do" method="post"  autocomplete="off" >
 					<ul>
 						<li><label>새비밀번호</label></li>
 						<li><input type="password" placeholder="비밀번호" name="pass" class="form-control" id="pass"></li>
@@ -132,7 +159,7 @@ section {
 						<li><input type="password" placeholder="비밀번호확인" name="cpass" class="form-control" id="cpass"></li>
 						<li class="passmsg">비밀번호 확인을 위해 다시 한번 입력 해주세요.</li>
 					</ul>
-					<button type="button" class="join_btn">확인</button>
+					<button type="button" class="change_btn">확인</button>
 				</form>
 			</div>
 		</div>

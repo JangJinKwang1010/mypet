@@ -328,7 +328,7 @@
 	function chat_open() {
 		 var url = "chat_list.do";
         var name = "popup test";
-        var option = "width = 800, height = 1000, top = 200, left = 350, location = no"
+        var option = "width = 815, height = 1000, top = 200, left = 350, location = no"
         window.open(url, name, option);
 	};
 </script>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mypet.dao.MemberDAO;
+import com.mypet.service.SendEmailService;
 import com.mypet.vo.MemberVO;
 
 @Controller
@@ -18,6 +19,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberDAO MemberDAO;
+	
+	@Autowired
+	private SendEmailService SendEmailService;
 	
 	//회원가입
 	@RequestMapping(value="/join.do")
@@ -100,6 +104,7 @@ public class MemberController {
 	public String find() {
 		return "member/find";
 	}
+	
 	//아이디/비밀번호찾기 실패창
 	@RequestMapping(value="/find_fail.do")
 	public String find_fail() {
@@ -116,5 +121,91 @@ public class MemberController {
 		return "member/success_pass";
 	}
 	
+	//아이디찾기 정보일치여부확인
+	@ResponseBody
+	@RequestMapping(value="/id_find_check.do", method=RequestMethod.POST)
+	public boolean id_find_check(HttpServletRequest request) {
+		boolean result = false;
+		
+		MemberVO vo = new MemberVO();
+		vo.setName(request.getParameter("name"));
+		vo.setEmail(request.getParameter("email"));
+		
+		int val = MemberDAO.getIdfindCheck(vo);
+		if (val == 1) {
+			result = true;
+		}
+		
+		return result;
+	}
+	
+	//이메일인증
+	@ResponseBody
+    @RequestMapping(value = "/sendEmail.do", method = RequestMethod.POST)
+     public void sendEmail(HttpServletRequest request) throws Exception {
+		//보낼 이메일과 인증번호를 Service로 전달
+		SendEmailService.sendEmail(request.getParameter("email"), request.getParameter("text"));
+	}
+	
+	//아이디 찾기
+	@RequestMapping(value="/id_find_proc.do", method=RequestMethod.POST) 
+	public ModelAndView id_find_proc(MemberVO vo) {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("id", MemberDAO.getIdfindInfo(vo));
+		mv.setViewName("member/success_id");
+		
+		return mv;
+	}
+	
+	//비밀번호찾기 정보일치여부확인
+	@ResponseBody
+	@RequestMapping(value="/pass_find_check.do", method=RequestMethod.POST)
+	public boolean pass_find_check(HttpServletRequest request) {
+		boolean result = false;
+		
+		MemberVO vo = new MemberVO();
+		vo.setName(request.getParameter("name"));
+		vo.setEmail(request.getParameter("email"));
+		vo.setId(request.getParameter("id"));
+		
+		int val = MemberDAO.getPassfindCheck(vo);
+		if (val == 1) {
+			result = true;
+		}
+		
+		return result;
+	}
+	
+	//패스워드 찾기
+	@RequestMapping(value="/pass_find_proc.do", method=RequestMethod.POST) 
+	public ModelAndView pass_find_proc(MemberVO vo) {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("vo", vo);
+		mv.setViewName("member/success_pass");
+		
+		return mv;
+	}
+	
+	//패스워드 변경
+	@ResponseBody
+	@RequestMapping(value="/pass_change_proc.do", method=RequestMethod.POST)
+	public boolean pass_change_proc(HttpServletRequest request) {
+		boolean result = false;
+		
+		MemberVO vo = new MemberVO();
+		vo.setId(request.getParameter("id")); 
+		vo.setPass(request.getParameter("pass"));
+		
+		int val = MemberDAO.getPassChange(vo);
+		
+		if (val!=0) {
+			result = true;
+		}
+		
+		return result;
+	}
+
 
 }

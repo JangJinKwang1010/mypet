@@ -5,9 +5,50 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 public class CareVO {
 	
 	String id, pass, name, hp, email, addr, mdate, birth, gender, cfile, sfile, category, kind, bulk, startdate, enddate;
+	String true_category, true_kind, true_bulk, true_startdate, true_enddate;
 	CommonsMultipartFile file;	
 
 	
+	
+	public String getTrue_category() {
+		return true_category;
+	}
+
+	public void setTrue_category(String true_category) {
+		this.true_category = true_category;
+	}
+
+	public String getTrue_bulk() {
+		return true_bulk;
+	}
+
+	public void setTrue_bulk(String true_bulk) {
+		this.true_bulk = true_bulk;
+	}
+
+	public String getTrue_startdate() {
+		return true_startdate;
+	}
+
+	public void setTrue_startdate(String true_startdate) {
+		this.true_startdate = true_startdate;
+	}
+
+	public String getTrue_enddate() {
+		return true_enddate;
+	}
+
+	public void setTrue_enddate(String true_enddate) {
+		this.true_enddate = true_enddate;
+	}
+
+	public String getTrue_kind() {
+		return true_kind;
+	}
+
+	public void setTrue_kind(String true_kind) {
+		this.true_kind = true_kind;
+	}
 	
 	public String getCategory() {
 		return category;

@@ -230,39 +230,49 @@
 </style>
 <script>
 	$(document).ready(function() {
+		var name1 = "add_category";
+		var name2 = "add_kind";
+		var name3 = "add_bulk";
+		var name4 = "add_startdate";
+		var name5 = "add_enddate";
+ 		var num = 1;
+		
 		$(".add").click(function() {
+			
 			var html = "<section><div class='inf1'>";
 			html += "<label>반려동물 선택</label>";
 			html += "<p class='p3'>*</p>";
-			html += "<select class='form-select'>";
-			html += "<option>강아지</option><option>고양이</option></select></div>";
+			html += "<select class='form-select "+name1+num+"'>";
+			html += "<option value='강아지'>강아지</option><option value='고양이'>고양이</option></select></div>";
 			html += "<div class='inf2'>";
 			html += "<label>품종</label>";
 			html += "<p class='p3'>*</p>";
-			html += "<input type='text' class='form-control'>";
+			html += "<input type='text' class='form-control "+name2+num+"'>";
 			html += "</div>";
 			html += "<div class='inf3'>";
 			html += "<label>크기</label>";
 			html += "<p class='p3'>*</p>";
-			html += "<select class='form-select'>";
+			html += "<select class='form-select "+name3+num+"'>";
 			html += "<option>소형</option><option>중형</option><option>대형</option></select></div>";
 			html += "<div class='inf4'>";
 			html += "<label>입양날짜</label>";
-			html += "<input type='date' class='form-control'>";
+			html += "<input type='date' class='form-control "+name4+num+"'>";
 			html += "</div>";
 			html += "<div class='inf4'>";
 			html += "<label>양육종료날짜</label>";
-			html += "<input type='date' class='form-control' id = 'end_date'>";
+			html += "<input type='date' class='form-control "+name5+num+"' id = 'end_date'>";
 			html += "</div>";
 			html += "<div class='inf5'>";
 			html += "<div><img src='images/black_check.png' width=25px; height=25px; class='check' id='black'></div>";
 			html += "<div class='inf5_text'><p>양육중</p></div>";
 			html += "<div class='inf5_x'><img src='images/cross.png' width=20px; height=20px; class='close'></div>"
 			html += "</div></section>";
+						
+			$(".add_section").append(html);	
 			
-			$(".add_section").append(html);
+			num = num+1;		
 			
-		});		
+		});			
 		
 		$(".care_profile").click(function() {
 	          var url = "care_profile.do";
@@ -276,6 +286,7 @@
 				$(this).attr("id", "blue"); 
 				$(this).attr("src", "images/blue_check.png");
 				$(this).parent().parent().prev().children("input").attr("disabled", true);
+				$(this).parent().parent().prev().children("input").val("");
 			} else {
 				$(this).attr("id", "black"); 
 				$(this).attr("src", "images/black_check.png");
@@ -285,12 +296,27 @@
 		
 		$(document).on("click", ".close", function() {
 			$(this).parent().parent().parent().remove();
+			num = num-1;
 		});
 		
 		$(".upload").click(function() {
-			 var form = $("#form")[0];        
-		     var formData = new FormData(form);
+			$(".true_category").val($(".category").val());
+			$(".true_kind").val($(".kind").val());
+			$(".true_bulk").val($(".bulk").val());
+			$(".true_startdate").val($(".startdate").val());
+			$(".true_enddate").val($(".enddate").val());
 			
+			for (var i=0; i<num-1; i++) {				
+				$(".true_category").val($(".true_category").val()+","+$(".add_category"+[i+1]).val());
+				$(".true_kind").val($(".true_kind").val()+","+$(".add_kind"+[i+1]).val()); 
+				$(".true_bulk").val($(".true_bulk").val()+","+$(".add_bulk"+[i+1]).val()); 
+				$(".true_startdate").val($(".true_startdate").val()+","+$(".add_startdate"+[i+1]).val()); 
+				$(".true_enddate").val($(".true_enddate").val()+","+$(".add_enddate"+[i+1]).val()); 
+			};			
+			
+			 var form = $("#form")[0];  
+		     var formData = new FormData(form);
+					     
 			$.ajax({
 		        url:"care_upload.do",
 		        type:"post",
@@ -388,7 +414,7 @@
 						<div class="inf1">
 							<label>반려동물 선택</label>
 							<p class="p3">*</p>
-							<select class="form-select" name="category">
+							<select class="form-select category" name="category" >
 								<option value="강아지">강아지</option>
 								<option value="고양이">고양이</option>
 							</select>
@@ -396,12 +422,12 @@
 						<div class="inf2">
 							<label>품종</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control" name="kind">
+							<input type="text" class="form-control kind" name="kind" >
 						</div>
 						<div class="inf3">
 							<label>크기</label>
 							<p class="p3">*</p>
-							<select class="form-select" name="bulk">
+							<select class="form-select bulk" name="bulk">
 								<option value="소형">소형</option>
 								<option value="중형">중형</option>
 								<option value="대형">대형</option>
@@ -409,18 +435,18 @@
 						</div>
 						<div class="inf4">
 							<label>입양날짜</label>
-							<input type="date" class="form-control" name="startdate">
+							<input type="date" class="form-control startdate" name="startdate">
 						</div>
 						<div class="inf4">
 							<label>양육종료날짜</label>
-							<input type="date" class="form-control"  id="end_date" name="enddate">
+							<input type="date" class="form-control enddate"  id="end_date" name="enddate">
 						</div>
 						<div class="inf5">
 							<div><img src="images/black_check.png" width=25px; height=25px; class="check" id="black"></div>
 							<div class="inf5_text"><p>양육중</p></div>
 						</div>
 					</section>
-					<button class="add">+ 추가</button>
+					<button class="add" type="button">+ 추가</button>
 				</div>				
 				<c:if test="${val eq 0 }">
 					<button class="upload" type="button">등록하기</button>					
@@ -428,7 +454,12 @@
 				<c:if test="${val eq 1 }">
 					<button class="noupload" type="button" >등록하기</button>	
 					<div class="nouploaddiv">이미 등록된 회원입니다<br><span>수정은 마이페이지에서 가능합니다</span></div>	
-				</c:if>
+				</c:if>	
+				<input type="hidden" class="true_category" name="true_category" >
+				<input type="hidden" class="true_kind" name="true_kind" >
+				<input type="hidden" class="true_bulk" name="true_bulk" >
+				<input type="hidden" class="true_startdate" name="true_startdate" >
+				<input type="hidden" class="true_enddate" name="true_enddate" >
 				</form>			
 			</div>			
 		</div>
