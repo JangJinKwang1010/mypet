@@ -99,6 +99,23 @@
 		.p_title> .text { font-size:15px; }
 		.option { font-size:12px; margin:15px; }
 	}
+	
+	
+	
+	.wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
+    .wrap * {padding: 0;margin: 0;}
+    .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 13px;font-weight: bold;}
+    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+    .info .close:hover {cursor: pointer;}
+    .info .body {position: relative;overflow: hidden;}
+    .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
+    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
+    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+    .info .link {color: #5085BB;}
 </style>
 <script>
 $(document).ready(function() {
@@ -144,22 +161,66 @@ $(document).ready(function() {
 		         
 			   // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
 			   var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+		       
+			   var content = document.createElement('div');
+		    	content.innerHTML =  '<div class="wrap">' + 
+	            '    <div class="info">' + 
+	            '        <div class="title" id="title">' + 
+	            '            ${vo.addr}' +
+	            '        </div>' + 
+	            '        <div class="body">' + 
+	            '            <div class="img">' +
+	            '                <img src="" width="73" height="70">' +
+	            '           </div>' + 
+	            '            <div class="desc">' + 
+	            '                <div class="ellipsis">[강아지] 비숑</div>' + 
+	            '                <div class="jibun ellipsis">초코(여) 3세</div>' + 
+	            '                <div><a href="near_content.do?nid="+${vo.nid} target="_blank" class="link">게시물 보기</a></div>' + 
+	            '            </div>' + 
+	            '        </div>' + 
+	            '    </div>' +    
+	            '</div>';
 
-		        // 결과값으로 받은 위치를 마커로 표시합니다
-		        var marker = new kakao.maps.Marker({
-		            map: map,
-		            position: coords,
-		            image: markerImage // 마커이미지 설정 
-		        });	
-		    }	    
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new kakao.maps.Marker({
+	            map: map,
+	            position: coords,
+	            image: markerImage // 마커이미지 설정 
+	        });		        
+	        
+	        var overlay;
+		     // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+	        kakao.maps.event.addListener(marker, 'click', function() {
+	        	overlay  = new kakao.maps.CustomOverlay({
+			            content: content,
+			            map: map,
+			            position: marker.getPosition()       
+			        });
+	            overlay.setMap(map);	            
+	        }); 		   
+		     
+		    var close = document.createElement('div');
+		    close.style.cssText = 'position: absolute; bottom:50px; left:-145px;width: 288px;height: 120px;'
+	        var closeBtn = document.createElement('div');
+	        closeBtn.style.cssText = ' margin:5px; float:right;color: #888;width: 17px;height: 17px;background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png")';
+	        // 닫기 이벤트 추가
+	        closeBtn.onclick = function() {
+	            overlay.setMap(null);
+	        };
+	        close.appendChild(closeBtn)
+	        content.appendChild(close);
+		       	     
 		    
-		}); 
+		     
+		  }	 
+
+		    
+	}); 
 		
 	</c:forEach>
-		
 	
-
 });
+
 </script>
 </head>
 <body>
@@ -182,6 +243,7 @@ $(document).ready(function() {
 				</div>
 			</c:forEach>
 			</div>
+			<div><img src="images/blue_add.png" width=50px; height=50px; style="margin-bottom:50px;"></div>
 		</div>
 	</section>
 	
