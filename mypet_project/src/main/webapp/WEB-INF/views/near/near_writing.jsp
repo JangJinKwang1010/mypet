@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>mypet</title>
+<title>Mypet</title>
 <script src="js/jquery-3.6.0.min.js"></script>
 <style>
 	.section {
@@ -51,24 +51,23 @@
 		border-top:1px solid;
 		width:90%;
 		}
-	.mainbox2>.pet_select{
+	.mainbox2 .pet_select{
 		display:inline-block;
-		width:31%;
 		height:40px;
 		margin:3px 0 1px 0;
 	}
-	.mainbox2>.date{
+	.mainbox2 .date{
 		display:inline-block;
 		width:27%;
 		height:40px;
 		margin:3px 0 1px 0;
 	}
-	.mainbox2>.writing_title{
+	.mainbox2 .writing_title{
 		display:inline-block;
 		width:90%;
 		height:40px;
 	}
-	.mainbox2>.writing_content{
+	.mainbox2 .writing_content{
 		display:inline-block;
 		margin-top:3px;
 		width:90%;
@@ -96,6 +95,46 @@
 		.mainbox { width:1300px; }
 	}
 </style>
+<script>
+	$(document).ready(function() {
+		$(".writing_button").click(function() {
+			if ($("#kind").val() == "선택") {
+				alert("펫을 선택해주세요");
+				$("#kind").focus();
+			} else if ($("#work").val() == "선택") {
+				alert("경력을 선택해주세요");
+				$("#work").focus();
+			} else if ($("#enddate").val() == "") {
+				alert("마감일자를 선택해주세요");
+				$("#enddate").focus();
+			} else if ($("#title").val() == "") {
+				alert("제목을 입력해주세요");
+				$("#title").focus();
+			} else if ($("#content").val() == "") {
+				alert("내용을 입력해주세요");
+				$("#content").focus();
+			} else {
+			    var form1 = $("#form").serialize();
+			     
+				$.ajax({
+			        url:"near_upload.do",
+			        type:"post",
+			        data: form1,
+			        success:function(result){
+			       		if (result) {
+			       			alert("글이 등록되었습니다");
+			       			location.replace('near.do');
+			       		} else {
+			       			alert("글이 등록되지 않았습니다");		       
+			       			location.reload();
+			       		}		       		
+			       	},		
+			    });
+			}
+	
+		});
+	});
+</script>
 </head>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
@@ -105,23 +144,25 @@
 			<div class ="mainbox2 freebox">
 				<p class="subtitle">글쓰기</p>
 				<div class="writing_line"></div>
-				<select class="pet_select form-select">
-					<option>펫 선택</option>
-					<option>강아지</option>
-					<option>고양이</option>
+				<form id="form">
+				<select class="pet_select form-select" style="width:21%" name="kind" id="kind">
+					<option value="선택">펫 선택</option>
+					<option value="비숑/강아지">비숑</option>
+					<option value="페르시안고양이/고양이">페르시안고양이</option>
 				</select>
-				<select class="pet_select form-select">
-					<option>경력 선택</option>
-					<option>1년 이하</option>
-					<option>2년</option>
-					<option>3년</option>
-					<option>4년</option>
-					<option>5년 이상</option>
+				<select class="pet_select form-select" style="width:41%" name="work" id="work">
+					<option value="선택">경력 선택</option>
+					<option value="1년 이하">1년 이하</option>
+					<option value="2년 이상">2년 이상</option>
+					<option value="3년 이상">3년 이상</option>
+					<option value="4년 이상">4년 이상</option>
+					<option value="5년 이상">5년 이상</option>
 				</select>
-				<input type="date" class="date form-control">
-				<input type="text" class="writing_title form-control" placeholder="제목을 입력해주세요.">
-				<textarea class="writing_content form-control" placeholder="내용을 입력해주세요."></textarea>
-				<button class="writing_button">글쓰기</button>
+				<input onfocus="(this.type = 'date')" class="date form-control" placeholder="마감일자" name="enddate" id="enddate">
+				<input type="text" class="writing_title form-control" placeholder="제목을 입력해주세요." name="title" id="title">
+				<textarea class="writing_content form-control" placeholder="내용을 입력해주세요." name="content" id="content"></textarea>
+				<button type="button" class="writing_button">글쓰기</button>
+				</form>
 			</div>
 		</div>
 	</section>

@@ -106,19 +106,19 @@ border-bottom:1px solid lightgray;
 	<div class="menu1">
 		<ul>			
 			<c:if test = "${empty session_id }">
-				<a class="home" href="http://14.47.84.213:9000/mypet/index.do"><li>HOME</li></a>
+				<a class="home" href="index.do"><li>HOME</li></a>
 			</c:if>
 			<c:if test = "${!empty session_id }">
-				<a class="home" href="http://14.47.84.213:9000/mypet/index.do"><li>HOME</li></a>
+				<a class="home" href="index.do"><li>HOME</li></a>
 				<a href="http://14.47.84.213:9000/mypet/logout.do"><li>로그아웃</li></a>
 			</c:if>			
 		</ul>		
 	</div>
 	<div class="m-menu1">
 		<img class="open" src="images/m-menu.png">	
-		<a href="http://14.47.84.213:9000/mypet/index.do"><p>Mypet</p></a>	
+		<a href="index.do"><p>Mypet</p></a>	
 		<c:if test = "${!empty session_id }">
-			<a class="logout" href="http://14.47.84.213:9000/mypet/logout.do"><li>로그아웃</li></a>
+			<a class="logout" href="logout.do"><li>로그아웃</li></a>
 		</c:if>
 	</div>
 	<div class="menu2">

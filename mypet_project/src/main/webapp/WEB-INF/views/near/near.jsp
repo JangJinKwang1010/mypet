@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>My pet</title>
+<title>Mypet</title>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e8fa4fd6bbcee08087de03a2b386eba&libraries=services"></script>
 <script src="js/jquery-3.6.0.min.js"></script>
 <style>
@@ -71,17 +71,17 @@
 		margin-right:20px;
 	}
 	.writing_button {
-		float:center;
+		float:right;
 		border:none;
 		width:20%;
 		height:50px;
 		border-radius:10px;
 		font-weight:bold;
-		margin-top:20px;
+		margin-top:180px;
+		margin-right:50px;
 		background-color:rgb(72,115,210);
 		color:white;
 		font-size:20px;
-		margin-bottom:25px;		
 	}
 	.user { text-align:left; margin:15px 30px; font-size:15px; }
 	
@@ -107,9 +107,9 @@ $(document).ready(function() {
 	var mapOptions = {
 
 		center: new kakao.maps.LatLng(33.450701, 126.570667),
-		level: 3
+		level: 1
 	};
-	var map = new kakao.maps.Map(mapContainer, mapOptions);		
+	var map = new kakao.maps.Map(mapContainer, mapOptions);	
 	
 	// 주소-좌표 변환 객체를 생성합니다
 	var geocoder = new kakao.maps.services.Geocoder();
@@ -120,23 +120,43 @@ $(document).ready(function() {
 	     if (status === kakao.maps.services.Status.OK) {
 
 	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-	        // 결과값으로 받은 위치를 마커로 표시합니다
-	        var marker = new kakao.maps.Marker({
-	            map: map,
-	            position: coords
-	        });
-
-	        // 인포윈도우로 장소에 대한 설명을 표시합니다
-	        var infowindow = new kakao.maps.InfoWindow({
-	            content: '<div style="width:150px;text-align:center;padding:6px 0;">내 주소 위치</div>'
-	        });
-	        infowindow.open(map, marker);
+ 
 
 	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 	        map.setCenter(coords);
 	    } 
-	});	
+	});
+	<c:forEach var = "vo"  items="${mlist}" varStatus="status">			
+		
+		geocoder.addressSearch("${vo.addr}", function(result, status) {
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+
+		       var coords  = new kakao.maps.LatLng(result[0].y, result[0].x);
+		       <c:if test="${vo.category eq '고양이'}">
+		       		var imageSrc = "images/cat_maker.png"; // 마커이미지의 주소입니다    		    	   
+		      </c:if>
+		      <c:if test="${vo.category eq '강아지'}">
+		    		var imageSrc = "images/dog_maker.png"; // 마커이미지의 주소입니다     		    	   
+	     	  </c:if>		
+		       var imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
+		       var imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+		         
+			   // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+			   var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords,
+		            image: markerImage // 마커이미지 설정 
+		        });	
+		    }	    
+		    
+		}); 
+		
+	</c:forEach>
+		
 	
 
 });
@@ -148,41 +168,19 @@ $(document).ready(function() {
 	<section class="section">
 		<div class="back">
 			<p class="title">내 근처의 펫<span>A pet near me</span></p>
+			<button onclick="location.href='near_writing.do'" class="writing_button">글쓰기</button>
 			<div id="map"></div>
 			<div class="list">
-				<div onclick="location.href='near_contents.do' ">
-					<p class="p_title"><span class="logo">강아지</span>[비숑]<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
+			<c:forEach var = "vo"  items="${list}">
+				<div onclick="location.href='near_contents.do?nid=${vo.nid}' ">
+					<p class="p_title" ><span class="logo">강아지</span>[${vo.kind }]<span class="text">${vo.title }</span></p>
 					<p class="option">
-						<span><img src="images/paw.png">경력 1년이상</span>
-						<span><img src="images/calendar.png">2021/11/13 - 2021/12/31</span>
+						<span><img src="images/paw.png">경력 ${vo.work }</span>
+						<span><img src="images/calendar.png">${vo.startdate } ~ ${vo.enddate }</span>
 					</p>
-					<p class="user">qoolp79(장**)</p>
+					<p class="user">${vo.id }(${vo.name }**)</p>
 				</div>
-				<div>
-					<p class="p_title"><span class="logo">강아지</span>[비숑]<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
-					<p class="option">
-						<span><img src="images/paw.png">경력 1년이상</span>
-						<span><img src="images/calendar.png">2021/11/13 - 2021/12/31</span>
-					</p>
-					<p class="user">qoolp79(장**)</p>
-				</div>
-				<div>
-					<p class="p_title"><span class="logo">강아지</span>[비숑]<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
-					<p class="option">
-						<span><img src="images/paw.png">경력 1년이상</span>
-						<span><img src="images/calendar.png">2021/11/13 - 2021/12/31</span>
-					</p>
-					<p class="user">qoolp79(장**)</p>
-				</div>
-				<div>
-					<p class="p_title"><span class="logo">강아지</span>[비숑]<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
-					<p class="option">
-						<span><img src="images/paw.png">경력 1년이상</span>
-						<span><img src="images/calendar.png">2021/11/13 - 2021/12/31</span>
-					</p>
-					<p class="user">qoolp79(장**)</p>
-				</div>
-				<button onclick="location.href='near_writing.do'" class="writing_button">글쓰기</button>
+			</c:forEach>
 			</div>
 		</div>
 	</section>

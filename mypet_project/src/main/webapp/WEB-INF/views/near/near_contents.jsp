@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>My pet</title>
+<title>Mypet</title>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e8fa4fd6bbcee08087de03a2b386eba&libraries=services"></script>
 <script src="js/jquery-3.6.0.min.js"></script>
 <style>
@@ -152,6 +152,40 @@
 		font-size:20px;
 		margin-right:45px;
 	}
+	.top>img {
+		position:relative;
+		top:10px;
+		right:5px;
+		cursor:pointer;
+	}
+	
+	#textarea {
+		width:95%; height:500px;
+		background-color:white;
+		border:none;
+	}
+	
+	.button {
+		text-align:left;
+		width:80%;
+		margin-top:-80px;
+		margin-left:150px;		
+		margin-bottom:50px;
+	}
+	.delete {
+		border:1px solid lightgray;
+		background-color:lightgray;
+		width:100px; height:40px; 
+		border-radius:5px;
+		color:white;
+	}
+	.update {
+		border:1px solid lightgray;
+		background-color:gray;
+		width:100px; height:40px; 
+		border-radius:5px;
+		color:white;
+	}
 	
 	@media (min-width : 600px) {		
 		.section { background-color:rgb(200,171,217); }
@@ -159,6 +193,63 @@
 	}
 </style>
 <script>
+	$(document).ready(function() {
+		$("#heart").click(function() {
+			var name = $("#heart").attr("name");
+			if (name == "before") {
+				$(this).attr("src", "images/heart_after.png");
+				$(this).attr("name", "after");
+				
+				$.ajax({
+	                type: "post",
+	                url: "near_heart_upload.do",             
+	                data:{nid:"${vo.nid}"},
+	                dataType: 'json',
+	                success: function (result) {
+	                	if (result) {
+		                	location.reload();	                		
+	                	} else {
+	                		alert("Error");
+	                	}
+	                },
+	           }); 
+				
+			} else {
+				$(this).attr("src", "images/heart_before.png");
+				$(this).attr("name", "before");
+				
+				$.ajax({
+	                type: "post",
+	                url: "near_heart_delete.do",             
+	                data:{nid:"${vo.nid}"},
+	                dataType: 'json',
+	                success: function (result) {
+	                	if (result) {
+		                	location.reload();	                		
+	                	} else {
+	                		alert("Error");
+	                	}
+	                },
+	           }); 
+			}
+		});
+		
+		
+		$(".delete").click(function() {
+			if (confirm("게시물을 삭제하시겠습니까?")) {	
+				$.ajax({
+	                type: "post",
+	                url: "near_delete.do",             
+	                data:{nid:"${vo.nid}"},
+	                dataType: 'json',
+	                success: function (result) {
+	                	alert("게시물이 삭제되었습니다");
+	                	location.replace("near.do");
+	                },
+	           }); 
+			} 
+		});
+	});
 </script>
 </head>
 <body>
@@ -168,22 +259,36 @@
 		<div class="mainbox">
 			<p class="title">내 근처의 펫<span>A pet near me</span></p>
 			<div class ="mainbox2 freebox">
-				<div class="top">				
-					<button>채팅하기</button>
+				<div class="top">		
+				<c:if test="${heart eq 'f' }">
+					<img src="images/heart_before.png" width=40px; height=40px; id="heart" name="before" >
+				</c:if>
+				<c:if test="${heart eq 't' }">	
+					<img src="images/heart_after.png" width=40px; height=40px; id="heart" name="after" >
+				</c:if>
+					<button type="button">채팅하기</button>
 				</div>
 				<div class="writing_line"></div>
-				<p class="post_title"><span class="logo">강아지</span>저희 비숑 잠시 맡겨주실분~</p>
-				<p class="name">이름</p>
+				<p class="post_title"><span class="logo">강아지</span>${vo.title }</p>
+				<p class="name">${vo.id }</p>
 				<div class="post_line"></div>
-				<p class="post_date">게시한날짜</p>
+				<p class="post_date">${vo.startdate }</p>
 				<button class="comments">채팅 0</button>
 				<div class="post_line2"></div>
-				<p class="recommend">관심 0</p>
+				<p class="recommend">관심 ${count }</p>
 				<div class="post_line2"></div>
-				<p class="view">조회 4</p>
+				<p class="view">조회 ${vo.hit }</p>
 				<div class="writing_line2"></div>
-				<div class="contentsbox"></div>		
+				<div class="contentsbox">
+					<textarea disabled style="resize: none;" id="textarea">${vo.content }</textarea>					
+				</div>						
 			</div>
+			<c:if test="${ vo.id eq session_id}">
+			<div class="button">
+				<button type="button" class="delete">삭제</button>
+				<button type="button" class="update" onclick="location.href='near_update.do?nid=${vo.nid}' ">수정</button>
+			</div>
+			</c:if>
 		</div>
 	</section>
 	

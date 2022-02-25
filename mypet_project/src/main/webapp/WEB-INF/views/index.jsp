@@ -195,12 +195,12 @@
 	}
 	.login a { color:black; }
 	#id {
-		background-image:url("http://14.47.84.213:9000/mypet/images/usericon.png");
+		background-image:url("/mypet/images/usericon.png");
 		background-position:5px center;
 		background-repeat:no-repeat;
 	}
 	#pass {
-		background-image:url("http://14.47.84.213:9000/mypet/images/passicon.png");
+		background-image:url("/mypet/images/passicon.png");
 		background-position:5px center;
 		background-repeat:no-repeat;
 	}
@@ -349,7 +349,7 @@
 				<div class="loginbox">
 					<div class="loginboxhigh">
 						<p>로그인</p>
-						<a href="http://14.47.84.213:9000/mypet/join.do">회원가입</a>
+						<a href="join.do">회원가입</a>
 					</div>
 					<div class="loginboxmiddle">
 						<form name="loginform" action="login_proc.do" method="post" autocomplete="off" >

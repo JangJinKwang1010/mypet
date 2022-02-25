@@ -9,5 +9,66 @@
 	<select id="addr_select" parameterType="java.lang.String" resultType="java.lang.String">
 		select addr1 from mypet_member where id=#{id}
 	</select>
+	
+	<insert id="near_upload" parameterType="com.mypet.vo.NearVO">
+		insert into mypet_near values ('n'||near_seq.nextval, #{id}, #{kind}, #{work}, to_char(sysdate,'yyyy-mm-dd hh24:mi:ss'), #{enddate}, #{title}, #{content}, 0)		
+	</insert>
+	
+	<select id="nid_select" resultType="java.lang.String">
+		select nid from (select nid from mypet_near order by startdate desc) where rownum=1
+	</select>
+	
+	<insert id="map_upload" parameterType="com.mypet.vo.NearVO">
+		insert into mypet_map values(#{id}, #{nid}, #{addr}, #{category})
+	</insert>
+	
+	<select id="near_list" resultType="com.mypet.vo.NearVO">
+		select nid, id, kind, work, startdate, enddate, hit, title  from mypet_near order by startdate desc
+	</select>
+	
+	<select id="map_list" resultType="com.mypet.vo.NearVO">
+		select * from mypet_map
+	</select>
+	
+	<select id="near_content" parameterType="java.lang.String" resultType="com.mypet.vo.NearVO">
+		select * from mypet_near where nid=#{nid}
+	</select>
+	
+	<update id="hit" parameterType="java.lang.String">
+		update mypet_near set hit=hit+1 where nid=#{nid}
+	</update>
+	
+	<delete id="near_delete" parameterType="java.lang.String" >
+		delete from mypet_near where nid=#{nid}
+	</delete>
+	
+	<delete id="map_delete" parameterType="java.lang.String">
+		delete from mypet_map where nid=#{nid}
+	</delete>
+	
+	<insert id="near_heart_upload" parameterType="com.mypet.vo.NearVO">
+		insert into mypet_heart values (#{id}, #{nid})
+	</insert>
+	
+	<select id="near_heart_result" parameterType="com.mypet.vo.NearVO" resultType="java.lang.Integer">
+		select count(*) from mypet_heart where id=#{id} and nid=#{nid}
+	</select>
+	
+	<delete id="near_heart_delete" parameterType="com.mypet.vo.NearVO">
+		delete from mypet_heart where id=#{id} and nid=#{nid}
+	</delete>
+	
+	<select id="near_heart_count" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from mypet_heart where nid=#{nid}
+	</select>
+	
+	<update id="near_update_upload" parameterType="com.mypet.vo.NearVO">
+		update mypet_near set kind=#{kind}, work=#{work}, enddate=#{enddate}, title=#{title}, content=#{content} where nid=#{nid} 
+	</update>
+	
+	<update id="map_update_upload" parameterType="com.mypet.vo.NearVO">
+		update mypet_map set category=#{category} where nid=#{nid}
+	</update>
+	
 
 </mapper>
