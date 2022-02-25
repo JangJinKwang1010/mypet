@@ -6,13 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+
 .loginbox{
 	width:500px;
 	height:400px;
-	border:1px solid black;
+	border:1px solid gray;
 	margin-left:500px;
 	border-radius:10px;
-	background-color:rgb(245,245,245);
 }
 .logintop>p{
 	font-size:20px;
@@ -23,7 +23,7 @@
 	border-radius:3px;
 	width:70%;
 	height:150px;
-	border:2px solid;
+	border:1px solid;
 	margin-top:70px;
 	margin-left:75px;
 }

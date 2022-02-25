@@ -35,5 +35,10 @@ public class PetController {
 		
 		return mv;
 	}
+	@RequestMapping(value="/testFile.do") 
+	public String testFile() {
+		return "pet/testFile";
+	}
+
 	
 }
