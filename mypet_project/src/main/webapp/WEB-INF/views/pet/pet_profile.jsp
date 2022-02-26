@@ -25,7 +25,7 @@
 		margin-top:10px;
 		text-align:center;
 	}
-	#img { margin-top:15px; }
+	#img2 { margin-top:15px; }
 	button {
 		border:none;
 		width:20%;
@@ -46,7 +46,14 @@
 $(document).ready(function() {
 	var img_name;
 	var img_src;
-	$("#cfile").change(function(e){
+	var img_id = "img" + getParam("num");
+	var text = "text" + getParam("num");
+	var star = "별" + getParam("num");
+	var file_name = "pfile" + getParam("num");
+	
+	$("input").attr("id", file_name);
+	
+	$("input").change(function(e){
 			img_name = this.files[0].name;
 			var reader = new FileReader();
 			reader.onload = function(e) {
@@ -55,17 +62,31 @@ $(document).ready(function() {
 			}
 			reader.readAsDataURL(this.files[0]);
 		
-	});
+	});	
 	
 	$(".ok").click(function() {
-		opener.document.getElementById('text').style.display = "none";
-		opener.document.getElementById('별').style.display = "none";
-		opener.document.getElementById('img').style.display = "block";
-		opener.document.getElementById('img').src = img_src;
-		opener.document.getElementById('append').append(document.getElementById('cfile'));
-		opener.document.getElementById('cfile').style.display="none";
+		opener.document.getElementById(text).style.display = "none";
+		opener.document.getElementById(star).style.display = "none";
+		opener.document.getElementById(img_id).style.display = "block";
+		opener.document.getElementById(img_id).src = img_src;
+		opener.document.getElementById('append2').append(document.getElementById(file_name));
+		opener.document.getElementById(file_name).style.display="none";
 		window.close(); //창 닫기
 	});
+	
+	
+	function getParam(sname) {
+	    var params = location.search.substr(location.search.indexOf("?") + 1);
+	    var sval = "";
+	    params = params.split("&");
+	    for (var i = 0; i < params.length; i++) {
+	        temp = params[i].split("=");
+	        if ([temp[0]] == sname) { sval = temp[1]; }
+	    }
+	    return sval;
+	}
+
+
 	
 
 });
@@ -74,7 +95,7 @@ $(document).ready(function() {
 <body>
 <section>
 	<p>사진 등록</p>
-	<input type="file" class="form-control" name="file" id="cfile">
+	<input type="file" class="form-control" name="file2" >
 	<div>
 		<img id="img" src="images/image.png" width=90%; height=90%; >
 	</div>

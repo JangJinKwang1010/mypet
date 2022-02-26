@@ -35,9 +35,15 @@ public class PetController {
 		
 		return mv;
 	}
+	
 	@RequestMapping(value="/testFile.do") 
 	public String testFile() {
 		return "pet/testFile";
+	}
+	
+	@RequestMapping(value = "/pet_profile.do")
+	public String care_profile() {
+		return "pet/pet_profile";
 	}
 
 	

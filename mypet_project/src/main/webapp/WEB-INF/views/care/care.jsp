@@ -63,23 +63,25 @@
 		width:1000px;
 		height:165px;
 		margin-bottom:30px;
+		background-color:rgb(250,250,250);
 	}
 	.personalinf3 {
 		border:1px solid lightgray;
 		display:inline-block;
 		width:1000px;
 		margin-bottom:30px;
+		background-color:rgb(250,250,250);
 	}
 	.personalinf2>div, .personalinf3 div {
 		border:1px solid lightgray;
-		background-color:white;
 	}
 	.personalinf2 .inf1,.inf2 {
 		width:180px;
 		height:60px;
 		margin:15px 0 0 10px;
 		display:inline-block;
-		float:left;
+		float:left;		
+		background-color:white;
 	}
 	.personalinf3 .inf1 {
 		width:120px;
@@ -87,6 +89,7 @@
 		margin:15px 0 0 10px;
 		display:inline-block;
 		float:left;
+		background-color:white;
 	}
 	.personalinf2 .inf3 {
 		width:140px;
@@ -94,6 +97,7 @@
 		margin:15px 0 0 10px;
 		display:inline-block;
 		float:left;
+		background-color:white;
 	}
 	.personalinf3 .inf3 {
 		width:80px;
@@ -101,6 +105,7 @@
 		margin:15px 0 0 10px;
 		display:inline-block;
 		float:left;
+		background-color:white;
 	}
 	.personalinf2 .inf4 {
 		width:270px;
@@ -108,6 +113,7 @@
 		margin:15px 0 0 10px;
 		display:inline-block;
 		float:left;
+		background-color:white;
 	}
 	.personalinf3 .inf4 {
 		width:220px;
@@ -115,6 +121,7 @@
 		margin:15px 0 0 10px;
 		display:inline-block;
 		float:left;
+		background-color:white;
 	}	
 	.personalinf2 .inf5 {
 		width:150px;
@@ -123,6 +130,7 @@
 		display:inline-block;
 		float:right;
 		cursor:pointer;
+		background-color:white;
 	}
 	#img { display:none; }
 	.personalinf3 .inf5 {
@@ -275,7 +283,7 @@
 		});			
 		
 		$(".care_profile").click(function() {
-	          var url = "care_profile.do";
+	          var url = "profile.do";
 	          var name = "popup test";
 	          var option = "width = 500, height = 500, top = 150, left = 500, location = no"
 	          window.open(url, name, option);
@@ -428,6 +436,7 @@
 							<label>크기</label>
 							<p class="p3">*</p>
 							<select class="form-select bulk" name="bulk">
+								<option value="선택">선택</option>
 								<option value="소형">소형</option>
 								<option value="중형">중형</option>
 								<option value="대형">대형</option>

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +38,6 @@
 		background-color:white;
 	}
 	.list>div {
-		display:inline-block;
 		width:100%; height:150px;
 		border:1px solid lightgray;
 		border-radius:5px;
@@ -116,9 +117,32 @@
     .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
     .info .link {color: #5085BB;}
+    
+    .btn_style {
+		width:65px;
+		background-color:white;
+		border:2px solid lightgray;
+		border-radius:50px;
+		padding:10px;
+		color:lightgray;
+		font-size:15px;
+		font-weight:bold;
+		text-align:center;
+		margin:20px 0;
+		cursor:pointer;
+	}
+	.btn_style:hover {
+		border:2px solid #4fa9de;
+		color:#4fa9de;
+	}
+	
+	.more_div1 { display:inline-block; }
+	.more_div2 { display:none; }
 </style>
 <script>
 $(document).ready(function() {
+	
+	var flag = false;
 	
 	var mapContainer = document.getElementById('map');
 	var mapOptions = {
@@ -219,6 +243,24 @@ $(document).ready(function() {
 		
 	</c:forEach>
 	
+	
+	$('#more_btn').hover(function() {
+		 	$("#more_img").attr("src", "images/btn.png");
+		}, function(){
+			$("#more_img").attr("src", "images/btn2.png");
+	});
+	
+	$("#more_btn").click(function() {
+		$(".more_div2").css("display","inline-block");
+		
+		if (flag == true) {
+			alert("마지막 페이지입니다");
+		}
+		
+		flag = true;
+	});
+
+	
 });
 
 </script>
@@ -232,8 +274,18 @@ $(document).ready(function() {
 			<button onclick="location.href='near_writing.do'" class="writing_button">글쓰기</button>
 			<div id="map"></div>
 			<div class="list">
-			<c:forEach var = "vo"  items="${list}">
-				<div onclick="location.href='near_contents.do?nid=${vo.nid}' ">
+			<c:forEach var = "vo"  items="${list}"  begin="0" end="2">
+				<div onclick="location.href='near_contents.do?nid=${vo.nid}' " class="more_div1">
+					<p class="p_title" ><span class="logo">강아지</span>[${vo.kind }]<span class="text">${vo.title }</span></p>
+					<p class="option">
+						<span><img src="images/paw.png">경력 ${vo.work }</span>
+						<span><img src="images/calendar.png">${vo.startdate } ~ ${vo.enddate }</span>
+					</p>
+					<p class="user">${vo.id }(${vo.name }**)</p>
+				</div>
+			</c:forEach>
+			<c:forEach var = "vo"  items="${list}" begin="3" end="${fn:length(list)-1}" >		
+				<div onclick="location.href='near_contents.do?nid=${vo.nid}' " class="more_div2">
 					<p class="p_title" ><span class="logo">강아지</span>[${vo.kind }]<span class="text">${vo.title }</span></p>
 					<p class="option">
 						<span><img src="images/paw.png">경력 ${vo.work }</span>
@@ -243,7 +295,11 @@ $(document).ready(function() {
 				</div>
 			</c:forEach>
 			</div>
-			<div><img src="images/blue_add.png" width=50px; height=50px; style="margin-bottom:50px;"></div>
+			<div>
+				<button type="button" class="btn_style" id="more_btn">more
+					<img src="images/btn2.png" id="more_img">
+				</button>
+			</div>
 		</div>
 	</section>
 	

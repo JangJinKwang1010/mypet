@@ -48,9 +48,9 @@ public class CareController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/care_profile.do")
+	@RequestMapping(value = "/profile.do")
 	public String care_profile() {
-		return "care/care_profile";
+		return "care/profile";
 	}
 
 	@ResponseBody
@@ -78,7 +78,7 @@ public class CareController {
 		UUID uuid = UUID.randomUUID();
 
 		// DB저장
-		vo.setCfile(vo.getFile().getOriginalFilename());
+		vo.setCfile(vo.getFile1().getOriginalFilename());
 		vo.setSfile(uuid + "_" + vo.getCfile());
 		vo.setId(id);
 
@@ -108,7 +108,7 @@ public class CareController {
 		// DB저장 완료 후 폴더에 저장하기
 		if (result) {
 			File f = new File(root_path + attach_path + uuid + "_" + vo.getCfile());
-			vo.getFile().transferTo(f);
+			vo.getFile1().transferTo(f);
 		}
 
 		return result;

@@ -6,7 +6,7 @@ public class CareVO {
 	
 	String id, pass, name, hp, email, addr, mdate, birth, gender, cfile, sfile, category, kind, bulk, startdate, enddate;
 	String true_category, true_kind, true_bulk, true_startdate, true_enddate;
-	CommonsMultipartFile file;	
+	CommonsMultipartFile file1;	
 
 	
 	
@@ -90,12 +90,12 @@ public class CareVO {
 		this.enddate = enddate;
 	}
 
-	public CommonsMultipartFile getFile() {
-		return file;
+	public CommonsMultipartFile getFile1() {
+		return file1;
 	}
 
-	public void setFile(CommonsMultipartFile file) {
-		this.file = file;
+	public void setFile1(CommonsMultipartFile file1) {
+		this.file1 = file1;
 	}
 
 	public String getId() {

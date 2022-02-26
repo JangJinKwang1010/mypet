@@ -11,7 +11,7 @@
 	</select>
 	
 	<insert id="care_upload" parameterType="com.mypet.vo.CareVO">
-		insert into mypet_care values(#{id}, #{name}, #{birth}, #{gender}, #{hp}, #{email}, #{addr}, #{cfile}, #{sfile}, sysdate)
+		insert into mypet_care values(#{id}, #{name}, #{birth}, #{gender}, #{hp}, #{email}, #{addr}, #{cfile}, #{sfile}, 'C', sysdate)
 	</insert>
 	
 	<insert id="career_upload" parameterType="com.mypet.vo.CareVO">
