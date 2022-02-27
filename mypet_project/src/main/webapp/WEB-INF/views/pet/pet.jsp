@@ -371,7 +371,7 @@
 	$(".pet_profile2").click(function() {
         var url = "pet_profile.do?num="+$(this).attr("id");
         var name = "popup test";
-        var option = "width = 500, height = 500, top = 150, left = 500, location = no"
+        var option = "width = 500, height = 800, top = 150, left = 500, location = no"
         window.open(url, name, option);
     });
 	

@@ -174,6 +174,7 @@ body {
 			    };
 
 			    reader.readAsDataURL(input.files[0]);
+			
 				init().then(function(){
 					predict();
 				});
