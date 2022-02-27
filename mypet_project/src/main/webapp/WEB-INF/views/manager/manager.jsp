@@ -10,19 +10,19 @@
 .loginbox{
 	width:500px;
 	height:400px;
-	border:1px solid gray;
 	margin-left:500px;
 	border-radius:10px;
 }
-.logintop>p{
+.loginmiddle>p{
 	font-size:20px;
 	font-weight:bold;
 	margin:5px;
+	text-align:center;
 }
 .loginmiddle{
 	border-radius:3px;
 	width:70%;
-	height:150px;
+	height:200px;
 	border:1px solid;
 	margin-top:70px;
 	margin-left:75px;
@@ -60,9 +60,9 @@
 		<jsp:include page="manager_commons.jsp"></jsp:include>
 		<div class="loginbox">
 			<div class="logintop">
-				<p>Manager Only</p>
 			</div>
 			<div class="loginmiddle">
+				<p>Manager Only</p>
 				<input type="text" placeholder="아이디를 입력하세요."id="id" name="id" class="form-control logindata1">
 				<input type="text" placeholder="비밀번호를 입력하세요."pass="pass" name="pass" class="form-control logindata2">
 				<button>로그인</button>

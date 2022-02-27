@@ -25,11 +25,15 @@ body {
 	font-family: $font_0;
 	background-color: $color_gallery_approx;
 }
+.teachable{
+	width: 500px;
+	height:800px;
+	border:1px solid;
+}
 .file-upload {
 	background-color: $white;
-	width: 600px;
+	width: 500px;
 	margin: 0 auto;
-	padding: 20px;
 }
 .file-upload-btn {
 	width: 100%;
@@ -136,32 +140,29 @@ body {
 </style>
 </head>
 <body>
-	<div>Teachable Machine Image Model</div>
-	<button type="button" onclick="init()">Start</button>
-	<button type="button" onclick="predict()">예측</button>
+<div class="teachable">
 	<div class="file-upload">
 		<button class="file-upload-btn" type="button"
-			onclick="$('.file-upload-input').trigger( 'click' )">Add
-			Image</button>
+			onclick="$('.file-upload-input').trigger( 'click' )">AddImage</button>
 
 		<div class="image-upload-wrap">
 			<input class="file-upload-input" type='file'
 				onchange="readURL(this);" accept="image/*" />
 			<div class="drag-text">
-				<h3>Drag and drop a file or select add Image</h3>
+				<h3>이미지를 넣어주세요</h3>
 			</div>
 		</div>
 		<div class="file-upload-content">
 			<img class="file-upload-image" id="face-image" src="#" alt="your image" />
+			<div id="label-container"></div>
 			<div class="image-title-wrap">
 				<button type="button" onclick="removeUpload()" class="remove-image">
-					Remove <span class="image-title">Uploaded Image</span>
+					지우기 <span class="image-title">Uploaded Image</span>
 				</button>
 			</div>
 		</div>
 	</div>
 	<div id="webcam-container"></div>
-	<div id="label-container"></div>
 	<script>function readURL(input) {
 		  if (input.files && input.files[0]) {
 			    var reader = new FileReader();
@@ -173,7 +174,9 @@ body {
 			    };
 
 			    reader.readAsDataURL(input.files[0]);
-
+				init().then(function(){
+					predict();
+				});
 			  } else {
 			    removeUpload();
 			  }
@@ -240,5 +243,6 @@ body {
 			}
 		}
 	</script>
+	</div>
 </body>
 </html>
