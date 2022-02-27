@@ -345,7 +345,7 @@
 						html += "<div class='inf9'>";
 						html += "<label>특이사항</label>";
 						html += "<input type='text' placeholder='예)알레르기, 털 길이, 산책 선호 등' class='form-control'>";
-						html += "<div class='inf9_x'><img src='images/cross.png' width=20px; height=20px; class='close'></div></div></section>";
+						html += "<div class='inf9_x'><img src='images/cross.png' width=20px; height=20px; class='close' id='"+num+ "'></div></div></section>";
 
 						$(".add_section").append(html);
 						
@@ -376,9 +376,11 @@
     });
 	
 	$(document).on("click", ".close", function() {
+		var file_name = "pfile" + $(this).attr("id");
 		$(this).parent().parent().parent().remove();
-		num = num-1;
+		document.getElementById(file_name).remove();
 	});
+	
 	
 	
 });
