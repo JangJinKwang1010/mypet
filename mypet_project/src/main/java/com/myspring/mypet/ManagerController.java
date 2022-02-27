@@ -36,5 +36,8 @@ public class ManagerController {
 	public String manager_diary() {
 		return "manager/manager_diary";
 	}
-
+	@RequestMapping(value="/manager_pet_content.do") 
+	public String manager_pet_content() {
+		return "manager/manager_pet_content";
+	}
 }
