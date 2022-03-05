@@ -40,4 +40,8 @@ public class ManagerController {
 	public String manager_pet_content() {
 		return "manager/manager_pet_content";
 	}
+	@RequestMapping(value="/manager_member_content.do") 
+	public String manager_member_content() {
+		return "manager/manager_member_content";
+	}
 }
