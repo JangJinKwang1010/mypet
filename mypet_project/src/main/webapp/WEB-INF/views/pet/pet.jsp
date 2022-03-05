@@ -309,17 +309,17 @@
 						html += "<label>반려동물 선택</label>";
 						html += "<p class='p3'>*</p>";
 						html += "<select class='form-select'>";
-						html += "<option>강아지</option><option>고양이</option></select></div>";
+						html += "<option>선택</option><option>강아지</option><option>고양이</option></select></div>";
 						html += "<div class='inf2'>";
 						html += "<label>품종</label>";
 						html += "<p class='p3'>*</p>";
-						html += "<input type='text' class='form-control'>";
+						html += "<input type='text' class='form-control' id='kind"+ num + "'>";
 						html += "</div>";
 						html += "<div class='inf3'>";
 						html += "<label>크기</label>";
 						html += "<p class='p3'>*</p>";
 						html += "<select class='form-select'>";
-						html += "<option>소형</option><option>중형</option><option>대형</option></select></div>";
+						html += "<option>선택</option><option>소형</option><option>중형</option><option>대형</option></select></div>";
 						html += "<div class='inf4'>";
 						html += "<label>입양날짜</label>";
 						html += "<input type='date' class='form-control'>";
@@ -458,6 +458,7 @@
 							<label>반려동물 선택</label>
 							<p class="p3">*</p>
 							<select class="form-select">
+								<option>선택</option>
 								<option>강아지</option>
 								<option>고양이</option>
 							</select>
@@ -465,7 +466,7 @@
 						<div class="inf2">
 							<label>품종</label>
 							<p class="p3">*</p>
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" id="kind1" >
 						</div>
 						<div class="inf3">
 							<label>크기</label>

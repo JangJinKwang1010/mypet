@@ -26,19 +26,21 @@
 		height:300px;
 		margin-top:10px;
 		text-align:center;
-		margin-bottom:40px; 
+		margin-bottom:20px; 
 	}
 	#img { margin-top:15px; }
 	button {
 		border:none;
 		width:20%;
-		height:50px;
+		height:30px;
 		border-radius:10px;
 		font-weight:bold;
 		margin-top:15px;
 		background-color:rgb(72,115,210);
 		color:white;
 		font-size:20px;
+		display:none;
+		margin-left:-230px;
 	}
 	button:hover {
 		background-color:rgb(0,68,130);
@@ -61,15 +63,19 @@
 	    margin-left:50px;
 	}
 	.gbox {
-		width:100%;
+		width:95%;
 		display:inline-block;
+		padding-top:10px;
+		margin-bottom:-10px;
+		cursor:pointer;
+		padding-bottom:-10px;
 	}
 	
 	.box0 {
 		  position: absolute;
 		  top: 0;
 		  left: 0;
-		  height: 2rem;
+		  height: 1.5rem;
 		  border-radius: 10px;
 		  width: 100%;
 		  background-color: rgba(235, 166, 190, 0.2);
@@ -78,7 +84,7 @@
 		  position: absolute;
 		  top: 0;
 		  left: 0;
-		  height: 2rem;
+		  height: 1.5rem;
 		  border-radius: 10px;
 		  background-color: rgba(235, 166, 190, 1);
 	}
@@ -86,7 +92,7 @@
 		  position: absolute;
 		  top: 0;
 		  left: 0;
-		  height: 2rem;
+		  height: 1.5rem;
 		  border-radius: 10px;
 		  width: 100%;
 		  background-color: rgba(117, 204, 84, 0.2);
@@ -95,7 +101,7 @@
 		  position: absolute;
 		  top: 0;
 		  left: 0;
-		  height: 2rem;
+		  height: 1.5rem;
 		  border-radius: 10px;
 		  background-color: rgba(117, 204, 84, 1);
 	}
@@ -103,7 +109,7 @@
 		  position: absolute;
 		  top: 0;
 		  left: 0;
-		  height: 2rem;
+		  height: 1.5rem;
 		  border-radius: 10px;
 		  width: 100%;
 		  background-color: rgba(27, 175, 234, 0.2);
@@ -112,7 +118,7 @@
 		  position: absolute;
 		  top: 0;
 		  left: 0;
-		  height: 2rem;
+		  height: 1.5rem;
 		  border-radius: 10px;
 		  background-color: rgba(27, 175, 234, 1);
 	}
@@ -120,7 +126,7 @@
 		  position: absolute;
 		  top: 0;
 		  left: 0;
-		  height: 2rem;
+		  height: 1.5rem;
 		  border-radius: 10px;
 		  width: 100%;
 		  background-color: rgba(251, 176, 59, 0.2);
@@ -129,7 +135,7 @@
 		  position: absolute;
 		  top: 0;
 		  left: 0;
-		  height: 2rem;
+		  height: 1.5rem;
 		  border-radius: 10px;
 		  background-color: rgba(251, 176, 59, 1);
 	}
@@ -137,7 +143,7 @@
 		  position: absolute;
 		  top: 0;
 		  left: 0;
-		  height: 2rem;
+		  height: 1.5rem;
 		  border-radius: 10px;
 		  width: 100%;
 		  background-color: rgba(195, 140, 102, 0.2);
@@ -146,7 +152,7 @@
 		  position: absolute;
 		  top: 0;
 		  left: 0;
-		  height: 2rem;
+		  height: 1.5rem;
 		  border-radius: 10px;
 		  background-color: rgba(195, 140, 102, 1);
 	}
@@ -162,6 +168,7 @@ $(document).ready(function() {
 	var text = "text" + getParam("num");
 	var star = "별" + getParam("num");
 	var file_name = "pfile" + getParam("num");
+	var kind = "kind" + getParam("num");
 	
 	$("input").attr("id", file_name);
 	
@@ -188,13 +195,18 @@ $(document).ready(function() {
 	});
 	
 	$(".ok").click(function() {
-		opener.document.getElementById(text).style.display = "none";
-		opener.document.getElementById(star).style.display = "none";
-		opener.document.getElementById(img_id).style.display = "block";
-		opener.document.getElementById(img_id).src = img_src;
-		opener.document.getElementById('append2').append(document.getElementById(file_name));
-		opener.document.getElementById(file_name).style.display="none";
-		window.close(); //창 닫기
+		if ($(".kind").val() == "") {
+			alert("품종을 선택해주세요");
+		} else {
+			opener.document.getElementById(text).style.display = "none";
+			opener.document.getElementById(star).style.display = "none";
+			opener.document.getElementById(img_id).style.display = "block";
+			opener.document.getElementById(img_id).src = img_src;
+			opener.document.getElementById('append2').append(document.getElementById(file_name));
+			opener.document.getElementById(file_name).style.display="none";
+			opener.document.getElementById(kind).value = $(".kind").val();
+			window.close(); //창 닫기			
+		}
 	});
 	
 	
@@ -207,10 +219,7 @@ $(document).ready(function() {
 	        if ([temp[0]] == sname) { sval = temp[1]; }
 	    }
 	    return sval;
-	}
-
-
-	
+	}	
 
 });
 
@@ -267,11 +276,21 @@ async function predict() {
 	       }
 		 
 		
-		var label = "<div class='gbox'><div class='animal-label d-flex align-items-center'>" + prediction[i].className + "</div>";
+		var label = "<div class='gbox' id='" +  prediction[i].className +"'><div class='animal-label d-flex align-items-center'>" + prediction[i].className + "</div>";
 		const bar = "<div class='bar-container position-relative container'><div class='box" + i + "'></div><div class='d-flex justify-content-center align-items-center bar" + i + "' style='width: " + barWidth + "'><span class='d-block percent-text'>" + Math.round(prediction[i].probability.toFixed(2) * 100) + "%</span></div></div></div>";
 		labelContainer.childNodes[i].innerHTML = label+bar;
 		$("#label-container").show();
 		$(".bar-container").show();
+		$("button").css("display","inline-block");
+		
+		
+		$(".gbox").click(function() {
+			$(".gbox").css("border", "none");
+			$(this).css("border","2px solid rgb(119,187,255)");
+			$(this).css("border-radius","10px");
+			$(".kind").val($(this).attr("id"));
+		});
+
 	}
    
 }
@@ -289,6 +308,8 @@ async function predict() {
     </div>
 	<div id="label-container" ></div>
 	<div class='bar-container position-relative container'></div>
+	<button class="ok">선택</button>
+	<input type="hidden" class="kind" id="kind">
 </section>
 </body>
 </html>

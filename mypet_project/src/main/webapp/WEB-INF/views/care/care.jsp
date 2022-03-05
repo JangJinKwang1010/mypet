@@ -251,7 +251,7 @@
 			html += "<label>반려동물 선택</label>";
 			html += "<p class='p3'>*</p>";
 			html += "<select class='form-select "+name1+num+"'>";
-			html += "<option value='강아지'>강아지</option><option value='고양이'>고양이</option></select></div>";
+			html += "<option>선택</option><option value='강아지'>강아지</option><option value='고양이'>고양이</option></select></div>";
 			html += "<div class='inf2'>";
 			html += "<label>품종</label>";
 			html += "<p class='p3'>*</p>";
@@ -261,7 +261,7 @@
 			html += "<label>크기</label>";
 			html += "<p class='p3'>*</p>";
 			html += "<select class='form-select "+name3+num+"'>";
-			html += "<option>소형</option><option>중형</option><option>대형</option></select></div>";
+			html += "<option>선택</option><option>소형</option><option>중형</option><option>대형</option></select></div>";
 			html += "<div class='inf4'>";
 			html += "<label>입양날짜</label>";
 			html += "<input type='date' class='form-control "+name4+num+"'>";
@@ -423,6 +423,7 @@
 							<label>반려동물 선택</label>
 							<p class="p3">*</p>
 							<select class="form-select category" name="category" >
+								<option value="선택">선택</option>
 								<option value="강아지">강아지</option>
 								<option value="고양이">고양이</option>
 							</select>
