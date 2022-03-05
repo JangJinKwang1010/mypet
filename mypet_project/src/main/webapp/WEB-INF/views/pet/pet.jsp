@@ -293,14 +293,6 @@
 </style>
 <script>
 	$(document).ready(function() {
-		var name1 = "add_category";
-		var name2 = "add_kind";
-		var name3 = "add_bulk";
-		var name4 = "add_startdate";
-		var name5 = "add_name";
-		var name6 = "add_kg";
-		var name7 = "add_cgender";
-		var name8 = "add_cbirth"
  		var num = 2;
  		
 		$(".add").click(	function() {
@@ -308,7 +300,7 @@
 						html += "<div class='inf1'>";
 						html += "<label>반려동물 선택</label>";
 						html += "<p class='p3'>*</p>";
-						html += "<select class='form-select'>";
+						html += "<select class='form-select' id='category" + num + "'>";
 						html += "<option>선택</option><option>강아지</option><option>고양이</option></select></div>";
 						html += "<div class='inf2'>";
 						html += "<label>품종</label>";
@@ -318,11 +310,11 @@
 						html += "<div class='inf3'>";
 						html += "<label>크기</label>";
 						html += "<p class='p3'>*</p>";
-						html += "<select class='form-select'>";
+						html += "<select class='form-select' id='bulk" + num + "'>";
 						html += "<option>선택</option><option>소형</option><option>중형</option><option>대형</option></select></div>";
 						html += "<div class='inf4'>";
 						html += "<label>입양날짜</label>";
-						html += "<input type='date' class='form-control'>";
+						html += "<input type='date' class='form-control' id='startdate" + num +"'>";
 						html += "</div>"
 						html += "<div class='inf5 pet_profile2' id='" + num + "'>";
 						html += "<label id='text" + num + "'>사진</label>";
@@ -330,21 +322,21 @@
 						html += "<img class='img' id='img"+ num +"'width=100%; height=100%;>";
 						html += "</div>";					
 						html += "<div class='inf6'>";
-						html += "<label>반려동물 생년월일</label>";
-						html += "<input type='text' class='form-control'>";
+						html += "<label>이름</label>";
+						html += "<input type='text' class='form-control' id='name" + num + "'>";
 						html += "</div>";
 						html += "<div class='inf7'>";
 						html += "<label>몸무게</label>";
-						html += "<input type='text' class='form-control'>";
+						html += "<input type='text' class='form-control' id='kg" + num + "'>";
 						html += "</div>";
 						html += "<div class='inf3'>";
-						html += "<label>성별</label><select class='form-select'>";
+						html += "<label>성별</label><select class='form-select' id='gender" + num + "'>";
 						html += "<option value='선택'>선택</option><option value='수컷'>수컷</option>";
 						html +=	"<option value='암컷'>암컷</option></select>	</div>";
-					    html += "<div class='inf4'><label>생년월일</label> <input type='text' class='form-control'>	</div>";
+					    html += "<div class='inf4'><label>생년월일</label> <input type='text' class='form-control' id='birth" + num + "'>	</div>";
 						html += "<div class='inf9'>";
 						html += "<label>특이사항</label>";
-						html += "<input type='text' placeholder='예)알레르기, 털 길이, 산책 선호 등' class='form-control'>";
+						html += "<input type='text' placeholder='예)알레르기, 털 길이, 산책 선호 등' class='form-control' id='comment" + num +"'>";
 						html += "<div class='inf9_x'><img src='images/cross.png' width=20px; height=20px; class='close' id='"+num+ "'></div></div></section>";
 
 						$(".add_section").append(html);
@@ -355,7 +347,7 @@
 						$(".pet_profile2").click(function() {
 					        var url = "pet_profile.do?num="+$(this).attr("id");
 					        var name = "popup test";
-					        var option = "width = 500, height = 500, top = 150, left = 500, location = no"
+					        var option = "width = 500, height = 800, top = 150, left = 500, location = no"
 					        window.open(url, name, option);
 					    });
 
@@ -379,6 +371,46 @@
 		var file_name = "pfile" + $(this).attr("id");
 		$(this).parent().parent().parent().remove();
 		document.getElementById(file_name).remove();
+	});
+	
+	$(".upload").click(function() {
+		$(".true_category").val($("#category1").val());
+		$(".true_kind").val($("#kind1").val());
+		$(".true_bulk").val($("#bulk1").val());
+		$(".true_startdate").val($("#startdate1").val());
+		$(".true_name").val($("#name1").val());
+		$(".true_kg").val($("#kg1").val());
+		$(".true_gender").val($("#gender1").val());
+		$(".true_birth").val($("#birth1").val());
+		$(".true_comment").val($("#comment1").val());
+		
+		for (var i=0; i<num-1; i++) {				
+			$(".true_category").val($(".true_category").val()+","+$(".add_category"+[i+1]).val());
+			$(".true_kind").val($(".true_kind").val()+","+$(".add_kind"+[i+1]).val()); 
+			$(".true_bulk").val($(".true_bulk").val()+","+$(".add_bulk"+[i+1]).val()); 
+			$(".true_startdate").val($(".true_startdate").val()+","+$(".add_startdate"+[i+1]).val()); 
+			$(".true_enddate").val($(".true_enddate").val()+","+$(".add_enddate"+[i+1]).val()); 
+		};			
+		
+		 var form = $("#form")[0];  
+	     var formData = new FormData(form);
+				     
+		$.ajax({
+	        url:"care_upload.do",
+	        type:"post",
+	        enctype:"multipart/form-data", 
+	        data: formData,
+	        contentType: false,
+	        processData: false,
+	        success:function(result){
+	       		if (result) {
+	       			alert("돌보미 등록이 완료되었습니다");
+	       		} else {
+	       			alert("돌보미 등록에 실패하였습니다");		       		 
+	       		}
+	       		location.reload();
+	       	},		
+	    });
 	});
 	
 	
@@ -457,7 +489,7 @@
 						<div class="inf1">
 							<label>반려동물 선택</label>
 							<p class="p3">*</p>
-							<select class="form-select">
+							<select class="form-select" id="category1">
 								<option>선택</option>
 								<option>강아지</option>
 								<option>고양이</option>
@@ -479,7 +511,7 @@
 							</select>
 						</div>
 						<div class="inf4">
-							<label>입양날짜</label> <input type="date" class="form-control">
+							<label>입양날짜</label> <input type="date" class="form-control" id="startdate">
 						</div>
 						<div class="inf5 pet_profile2" id="1">
 							<label id="text1">사진</label>
@@ -487,30 +519,38 @@
 							<img id="img1" width=100%; height=100%;>
 						</div>
 						<div class="inf6">
-							<label>이름</label> <input type="text" class="form-control">
+							<label>이름</label> <input type="text" class="form-control" id="name1">
 						</div>
 						<div class="inf7">
-							<label>몸무게</label> <input type="text" class="form-control">
+							<label>몸무게</label> <input type="text" class="form-control" id="kg1">
 						</div>
 						<div class="inf3">
 							<label>성별</label>
-							<select class="form-select">
+							<select class="form-select" id="gender1">
 								<option>선택</option>
 								<option>수컷</option>
 								<option>암컷</option>
 							</select>
 						</div>
 						<div class="inf4">
-							<label>생년월일</label> <input type="text" class="form-control">
+							<label>생년월일</label> <input type="text" class="form-control" id="brith1">
 						</div>
 						<div class="inf8">
-							<label>특이사항</label> <input type="text"
-								placeholder="예)알레르기, 털 길이, 산책 선호 등" class="form-control">
+							<label>특이사항</label> <input type="text"	placeholder="예)알레르기, 털 길이, 산책 선호 등" class="form-control" id="comment1">
 						</div>
 					</section>
 					<button class="add">+ 추가</button>
 				</div>
-				<button>등록하기</button>
+				<button type="button" class="upload">등록하기</button>
+				<input type="hidden" class="true_category" name="category" >
+				<input type="hidden" class="true_kind" name="kind" >
+				<input type="hidden" class="true_bulk" name="bulk" >
+				<input type="hidden" class="true_startdate" name="startdate" >
+				<input type="hidden" class="true_name" name="pname" >
+				<input type="hidden" class="true_kg" name="pkg" >
+				<input type="hidden" class="true_gender" name="pgender" >
+				<input type="hidden" class="true_birth" name="pbirth" >
+				<input type="hidden" class="true_comment" name="pcomment" >
 			</div>
 		</div>
 	</section>

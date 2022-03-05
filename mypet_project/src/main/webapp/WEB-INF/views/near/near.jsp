@@ -274,26 +274,28 @@ $(document).ready(function() {
 			<button onclick="location.href='near_writing.do'" class="writing_button">글쓰기</button>
 			<div id="map"></div>
 			<div class="list">
-			<c:forEach var = "vo"  items="${list}"  begin="0" end="2">
-				<div onclick="location.href='near_contents.do?nid=${vo.nid}' " class="more_div1">
-					<p class="p_title" ><span class="logo">강아지</span>[${vo.kind }]<span class="text">${vo.title }</span></p>
-					<p class="option">
-						<span><img src="images/paw.png">경력 ${vo.work }</span>
-						<span><img src="images/calendar.png">${vo.startdate } ~ ${vo.enddate }</span>
-					</p>
-					<p class="user">${vo.id }(${vo.name }**)</p>
-				</div>
-			</c:forEach>
-			<c:forEach var = "vo"  items="${list}" begin="3" end="${fn:length(list)-1}" >		
-				<div onclick="location.href='near_contents.do?nid=${vo.nid}' " class="more_div2">
-					<p class="p_title" ><span class="logo">강아지</span>[${vo.kind }]<span class="text">${vo.title }</span></p>
-					<p class="option">
-						<span><img src="images/paw.png">경력 ${vo.work }</span>
-						<span><img src="images/calendar.png">${vo.startdate } ~ ${vo.enddate }</span>
-					</p>
-					<p class="user">${vo.id }(${vo.name }**)</p>
-				</div>
-			</c:forEach>
+			<c:if test="${!empty list}">
+				<c:forEach var = "vo"  items="${list}"  begin="0" end="2">
+					<div onclick="location.href='near_contents.do?nid=${vo.nid}' " class="more_div1">
+						<p class="p_title" ><span class="logo">강아지</span>[${vo.kind }]<span class="text">${vo.title }</span></p>
+						<p class="option">
+							<span><img src="images/paw.png">경력 ${vo.work }</span>
+							<span><img src="images/calendar.png">${vo.startdate } ~ ${vo.enddate }</span>
+						</p>
+						<p class="user">${vo.id }(${vo.name }**)</p>
+					</div>
+				</c:forEach>
+				<c:forEach var = "vo"  items="${list}" begin="3" end="${fn:length(list)-1}" >		
+					<div onclick="location.href='near_contents.do?nid=${vo.nid}' " class="more_div2">
+						<p class="p_title" ><span class="logo">강아지</span>[${vo.kind }]<span class="text">${vo.title }</span></p>
+						<p class="option">
+							<span><img src="images/paw.png">경력 ${vo.work }</span>
+							<span><img src="images/calendar.png">${vo.startdate } ~ ${vo.enddate }</span>
+						</p>
+						<p class="user">${vo.id }(${vo.name }**)</p>
+					</div>
+				</c:forEach>
+			</c:if>
 			</div>
 			<div>
 				<button type="button" class="btn_style" id="more_btn">more

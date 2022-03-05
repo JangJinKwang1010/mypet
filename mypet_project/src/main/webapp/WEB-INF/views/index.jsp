@@ -373,7 +373,7 @@
 				<div class="loginbox">
 				 	<div class="loginboxhigh loginboxhigh2">
 				 		<p><span>${session_name}</span>님 환영합니다.</p>
-				 		<a href="http://14.47.84.213:9000/mypet/logout.do">로그아웃</a>
+				 		<a href="logout.do">로그아웃</a>
 				 	</div>
 				 	<div class="loginboxmiddle2">
 				 		<div class="loginpicture">
