@@ -22,7 +22,7 @@
 		font-weight:bold;
 		font-size:15px;
 		width:100%;
-		height:50px;
+		height:52px;
 		color:white;
 		background-color:black;
 		border:none;
@@ -30,6 +30,11 @@
 	.rightbox>button:hover{
 		color:black;
 		background-color:lightgray;
+	}
+	.namebox{
+		width:100%;
+		height:50px;
+		border:none;
 	}
 	.picture{
 		width:198px;
@@ -64,6 +69,10 @@
 			<div class="picture">
 			<img src="images/qltyd.png" width=100%; height=100%;>
 			</div>
+			<div class="namebox">
+				<label>이름</label>
+				<p>숑숑이</p>
+			</div>
 			<button>펫삭제</button>
 		</div>	
 		<div class="category box2">
@@ -79,7 +88,7 @@
 			<p>소형견</p>
 		</div>	
 		<div class="startdate box2">
-			<label>입양날자</label>
+			<label>입양날짜</label>
 			<p>2022년1월1일</p>
 		</div>	
 		<div class="gender box2">
