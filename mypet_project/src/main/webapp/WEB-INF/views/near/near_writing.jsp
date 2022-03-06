@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>        
 <!DOCTYPE html>
 <html>
 <head>
@@ -145,11 +148,12 @@
 				<p class="subtitle">글쓰기</p>
 				<div class="writing_line"></div>
 				<form id="form">
-				<select class="pet_select form-select" style="width:21%" name="kind" id="kind">
+					<select class="pet_select form-select" style="width:21%" name="kind" id="kind">
 					<option value="선택">펫 선택</option>
-					<option value="비숑/강아지">비숑</option>
-					<option value="페르시안고양이/고양이">페르시안고양이</option>
-				</select>
+					<c:forEach var = "vo"  items="${list}" >
+							<option value="${vo.pid}/${vo.kind }/${vo.category}">${vo.kind }</option>
+					</c:forEach>
+					</select>
 				<select class="pet_select form-select" style="width:41%" name="work" id="work">
 					<option value="선택">경력 선택</option>
 					<option value="1년 이하">1년 이하</option>

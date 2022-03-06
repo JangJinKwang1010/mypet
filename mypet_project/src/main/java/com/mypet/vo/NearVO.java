@@ -2,10 +2,27 @@ package com.mypet.vo;
 
 public class NearVO {
 	
-	String latitude, longitude, nid, id, category, kind, startdate, enddate, title, content, work, addr, name;
+	String pid, latitude, longitude, nid, id, category, kind, startdate, enddate, title, content, work, addr, name;
 	int hit;
+	PetVO vo;
 	
 	
+
+	public PetVO getVo() {
+		return vo;
+	}
+
+	public void setVo(PetVO vo) {
+		this.vo = vo;
+	}
+
+	public String getPid() {
+		return pid;
+	}
+
+	public void setPid(String pid) {
+		this.pid = pid;
+	}
 
 	public String getName() {
 		return name;

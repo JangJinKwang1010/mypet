@@ -171,7 +171,7 @@
 	border: 1px solid lightgray;
 }
 
-.information>button {
+.upload {
 	border: none;
 	width: 20%;
 	height: 50px;
@@ -184,13 +184,12 @@
 	margin-bottom: 110px;
 }
 
-.information>button:hover {
+.upload:hover {
 	background-color: rgb(0, 68, 130);
 	color: white;
 }
 
-.personalinf2 input, .personalinf2 select, .personalinf3 input,
-	.personalinf3 select {
+.personalinf2 input, .personalinf2 select, .personalinf3 input, .personalinf3 select {
 	border: none;
 	height: 30px;
 	font-size: 14px;
@@ -215,6 +214,37 @@
 	border-top: 1px solid lightgray;
 	margin-top: 10px;
 }
+
+	.nouploaddiv {
+		background-color:white;
+		border:1px solid lightgray;
+		position:absolute;
+		left:700px;
+		margin-top:-100px;
+		padding:10px;
+		font-size:14px;
+		display:none;
+	}
+	.nouploaddiv>span {
+		font-size:13px; color:blue;
+	}
+	
+	.noupload {
+		border:none;
+		width:20%;
+		height:50px;
+		border-radius:10px;
+		font-weight:bold;
+		margin-top:50px;
+		background-color:lightgray;
+		color:white;
+		font-size:20px;
+		margin-bottom:110px;
+	}
+	.upload:hover {
+		background-color:rgb(0,68,130);
+		color:white;
+	}
 
 .inf9_x { float:right; position:relative; border:none; bottom:40px; left:40px; cursor:pointer; }
 
@@ -333,7 +363,7 @@
 						html += "<label>성별</label><select class='form-select' id='gender" + num + "'>";
 						html += "<option value='선택'>선택</option><option value='수컷'>수컷</option>";
 						html +=	"<option value='암컷'>암컷</option></select>	</div>";
-					    html += "<div class='inf4'><label>생년월일</label> <input type='text' class='form-control' id='birth" + num + "'>	</div>";
+					    html += "<div class='inf4'><label>생년월일</label> <input type='date' class='form-control' id='birth" + num + "'>	</div>";
 						html += "<div class='inf9'>";
 						html += "<label>특이사항</label>";
 						html += "<input type='text' placeholder='예)알레르기, 털 길이, 산책 선호 등' class='form-control' id='comment" + num +"'>";
@@ -370,7 +400,7 @@
 	$(document).on("click", ".close", function() {
 		var file_name = "pfile" + $(this).attr("id");
 		$(this).parent().parent().parent().remove();
-		document.getElementById(file_name).remove();
+		/* document.getElementById(file_name).remove(); */
 	});
 	
 	$(".upload").click(function() {
@@ -384,19 +414,23 @@
 		$(".true_birth").val($("#birth1").val());
 		$(".true_comment").val($("#comment1").val());
 		
-		for (var i=0; i<num-1; i++) {				
-			$(".true_category").val($(".true_category").val()+","+$(".add_category"+[i+1]).val());
-			$(".true_kind").val($(".true_kind").val()+","+$(".add_kind"+[i+1]).val()); 
-			$(".true_bulk").val($(".true_bulk").val()+","+$(".add_bulk"+[i+1]).val()); 
-			$(".true_startdate").val($(".true_startdate").val()+","+$(".add_startdate"+[i+1]).val()); 
-			$(".true_enddate").val($(".true_enddate").val()+","+$(".add_enddate"+[i+1]).val()); 
+		for (var i=1; i<num-1; i++) {				
+			$(".true_category").val($(".true_category").val()+"@"+$("#category"+[i+1]).val());
+			$(".true_kind").val($(".true_kind").val()+"@"+$("#kind"+[i+1]).val()); 
+			$(".true_bulk").val($(".true_bulk").val()+"@"+$("#bulk"+[i+1]).val()); 
+			$(".true_startdate").val($(".true_startdate").val()+"@"+$("#startdate"+[i+1]).val()); 
+			$(".true_name").val($(".true_name").val()+"@"+$("#name"+[i+1]).val()); 
+			$(".true_kg").val($(".true_kg").val()+"@"+$("#kg"+[i+1]).val()); 
+			$(".true_gender").val($(".true_gender").val()+"@"+$("#gender"+[i+1]).val()); 
+			$(".true_birth").val($(".true_birth").val()+"@"+$("#birth"+[i+1]).val()); 
+			$(".true_comment").val($(".true_comment").val()+"@"+$("#comment"+[i+1]).val()); 
 		};			
 		
 		 var form = $("#form")[0];  
 	     var formData = new FormData(form);
 				     
 		$.ajax({
-	        url:"care_upload.do",
+	        url:"pet_upload.do",
 	        type:"post",
 	        enctype:"multipart/form-data", 
 	        data: formData,
@@ -404,14 +438,20 @@
 	        processData: false,
 	        success:function(result){
 	       		if (result) {
-	       			alert("돌보미 등록이 완료되었습니다");
+	       			alert("펫 등록이 완료되었습니다");
 	       		} else {
-	       			alert("돌보미 등록에 실패하였습니다");		       		 
+	       			alert("펫 등록에 실패하였습니다");		       		 
 	       		}
 	       		location.reload();
 	       	},		
 	    });
 	});
+	
+	$(".noupload").hover(function(){
+		$(".nouploaddiv").css("display","block");
+    }, function() {
+    	$(".nouploaddiv").css("display","none");
+    });
 	
 	
 	
@@ -425,6 +465,7 @@
 			<p class="title">
 				펫 등록<span>Register as a pets</span>
 			</p>
+			<form id="form">
 			<div class="information">
 				<div class="personalinf">
 					<p class="p1">인적사항</p>
@@ -434,14 +475,13 @@
 					<div class="inf1">
 						<label>이름</label>
 						<p class="p3">*</p>
-						<input type="text" class="form-control" value="${vo.name }"
-							readonly>
+						<input type="text" class="form-control" value="${vo.name }" name="name" readonly>
 					</div>
 					<div class="inf2">
 						<label>생년월일</label>
 						<p class="p3">*</p>
 						<input type="text" class="form-control"
-							value="${vo.birth1 }년 ${vo.birth2}월 ${vo.birth3}일" readonly>
+							value="${vo.birth1 }년 ${vo.birth2}월 ${vo.birth3}일" name="birth" readonly>
 					</div>
 					<div class="inf3">
 						<label>성별</label>
@@ -456,10 +496,10 @@
 								<option selected>여자</option>
 							</c:if>
 						</select>
+						<input type="text" name="gender" value="${vo.gender }" style="display:none;">
 					</div>
 					<div class="inf4">
-						<label>이메일</label> <input type="text" class="form-control"
-							value="${vo.email }" readonly>
+						<label>이메일</label> <input type="text" class="form-control"	value="${vo.email }" name="email" readonly>
 					</div>
 					<div class="inf5 pet_profile">
 						<label id="text">사진</label>
@@ -469,14 +509,12 @@
 					<div class="inf6">
 						<label>휴대폰번호</label>
 						<p class="p3">*</p>
-						<input type="text" class="form-control" value="${vo.hp }"
-							name="hp" readonly>
+						<input type="text" class="form-control" value="${vo.hp }" name="hp" readonly>
 					</div>
 					<div class="inf7">
 						<label>주소</label>
 						<p class="p3">*</p>
-						<input type="text" class="form-control"
-							value="${vo.addr1} ${vo.addr2 }" name="addr" readonly>
+						<input type="text" class="form-control"	value="${vo.addr1} ${vo.addr2 }" name="addr" readonly>
 					</div>
 				</div>
 
@@ -503,7 +541,7 @@
 						<div class="inf3">
 							<label>크기</label>
 							<p class="p3">*</p>
-							<select class="form-select">
+							<select class="form-select" id="bulk1">
 								<option>선택</option>
 								<option>소형</option>
 								<option>중형</option>
@@ -511,12 +549,12 @@
 							</select>
 						</div>
 						<div class="inf4">
-							<label>입양날짜</label> <input type="date" class="form-control" id="startdate">
+							<label>입양날짜</label> <input type="date" class="form-control" id="startdate1">
 						</div>
 						<div class="inf5 pet_profile2" id="1">
 							<label id="text1">사진</label>
 							<p id="별1" class="p3">*</p>
-							<img id="img1" width=100%; height=100%;>
+							<img id="img1" width=100%; height=100%; name="file2">
 						</div>
 						<div class="inf6">
 							<label>이름</label> <input type="text" class="form-control" id="name1">
@@ -533,15 +571,21 @@
 							</select>
 						</div>
 						<div class="inf4">
-							<label>생년월일</label> <input type="text" class="form-control" id="brith1">
+							<label>생년월일</label> <input type="date" class="form-control" id="birth1">
 						</div>
 						<div class="inf8">
 							<label>특이사항</label> <input type="text"	placeholder="예)알레르기, 털 길이, 산책 선호 등" class="form-control" id="comment1">
 						</div>
 					</section>
-					<button class="add">+ 추가</button>
+					<button type="button" class="add">+ 추가</button>
 				</div>
-				<button type="button" class="upload">등록하기</button>
+				<c:if test="${val eq 0 }">
+					<button class="upload" type="button">등록하기</button>					
+				</c:if>
+				<c:if test="${val eq 1 }">
+					<button class="noupload" type="button" >등록하기</button>	
+					<div class="nouploaddiv">이미 등록된 회원입니다<br><span>수정은 마이페이지에서 가능합니다</span></div>	
+				</c:if>	
 				<input type="hidden" class="true_category" name="category" >
 				<input type="hidden" class="true_kind" name="kind" >
 				<input type="hidden" class="true_bulk" name="bulk" >
@@ -552,6 +596,7 @@
 				<input type="hidden" class="true_birth" name="pbirth" >
 				<input type="hidden" class="true_comment" name="pcomment" >
 			</div>
+			</form>
 		</div>
 	</section>
 	<jsp:include page="../footer.jsp"></jsp:include>

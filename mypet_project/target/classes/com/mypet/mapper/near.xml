@@ -11,7 +11,7 @@
 	</select>
 	
 	<insert id="near_upload" parameterType="com.mypet.vo.NearVO">
-		insert into mypet_near values ('n'||near_seq.nextval, #{id}, #{kind}, #{work}, to_char(sysdate,'yyyy-mm-dd hh24:mi:ss'), #{enddate}, #{title}, #{content}, 0)		
+		insert into mypet_near values ('n'||near_seq.nextval, #{pid}, #{id}, #{kind}, #{work}, to_char(sysdate,'yyyy-mm-dd hh24:mi:ss'), #{enddate}, #{title}, #{content}, 0)		
 	</insert>
 	
 	<select id="nid_select" resultType="java.lang.String">
@@ -19,7 +19,7 @@
 	</select>
 	
 	<insert id="map_upload" parameterType="com.mypet.vo.NearVO">
-		insert into mypet_map values(#{id}, #{nid}, #{addr}, #{category})
+		insert into mypet_map values(#{id}, #{nid}, #{pid}, #{addr}, #{category})
 	</insert>
 	
 	<select id="near_list" resultType="com.mypet.vo.NearVO">

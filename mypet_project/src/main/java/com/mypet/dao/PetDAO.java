@@ -1,10 +1,15 @@
 package com.mypet.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mypet.vo.MemberVO;
+import com.mypet.vo.NearVO;
+import com.mypet.vo.PetVO;
 
 @Repository
 public class PetDAO {
@@ -16,6 +21,27 @@ public class PetDAO {
 	
 	public MemberVO getinfo(String id) {
 		return sqlSession.selectOne(namespace+".info", id);
+	}
+	
+	public int getCareUpload(PetVO vo) {
+		return sqlSession.insert(namespace+".care_upload", vo);
+	}
+	
+	public int getPetUpload(PetVO vo) {
+		return sqlSession.insert(namespace+".pet_upload", vo);
+	}
+	
+	public int getPetResult(String id) {
+		return sqlSession.selectOne(namespace+".pet_result", id);
+	}
+	
+	public ArrayList<PetVO> getPetList(String id) {
+		List<PetVO> list = sqlSession.selectList(namespace+".pet_list", id);		
+		return (ArrayList<PetVO>)list;
+	}
+	
+	public PetVO getPetContent(String pid) {
+		return sqlSession.selectOne(namespace+".pet_content", pid);
 	}
 
 }

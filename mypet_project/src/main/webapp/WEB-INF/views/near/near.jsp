@@ -103,9 +103,7 @@
 	
 	
 	
-	.wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
-    .wrap * {padding: 0;margin: 0;}
-    .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+    .wrap .info { z-index:-999; width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
     .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
     .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 13px;font-weight: bold;}
     .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
@@ -115,7 +113,7 @@
     .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
     .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
     .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
-    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+    .info:after {}
     .info .link {color: #5085BB;}
     
     .btn_style {
@@ -167,6 +165,14 @@ $(document).ready(function() {
 	        map.setCenter(coords);
 	    } 
 	});
+	
+	var main = document.createElement('div');
+	main.style.cssText = 'position: absolute; left: 0;bottom: 40px;  width:290px; height:120px; ';
+	var content = document.createElement('div');		
+	content.style.cssText = 'border:1px solid lightgray; overflow: auto; width:290px; height:120px; background-color:white; margin-left: -144px;text-align: left; font-size: 12px;font-family: "Malgun Gothic", dotum, "돋움", sans-serif;line-height: 1.5;';
+	main.appendChild(content);
+	var overlay;
+	
 	<c:forEach var = "vo"  items="${mlist}" varStatus="status">			
 		
 		geocoder.addressSearch("${vo.addr}", function(result, status) {
@@ -186,37 +192,39 @@ $(document).ready(function() {
 			   // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
 			   var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
 		       
-			   var content = document.createElement('div');
-		    	content.innerHTML =  '<div class="wrap">' + 
-	            '    <div class="info">' + 
+			   var content2 = document.createElement('div');			   
+			   content2.innerHTML =  '<div class="info">' + 
 	            '        <div class="title" id="title">' + 
 	            '            ${vo.addr}' +
 	            '        </div>' + 
 	            '        <div class="body">' + 
 	            '            <div class="img">' +
-	            '                <img src="" width="73" height="70">' +
+	            '                <img src="upload/${vo.vo.psfile}" width="73" height="70">' +
 	            '           </div>' + 
 	            '            <div class="desc">' + 
-	            '                <div class="ellipsis">[강아지] 비숑</div>' + 
-	            '                <div class="jibun ellipsis">초코(여) 3세</div>' + 
-	            '                <div><a href="near_content.do?nid="+${vo.nid} target="_blank" class="link">게시물 보기</a></div>' + 
+	            '                <div class="ellipsis">[${vo.vo.category}] ${vo.vo.kind}</div>' + 
+	            '                <div class="jibun ellipsis">${vo.vo.pname}(${vo.vo.pgender}) ${vo.vo.pbirth}년</div>' + 
+	            '                <div><a href="near_contents.do?nid=${vo.nid}" target="_blank" class="link">게시물 보기</a></div>' + 
 	            '            </div>' + 
 	            '        </div>' + 
-	            '    </div>' +    
-	            '</div>';
+	            '    </div>';  
+	            content.appendChild(content2);
+	            
+	            var content3 = document.createElement('div');
+	            content3.style.cssText = 'position: absolute; left: 0;bottom: -10px; width: 22px;height: 12px;background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png")';
+	            main.appendChild(content3);
 
 	        // 결과값으로 받은 위치를 마커로 표시합니다
 	        var marker = new kakao.maps.Marker({
 	            map: map,
 	            position: coords,
 	            image: markerImage // 마커이미지 설정 
-	        });		        
+	        });
 	        
-	        var overlay;
 		     // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
 	        kakao.maps.event.addListener(marker, 'click', function() {
 	        	overlay  = new kakao.maps.CustomOverlay({
-			            content: content,
+			            content: main,
 			            map: map,
 			            position: marker.getPosition()       
 			        });
@@ -224,7 +232,7 @@ $(document).ready(function() {
 	        }); 		   
 		     
 		    var close = document.createElement('div');
-		    close.style.cssText = 'position: absolute; bottom:50px; left:-145px;width: 288px;height: 120px;'
+		    close.style.cssText = ' position: absolute; bottom:120px; left:-144px;width: 290px;height: 25px; background-color:rgb(230,230,230); border:1px solid lightgray; '
 	        var closeBtn = document.createElement('div');
 	        closeBtn.style.cssText = ' margin:5px; float:right;color: #888;width: 17px;height: 17px;background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png")';
 	        // 닫기 이벤트 추가
@@ -232,7 +240,7 @@ $(document).ready(function() {
 	            overlay.setMap(null);
 	        };
 	        close.appendChild(closeBtn)
-	        content.appendChild(close);
+	        content.insertBefore(close, content.firstChild);
 		       	     
 		    
 		     
@@ -259,7 +267,7 @@ $(document).ready(function() {
 		
 		flag = true;
 	});
-
+	
 	
 });
 
@@ -271,7 +279,7 @@ $(document).ready(function() {
 	<section class="section">
 		<div class="back">
 			<p class="title">내 근처의 펫<span>A pet near me</span></p>
-			<button onclick="location.href='near_writing.do'" class="writing_button">글쓰기</button>
+			<button onclick = "location.href='near_writing.do'" class="writing_button">글쓰기</button>
 			<div id="map"></div>
 			<div class="list">
 			<c:if test="${!empty list}">

@@ -171,6 +171,7 @@ $(document).ready(function() {
 	var kind = "kind" + getParam("num");
 	
 	$("input").attr("id", file_name);
+	$("input").attr("name", file_name);
 	
 	$("input").change(function(e){
 			img_name = this.files[0].name;
@@ -299,7 +300,7 @@ async function predict() {
 <body>
 <section>
 	<p class="p">사진 등록</p>
-	<input type="file" class="form-control" name="file2" >
+	<input type="file" class="form-control" >
 	<div class="div">
 		<img id="img" src="images/image.png" width=90%; height=90%; >
 	</div>

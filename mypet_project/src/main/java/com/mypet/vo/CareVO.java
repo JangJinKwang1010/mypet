@@ -7,8 +7,6 @@ public class CareVO {
 	String id, pass, name, hp, email, addr, mdate, birth, gender, cfile, sfile, category, kind, bulk, startdate, enddate;
 	String true_category, true_kind, true_bulk, true_startdate, true_enddate;
 	CommonsMultipartFile file1;	
-
-	
 	
 	public String getTrue_category() {
 		return true_category;

@@ -60,7 +60,7 @@
 		background-color:white;
 		float:right;
 		padding:10px 15px;
-		margin:35px;
+		margin:35px 35px 35px 0;
 		font-weight:bold;
 		text-decoration:none;
 		color:black;

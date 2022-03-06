@@ -19,7 +19,7 @@
 	</insert>
 
 	<select id="care_result" parameterType="java.lang.String" resultType="java.lang.Integer">
-		select count(*) from mypet_care where id=#{id}
+		select count(*) from mypet_care where id=#{id} and ctype = 'C'
 	</select>
 
 </mapper>

@@ -14,13 +14,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mypet.dao.MemberDAO;
 import com.mypet.dao.NearDAO;
+import com.mypet.dao.PetDAO;
 import com.mypet.vo.NearVO;
+import com.mypet.vo.PetVO;
 
 @Controller
 public class NearController {
 	
 	@Autowired
 	private NearDAO nearDAO;
+	
+	@Autowired
+	private PetDAO petDAO;
 	
 	@Autowired
 	private MemberDAO memberDAO;
@@ -36,6 +41,10 @@ public class NearController {
 		
 		ArrayList<NearVO> list = nearDAO.getNearList();
 		ArrayList<NearVO> mlist = nearDAO.getMapList();
+		for (int i=0; i<mlist.size(); i++) {
+			PetVO vo = petDAO.getPetContent(mlist.get(i).getPid());
+			mlist.get(i).setVo(vo);
+		}
 		
 		for (int i=0; i<list.size(); i++) {
 			String name = memberDAO.getName(list.get(i).getId());
@@ -80,8 +89,16 @@ public class NearController {
 	}
 	
 	@RequestMapping(value="/near_writing.do")
-	public String near_writing() {
-		return "near/near_writing";
+	public ModelAndView near_writing(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession(); //技记 积己
+		String id = (String)session.getAttribute("session_id");
+		
+		ArrayList<PetVO> list = petDAO.getPetList(id);
+		mv.addObject("list", list);		
+		mv.setViewName("near/near_writing");
+		
+		return mv;
 	}
 	
 	@ResponseBody
@@ -93,8 +110,9 @@ public class NearController {
 		vo.setId((String)session.getAttribute("session_id"));
 		vo.setAddr(nearDAO.getaddr_select(vo.getId()));
 		String a[] = vo.getKind().split("/");
-		vo.setKind(a[0]);
-		vo.setCategory(a[1]);
+		vo.setPid(a[0]);
+		vo.setKind(a[1]);
+		vo.setCategory(a[2]);
 		
 		int val = nearDAO.getNearUpload(vo);
 		

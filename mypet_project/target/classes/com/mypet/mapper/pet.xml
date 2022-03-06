@@ -5,8 +5,28 @@
     
 <mapper namespace="mapper.pet">
 
- <select id="info" parameterType="java.lang.String" resultType="com.mypet.vo.MemberVO">
-	select * from mypet_member where id=#{id}
-</select>
+	 <select id="info" parameterType="java.lang.String" resultType="com.mypet.vo.MemberVO">
+		select * from mypet_member where id=#{id}
+	</select>
+	
+	<insert id="care_upload" parameterType="com.mypet.vo.PetVO">
+		insert into mypet_care values(#{id}, #{name}, #{birth}, #{gender}, #{hp}, #{email}, #{addr}, #{cfile}, #{sfile}, 'P', sysdate)
+	</insert>
+	
+	<insert id="pet_upload" parameterType="com.mypet.vo.PetVO">
+		insert into mypet_pet values(#{id}, 'p'||pet_seq.nextval, #{category}, #{kind}, #{bulk}, #{startdate}, #{pname}, #{pkg}, #{pgender}, #{pbirth}, #{pcomment}, #{pfile}, #{psfile}, sysdate)
+	</insert>
+
+	<select id="pet_result" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from mypet_care where id=#{id} and ctype = 'P'
+	</select>
+	
+	<select id="pet_list" parameterType="java.lang.String" resultType="com.mypet.vo.PetVO">
+		select * from mypet_pet where id=#{id}
+	</select>
+	
+	<select id="pet_content" parameterType="java.lang.String" resultType="com.mypet.vo.PetVO">
+		select id, pid, category, kind, bulk, startdate, pname, pkg, pgender, TRUNC(MONTHS_BETWEEN(SYSDATE, PBIRTH)/12, 0) as pbirth, pcomment, pfile, psfile, pdate from mypet_pet where pid=#{pid}
+	</select>
 
 </mapper>
