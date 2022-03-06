@@ -210,6 +210,7 @@ $(document).ready(function() {
 	            '    </div>';  
 	            content.appendChild(content2);
 	            
+	            
 	            var content3 = document.createElement('div');
 	            content3.style.cssText = 'position: absolute; left: 0;bottom: -10px; width: 22px;height: 12px;background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png")';
 	            main.appendChild(content3);
