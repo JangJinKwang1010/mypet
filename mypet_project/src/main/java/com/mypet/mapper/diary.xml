@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="mapper.diary">
+
+	<insert id="free_upload" parameterType="com.mypet.vo.DiaryVO">
+		insert into mypet_free_diary values ('f'||free_seq.nextval, #{id}, #{ftitle}, sysdate, #{fcontent}, 0, 0, 0 )
+	</insert>
+	
+	<select id="free_list" parameterType="map" resultType="com.mypet.vo.DiaryVO">
+		select  rno, fid, id, ftitle, fcontent, fdate, fhit, fheart, fnheart
+		 from (select rownum rno, fid, id, ftitle, fcontent, fdate, fhit, fheart, fnheart
+		 from (select rno, fid, id, ftitle, fcontent, fdate, fhit, fheart, fnheart from (
+		select  rno, fid, id, ftitle, fcontent, to_char(fdate, 'yyyy-mm-dd') fdate, fhit, fheart, fnheart
+             from(select  rownum rno, fid, id, ftitle, fcontent, fdate, fhit, fheart, fnheart
+				     from(select * from mypet_free_diary order by fdate desc))	where rno between #{start} and #{end}) order by fid)) order by rno desc
+	</select>
+	
+	<select id="target" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select count(num) from(select rownum num from mypet_free_diary) where num >= #{pageNumber}
+	</select>
+	
+	<select id="free_contents" parameterType="java.lang.String" resultType="com.mypet.vo.DiaryVO">
+		select * from mypet_free_diary where fid=#{fid}
+	</select>
+	
+	<update id="free_hit" parameterType="java.lang.String" >
+		update mypet_free_diary set fhit=fhit+1 where fid=#{fid}
+	</update>
+
+</mapper>

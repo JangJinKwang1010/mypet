@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Mypet</title>
 <script src="js/jquery-3.6.0.min.js"></script>
 <style>
 	.section {
@@ -89,23 +89,54 @@
 		.mainbox { width:1300px; }
 	}
 </style>
+<script>
+	$(document).ready(function() {
+		$(".writing_button").click(function() {
+			if($(".writing_title").val() == "") {
+				alert("제목을 입력해주세요");
+				$(".writing_title").focus();
+			} else if ($(".writing_content").val() == "") {
+				alert("내용을 입력해주세요");
+				$(".writing_content").focus();
+			} else {
+				 var form1 = $("#form").serialize();
+			     
+					$.ajax({
+				        url:"free_upload.do",
+				        type:"post",
+				        data: form1,
+				        success:function(result){
+				       		if (result) {
+				       			alert("글이 등록되었습니다");
+				       			location.replace('diary.do');
+				       		} else {
+				       			alert("글이 등록되지 않았습니다");		       
+				       			location.reload();
+				       		}		       		
+				       	},		
+				    });
+			}
+		});
+	});
+</script>
 </head>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
 		<section class="section">
 		<div class="mainbox">
 			<p class="title">펫 일기<span>Pet Diary</span></p>
-			<div class ="mainbox2 freebox">
-				<p class="subtitle">글쓰기</p>
-				<div class="writing_line"></div>
-				<select class="writing_select form-select">
-					<option>자유게시판</option>
-					<option>사진게시판</option>
-				</select>
-				<input type="text" class="writing_title form-control" placeholder="제목을 입력해주세요.">
-				<textarea class="writing_content form-control" placeholder="내용을 입력해주세요."></textarea>
-				<button class="writing_button">글쓰기</button>
-			</div>
+			<form autocomplete="off"  id="form">
+				<div class ="mainbox2 freebox">
+					<p class="subtitle">글쓰기</p>
+					<div class="writing_line"></div>
+					<select class="writing_select form-select">
+						<option>자유게시판</option>
+					</select>
+					<input type="text" class="writing_title form-control" placeholder="제목을 입력해주세요." name="ftitle">
+					<textarea class="writing_content form-control" placeholder="내용을 입력해주세요." name="fcontent"></textarea>
+					<button type="button" class="writing_button">글쓰기</button>
+				</div>
+			</form>
 		</div>
 	</section>
 	<jsp:include page="../footer.jsp"></jsp:include>

@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
   %>
-
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ <c:set var="pageNumber" value='${pageNumber}' />
+<c:set var="targetpage" value='${targetpage}' />
 <!DOCTYPE html>
 <html>
 <head>
@@ -114,6 +116,49 @@
 	.picture_title>span { color:red; }
 	.picture_title:hover { text-decoration:underline; }
 	.picture_name, .picture_date { color:gray; font-size:14px; }
+	
+	.pagination {
+	  display: inline-block;
+	  padding-left: 0;
+	  margin: 20px 0;
+	  border-radius: 4px;
+	}
+	.pagination > li {
+	  display: inline;
+	}
+	.pagination > li > a,
+	.pagination > li > span {
+	  position: relative;
+	  float: left;
+	  padding: 6px 12px;
+	  margin-left: -1px;
+	  line-height: 1.42857143;
+	  color: #337ab7;
+	  text-decoration: none;
+	  background-color: #fff;
+	  border: 1px solid #ddd;
+	}
+	.pagination > li:first-child > a,
+	.pagination > li:first-child > span {
+	  margin-left: 0;
+	  border-top-left-radius: 4px;
+	  border-bottom-left-radius: 4px;
+	}
+	.pagination > li:last-child > a,
+	.pagination > li:last-child > span {
+	  border-top-right-radius: 4px;
+	  border-bottom-right-radius: 4px;
+	}
+	.pagination > li > a:hover,
+	.pagination > li > span:hover,
+	.pagination > li > a:focus,
+	.pagination > li > span:focus {
+	  z-index: 2;
+	  color: #23527c;
+	  background-color: #eee;
+	  border-color: #ddd;
+	}
+	
 	@media (min-width : 600px) {		
 		.section { background-color:rgb(247,179,42); }
 		.mainbox { width:1300px; }
@@ -159,52 +204,64 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr onclick="location.href='diary_reading_contents.do' " style="border-bottom:1px solid lightgray;">
-								<th>1</th>
-								<td>강쥐귀엽죠~<span style="color:red">[3]</span></td>
-								<td>간식킬러</td>
-								<td>2022.01.16</td>
-								<td>3</td>
-								<td>15</td>
+						<c:forEach var = "vo"  items="${free_list}"  >
+							<tr onclick="location.href='diary_free_contents.do?fid=${vo.fid}'" style="border-bottom:1px solid lightgray;">
+								<th>${vo.rno }</th>
+								<td>${vo.ftitle }<span style="color:red"> [3]</span></td>
+								<td>${vo.id }</td>
+								<td>${vo.fdate }</td>
+								<td>${vo.fheart }</td>
+								<td>${vo.fhit }</td>
 							</tr>
-							<tr onclick="location.href='diary_reading_contents.do' " style="border-bottom:1px solid lightgray;">
-								<th>1</th>
-								<td>강쥐귀엽죠~<span style="color:red">[3]</span></td>
-								<td>간식킬러</td>
-								<td>2022.01.16</td>
-								<td>3</td>
-								<td>15</td>
-							</tr>
-							<tr onclick="location.href='diary_reading_contents.do' " style="border-bottom:1px solid lightgray;">
-								<th>1</th>
-								<td>강쥐귀엽죠~<span style="color:red">[3]</span></td>
-								<td>간식킬러</td>
-								<td>2022.01.16</td>
-								<td>3</td>
-								<td>15</td>
-							</tr>
-							<tr onclick="location.href='diary_reading_contents.do' " style="border-bottom:1px solid lightgray;">
-								<th>1</th>
-								<td>강쥐귀엽죠~<span style="color:red">[3]</span></td>
-								<td>간식킬러</td>
-								<td>2022.01.16</td>
-								<td>3</td>
-								<td>15</td>
-							</tr>
+						</c:forEach>
 						</tbody>
 					</table>
 					<div class="page">
 						<nav aria-label="...">
-						  <ul class="pagination pagination-sm">
-						    <li class="page-item active" aria-current="page">
-						      <span class="page-link">1</span>
-						    </li>
-						    <li class="page-item"><a class="page-link" href="#">2</a></li>
-						    <li class="page-item"><a class="page-link" href="#">3</a></li>
-						  </ul>
-						</nav>						
+							<ul class = "pagination" style="margin: 0 auto;">
+							<%	
+								String pageNumber = String.valueOf(pageContext.getAttribute("pageNumber"));
+								int startPage = (Integer.parseInt(pageNumber) / 10) *10 + 1; 
+								if(Integer.parseInt(pageNumber) % 10 == 0) startPage -= 10;
+								int targetPage = Integer.parseInt(String.valueOf(pageContext.getAttribute("targetpage")));
+								if(startPage != 1) {
+							%>
+								<li><a href="diary.do?pnum=<%= startPage -1 %>"><span><</span></a></li>
+							<%
+								} else {
+							%>
+								<li><span style="color: gray;"><</span></li>
+							<%
+								}
+								for(int i = startPage; i < Integer.parseInt(pageNumber); i++) {
+							%>
+								<li><a href="diary.do?pnum=<%= i %>" style="color: #000000;"><%= i %></a></li>
+							<%
+								}
+							%>
+								<li class="active_page" ><a href="diary.do?pnum=<%= pageNumber %>" style="background-color: #337ab7;color: #ffffff;"><%= pageNumber %></a></li>
+							<%
+								for(int i = Integer.parseInt(pageNumber) + 1; i <= targetPage + Integer.parseInt(pageNumber); i++) {
+									if(i < startPage +10) {
+							%>
+								<li><a href="diary.do?pnum=<%= i %>" style="color: #000000;"><%= i %></a></li>
+							<%
+									}
+								}
+								if(targetPage + Integer.parseInt(pageNumber) > startPage + 9){
+							%>
+								<li><a href="diary.do?pnum=<%= startPage + 10 %>" style= "color: #000000;"><span>></span></a></li>
+							<%
+								} else {
+							%>
+								<li><span style="color: gray;">></span></li>
+							<%		
+								}
+							%>
+							</ul>	
+						</nav>			
 					</div>
-					<button class="write" onclick="location.href='diary_writing.do' ">글쓰기</button>
+					<button class="write" onclick="location.href='diary_free_writing.do' ">글쓰기</button>
 				</div>
 			</div>				
 		

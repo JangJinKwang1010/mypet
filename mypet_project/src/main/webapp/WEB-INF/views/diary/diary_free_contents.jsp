@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Mypet</title>
 <script src="js/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
@@ -47,7 +47,7 @@
 	float:left;
 	font-weight:bold;
 	font-size:25px;
-	margin-bottom:-20px;
+	margin-bottom:-10px;
 	}
 	.writing_line{
 	display:inline-block;
@@ -71,6 +71,7 @@
 	font-size:20px;
 	margin-left:65px;
 	margin-bottom:5px;
+	margin-top:10px;
 	}
 	.name{
 	display:inline-block;
@@ -264,6 +265,11 @@
 		background-color:rgb(0,68,130);
 		color:white;
 	}
+	#textarea {
+		width:95%; height:500px;
+		background-color:white;
+		border:none;
+	}
 	@media (min-width : 600px) {		
 		.section { background-color:rgb(247,179,42); }
 		.mainbox { width:1300px; }
@@ -278,19 +284,19 @@
 			<div class ="mainbox2 freebox">
 			<p class="subtitle">자유게시판</p>
 			<div class="writing_line"></div>
-			<p class="post_title">제목</p>
-			<p class="name">이름</p>
+			<p class="post_title">${vo.ftitle }</p>
+			<p class="name">${vo.id }</p>
 			<div class="post_line"></div>
-			<p class="post_date">게시한날짜</p>
+			<p class="post_date">${vo.fdate }</p>
 			<button class="comments">댓글 0</button>
 			<div class="post_line2"></div>
-			<p class="recommend">추천 0</p>
+			<p class="recommend">추천 ${vo.fheart }</p>
 			<div class="post_line2"></div>
-			<p class="view">조회 4</p>
+			<p class="view">조회 ${vo.fhit }</p>
 			<div class="writing_line2"></div>
-			<div class="contentsbox"></div>
+			<div class="contentsbox"><textarea disabled style="resize: none;" id="textarea">${vo.fcontent }</textarea></div>
 				<div class="recommendbox">
-					<p class="thumb_number">2</p>
+					<p class="thumb_number">${vo.fheart }</p>
 					<button class="thumb">
 					<img src="images/thumb_blue.png">
 					<p>추천</p>
@@ -299,7 +305,7 @@
 					<img src="images/thumb_red.png">
 					<p>비추천</p>
 					</button>
-					<p class="thumb_number2">3</p>
+					<p class="thumb_number2">${vo.fnheart }</p>
 				</div>
 				<div class="commentsbox">
 					<p>전체 댓글 <span class="all_comments_number">1</span>개</p>
