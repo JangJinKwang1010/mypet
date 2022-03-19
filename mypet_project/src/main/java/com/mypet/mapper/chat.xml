@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    
+    <mapper namespace="mapper.chat">
+    
+    	<insert id="chat_upload" parameterType="com.mypet.vo.ChatVO">
+    		insert into mypet_chat values('c'||chat_seq.nextval, #{from_id}, #{to_id}, #{content}, sysdate)
+    	</insert>
+    	
+    	<select id="chat_history" parameterType="com.mypet.vo.ChatVO" resultType="com.mypet.vo.ChatVO">
+    		select * from mypet_chat where to_id=#{to_id} or from_id=#{to_id} order by cdate
+    	</select>
+    	
+    	<select id="chat_info_check" parameterType="com.mypet.vo.ChatVO" resultType="java.lang.Integer">
+    		select count(*) from mypet_chat_info where (to_id=#{to_id} and from_id=#{from_id}) or (to_id=#{from_id} and from_id=#{to_id})
+    	</select>
+    	
+    	<insert id ="chat_info_upload" parameterType="com.mypet.vo.ChatVO">
+    		insert into mypet_chat_info values(#{to_id}, #{from_id}, sysdate)
+    	</insert>
+    	
+    	<select id="chat_info_list" parameterType="com.mypet.vo.ChatVO" resultType="com.mypet.vo.ChatVO">
+    		select * from mypet_chat_info where to_id = #{to_id} or from_id=#{to_id} order by idate desc
+    	</select>
+    	
+    	<select id="chat_from_id_list" parameterType="java.lang.String" resultType="com.mypet.vo.ChatVO">
+    		select to_id from mypet_chat_info where from_id =#{from_id}
+    		union
+    		select from_id from mypet_chat_info where to_id=#{to_id}
+    	</select> 
+    
+    
+    </mapper>

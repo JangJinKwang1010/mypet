@@ -249,6 +249,16 @@
 	           }); 
 			} 
 		});
+		
+		
+		$(".chat").click(function() {
+			var id = $(".chat").attr("id");
+			var url = "chat_list.do?id="+id;
+	        var name = "popup test";
+	        var option = "width = 815, height = 1000, top = 200, left = 350, location = no"
+	        window.open(url, name, option);
+		});
+		
 	});
 </script>
 </head>
@@ -259,15 +269,17 @@
 		<div class="mainbox">
 			<p class="title">내 근처의 펫<span>A pet near me</span></p>
 			<div class ="mainbox2 freebox">
-				<div class="top">		
-				<c:if test="${heart eq 'f' }">
-					<img src="images/heart_before.png" width=40px; height=40px; id="heart" name="before" >
-				</c:if>
-				<c:if test="${heart eq 't' }">	
-					<img src="images/heart_after.png" width=40px; height=40px; id="heart" name="after" >
-				</c:if>
-					<button type="button">채팅하기</button>
+				<c:if test="${ vo.id ne session_id}">	
+				<div class="top">	
+					<c:if test="${heart eq 'f' }">
+						<img src="images/heart_before.png" width=40px; height=40px; id="heart" name="before" >
+					</c:if>
+					<c:if test="${heart eq 't' }">	
+						<img src="images/heart_after.png" width=40px; height=40px; id="heart" name="after" >
+					</c:if>
+						<button type="button" id="${vo.id }" class="chat">채팅하기</button>
 				</div>
+				</c:if>
 				<div class="writing_line"></div>
 				<p class="post_title"><span class="logo">강아지</span>${vo.title }</p>
 				<p class="name">${vo.id }</p>
