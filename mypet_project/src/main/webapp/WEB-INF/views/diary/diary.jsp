@@ -196,7 +196,7 @@
 						<thead style="border-bottom:1px solid; ">
 							<tr>
 								<th>번호</th>
-								<th width=700px;>제목</th>
+								<th width=650px;>제목</th>
 								<th>글쓴이</th>
 								<th width=150px;>등록일</th>
 								<th width=60px;>추천수</th>
