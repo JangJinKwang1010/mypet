@@ -104,7 +104,7 @@
 						</ul>
 						<ul>
 							<li><label>회원탈퇴확인</label></li>
-							<li><input type="text" placeholder="비밀번호확인" name="cpass" class="form-control" id="cpass"></li>
+							<li><input type="text" placeholder="회원탈퇴확인" name="cpass" class="form-control" id="cpass"></li>
 							<li>회원탈퇴를 위해 '회원탈퇴'를 입력 해주세요.</li>
 						</ul>
 						<button type="button" class="join_btn">확인</button>

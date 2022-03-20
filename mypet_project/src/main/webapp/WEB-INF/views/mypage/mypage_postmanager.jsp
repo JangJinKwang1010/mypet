@@ -56,8 +56,8 @@
 					</thead>
 					<tbody>
 						<tr>
-							<th>2</th>
-							<td>냥냥펀치</td>
+							<th>1</th>
+							<td>장진광</td>
 							<td>냥이귀엽죠~</td>
 							<td>21/12/06</td>
 							<td>3</td>
@@ -65,71 +65,71 @@
 						</tr>
 						<tr>
 							<th>2</th>
-							<td>냥냥펀치</td>
+							<td>장진광</td>
 							<td>냥이귀엽죠~</td>
 							<td>21/12/06</td>
 							<td>3</td>
 							<td>15</td>
 						</tr>
 						<tr>
-							<th>2</th>
-							<td>냥냥펀치</td>
+							<th>3</th>
+							<td>장진광</td>
 							<td>냥이귀엽죠~</td>
 							<td>21/12/06</td>
 							<td>3</td>
 							<td>15</td>
 						</tr>
 						<tr>
-							<th>2</th>
-							<td>냥냥펀치</td>
+							<th>4</th>
+							<td>장진광</td>
 							<td>냥이귀엽죠~</td>
 							<td>21/12/06</td>
 							<td>3</td>
 							<td>15</td>
 						</tr>
 						<tr>
-							<th>2</th>
-							<td>냥냥펀치</td>
+							<th>5</th>
+							<td>장진광</td>
 							<td>냥이귀엽죠~</td>
 							<td>21/12/06</td>							
 							<td>3</td>
 							<td>15</td>
 						</tr>
 						<tr>
-							<th>2</th>
-							<td>냥냥펀치</td>
+							<th>6</th>
+							<td>장진광</td>
 							<td>냥이귀엽죠~</td>
 							<td>21/12/06</td>
 							<td>3</td>
 							<td>15</td>
 						</tr>
 						<tr>
-							<th>2</th>
-							<td>냥냥펀치</td>
+							<th>7</th>
+							<td>장진광</td>
 							<td>냥이귀엽죠~</td>
 							<td>21/12/06</td>
 							<td>3</td>
 							<td>15</td>
 						</tr>
 						<tr>
-							<th>2</th>
-							<td>냥냥펀치</td>
+							<th>8</th>
+							<td>장진광</td>
 							<td>냥이귀엽죠~</td>
 							<td>21/12/06</td>
 							<td>3</td>
 							<td>15</td>
 						</tr>
 						<tr>
-							<th>2</th>
-							<td>냥냥펀치</td>
+							<th>9</th>
+							<td>장진광</td>
 							<td>냥이귀엽죠~</td>
 							<td>21/12/06</td>
 							<td>3</td>
 							<td>15</td>
 						</tr>
 						<tr>
-							<th>2</th>
-							<td>냥냥펀치</td>
+							<th>10</th>
+							<td>장진광</td>
 							<td>냥이귀엽죠~</td>
 							<td>21/12/06</td>
 							<td>3</td>
