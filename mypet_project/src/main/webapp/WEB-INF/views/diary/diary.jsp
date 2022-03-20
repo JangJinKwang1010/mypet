@@ -274,7 +274,7 @@
 								<img src="images/dog_ex1.png" width=100%; height=100%; >
 							</div>
 							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
-							<p class="picture_name">우리집사는똥멍청이</p>
+							<p class="picture_name">장진광</p>
 							<p class="picture_date">2022.01.09 <span>조회 55</span></p>
 						</div>					
 					</a>
@@ -284,7 +284,7 @@
 								<img src="images/dog_ex1.png" width=100%; height=100%; >
 							</div>
 							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
-							<p class="picture_name">우리집사는똥멍청이</p>
+							<p class="picture_name">장진광</p>
 							<p class="picture_date">2022.01.09 <span>조회 55</span></p>
 						</div>					
 					</a>
@@ -294,7 +294,7 @@
 								<img src="images/dog_ex2.png" width=100%; height=100%; >
 							</div>
 							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
-							<p class="picture_name">우리집사는똥멍청이</p>
+							<p class="picture_name">장진광</p>
 							<p class="picture_date">2022.01.09 <span>조회 55</span></p>
 						</div>					
 					</a>
@@ -304,7 +304,7 @@
 								<img src="images/dog_ex2.png" width=100%; height=100%; >
 							</div>
 							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
-							<p class="picture_name">우리집사는똥멍청이</p>
+							<p class="picture_name">장진광</p>
 							<p class="picture_date">2022.01.09 <span>조회 55</span></p>
 						</div>					
 					</a>
@@ -314,7 +314,7 @@
 								<img src="images/dog_ex3.png" width=100%; height=100%; >
 							</div>
 							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
-							<p class="picture_name">우리집사는똥멍청이</p>
+							<p class="picture_name">장진광</p>
 							<p class="picture_date">2022.01.09 <span>조회 55</span></p>
 						</div>					
 					</a>
@@ -324,7 +324,7 @@
 								<img src="images/dog_ex3.png" width=100%; height=100%; >
 							</div>
 							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
-							<p class="picture_name">우리집사는똥멍청이</p>
+							<p class="picture_name">장진광</p>
 							<p class="picture_date">2022.01.09 <span>조회 55</span></p>
 						</div>					
 					</a>
@@ -334,7 +334,7 @@
 								<img src="images/dog_ex1.png" width=100%; height=100%; >
 							</div>
 							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
-							<p class="picture_name">우리집사는똥멍청이</p>
+							<p class="picture_name">장진광</p>
 							<p class="picture_date">2022.01.09 <span>조회 55</span></p>
 						</div>					
 					</a>
