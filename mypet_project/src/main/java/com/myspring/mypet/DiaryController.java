@@ -36,6 +36,10 @@ public class DiaryController {
 		int target = 0;
 		
 		ArrayList<DiaryVO> free_list = DiaryDAO.getFreeList(startnum,endnum);
+		for (int i=0; i<free_list.size(); i++) {
+			free_list.get(i).setFheart(DiaryDAO.getFreeUpList(free_list.get(i).getFid()));
+		}
+		
 		target = DiaryDAO.targetPage(pagenum);
 		int targetpage = 0;
 		if(pageNumber != 1 ) {
@@ -61,7 +65,7 @@ public class DiaryController {
 	public ModelAndView diary_free_contents(String fid) {
 		ModelAndView mv = new ModelAndView();
 		DiaryDAO.getFreeHit(fid);
-		DiaryVO vo = DiaryDAO.getFreeContents(fid);	
+		DiaryVO vo = DiaryDAO.getFreeContents(fid);
 		
 		mv.setViewName("diary/diary_free_contents");
 		mv.addObject("vo", vo);
@@ -89,5 +93,41 @@ public class DiaryController {
 		}
 		
 		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/free_up_heart.do", method=RequestMethod.POST)
+	public void free_up_heart(HttpServletRequest request, String fid) {
+		HttpSession session = request.getSession(); //技记 积己
+		DiaryVO vo = new DiaryVO();
+		vo.setId((String)session.getAttribute("session_id"));
+		vo.setFid(fid);
+		
+		if (DiaryDAO.getFreeUpInfo(vo) == 0) {
+			DiaryDAO.getFreeUpHeart(vo);
+			DiaryDAO.getFreeUpUpdate(fid);
+		} else {
+			DiaryDAO.getFreeDownHeart(vo);
+			DiaryDAO.getFreeDownUpdate(fid);
+		}
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/free_up_nheart.do", method=RequestMethod.POST)
+	public void free_up_nheart(HttpServletRequest request, String fid) {
+		HttpSession session = request.getSession(); //技记 积己
+		DiaryVO vo = new DiaryVO();
+		vo.setId((String)session.getAttribute("session_id"));
+		vo.setFid(fid);
+		
+		if (DiaryDAO.getFreeDownInfo(vo) == 0) {
+			DiaryDAO.getFreeUpNheart(vo);
+			DiaryDAO.getFreeNupUpdate(fid);
+		} else {
+			DiaryDAO.getFreeDownNheart(vo);
+			DiaryDAO.getFreeNdownUpdate(fid);
+		}
+		
 	}
 }

@@ -30,5 +30,49 @@
 	<update id="free_hit" parameterType="java.lang.String" >
 		update mypet_free_diary set fhit=fhit+1 where fid=#{fid}
 	</update>
+	
+	<insert id="free_up_heart" parameterType="com.mypet.vo.DiaryVO">
+		insert into mypet_diary_heart values (#{id}, #{fid}, 'up')
+	</insert>
+	
+	<select id="free_up_list" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from mypet_diary_heart where fid=#{fid} and htype='up'
+	</select>
+	
+	<update id="free_up_update" parameterType="java.lang.String">
+		update mypet_free_diary set fheart = fheart+1 where fid = #{fid}
+	</update>
+	
+	<select id="free_up_info" parameterType="com.mypet.vo.DiaryVO" resultType="java.lang.Integer">
+		select count(*) from mypet_diary_heart where id=#{id} and fid=#{fid} and htype='up'
+	</select>
+	
+	<delete id="free_down_heart" parameterType="com.mypet.vo.DiaryVO">
+		delete from mypet_diary_heart where id=#{id} and fid=#{fid} and htype='up'
+	</delete>
+	
+	<update id="free_down_update" parameterType="java.lang.String">
+		update mypet_free_diary set fheart = fheart - 1 where fid = #{fid}
+	</update>
+	
+	<insert id="free_up_nheart" parameterType="com.mypet.vo.DiaryVO">
+		insert into mypet_diary_heart values (#{id}, #{fid}, 'down')
+	</insert>
+	
+	<select id="free_down_info" parameterType="com.mypet.vo.DiaryVO" resultType="java.lang.Integer">
+		select count(*) from mypet_diary_heart where id=#{id} and fid=#{fid} and htype='down'
+	</select>
+	
+	<update id="free_nup_update" parameterType="java.lang.String">
+		update mypet_free_diary set fnheart = fnheart+1 where fid = #{fid}
+	</update>
+	
+	<update id="free_ndown_update" parameterType="java.lang.String">
+		update mypet_free_diary set fnheart = fnheart - 1 where fid = #{fid}
+	</update>
+	
+		<delete id="free_down_nheart" parameterType="com.mypet.vo.DiaryVO">
+		delete from mypet_diary_heart where id=#{id} and fid=#{fid} and htype='down'
+	</delete>
 
 </mapper>

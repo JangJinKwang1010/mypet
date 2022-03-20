@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -275,6 +276,41 @@
 		.mainbox { width:1300px; }
 	}
 </style>
+<script>
+	$(document).ready(function() {
+		$(".heart").click(function() {
+			<c:if test = "${session_id eq null}">
+				alert("로그인 후 이용가능합니다");
+			</c:if>
+			<c:if test="${session_id ne null}">			
+				$.ajax({
+			        url:"free_up_heart.do",
+			        type:"post",
+			        data: {fid:"${vo.fid}"},
+			        success:function(result){			       		  
+			       		location.reload();	       		
+			       	},		
+			    });
+			</c:if>
+		});
+		
+		$(".nheart").click(function() {
+			<c:if test = "${session_id eq null}">
+				alert("로그인 후 이용가능합니다");
+			</c:if>
+			<c:if test="${session_id ne null}">			
+				$.ajax({
+			        url:"free_up_nheart.do",
+			        type:"post",
+			        data: {fid:"${vo.fid}"},
+			        success:function(result){			       		  
+			       		location.reload();	       		
+			       	},		
+			    });
+			</c:if>
+		});
+	});
+</script>
 </head>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
@@ -297,11 +333,11 @@
 			<div class="contentsbox"><textarea disabled style="resize: none;" id="textarea">${vo.fcontent }</textarea></div>
 				<div class="recommendbox">
 					<p class="thumb_number">${vo.fheart }</p>
-					<button class="thumb">
+					<button class="thumb heart">
 					<img src="images/thumb_blue.png">
 					<p>추천</p>
 					</button>
-					<button class="thumb">
+					<button class="thumb nheart">
 					<img src="images/thumb_red.png">
 					<p>비추천</p>
 					</button>

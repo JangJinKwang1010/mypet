@@ -44,5 +44,49 @@ public class DiaryDAO {
 	public int getFreeHit(String fid) {
 		return sqlSession.update(namespace+".free_hit", fid);
 	}
+	
+	public int getFreeUpHeart(DiaryVO vo) {
+		return sqlSession.insert(namespace+".free_up_heart", vo);
+	}
+	
+	public int getFreeUpList(String fid) {
+		return sqlSession.selectOne(namespace+".free_up_list", fid);
+	}
+	
+	public int getFreeUpUpdate(String fid) {
+		return sqlSession.update(namespace+".free_up_update", fid);
+	}
+	
+	public int getFreeUpInfo(DiaryVO vo) {
+		return sqlSession.selectOne(namespace+".free_up_info", vo);
+	}
+	
+	public int getFreeDownHeart(DiaryVO vo) {
+		return sqlSession.delete(namespace+".free_down_heart", vo);
+	}
+	
+	public int getFreeDownUpdate(String fid) {
+		return sqlSession.update(namespace+".free_down_update", fid);
+	}
+	
+	public int getFreeUpNheart(DiaryVO vo) {
+		return sqlSession.insert(namespace+".free_up_nheart", vo);
+	}
+	
+	public int getFreeDownInfo(DiaryVO vo) {
+		return sqlSession.selectOne(namespace+".free_down_info", vo);
+	}
+	
+	public int getFreeNupUpdate(String fid) {
+		return sqlSession.update(namespace+".free_nup_update", fid);
+	}
+	
+	public int getFreeDownNheart(DiaryVO vo) {
+		return sqlSession.delete(namespace+".free_down_nheart", vo);
+	}
+	
+	public int getFreeNdownUpdate(String fid) {
+		return sqlSession.update(namespace+".free_ndown_update", fid);
+	}
 
 }
