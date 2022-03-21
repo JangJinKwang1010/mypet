@@ -38,6 +38,7 @@ public class DiaryController {
 		ArrayList<DiaryVO> free_list = DiaryDAO.getFreeList(startnum,endnum);
 		for (int i=0; i<free_list.size(); i++) {
 			free_list.get(i).setFheart(DiaryDAO.getFreeUpList(free_list.get(i).getFid()));
+			free_list.get(i).setC_count(DiaryDAO.getFreeCommentCount(free_list.get(i).getFid()));
 		}
 		
 		target = DiaryDAO.targetPage(pagenum);
@@ -66,9 +67,12 @@ public class DiaryController {
 		ModelAndView mv = new ModelAndView();
 		DiaryDAO.getFreeHit(fid);
 		DiaryVO vo = DiaryDAO.getFreeContents(fid);
-		
+		ArrayList<DiaryVO> list = DiaryDAO.getFreeCommentList(fid);
+				
 		mv.setViewName("diary/diary_free_contents");
+		mv.addObject("list", list);
 		mv.addObject("vo", vo);
+		mv.addObject("count", DiaryDAO.getFreeCommentCount(fid));
 		
 		return mv;
 	}
@@ -130,4 +134,62 @@ public class DiaryController {
 		}
 		
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/free_comment_upload.do", method=RequestMethod.POST)
+	public void free_comment_upload(HttpServletRequest request, String fid, String ccomment) {
+		HttpSession session = request.getSession(); //技记 积己
+		DiaryVO vo = new DiaryVO();
+		vo.setId((String)session.getAttribute("session_id"));
+		vo.setFid(fid); vo.setCcomment(ccomment);
+		
+		DiaryDAO.getFreeCommentUpload(vo);
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/free_comment_delete.do", method=RequestMethod.POST)
+	public void free_comment_delete(String cid) {
+		DiaryDAO.getFreeCommentDelete(cid);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/free_delete.do", method=RequestMethod.POST)
+	public void free_delete(String fid) {		
+		DiaryDAO.getFreeDelete(fid);
+	}
+	
+	@RequestMapping(value="/diary_free_update.do", method=RequestMethod.GET)
+	public ModelAndView free_diary_update(String fid) {
+		ModelAndView mv = new ModelAndView();
+		
+		DiaryVO vo = DiaryDAO.getFreeContents(fid);
+		mv.addObject("vo", vo);
+		mv.setViewName("diary/diary_free_update");
+		
+		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/free_update.do", method=RequestMethod.POST)
+	public boolean free_update(DiaryVO vo) {
+		boolean result = false;
+		
+		int val = DiaryDAO.getFreeUpdate(vo);
+		
+		if (val!=0) {
+			result = true;
+		}
+		
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/free_comment_update.do", method=RequestMethod.POST)
+	public void free_comment_update(String cid, String ccomment) {
+		DiaryVO vo = new DiaryVO();
+		vo.setCid(cid); vo.setCcomment(ccomment);
+		DiaryDAO.getFreeCommentUpdate(vo);
+	}
+	
 }

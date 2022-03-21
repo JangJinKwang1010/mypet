@@ -207,7 +207,7 @@
 						<c:forEach var = "vo"  items="${free_list}"  >
 							<tr onclick="location.href='diary_free_contents.do?fid=${vo.fid}'" style="border-bottom:1px solid lightgray;">
 								<th>${vo.rno }</th>
-								<td>${vo.ftitle }<span style="color:red"> [3]</span></td>
+								<td>${vo.ftitle }<span style="color:red"><c:if test="${vo.c_count ne 0 }"> [${vo.c_count }]</c:if></span></td>
 								<td>${vo.id }</td>
 								<td>${vo.fdate }</td>
 								<td>${vo.fheart }</td>
@@ -349,7 +349,7 @@
 						  </ul>
 						</nav>						
 					</div>
-					<button class="write" onclick="location.href='diary_writing.do' ">글쓰기</button>
+					<button class="write" onclick="">글쓰기</button>
 				</div>
 			</div>	
 		</div>			

@@ -2,10 +2,34 @@ package com.mypet.vo;
 
 public class DiaryVO {
 	
-	String id, ftitle, fcontent, fdate, fid;	
-	int fheart, fnheart, fhit, rno;
+	String id, ftitle, fcontent, fdate, fid, ccomment, cdate, cid;	
+	int fheart, fnheart, fhit, rno, c_count;
 	
 	
+	public int getC_count() {
+		return c_count;
+	}
+	public void setC_count(int c_count) {
+		this.c_count = c_count;
+	}
+	public String getCid() {
+		return cid;
+	}
+	public void setCid(String cid) {
+		this.cid = cid;
+	}
+	public String getCcomment() {
+		return ccomment;
+	}
+	public void setCcomment(String ccomment) {
+		this.ccomment = ccomment;
+	}
+	public String getCdate() {
+		return cdate;
+	}
+	public void setCdate(String cdate) {
+		this.cdate = cdate;
+	}
 	public int getRno() {
 		return rno;
 	}

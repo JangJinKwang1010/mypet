@@ -88,5 +88,34 @@ public class DiaryDAO {
 	public int getFreeNdownUpdate(String fid) {
 		return sqlSession.update(namespace+".free_ndown_update", fid);
 	}
+	
+	public int getFreeCommentUpload(DiaryVO vo) {
+		return sqlSession.insert(namespace+".free_comment_upload", vo);
+	}
+	
+	public ArrayList<DiaryVO> getFreeCommentList(String fid) {
+		List<DiaryVO> list = sqlSession.selectList(namespace+".free_comment_list", fid);		
+		return (ArrayList<DiaryVO>)list;
+	}
+	
+	public int getFreeCommentDelete(String cid) {
+		return sqlSession.delete(namespace+".free_comment_delete", cid);
+	}
+	
+	public int getFreeCommentCount(String fid) {
+		return sqlSession.selectOne(namespace+".free_comment_count", fid);
+	}
+	
+	public int getFreeDelete(String fid) {
+		return sqlSession.delete(namespace+".free_delete", fid);
+	}
+	
+	public int getFreeUpdate(DiaryVO vo) {
+		return sqlSession.update(namespace+".free_update", vo);
+	}
+	
+	public int getFreeCommentUpdate(DiaryVO vo) {
+		return sqlSession.update(namespace+".free_comment_update", vo);
+	}
 
 }

@@ -71,8 +71,36 @@
 		update mypet_free_diary set fnheart = fnheart - 1 where fid = #{fid}
 	</update>
 	
-		<delete id="free_down_nheart" parameterType="com.mypet.vo.DiaryVO">
+	<delete id="free_down_nheart" parameterType="com.mypet.vo.DiaryVO">
 		delete from mypet_diary_heart where id=#{id} and fid=#{fid} and htype='down'
 	</delete>
+	
+	<insert id="free_comment_upload" parameterType="com.mypet.vo.DiaryVO">
+		insert into mypet_comment values(#{id}, 'c'||comment_seq.nextval, #{fid}, #{ccomment}, sysdate)
+	</insert>
+	
+	<select id="free_comment_list" parameterType="java.lang.String" resultType="com.mypet.vo.DiaryVO">
+		select * from mypet_comment where seq_id = #{fid} order by cdate
+	</select>
+	
+	<delete id="free_comment_delete" parameterType="java.lang.String">
+		delete from mypet_comment where cid=#{cid}
+	</delete>
+	
+	<select id="free_comment_count" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from mypet_comment where seq_id = #{fid}
+	</select>
+	
+	<delete id="free_delete" parameterType="java.lang.String">
+		delete from mypet_free_diary where fid=#{fid}
+	</delete>
+	
+	<update id="free_update" parameterType="com.mypet.vo.DiaryVO">
+		update mypet_free_diary set ftitle=#{ftitle}, fcontent=#{fcontent} where fid=#{fid}
+	</update>
+	
+	<update id="free_comment_update" parameterType="com.mypet.vo.DiaryVO">
+		update mypet_comment set ccomment=#{ccomment} where cid=#{cid}
+	</update>
 
 </mapper>
