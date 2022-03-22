@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Mypet</title>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="js/pet_address.js"></script>
 <style>
 	.section {
 		text-align:center;
@@ -110,7 +113,41 @@
 	.passmsg { color:gray;}
 	
 </style>
-</style>
+<script>
+	$(document).ready(function() {
+		
+		$(".update_btn").click(function() {
+			var email = $("#email").val();
+			var addr1 = $("#addr1").val();
+			var addr2 = $("#addr2").val();
+			
+			if ($("#email").val() == "") {
+				alert("이메일을 입력해주세요");
+				$("#email").focus();
+			} else if ($("#addr1").val() == "") {
+				alert("주소를 입력해주세요");
+				$("#addr1").focus();
+			} else if ($("#addr2").val() == "") {
+				alert("상세 주소를 입력해주세요");
+				$("#addr2").focus();
+			} else {
+				$.ajax({
+			        url:"mypage_update_proc.do",
+			        type:"post",
+			        data: {email:email, addr1:addr1, addr2:addr2},
+			        success:function(result){			       		  
+			       		if (result) {
+			       			alert("수정이 완료되었습니다");
+			       		} else {
+			       			alert("수정이 실패되었습니다");
+			       		}
+			       		location.reload();
+			       	},		
+			    });
+			}
+		});
+	});
+</script>
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -120,15 +157,15 @@
 		<div class="main">
 			<p class="title">개인정보수정<span></span></p>
 			<div class="joinbox">
-				<form name= "joinform" action= "join_proc.do" method="post"  autocomplete="off" >
+				<form autocomplete="off" >
 					<ul>						
 						<li><label>아이디</label></li>
-						<li><input type="text" value="${vo.id}" class="form-control" readonly></li>
+						<li><input type="text" value="${vo.id}" class="form-control" disabled></li>
 					</ul>
 					<ul>
 						<li><label>비밀번호</label></li>						
 						<li><input type="text" value="비공개" class="form-control" readonly></li>
-						<li><button type="button" class="pass_change">비밀번호 변경</button></li>
+						<li><button type="button" class="pass_change" onclick="location.href='mypage_pass.do' ">비밀번호 변경</button></li>
 					</ul>
 					<ul>
 						<li><label>이름</label></li>
@@ -140,15 +177,15 @@
 					</ul>
 					<ul>
 						<li><label>이메일 주소</label></li>
-						<li><input type="text" value="${vo.email }" class="form-control"></li>
+						<li><input type="text" value="${vo.email }" class="form-control" id="email"></li>
 					</ul>
 					<ul>
 						<li><label>주소</label></li>
-						<li><input type="text" placeholder="${vo.addr1 }" name="addr1" class="form-control " id="addr1" onclick="addr()" readonly></li>
-						<li><input type="text" placeholder="${vo.addr2 }" name="addr2" class="form-control " id="addr2" ></li>
+						<li><input type="text" value="${vo.addr1 }" name="addr1" class="form-control " id="addr1" onclick="addr()"></li>
+						<li><input type="text" value="${vo.addr2 }" name="addr2" class="form-control " id="addr2" ></li>
 						<li><button type="button" class="ad" onclick="addr()">주소변경</button></li>
 					</ul>
-					<button type="button" class="join_btn">수정완료</button>
+					<button type="button" class="update_btn">수정완료</button>
 				</form>
 			</div>
 		</div>

@@ -36,7 +36,7 @@
 	</insert>
 	
 	<select id="free_up_list" parameterType="java.lang.String" resultType="java.lang.Integer">
-		select count(*) from mypet_diary_heart where fid=#{fid} and htype='up'
+		select count(*) from mypet_diary_heart where seq_id=#{fid} and htype='up'
 	</select>
 	
 	<update id="free_up_update" parameterType="java.lang.String">
@@ -44,11 +44,11 @@
 	</update>
 	
 	<select id="free_up_info" parameterType="com.mypet.vo.DiaryVO" resultType="java.lang.Integer">
-		select count(*) from mypet_diary_heart where id=#{id} and fid=#{fid} and htype='up'
+		select count(*) from mypet_diary_heart where id=#{id} and seq_id=#{fid} and htype='up'
 	</select>
 	
 	<delete id="free_down_heart" parameterType="com.mypet.vo.DiaryVO">
-		delete from mypet_diary_heart where id=#{id} and fid=#{fid} and htype='up'
+		delete from mypet_diary_heart where id=#{id} and seq_id=#{fid} and htype='up'
 	</delete>
 	
 	<update id="free_down_update" parameterType="java.lang.String">
@@ -60,7 +60,7 @@
 	</insert>
 	
 	<select id="free_down_info" parameterType="com.mypet.vo.DiaryVO" resultType="java.lang.Integer">
-		select count(*) from mypet_diary_heart where id=#{id} and fid=#{fid} and htype='down'
+		select count(*) from mypet_diary_heart where id=#{id} and seq_id=#{fid} and htype='down'
 	</select>
 	
 	<update id="free_nup_update" parameterType="java.lang.String">
@@ -72,7 +72,7 @@
 	</update>
 	
 	<delete id="free_down_nheart" parameterType="com.mypet.vo.DiaryVO">
-		delete from mypet_diary_heart where id=#{id} and fid=#{fid} and htype='down'
+		delete from mypet_diary_heart where id=#{id} and seq_id=#{fid} and htype='down'
 	</delete>
 	
 	<insert id="free_comment_upload" parameterType="com.mypet.vo.DiaryVO">

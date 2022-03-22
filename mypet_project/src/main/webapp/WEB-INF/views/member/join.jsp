@@ -8,7 +8,7 @@
 <title>Mypet</title>
 <script src="js/jquery-3.6.0.min.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="js/address.js"></script>
+<script src="js/pet_address.js"></script>
 <style>
 	section {
 		width:100%;

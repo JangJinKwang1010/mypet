@@ -86,7 +86,31 @@
 	}
 </style>
 <script>
-	
+	$(document).ready(function() {
+		$(".delete_btn").click(function() {
+			if($("#pass").val() != "회원탈퇴") {
+				alert("문구를 다시 입력해주세요");
+				$("#pass").focus();
+			} else if($("#cpass").val() != "회원탈퇴") {
+				alert("문구를 다시 입력해주세요");
+				$("#cpass").focus();
+			} else {
+				$.ajax({
+			        url:"mypage_delete_proc.do",
+			        type:"post",
+			        success:function(result){			       		  
+			       		if (result) {
+			       			alert("회원탈퇴가 완료되었습니다. 감사합니다");
+			       			location.replace("logout.do");
+			       		} else {
+			       			alert("실패되었습니다");
+			       			location.reload();
+			       		}			       		
+			       	},		
+			    });
+			}
+		});
+	});
 </script>
 </head>
 <body>
@@ -99,15 +123,15 @@
 				<div class="findbox">
 					<form name= "findform" action= "find_proc.do" method="post"  autocomplete="off" >
 						<ul>
-							<li><label>회원탈퇴입력</label></li>
-							<li><input type="text" value="회원탈퇴" name="pass" class="form-control" id="pass"></li>
+							<li><label>회원탈퇴 입력</label></li>
+							<li><input type="text" placeholder="회원탈퇴 입력" name="pass" class="form-control" id="pass"></li>
 						</ul>
 						<ul>
-							<li><label>회원탈퇴확인</label></li>
-							<li><input type="text" placeholder="회원탈퇴확인" name="cpass" class="form-control" id="cpass"></li>
+							<li><label>회원탈퇴 확인</label></li>
+							<li><input type="text" placeholder="회원탈퇴 확인" name="cpass" class="form-control" id="cpass"></li>
 							<li>회원탈퇴를 위해 '회원탈퇴'를 입력 해주세요.</li>
 						</ul>
-						<button type="button" class="join_btn">확인</button>
+						<button type="button" class="delete_btn">확인</button>
 					</form>
 				</div>
 			</div>

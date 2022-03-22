@@ -9,7 +9,65 @@
 	<select id="member_info"  parameterType="java.lang.String" resultType="com.mypet.vo.MemberVO">
 		select * from mypet_member where id=#{id}
 	</select>
+	
  	<select id="mypage_inpass" parameterType="com.mypet.vo.MemberVO" resultType="java.lang.Integer">
  		select count(*) from mypet_member where id=#{id} and pass=#{pass}
  	</select>
+ 	
+ 	<update id="mypage_update" parameterType="com.mypet.vo.MemberVO">
+ 		update mypet_member set email=#{email}, addr1=#{addr1}, addr2=#{addr2} where id=#{id}
+ 	</update>
+ 	
+ 	<update id="mypage_update_care" parameterType="com.mypet.vo.MemberVO">
+ 		update mypet_care set email=#{email}, addr=#{addr1} where id=#{id}
+ 	</update>
+ 	
+ 	<update id="mypage_update_map" parameterType="com.mypet.vo.MemberVO">
+ 		update mypet_map set addr=#{addr1} where id=#{id}
+ 	</update>
+ 	
+ 	<update id="mypage_pass" parameterType="com.mypet.vo.MemberVO">
+ 		update mypet_member set pass=#{pass} where id=#{id}
+ 	</update>
+ 	
+ 	<select id="mypage_fid_list" parameterType="java.lang.String" resultType="com.mypet.vo.DiaryVO">
+ 		select fid from mypet_free_diary where id=#{id}
+ 	</select>
+ 	
+ 	<select id="mypage_nid_list" parameterType="java.lang.String" resultType="com.mypet.vo.NearVO">
+ 		select nid from mypet_near where id=#{id}
+ 	</select>
+ 	
+ 	<delete id="mypage_fid_delete" parameterType="java.lang.String">
+	 	{call
+		        declare
+		        begin
+ 					delete from mypet_comment where seq_id = #{fid};
+ 					delete from mypet_diary_heart where seq_id = #{fid};
+ 				end
+    	}
+ 	</delete>
+ 	
+ 	<delete id="mypage_nid_delete" parameterType="java.lang.String">
+ 		delete from mypet_heart where nid=#{nid}
+ 	</delete>
+ 	
+ 	<delete id="mypage_delete" parameterType="java.lang.String">
+	 	{call
+	        declare
+	        begin
+		 		delete from mypet_comment where id=#{id};
+		 		delete from mypet_diary_heart where id=#{id};
+		 		delete from mypet_free_diary where id=#{id};
+		 		delete from mypet_heart where id=#{id};
+		 		delete from mypet_map where id=#{id};
+		 		delete from mypet_near where id=#{id};
+		 		delete from mypet_pet where id=#{id};
+		 		delete from mypet_career where id=#{id};
+		 		delete from mypet_care where id=#{id};
+		 		delete from mypet_member where id=#{id};
+	 	end
+    }
+ 	</delete>
+ 	
 </mapper>

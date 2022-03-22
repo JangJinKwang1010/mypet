@@ -91,13 +91,40 @@
 </style>
 <script>
 	$(document).ready(function(){
+		var pass_result = false;
+		
 		/* 비밀번호 - 비밀번호 확인 체크 */
 		$("#cpass").blur(function() {
 			if ($("#pass").val() != $("#cpass").val() ) { //비밀번호와 비밀번호 확인이 같지 않으면~
 				$(".passmsg").text("비밀번호가 동일하지 않습니다.").css("color","red");
 				$("#cpass").val("").focus();
+				pass_result = false;
 			} else { //비밀번호와 비밀번호 확인이 같으면~
 				$(".passmsg").text("비밀번호가 동일합니다.").css("color","blue");
+				pass_result = true;
+			}
+		});
+		
+		$(".pass_btn").click(function() {
+			var pass = $("#pass").val();
+			if (pass_result) {
+				$.ajax({
+			        url:"mypage_pass_update_proc.do",
+			        type:"post",
+			        data: {pass:pass},
+			        success:function(result){			       		  
+			       		if (result) {
+			       			alert("비밀번호 변경이 완료되었습니다");
+			       			alert("변경된 비밀번호로 로그인 부탁드립니다")
+			       			location.replace("logout.do");
+			       		} else {
+			       			alert("실패되었습니다");
+			       			location.reload();
+			       		}			       		
+			       	},		
+			    });
+			} else {
+				alert("비밀번호가 일치하지 않습니다");
 			}
 		});
 	})
@@ -111,7 +138,7 @@
 		<div class="main id_pass">
 			<p class="title">비밀번호변경</p>
 			<div class="findbox">
-				<form name= "findform" action= "find_proc.do" method="post"  autocomplete="off" >
+				<form autocomplete="off" >
 					<ul>
 						<li><label>새 비밀번호</label></li>
 						<li><input type="password" placeholder="비밀번호" name="pass" class="form-control" id="pass"></li>
@@ -121,7 +148,7 @@
 						<li><input type="password" placeholder="비밀번호확인" name="cpass" class="form-control" id="cpass"></li>
 						<li class="passmsg">비밀번호 확인을 위해 다시 한번 입력 해주세요.</li>
 					</ul>
-					<button type="button" class="join_btn">확인</button>
+					<button type="button" class="pass_btn">확인</button>
 				</form>
 			</div>
 		</div>

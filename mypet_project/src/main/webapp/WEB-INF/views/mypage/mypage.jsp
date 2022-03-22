@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Mypet</title>
+<script src="js/jquery-3.6.0.min.js"></script>
 <style>
 	.section {
 		text-align:center;
@@ -90,18 +91,23 @@
 </style>
 <script>
 	$(document).ready(function(){
-		/* 비밀번호 - 비밀번호 확인 체크 */
-		$("#cpass").blur(function() {
-			if ($("#pass").val() != $("#cpass").val() ) { //비밀번호와 비밀번호 확인이 같지 않으면~
-				$(".passmsg").text("비밀번호가 동일하지 않습니다.").css("color","red");
-				$("#cpass").val("").focus();
-			} else { //비밀번호와 비밀번호 확인이 같으면~
-				$(".passmsg").text("비밀번호가 동일합니다.").css("color","blue");
-			}
-		});
+		var result = false;
 		
 		$(".ok_btn").click(function() {
-			okform.submit();
+			var pass = $("#pass").val();
+			$.ajax({
+		        url:"ok_proc.do",
+		        type:"post",
+		        data: {pass:pass},
+		        success:function(result){			       		  
+		       		if (result) {
+		       			location.replace("mypage_update.do"); 		
+		       		} else {
+		       			alert("비밀번호가 일치하지 않습니다");
+		       			location.reload();
+		       		}
+		       	},		
+		    });
 		});
 	})
 </script>
@@ -114,7 +120,7 @@
 		<div class="main id_pass">
 			<p class="title">비밀번호확인</p>
 			<div class="findbox">
-				<form name= "okform" action= "ok_proc.do" method="post"  autocomplete="off" >
+				<form autocomplete="off" >
 					<ul>
 						<li><label>비밀번호입력</label></li>
 						<li><input type="password" placeholder="비밀번호" name="pass" class="form-control" id="pass"></li>

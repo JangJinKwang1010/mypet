@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="js/jquery-3.6.0.min.js"></script>
 </head>
 <style>	
 	.title_div {
@@ -57,10 +58,84 @@
 	.menu_ul li {
 		margin:5px 0;
 		font-size:15px;
+		 text-decoration:none; color:gray;
 	}
-	.menu_ul a { text-decoration:none; color:gray; }
-	.menu_ul a:hover { text-decoration:underline; }
+	.menu_ul li:hover { text-decoration:underline; cursor:pointer; }
 </style>
+<script>
+	$(document).ready(function() {
+		$(".mypage_update").click(function() {
+			$.ajax({
+		        url:"mypage_pass_proc.do",
+		        type:"post",
+		        success:function(result){			       		  
+		       		if (result) {
+		       			location.replace("mypage_update.do"); 		
+		       		} else {
+		       			alert("비밀번호 확인 후 이용가능합니다");
+		       		}
+		       	},		
+		    });
+		});
+		
+		$(".mypage_pass").click(function() {
+			$.ajax({
+		        url:"mypage_pass_proc.do",
+		        type:"post",
+		        success:function(result){			       		  
+		       		if (result) {
+		       			location.replace("mypage_pass.do"); 		
+		       		} else {
+		       			alert("비밀번호 확인 후 이용가능합니다");
+		       		}
+		       	},		
+		    });
+		});
+		
+		$(".mypage_delete").click(function() {
+			$.ajax({
+		        url:"mypage_pass_proc.do",
+		        type:"post",
+		        success:function(result){			       		  
+		       		if (result) {
+		       			location.replace("mypage_delete.do"); 		
+		       		} else {
+		       			alert("비밀번호 확인 후 이용가능합니다");
+		       		}
+		       	},		
+		    });
+		});
+		
+		$(".mypage_near").click(function() {
+			$.ajax({
+		        url:"mypage_pass_proc.do",
+		        type:"post",
+		        success:function(result){			       		  
+		       		if (result) {
+		       			location.replace("mypage_near.do"); 		
+		       		} else {
+		       			alert("비밀번호 확인 후 이용가능합니다");
+		       		}
+		       	},		
+		    });
+		});
+		
+		$(".mypage_post").click(function() {
+			$.ajax({
+		        url:"mypage_pass_proc.do",
+		        type:"post",
+		        success:function(result){			       		  
+		       		if (result) {
+		       			location.replace("mypage_post.do"); 		
+		       		} else {
+		       			alert("비밀번호 확인 후 이용가능합니다");
+		       		}
+		       	},		
+		    });
+		});
+		
+	});
+</script>
 <body>
 	<div class="title_div"><p class="title">마이페이지<span>My page</span></p></div>
 	<div class ="mainbox2">
@@ -69,17 +144,17 @@
 				<li>회원정보</li>
 			</ul>
 			<ul class="menu_ul">
-				<a href="mypage_update.do" ><li>개인정보수정</li></a>
-				<a href="mypage_pass.do" ><li>비밀번호변경</li></a>
-				<a href="mypage_delete.do"><li>회원탈퇴</li></a>
+				<li class="mypage_update">개인정보수정</li>
+				<li class="mypage_pass">비밀번호변경</li>
+				<li class="mypage_delete">회원탈퇴</li>
 			</ul>
 			
 			<ul class="title_ul">
 				<li>이용현황</li>
 			</ul>
 			<ul class="menu_ul">
-				<a href="mypage_nearpet.do"><li>내 근처의 펫</li></a>
-				<a href="mypage_postmanager.do"><li>게시물 관리</li></a>
+				<li  class="mypage_near">내 근처의 펫</li>
+				<li class="mypage_post">게시물 관리</li>
 			</ul>		
 		</div>			
 	</div>
