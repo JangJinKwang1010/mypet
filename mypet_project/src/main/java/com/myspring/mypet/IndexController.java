@@ -26,6 +26,9 @@ public class IndexController {
 		String id = (String)session.getAttribute("session_id");
 		if (id != null) {
 			MemberVO vo = MemberDAO.getIndexInfo(id);
+			int Dcount = MemberDAO.getDcount(id);
+			int Ccount = MemberDAO.getCcount(id);
+			vo.setDcount(Dcount);  vo.setCcount(Ccount);
 			mv.addObject("vo", vo);
 		}
 		

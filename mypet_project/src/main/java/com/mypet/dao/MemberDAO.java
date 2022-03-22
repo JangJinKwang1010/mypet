@@ -50,6 +50,18 @@ public class MemberDAO {
 		return sqlSession.update(namespace+".pass_change", vo);
 	}
 	
+	public int getMcount(MemberVO vo) {
+		return sqlSession.update(namespace+".mcount", vo);
+	}
+	
+	public int getDcount(String id) {
+		return sqlSession.selectOne(namespace+".dcount", id);
+	}
+	
+	public int getCcount(String id) {
+		return sqlSession.selectOne(namespace+".ccount", id);
+	}
+	
 	
 
 }

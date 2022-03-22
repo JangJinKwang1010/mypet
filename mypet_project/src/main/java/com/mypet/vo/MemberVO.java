@@ -2,9 +2,34 @@ package com.mypet.vo;
 
 public class MemberVO {
 String id, pass, name, hp, email, addr1, addr2, mdate, birth, birth1, birth2, birth3, gender;
+int mcount, dcount, ccount;
 
 	
 	
+	public int getDcount() {
+		return dcount;
+	}
+	
+	public void setDcount(int dcount) {
+		this.dcount = dcount;
+	}
+	
+	public int getCcount() {
+		return ccount;
+	}
+	
+	public void setCcount(int ccount) {
+		this.ccount = ccount;
+	}
+
+	public int getMcount() {
+		return mcount;
+	}
+	
+	public void setMcount(int mcount) {
+		this.mcount = mcount;
+	}
+
 	public String getBirth1() {
 		return birth1;
 	}

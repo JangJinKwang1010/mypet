@@ -384,9 +384,9 @@
 				 			<button>내정보</button>
 				 			<button onclick="chat_open()">채팅목록</button>
 				 			<p>가입 ${vo.mdate }</p>
-				 			<p><img src="images/visit.png" width=15px; height=15px;>방문 1회</p>
-				 			<p><img src="images/write.png" width=15px; height=15px;>내가 쓴 글 5개</p>
-				 			<p><img src="images/comment.png" width=15px; height=15px;>내가 쓴 댓글 15개</p>
+				 			<p><img src="images/visit.png" width=15px; height=15px;>방문 ${vo.mcount }회</p>
+				 			<p><img src="images/write.png" width=15px; height=15px;>내가 쓴 글 ${vo.dcount }개</p>
+				 			<p><img src="images/comment.png" width=15px; height=15px;>내가 쓴 댓글 ${vo.ccount }개</p>
 				 		</div>
 				 		<div class="loginmypet">
 				 			<div class="loginpetpicture">

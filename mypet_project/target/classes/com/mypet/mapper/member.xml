@@ -7,7 +7,7 @@
 <mapper namespace="mapper.member">
 
 	<insert id="join" parameterType="com.mypet.vo.MemberVO">
-		insert into mypet_member values(#{id}, #{pass}, #{name}, #{birth}, #{gender}, #{hp}, #{email}, #{addr1}, #{addr2}, sysdate)
+		insert into mypet_member values(#{id}, #{pass}, #{name}, #{birth}, #{gender}, #{hp}, #{email}, #{addr1}, #{addr2}, sysdate, 0)
 	</insert>
 	
 	<select id="login" parameterType="com.mypet.vo.MemberVO" resultType="java.lang.Integer">
@@ -23,7 +23,7 @@
 	</select>
 	
 	<select id="index_info" parameterType="java.lang.String" resultType="com.mypet.vo.MemberVO">
-		select id, email, to_char(mdate, 'yyyy.mm.dd') mdate from mypet_member where id=#{id}
+		select id, email, to_char(mdate, 'yyyy.mm.dd') mdate, mcount from mypet_member where id=#{id}
 	</select>
 	
 	<select id="id_find_check" parameterType="com.mypet.vo.MemberVO"  resultType="java.lang.Integer">
@@ -41,5 +41,17 @@
 	<update id="pass_change" parameterType="com.mypet.vo.MemberVO">
 		update mypet_member set pass=#{pass} where id=#{id}
 	</update>
+	
+	<update id="mcount" parameterType="java.lang.String">
+		update mypet_member set mcount = mcount+1 where id=#{id}
+	</update>
+	
+	<select id="dcount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from mypet_free_diary where id=#{id}
+	</select>
+	
+	<select id="ccount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from mypet_comment where id=#{id}
+	</select>
 
 </mapper>
