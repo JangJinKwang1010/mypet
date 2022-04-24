@@ -23,7 +23,7 @@
 	</insert>
 	
 	<select id="near_list" resultType="com.mypet.vo.NearVO">
-		select nid, id, kind, work, startdate, enddate, hit, title  from mypet_near order by startdate desc
+		select *  from mypet_near order by startdate desc
 	</select>
 	
 	<select id="map_list" resultType="com.mypet.vo.NearVO">
@@ -70,5 +70,8 @@
 		update mypet_map set category=#{category} where nid=#{nid}
 	</update>
 	
+	<select id="near_pet" parameterType="java.lang.String" resultType="java.lang.String">
+		select category from mypet_pet where pid=#{pid}
+	</select>	
 
 </mapper>

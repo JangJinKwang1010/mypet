@@ -268,7 +268,7 @@
 			<div class ="mainbox2 picturebox">
 				<p class="subtitle"><span class="free_diary">자유게시판</span>사진게시판</p>
 				<div class="board">
-					<a href="#">
+					<a href="diary_pictures_contents.do">
 						<div class="picture_div">
 							<div class="picture">
 								<img src="images/dog_ex1.png" width=100%; height=100%; >
@@ -349,7 +349,7 @@
 						  </ul>
 						</nav>						
 					</div>
-					<button class="write" onclick="">글쓰기</button>
+					<button class="write" onclick="location.href='diary_pictures_writing.do'">글쓰기</button>
 				</div>
 			</div>	
 		</div>			

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mypet.dao.MypageDAO;
+import com.mypet.dao.NearDAO;
 import com.mypet.vo.DiaryVO;
 import com.mypet.vo.MemberVO;
 import com.mypet.vo.NearVO;
@@ -24,6 +25,9 @@ public class MypageController {
 	
 	@Autowired
 	private MypageDAO MypageDAO;
+	
+	@Autowired
+	private NearDAO NearDAO;
 	
 	@RequestMapping(value="/mypage.do") 
 	public String mypage() {
@@ -168,7 +172,23 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value="/mypage_near.do") 
-	public String mypage_near() {
-		return "mypage/mypage_near";
+	public ModelAndView mypage_near(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession(); //技记 积己
+		String id= (String)session.getAttribute("session_id");
+		
+		ArrayList<NearVO> list = MypageDAO.getMypageNear(id);
+		for (int i=0; i<list.size(); i++) {
+			list.get(i).setCategory(NearDAO.getNearPet(list.get(i).getPid()));
+			
+			String s[] = list.get(i).getStartdate().split(" ");
+			list.get(i).setStartdate(s[0]);
+			
+		}
+		
+		mv.addObject("list", list);		
+		mv.setViewName("mypage/mypage_near");
+		
+		return mv;
 	}
 }

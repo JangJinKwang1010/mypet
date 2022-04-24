@@ -64,5 +64,10 @@ public class MypageDAO {
 	public int getMypageNidDelete(String nid) {
 		return sqlSession.delete(namespace+".mypage_nid_delete", nid);
 	}
+	
+	public ArrayList<NearVO> getMypageNear(String id) {
+		List<NearVO> list = sqlSession.selectList(namespace+".mypage_near", id);		
+		return (ArrayList<NearVO>)list;
+	}
 
 }

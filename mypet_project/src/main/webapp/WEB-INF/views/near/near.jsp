@@ -267,6 +267,7 @@ $(document).ready(function() {
 		}
 		
 		flag = true;
+	
 	});
 	
 	
@@ -286,7 +287,7 @@ $(document).ready(function() {
 			<c:if test="${!empty list}">
 				<c:forEach var = "vo"  items="${list}"  begin="0" end="2">
 					<div onclick="location.href='near_contents.do?nid=${vo.nid}' " class="more_div1">
-						<p class="p_title" ><span class="logo">강아지</span>[${vo.kind }]<span class="text">${vo.title }</span></p>
+						<p class="p_title" ><span class="logo">${vo.category }</span>[${vo.kind }]<span class="text">${vo.title }</span></p>
 						<p class="option">
 							<span><img src="images/paw.png">경력 ${vo.work }</span>
 							<span><img src="images/calendar.png">${vo.startdate } ~ ${vo.enddate }</span>
@@ -296,7 +297,7 @@ $(document).ready(function() {
 				</c:forEach>
 				<c:forEach var = "vo"  items="${list}" begin="3" end="${fn:length(list)-1}" >		
 					<div onclick="location.href='near_contents.do?nid=${vo.nid}' " class="more_div2">
-						<p class="p_title" ><span class="logo">강아지</span>[${vo.kind }]<span class="text">${vo.title }</span></p>
+						<p class="p_title" ><span class="logo">${vo.category }</span>[${vo.kind }]<span class="text">${vo.title }</span></p>
 						<p class="option">
 							<span><img src="images/paw.png">경력 ${vo.work }</span>
 							<span><img src="images/calendar.png">${vo.startdate } ~ ${vo.enddate }</span>

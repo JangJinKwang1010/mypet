@@ -82,6 +82,10 @@ public class NearDAO {
 	public int getMapUpdateUpload(NearVO vo) {
 		return sqlSession.update(namespace+".map_update_upload", vo);
 	}
+	
+	public String getNearPet(String pid) {
+		return sqlSession.selectOne(namespace+".near_pet", pid);
+	}
 
 
 }

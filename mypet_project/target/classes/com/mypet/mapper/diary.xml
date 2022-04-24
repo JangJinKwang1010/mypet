@@ -102,5 +102,9 @@
 	<update id="free_comment_update" parameterType="com.mypet.vo.DiaryVO">
 		update mypet_comment set ccomment=#{ccomment} where cid=#{cid}
 	</update>
+	
+	<insert id="pictures_upload" parameterType="com.mypet.vo.DiaryVO">
+		insert into mypet_pictures_diary values ('p'||pictures_seq.nextval, #{id}, #{ptitle}, sysdate, #{pfile}, #{psfile}, #{ptag}, 0, 0, 0)
+	</insert>
 
 </mapper>

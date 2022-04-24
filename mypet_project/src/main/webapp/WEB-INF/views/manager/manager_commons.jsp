@@ -112,20 +112,20 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 				<li>회원관리</li>
 			</ul>
 			<ul class="menu_ul">
-				<a href="mypage_pass.do" ><li>일반회원관리</li></a>
+				<a href="manager_member.do" ><li>일반회원관리</li></a>
 			</ul>
 			<ul class="title_ul">
 				<li>펫관리</li>
 			</ul>
 			<ul class="menu_ul">
-				<a href="mypage_nearpet.do"><li>펫관리</li></a>
+				<a href="manager_pet.do"><li>펫관리</li></a>
 			</ul>
 			<ul class="title_ul">
 				<li>게시물관리</li>
 			</ul>
 			<ul class="menu_ul">
-				<a href="mypage_nearpet.do"><li>내 근처의 펫</li></a>
-				<a href="mypage_nearpet.do"><li>펫 일기</li></a>
+				<a href="manager_near.do"><li>내 근처의 펫</li></a>
+				<a href="manager_diary.do"><li>펫 일기</li></a>
 			</ul>		
 		</div>			
 	</div>

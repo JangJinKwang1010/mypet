@@ -281,7 +281,7 @@
 				</div>
 				</c:if>
 				<div class="writing_line"></div>
-				<p class="post_title"><span class="logo">강아지</span>${vo.title }</p>
+				<p class="post_title"><span class="logo">${vo.category }</span>${vo.title }</p>
 				<p class="name">${vo.id }</p>
 				<div class="post_line"></div>
 				<p class="post_date">${vo.startdate }</p>

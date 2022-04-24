@@ -40,6 +40,10 @@ public class NearController {
 		}		
 		
 		ArrayList<NearVO> list = nearDAO.getNearList();
+		for (int i=0; i<list.size(); i++) {
+			list.get(i).setCategory(nearDAO.getNearPet(list.get(i).getPid()));
+		}
+		
 		ArrayList<NearVO> mlist = nearDAO.getMapList();
 		for (int i=0; i<mlist.size(); i++) {
 			PetVO vo = petDAO.getPetContent(mlist.get(i).getPid());
@@ -81,6 +85,7 @@ public class NearController {
 		}
 		
 		NearVO vo = nearDAO.getNearContent(nid);
+		vo.setCategory(nearDAO.getNearPet(vo.getPid()));
 				
 		mv.addObject("vo", vo);
 		mv.setViewName("near/near_contents");

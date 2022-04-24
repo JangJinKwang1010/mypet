@@ -307,6 +307,7 @@
 </style>
 <script>
 	$(document).ready(function() {
+		
 		$(".heart").click(function() {
 			<c:if test = "${session_id eq null}">
 				alert("로그인 후 이용가능합니다");

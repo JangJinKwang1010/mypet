@@ -1,6 +1,8 @@
 package com.myspring.mypet;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mypet.dao.DiaryDAO;
@@ -77,9 +80,14 @@ public class DiaryController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/diary_reading_pictures.do")
-	public String diary_reading_pictures() {
-		return "diary/diary_reading_pictures";
+	@RequestMapping(value="/diary_pictures_contents.do")
+	public String diary_pictures_contents() {
+		return "diary/diary_pictures_contents";
+	}
+
+	@RequestMapping(value="/diary_pictures_writing.do")
+	public String diary_pictures_writing() {
+		return "diary/diary_pictures_writing";
 	}
 	
 	@ResponseBody
@@ -190,6 +198,42 @@ public class DiaryController {
 		DiaryVO vo = new DiaryVO();
 		vo.setCid(cid); vo.setCcomment(ccomment);
 		DiaryDAO.getFreeCommentUpdate(vo);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/pictures_upload.do", method=RequestMethod.POST)
+	public boolean pictures_upload(DiaryVO vo, MultipartHttpServletRequest request) throws Exception {
+		boolean result = false;
+		HttpSession session = request.getSession(); //技记 积己
+		vo.setId((String)session.getAttribute("session_id"));
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+		String attach_path = "\\resources\\upload\\";
+
+		// rfname 吝汗规瘤 贸府
+		UUID uuid = UUID.randomUUID();
+		
+		String ptag[] = vo.getTrue_ptag().split("@");
+		String pfile = "";
+		String psfile = "";
+		for (int i = 0; i<ptag.length; i++) {
+			pfile = pfile+ "@" +vo.pfile(i).getOriginalFilename();
+			psfile = psfile + "@" + uuid + "_" + vo.pfile(i).getOriginalFilename();
+		}
+		vo.setPfile(pfile); vo.setPsfile(psfile);
+		vo.setPtag(vo.getTrue_ptag());
+		
+		String psfile2[] = psfile.split("@");
+		
+		int val = DiaryDAO.getPicturesUpload(vo);		
+		if (val!=0) {
+			
+			for (int i=0; i<psfile2.length; i++) {
+				 File f = new File(root_path + attach_path + psfile2[i]); 
+				 vo.pfile(i).transferTo(f); 
+			}			
+		}
+		
+		return result;
 	}
 	
 }

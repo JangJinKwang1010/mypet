@@ -117,5 +117,9 @@ public class DiaryDAO {
 	public int getFreeCommentUpdate(DiaryVO vo) {
 		return sqlSession.update(namespace+".free_comment_update", vo);
 	}
+	
+	public int getPicturesUpload(DiaryVO vo) {
+		return sqlSession.insert(namespace+".pictures_upload", vo);
+	}
 
 }

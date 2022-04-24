@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+         <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+          <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,10 +76,48 @@
 		margin-right:20px;
 	}
 	.user { text-align:left; margin:15px 30px; font-size:15px; }
+	  .btn_style {
+		width:65px;
+		background-color:white;
+		border:2px solid lightgray;
+		border-radius:50px;
+		padding:10px;
+		color:lightgray;
+		font-size:15px;
+		font-weight:bold;
+		text-align:center;
+		margin:20px 0;
+		cursor:pointer;
+	}
+	.btn_style:hover {
+		border:2px solid #4fa9de;
+		color:#4fa9de;
+	}
 	
+	.more_div1 { display:inline-block; }
+	.more_div2 { display:none; }
 </style>
 <script>
+$(document).ready(function() {
+	var flag = false;
 	
+	$('#more_btn').hover(function() {
+	 	$("#more_img").attr("src", "images/btn.png");
+	}, function(){
+		$("#more_img").attr("src", "images/btn2.png");
+	});
+
+	$("#more_btn").click(function() {
+		$(".more_div2").css("display","inline-block");
+		
+		if (flag) {
+			alert("마지막 페이지입니다");
+		}
+
+		flag = true;
+				
+	});
+})
 </script>
 </head>
 <body>
@@ -86,40 +127,35 @@
 			<jsp:include page="mypage_commons.jsp"></jsp:include>
 			<div class="main postmanager">
 				<p class="title2">내 근처의 펫<span></span></p>
-				<div class="list">
-			<div>
-				<p class="p_title"><span class="logo">강아지</span>[강아지] 비숑<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
-				<p class="option">
-					<span><img src="images/paw.png">경력 1년이상</span>
-					<span><img src="images/calendar.png">2021/11/13 - 2021/12/31</span>
-				</p>
-				<p class="user">qoolp79(장**)</p>
+			<div class="list">
+			<c:if test="${!empty list}">
+				<c:forEach var = "vo"  items="${list}"  begin="0" end="2">
+					<div onclick="location.href='near_contents.do?nid=${vo.nid}' " class="more_div1">
+						<p class="p_title" ><span class="logo">${vo.category }</span>[${vo.kind }]<span class="text">${vo.title }</span></p>
+						<p class="option">
+							<span><img src="images/paw.png">경력 ${vo.work }</span>
+							<span><img src="images/calendar.png">${vo.startdate } ~ ${vo.enddate }</span>
+						</p>
+						<p class="user">${vo.id }(${vo.name }**)</p>
+					</div>
+				</c:forEach>
+				<c:forEach var = "vo"  items="${list}" begin="3" end="${fn:length(list)-1}" >		
+					<div onclick="location.href='near_contents.do?nid=${vo.nid}' " class="more_div2">
+						<p class="p_title" ><span class="logo">${vo.category }</span>[${vo.kind }]<span class="text">${vo.title }</span></p>
+						<p class="option">
+							<span><img src="images/paw.png">경력 ${vo.work }</span>
+							<span><img src="images/calendar.png">${vo.startdate } ~ ${vo.enddate }</span>
+						</p>
+						<p class="user">${vo.id }(${vo.name }**)</p>
+					</div>
+				</c:forEach>
+			</c:if>
 			</div>
 			<div>
-				<p class="p_title"><span class="logo">강아지</span>[강아지] 비숑<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
-				<p class="option">
-					<span><img src="images/paw.png">경력 1년이상</span>
-					<span><img src="images/calendar.png">2021/11/13 - 2021/12/31</span>
-				</p>
-				<p class="user">qoolp79(장**)</p>
+				<button type="button" class="btn_style" id="more_btn">more
+					<img src="images/btn2.png" id="more_img">
+				</button>
 			</div>
-			<div>
-				<p class="p_title"><span class="logo">강아지</span>[강아지] 비숑<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
-				<p class="option">
-					<span><img src="images/paw.png">경력 1년이상</span>
-					<span><img src="images/calendar.png">2021/11/13 - 2021/12/31</span>
-				</p>
-				<p class="user">qoolp79(장**)</p>
-			</div>
-			<div>
-				<p class="p_title"><span class="logo">강아지</span>[강아지] 비숑<span class="text">저희 비숑 잠시 맡겨주실 분을 구합니다</span></p>
-				<p class="option">
-					<span><img src="images/paw.png">경력 1년이상</span>
-					<span><img src="images/calendar.png">2021/11/13 - 2021/12/31</span>
-				</p>
-				<p class="user">qoolp79(장**)</p>
-			</div>
-			
 		</div>			
 			</div>
 		</div>
