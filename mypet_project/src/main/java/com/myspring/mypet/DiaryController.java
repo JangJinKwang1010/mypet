@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mypet.dao.DiaryDAO;
@@ -24,8 +25,8 @@ public class DiaryController {
 	@Autowired
 	private DiaryDAO DiaryDAO;
 	
-	@RequestMapping(value="/diary.do", method= {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView diary(String pnum) {
+	@RequestMapping(value="/diary_free.do", method= {RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView diary_free(String pnum) {
 		ModelAndView mv = new ModelAndView();
 		int pageNumber = 1;
 		 
@@ -55,7 +56,7 @@ public class DiaryController {
 		mv.addObject("free_list", free_list);
 		mv.addObject("targetpage", String.valueOf(targetpage));
 		mv.addObject("pageNumber", String.valueOf(pageNumber));
-		mv.setViewName("diary/diary");
+		mv.setViewName("diary/diary_free");
 		
 		return mv;
 	}
@@ -215,25 +216,66 @@ public class DiaryController {
 		String ptag[] = vo.getTrue_ptag().split("@");
 		String pfile = "";
 		String psfile = "";
+		
 		for (int i = 0; i<ptag.length; i++) {
 			pfile = pfile+ "@" +vo.pfile(i).getOriginalFilename();
 			psfile = psfile + "@" + uuid + "_" + vo.pfile(i).getOriginalFilename();
 		}
+		
+		String psfile2[] = psfile.split("@");		
+		
 		vo.setPfile(pfile); vo.setPsfile(psfile);
 		vo.setPtag(vo.getTrue_ptag());
-		
-		String psfile2[] = psfile.split("@");
 		
 		int val = DiaryDAO.getPicturesUpload(vo);		
 		if (val!=0) {
 			
-			for (int i=0; i<psfile2.length; i++) {
-				 File f = new File(root_path + attach_path + psfile2[i]); 
-				 vo.pfile(i).transferTo(f); 
-			}			
+			for (int j=1; j<psfile2.length-1; j++) {
+				 File f = new File(root_path + attach_path + psfile2[j]); 
+				 vo.pfile(j).transferTo(f); 
+			}	
+			
+			result = true;
+			
 		}
 		
 		return result;
+	}
+	
+	@RequestMapping(value="/diary_pictures.do", method= {RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView diary_pictures(String pnum) {
+		ModelAndView mv = new ModelAndView();
+		int pageNumber = 1;
+		 
+		if(pnum != null) {
+	  		pageNumber = Integer.parseInt(pnum);
+	  	}
+		
+		int startnum = ((pageNumber-1)*10) +1;
+		int endnum = pageNumber*10; 
+		int pagenum = (pageNumber -1) * 10;
+		int target = 0;
+		
+		ArrayList<DiaryVO> free_list = DiaryDAO.getFreeList(startnum,endnum);
+		for (int i=0; i<free_list.size(); i++) {
+			free_list.get(i).setFheart(DiaryDAO.getFreeUpList(free_list.get(i).getFid()));
+			free_list.get(i).setC_count(DiaryDAO.getFreeCommentCount(free_list.get(i).getFid()));
+		}
+		
+		target = DiaryDAO.targetPage(pagenum);
+		int targetpage = 0;
+		if(pageNumber != 1 ) {
+			targetpage = (target-2) / 10 ;
+		} else {
+			targetpage = (target-1) / 10 ;
+		}
+		
+		mv.addObject("free_list", free_list);
+		mv.addObject("targetpage", String.valueOf(targetpage));
+		mv.addObject("pageNumber", String.valueOf(pageNumber));
+		mv.setViewName("diary/diary_pictures");
+		
+		return mv;
 	}
 	
 }

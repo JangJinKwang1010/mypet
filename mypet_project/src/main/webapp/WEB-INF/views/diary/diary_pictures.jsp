@@ -190,83 +190,7 @@
 		<div class="mainbox">
 			<p class="title">펫 일기<span>Pet Diary</span></p>
 			<div class ="mainbox2 freebox">
-				<p class="subtitle">자유게시판<span class="picture_diary">사진게시판</span></p>
-				<div class="board">
-					<table class="board2 table table-hover">
-						<thead style="border-bottom:1px solid; ">
-							<tr>
-								<th>번호</th>
-								<th width=650px;>제목</th>
-								<th>글쓴이</th>
-								<th width=150px;>등록일</th>
-								<th width=60px;>추천수</th>
-								<th width=60px;>조회수</th>
-							</tr>
-						</thead>
-						<tbody>
-						<c:forEach var = "vo"  items="${free_list}"  >
-							<tr onclick="location.href='diary_free_contents.do?fid=${vo.fid}'" style="border-bottom:1px solid lightgray;">
-								<th>${vo.rno }</th>
-								<td>${vo.ftitle }<span style="color:red"><c:if test="${vo.c_count ne 0 }"> [${vo.c_count }]</c:if></span></td>
-								<td>${vo.id }</td>
-								<td>${vo.fdate }</td>
-								<td>${vo.fheart }</td>
-								<td>${vo.fhit }</td>
-							</tr>
-						</c:forEach>
-						</tbody>
-					</table>
-					<div class="page">
-						<nav aria-label="...">
-							<ul class = "pagination" style="margin: 0 auto;">
-							<%	
-								String pageNumber = String.valueOf(pageContext.getAttribute("pageNumber"));
-								int startPage = (Integer.parseInt(pageNumber) / 10) *10 + 1; 
-								if(Integer.parseInt(pageNumber) % 10 == 0) startPage -= 10;
-								int targetPage = Integer.parseInt(String.valueOf(pageContext.getAttribute("targetpage")));
-								if(startPage != 1) {
-							%>
-								<li><a href="diary.do?pnum=<%= startPage -1 %>"><span><</span></a></li>
-							<%
-								} else {
-							%>
-								<li><span style="color: gray;"><</span></li>
-							<%
-								}
-								for(int i = startPage; i < Integer.parseInt(pageNumber); i++) {
-							%>
-								<li><a href="diary.do?pnum=<%= i %>" style="color: #000000;"><%= i %></a></li>
-							<%
-								}
-							%>
-								<li class="active_page" ><a href="diary.do?pnum=<%= pageNumber %>" style="background-color: #337ab7;color: #ffffff;"><%= pageNumber %></a></li>
-							<%
-								for(int i = Integer.parseInt(pageNumber) + 1; i <= targetPage + Integer.parseInt(pageNumber); i++) {
-									if(i < startPage +10) {
-							%>
-								<li><a href="diary.do?pnum=<%= i %>" style="color: #000000;"><%= i %></a></li>
-							<%
-									}
-								}
-								if(targetPage + Integer.parseInt(pageNumber) > startPage + 9){
-							%>
-								<li><a href="diary.do?pnum=<%= startPage + 10 %>" style= "color: #000000;"><span>></span></a></li>
-							<%
-								} else {
-							%>
-								<li><span style="color: gray;">></span></li>
-							<%		
-								}
-							%>
-							</ul>	
-						</nav>			
-					</div>
-					<button class="write" onclick="location.href='diary_free_writing.do' ">글쓰기</button>
-				</div>
-			</div>				
-		
-			<div class ="mainbox2 picturebox">
-				<p class="subtitle"><span class="free_diary">자유게시판</span>사진게시판</p>
+				<p class="subtitle"><span class="free_diary" onclick="location.href='diary_free.do'">자유게시판</span>사진게시판</p>
 				<div class="board">
 					<a href="diary_pictures_contents.do">
 						<div class="picture_div">
@@ -340,19 +264,53 @@
 					</a>
 					<div class="page">
 						<nav aria-label="...">
-						  <ul class="pagination pagination-sm">
-						    <li class="page-item active" aria-current="page">
-						      <span class="page-link">1</span>
-						    </li>
-						    <li class="page-item"><a class="page-link" href="#">2</a></li>
-						    <li class="page-item"><a class="page-link" href="#">3</a></li>
-						  </ul>
-						</nav>						
+							<ul class = "pagination" style="margin: 0 auto;">
+							<%	
+								String pageNumber = String.valueOf(pageContext.getAttribute("pageNumber"));
+								int startPage = (Integer.parseInt(pageNumber) / 10) *10 + 1; 
+								if(Integer.parseInt(pageNumber) % 10 == 0) startPage -= 10;
+								int targetPage = Integer.parseInt(String.valueOf(pageContext.getAttribute("targetpage")));
+								if(startPage != 1) {
+							%>
+								<li><a href="diary_free.do?pnum=<%= startPage -1 %>"><span><</span></a></li>
+							<%
+								} else {
+							%>
+								<li><span style="color: gray;"><</span></li>
+							<%
+								}
+								for(int i = startPage; i < Integer.parseInt(pageNumber); i++) {
+							%>
+								<li><a href="diary_free.do?pnum=<%= i %>" style="color: #000000;"><%= i %></a></li>
+							<%
+								}
+							%>
+								<li class="active_page" ><a href="diary_free.do?pnum=<%= pageNumber %>" style="background-color: #337ab7;color: #ffffff;"><%= pageNumber %></a></li>
+							<%
+								for(int i = Integer.parseInt(pageNumber) + 1; i <= targetPage + Integer.parseInt(pageNumber); i++) {
+									if(i < startPage +10) {
+							%>
+								<li><a href="diary_free.do?pnum=<%= i %>" style="color: #000000;"><%= i %></a></li>
+							<%
+									}
+								}
+								if(targetPage + Integer.parseInt(pageNumber) > startPage + 9){
+							%>
+								<li><a href="diary_free.do?pnum=<%= startPage + 10 %>" style= "color: #000000;"><span>></span></a></li>
+							<%
+								} else {
+							%>
+								<li><span style="color: gray;">></span></li>
+							<%		
+								}
+							%>
+							</ul>	
+						</nav>			
 					</div>
 					<button class="write" onclick="location.href='diary_pictures_writing.do'">글쓰기</button>
 				</div>
-			</div>	
-		</div>			
+				</div>
+			</div>		
 	</section>
 	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
