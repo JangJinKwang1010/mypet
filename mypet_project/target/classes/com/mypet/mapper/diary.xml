@@ -128,4 +128,16 @@
 		select count(num) from(select rownum num from mypet_pictures_diary) where num >= #{pageNumber}
 	</select>
 	
+	<select id="pictures_contents" parameterType="java.lang.String" resultType="com.mypet.vo.DiaryVO">
+		select * from mypet_pictures_diary where pid=#{pid}
+	</select>
+	
+	<update id="pictures_hit" parameterType="java.lang.String" >
+		update mypet_pictures_diary set phit=phit+1 where pid=#{pid}
+	</update>
+	
+	<select id="pictures_comment_list" parameterType="java.lang.String" resultType="com.mypet.vo.DiaryVO">
+		select * from mypet_comment where seq_id = #{pid} order by cdate
+	</select>
+	
 </mapper>

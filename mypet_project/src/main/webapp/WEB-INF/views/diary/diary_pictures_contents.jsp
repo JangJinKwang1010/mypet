@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -278,19 +279,19 @@
 			<div class ="mainbox2 freebox">
 			<p class="subtitle">사진게시판</p>
 			<div class="writing_line"></div>
-			<p class="post_title">제목</p>
-			<p class="name">이름</p>
+			<p class="post_title">${vo.ptitle }</p>
+			<p class="name">${vo.id }</p>
 			<div class="post_line"></div>
-			<p class="post_date">게시한날짜</p>
-			<button class="comments">댓글 0</button>
+			<p class="post_date">${vo.pdate }</p>
+			<button class="comments">댓글 ${count }</button>
 			<div class="post_line2"></div>
-			<p class="recommend">추천 0</p>
+			<p class="recommend">추천 ${vo.pheart }</p>
 			<div class="post_line2"></div>
-			<p class="view">조회 4</p>
+			<p class="view">조회 ${vo.phit }</p>
 			<div class="writing_line2"></div>
 			<div class="contentsbox"></div>
 				<div class="recommendbox">
-					<p class="thumb_number">2</p>
+					<p class="thumb_number">${vo.pheart }</p>
 					<button class="thumb">
 					<img src="images/thumb_blue.png">
 					<p>추천</p>
@@ -299,16 +300,27 @@
 					<img src="images/thumb_red.png">
 					<p>비추천</p>
 					</button>
-					<p class="thumb_number2">3</p>
+					<p class="thumb_number2">${vo.pnheart }</p>
 				</div>
 				<div class="commentsbox">
-					<p>전체 댓글 <span class="all_comments_number">1</span>개</p>
+					<p>전체 댓글 <span class="all_comments_number">${count }</span>개</p>
 					<div class="commentsbox2">
 						<div class="commentsbox3">
-						<p>이름</p>
-						<p>내용</p>
-						<p>날짜</p>
+							<p>이름</p>
+							<p>내용</p>
+							<p>날짜</p>
 						</div>
+						<c:forEach var = "vo"  items="${list}"  >
+							<div class="commentsbox3">
+								<div class="id"><p>${vo.id}</p></div>
+								<p>${vo.ccomment}
+									<c:if test="${session_id eq vo.id }">
+										<span class="c_update" id="${vo.cid }X${vo.ccomment }">수정</span>  <span class="c_delete" id="${vo.cid }">삭제</span>
+									</c:if>
+								</p>
+								<p>${vo.cdate }</p>
+							</div>
+						</c:forEach>
 					</div>
 				</div>	
 				<div class="write_comment">

@@ -142,5 +142,18 @@ public class DiaryDAO {
 	public int ptargetPage(int pageNumber) {
 		return sqlSession.selectOne(namespace+".ptarget", pageNumber);
 	}
+	
+	public DiaryVO getPicturesContents(String pid) {
+		return sqlSession.selectOne(namespace+".pictures_contents", pid);
+	}
+	
+	public int getPicturesHit(String pid) {
+		return sqlSession.update(namespace+".pictures_hit", pid);
+	}
+	
+	public ArrayList<DiaryVO> getPicturesCommentList(String fid) {
+		List<DiaryVO> list = sqlSession.selectList(namespace+".pictures_comment_list", fid);		
+		return (ArrayList<DiaryVO>)list;
+	}
 
 }

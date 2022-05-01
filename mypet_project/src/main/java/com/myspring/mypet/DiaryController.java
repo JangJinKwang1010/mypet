@@ -225,10 +225,6 @@ public class DiaryController {
 		String pfile2[] = pfile.split("@");
 		String psfile2[] = psfile.split("@");		
 		
-		System.out.println(ptag.length);
-		System.out.println(psfile2.length);
-		System.out.println("첫번째"+psfile2[0] + "두번째"+psfile2[1]);
-		
 		vo.setPfile(pfile); vo.setPsfile(psfile);
 		vo.setPtag(vo.getTrue_ptag());
 		
@@ -291,6 +287,21 @@ public class DiaryController {
 		mv.addObject("targetpage", String.valueOf(targetpage));
 		mv.addObject("pageNumber", String.valueOf(pageNumber));
 		mv.setViewName("diary/diary_pictures");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="/diary_pictures_contents.do", method=RequestMethod.GET)
+	public ModelAndView diary_pictures_contents(String pid) {
+		ModelAndView mv = new ModelAndView();
+		DiaryDAO.getPicturesHit(pid);
+		DiaryVO vo = DiaryDAO.getPicturesContents(pid);
+		ArrayList<DiaryVO> list = DiaryDAO.getPicturesCommentList(pid);
+				
+		mv.setViewName("diary/diary_pictures_contents");
+		mv.addObject("list", list);
+		mv.addObject("vo", vo);
+		mv.addObject("count", DiaryDAO.getPicturesCommentCount(pid));
 		
 		return mv;
 	}
