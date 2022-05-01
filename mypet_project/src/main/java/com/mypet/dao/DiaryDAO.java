@@ -121,5 +121,26 @@ public class DiaryDAO {
 	public int getPicturesUpload(DiaryVO vo) {
 		return sqlSession.insert(namespace+".pictures_upload", vo);
 	}
+	
+	public ArrayList<DiaryVO> getPicturesList(int startnum, int endnum) {
+		Map<String,String> se = new HashMap<String,String>();
+		se.put("start", String.valueOf(startnum));
+		se.put("end", String.valueOf(endnum));
+		
+		List<DiaryVO> list = sqlSession.selectList(namespace+".pictures_list", se);		
+		return (ArrayList<DiaryVO>)list;
+	}
+	
+	public int getPicturesUpList(String pid) {
+		return sqlSession.selectOne(namespace+".pictures_up_list", pid);
+	}
+	
+	public int getPicturesCommentCount(String pid) {
+		return sqlSession.selectOne(namespace+".pictures_comment_count", pid);
+	}
+	
+	public int ptargetPage(int pageNumber) {
+		return sqlSession.selectOne(namespace+".ptarget", pageNumber);
+	}
 
 }

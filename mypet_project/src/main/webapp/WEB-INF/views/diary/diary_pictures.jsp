@@ -117,6 +117,7 @@
 	.picture_title:hover { text-decoration:underline; }
 	.picture_name, .picture_date { color:gray; font-size:14px; }
 	
+	.page { margin-top:20px; }
 	.pagination {
 	  display: inline-block;
 	  padding-left: 0;
@@ -192,76 +193,18 @@
 			<div class ="mainbox2 freebox">
 				<p class="subtitle"><span class="free_diary" onclick="location.href='diary_free.do'">자유게시판</span>사진게시판</p>
 				<div class="board">
-					<a href="diary_pictures_contents.do">
-						<div class="picture_div">
-							<div class="picture">
-								<img src="images/dog_ex1.png" width=100%; height=100%; >
-							</div>
-							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
-							<p class="picture_name">장진광</p>
-							<p class="picture_date">2022.01.09 <span>조회 55</span></p>
-						</div>					
-					</a>
-					<a href="#">
-						<div class="picture_div">
-							<div class="picture">
-								<img src="images/dog_ex1.png" width=100%; height=100%; >
-							</div>
-							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
-							<p class="picture_name">장진광</p>
-							<p class="picture_date">2022.01.09 <span>조회 55</span></p>
-						</div>					
-					</a>
-					<a href="#">
-						<div class="picture_div">
-							<div class="picture">
-								<img src="images/dog_ex2.png" width=100%; height=100%; >
-							</div>
-							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
-							<p class="picture_name">장진광</p>
-							<p class="picture_date">2022.01.09 <span>조회 55</span></p>
-						</div>					
-					</a>
-					<a href="#">
-						<div class="picture_div">
-							<div class="picture">
-								<img src="images/dog_ex2.png" width=100%; height=100%; >
-							</div>
-							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
-							<p class="picture_name">장진광</p>
-							<p class="picture_date">2022.01.09 <span>조회 55</span></p>
-						</div>					
-					</a>
-					<a href="#">
-						<div class="picture_div">
-							<div class="picture">
-								<img src="images/dog_ex3.png" width=100%; height=100%; >
-							</div>
-							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
-							<p class="picture_name">장진광</p>
-							<p class="picture_date">2022.01.09 <span>조회 55</span></p>
-						</div>					
-					</a>
-					<a href="#">
-						<div class="picture_div">
-							<div class="picture">
-								<img src="images/dog_ex3.png" width=100%; height=100%; >
-							</div>
-							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
-							<p class="picture_name">장진광</p>
-							<p class="picture_date">2022.01.09 <span>조회 55</span></p>
-						</div>					
-					</a>
-					<a href="#">
-						<div class="picture_div">
-							<div class="picture">
-								<img src="images/dog_ex1.png" width=100%; height=100%; >
-							</div>
-							<p class="picture_title">새로 가입했어용 <span>[5]</span></p>
-							<p class="picture_name">장진광</p>
-							<p class="picture_date">2022.01.09 <span>조회 55</span></p>
-						</div>					
-					</a>
+				<c:forEach var = "vo"  items="${pictures_list}"  >
+						<a href="diary_pictures_contents.do?pid=${vo.pid }">
+							<div class="picture_div">
+								<div class="picture">
+									<img src="upload/${vo.psfile }" width=100%; height=100%; >
+								</div>
+								<p class="picture_title">${vo.ptitle }<span>[${vo.pc_count }]</span></p>
+								<p class="picture_name">${vo.id }</p>
+								<p class="picture_date">${vo.pdate }<span> 조회 ${vo.phit }</span></p>
+							</div>					
+						</a>
+					</c:forEach>					
 					<div class="page">
 						<nav aria-label="...">
 							<ul class = "pagination" style="margin: 0 auto;">
@@ -272,7 +215,7 @@
 								int targetPage = Integer.parseInt(String.valueOf(pageContext.getAttribute("targetpage")));
 								if(startPage != 1) {
 							%>
-								<li><a href="diary_free.do?pnum=<%= startPage -1 %>"><span><</span></a></li>
+								<li><a href="diary_pictures.do?pnum=<%= startPage -1 %>"><span><</span></a></li>
 							<%
 								} else {
 							%>
@@ -281,22 +224,22 @@
 								}
 								for(int i = startPage; i < Integer.parseInt(pageNumber); i++) {
 							%>
-								<li><a href="diary_free.do?pnum=<%= i %>" style="color: #000000;"><%= i %></a></li>
+								<li><a href="diary_pictures.do?pnum=<%= i %>" style="color: #000000;"><%= i %></a></li>
 							<%
 								}
 							%>
-								<li class="active_page" ><a href="diary_free.do?pnum=<%= pageNumber %>" style="background-color: #337ab7;color: #ffffff;"><%= pageNumber %></a></li>
+								<li class="active_page" ><a href="diary_pictures.do?pnum=<%= pageNumber %>" style="background-color: #337ab7;color: #ffffff;"><%= pageNumber %></a></li>
 							<%
 								for(int i = Integer.parseInt(pageNumber) + 1; i <= targetPage + Integer.parseInt(pageNumber); i++) {
 									if(i < startPage +10) {
 							%>
-								<li><a href="diary_free.do?pnum=<%= i %>" style="color: #000000;"><%= i %></a></li>
+								<li><a href="diary_pictures.do?pnum=<%= i %>" style="color: #000000;"><%= i %></a></li>
 							<%
 									}
 								}
 								if(targetPage + Integer.parseInt(pageNumber) > startPage + 9){
 							%>
-								<li><a href="diary_free.do?pnum=<%= startPage + 10 %>" style= "color: #000000;"><span>></span></a></li>
+								<li><a href="diary_pictures.do?pnum=<%= startPage + 10 %>" style= "color: #000000;"><span>></span></a></li>
 							<%
 								} else {
 							%>

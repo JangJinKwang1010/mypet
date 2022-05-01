@@ -141,7 +141,7 @@
 		        success:function(result){
 		       		if (result) {
 		       			alert("글 등록이 완료되었습니다");
-		       			location.replace('diary.do');
+		       			location.replace('diary_pictures.do');
 		       		} else {
 		       			alert("글 등록에 실패하였습니다");		     
 		       			location.reload();

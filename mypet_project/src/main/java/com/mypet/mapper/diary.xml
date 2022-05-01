@@ -106,5 +106,26 @@
 	<insert id="pictures_upload" parameterType="com.mypet.vo.DiaryVO">
 		insert into mypet_pictures_diary values ('p'||pictures_seq.nextval, #{id}, #{ptitle}, sysdate, #{pfile}, #{psfile}, #{ptag}, 0, 0, 0)
 	</insert>
+	
+	<select id="pictures_list" parameterType="map" resultType="com.mypet.vo.DiaryVO">
+		select rno, pid, id, ptitle, pdate, phit, pheart, pnheart, pfile, psfile, ptag
+		 from (select rownum rno, pid, id, ptitle, pdate, phit, pheart, pnheart, pfile, psfile, ptag
+		 from (select rno, pid, id, ptitle, pdate, phit, pheart, pnheart, pfile, psfile, ptag from (
+		select rno, pid, id, ptitle, pdate, phit, pheart, pnheart, pfile, psfile, ptag
+             from(select rownum rno, pid, id, ptitle, to_char(pdate, 'yyyy-mm-dd') pdate, phit, pheart, pnheart, pfile, psfile, ptag
+				     from(select * from mypet_pictures_diary order by pdate desc))	where rno between #{start} and #{end}) order by pid)) order by rno desc
+	</select>
+	
+	<select id="pictures_up_list" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from mypet_diary_heart where seq_id=#{pid} and htype='up'
+	</select>
+	
+	<select id="pictures_comment_count" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from mypet_comment where seq_id = #{pid}
+	</select>
 
+	<select id="ptarget" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select count(num) from(select rownum num from mypet_pictures_diary) where num >= #{pageNumber}
+	</select>
+	
 </mapper>

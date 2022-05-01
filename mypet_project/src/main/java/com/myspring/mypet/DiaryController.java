@@ -222,7 +222,12 @@ public class DiaryController {
 			psfile = psfile + "@" + uuid + "_" + vo.pfile(i).getOriginalFilename();
 		}
 		
+		String pfile2[] = pfile.split("@");
 		String psfile2[] = psfile.split("@");		
+		
+		System.out.println(ptag.length);
+		System.out.println(psfile2.length);
+		System.out.println("첫번째"+psfile2[0] + "두번째"+psfile2[1]);
 		
 		vo.setPfile(pfile); vo.setPsfile(psfile);
 		vo.setPtag(vo.getTrue_ptag());
@@ -230,10 +235,16 @@ public class DiaryController {
 		int val = DiaryDAO.getPicturesUpload(vo);		
 		if (val!=0) {
 			
-			for (int j=1; j<psfile2.length-1; j++) {
-				 File f = new File(root_path + attach_path + psfile2[j]); 
-				 vo.pfile(j).transferTo(f); 
-			}	
+			if (ptag.length >= 2) {
+				for (int j=1; j<psfile2.length; j++) {					
+					 File f = new File(root_path + attach_path + psfile2[j]); 
+					 vo.pfile(j-1).transferTo(f); 
+				}					
+			} else {
+				 File f = new File(root_path + attach_path + psfile2[1]); 
+				 vo.pfile(0).transferTo(f); 
+			}
+			
 			
 			result = true;
 			
@@ -256,13 +267,19 @@ public class DiaryController {
 		int pagenum = (pageNumber -1) * 10;
 		int target = 0;
 		
-		ArrayList<DiaryVO> free_list = DiaryDAO.getFreeList(startnum,endnum);
-		for (int i=0; i<free_list.size(); i++) {
-			free_list.get(i).setFheart(DiaryDAO.getFreeUpList(free_list.get(i).getFid()));
-			free_list.get(i).setC_count(DiaryDAO.getFreeCommentCount(free_list.get(i).getFid()));
+		ArrayList<DiaryVO> pictures_list = DiaryDAO.getPicturesList(startnum,endnum);
+		for (int i=0; i<pictures_list.size(); i++) {
+			pictures_list.get(i).setPheart(DiaryDAO.getPicturesUpList(pictures_list.get(i).getPid()));
+			pictures_list.get(i).setPc_count(DiaryDAO.getPicturesCommentCount(pictures_list.get(i).getPid()));
+
+			String pfile[] = pictures_list.get(i).getPfile().split("@");
+			String psfile[] = pictures_list.get(i).getPsfile().split("@");
+			
+			pictures_list.get(i).setPfile(pfile[1]);
+			pictures_list.get(i).setPsfile(psfile[1]);
 		}
 		
-		target = DiaryDAO.targetPage(pagenum);
+		target = DiaryDAO.ptargetPage(pagenum);
 		int targetpage = 0;
 		if(pageNumber != 1 ) {
 			targetpage = (target-2) / 10 ;
@@ -270,7 +287,7 @@ public class DiaryController {
 			targetpage = (target-1) / 10 ;
 		}
 		
-		mv.addObject("free_list", free_list);
+		mv.addObject("pictures_list", pictures_list);
 		mv.addObject("targetpage", String.valueOf(targetpage));
 		mv.addObject("pageNumber", String.valueOf(pageNumber));
 		mv.setViewName("diary/diary_pictures");

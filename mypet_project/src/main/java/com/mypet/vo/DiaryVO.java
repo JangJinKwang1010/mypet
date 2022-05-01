@@ -5,10 +5,16 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 public class DiaryVO {
 	
 	String id, ftitle, fcontent, fdate, fid, ccomment, cdate, cid, pid, ptitle, pfile, psfile, ptag, pdate, true_ptag;	
-	int fheart, fnheart, fhit, rno, c_count, pheart, pnheart, phit;
+	int fheart, fnheart, fhit, rno, c_count, pheart, pnheart, phit, pc_count;
 	CommonsMultipartFile pfile0, pfile1, pfile2, pfile3, pfile4, pfile5, pfile6, pfile7, pfile8, pfile9, pfile10;	
 	
 	
+	public int getPc_count() {
+		return pc_count;
+	}
+	public void setPc_count(int pc_count) {
+		this.pc_count = pc_count;
+	}
 	public String getPtitle() {
 		return ptitle;
 	}
