@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+      <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Mypet</title>
 <script src="js/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <style>
 	.section {
 		text-align:center;
@@ -48,7 +49,7 @@
 	float:left;
 	font-weight:bold;
 	font-size:25px;
-	margin-bottom:-20px;
+	margin-bottom:-10px;
 	}
 	.writing_line{
 	display:inline-block;
@@ -72,6 +73,7 @@
 	font-size:20px;
 	margin-left:65px;
 	margin-bottom:5px;
+	margin-top:10px;
 	}
 	.name{
 	display:inline-block;
@@ -138,6 +140,7 @@
 	border-radius:10px;
 	width:250px;
 	height:125px;
+	margin-top:50px;
 	}
 	.thumb{
 	background-color:white;
@@ -180,7 +183,7 @@
 	.commentsbox{
 		display:inline-block;
 		border:1px solid white;
-		width:90%
+		width:90%;
 	}
 	.commentsbox>p{
 		display:inline-block;
@@ -201,26 +204,32 @@
 		width:100%;
 		height:150px;
 	}
-	.commentsbox3{
+	.commentsbox3 {
 		display:inline-block;
 		width:100%;
 		height:30px;
 		border-bottom:1px solid lightgray;
 	}
-	.commentsbox3>p{
+	.commentsbox3 p{
 		font-size:13px;
 		margin-top:4px;
 	}
-	.commentsbox3>p:first-child{
+	.commentsbox3>div>p:first-child{
 		float:left;
 	}
 	.commentsbox3>p:nth-child(2){
 		float:left;
-		margin-left:100px;
 	}
+	.commentsbox3>p:nth-child(2)>span {
+		color:lightgray;
+		font-size:12px;
+	}
+	.commentsbox3>p:nth-child(2)>span:first-child { margin-left:10px; }
+	.commentsbox3>p:nth-child(2)>span:hover { text-decoration:underline; cursor:pointer; }
 	.commentsbox3>p:last-child{
 		float:right;
 	}
+	.id { width:100px; display:inline-block; float:left;  }
 	.write_comment {
 		display:inline-block;
 		border-top:2px solid rgb(247,179,42);
@@ -248,12 +257,16 @@
 		font-weight:bold;
 		font-size:15px;
 	}
+	.comment_name>span {
+		font-weight:normal;
+		margin-left:10px;
+	}
 	.comment_button_div {
 		width:100%;
 		text-align:right;
 		float:left;
 	}
-	.comment_button {
+	.comment_button, .comment_update_button {
 		display:inline-block; 
 		border-radius:10px;
 		border:none;
@@ -261,15 +274,149 @@
 		margin:10px;
 		color:white;
 	}
-	.comment_button:hover {
+	.comment_button:hover, .comment_update_button:hover {
 		background-color:rgb(0,68,130);
 		color:white;
+	}
+	.delete {
+		border:1px solid lightgray;
+		background-color:lightgray;
+		width:100px; height:40px; 
+		border-radius:5px;
+		color:white;
+		float:right;
+		margin:20px 45px 20px 5px;
+	}
+	.update {
+		border:1px solid lightgray;
+		background-color:gray;
+		width:100px; height:40px; 
+		border-radius:5px;
+		color:white;
+		float:right;
+		margin:20px 5px;
 	}
 	@media (min-width : 600px) {		
 		.section { background-color:rgb(247,179,42); }
 		.mainbox { width:1300px; }
-	}
+	}	
 </style>
+<script>
+$(document).ready(function() {
+	$('.carousel').carousel({ 
+		interval: 2000 //기본 5초 
+	});
+	
+	$(".heart").click(function() {
+		<c:if test = "${session_id eq null}">
+			alert("로그인 후 이용가능합니다");
+		</c:if>
+		<c:if test="${session_id ne null}">			
+			$.ajax({
+		        url:"pictures_up_heart.do",
+		        type:"post",
+		        data: {pid:"${vo.pid}"},
+		        success:function(result){			       		  
+		       		location.reload();	       		
+		       	},		
+		    });
+		</c:if>
+	});
+	
+	$(".nheart").click(function() {
+		<c:if test = "${session_id eq null}">
+			alert("로그인 후 이용가능합니다");
+		</c:if>
+		<c:if test="${session_id ne null}">			
+			$.ajax({
+		        url:"pictures_up_nheart.do",
+		        type:"post",
+		        data: {pid:"${vo.pid}"},
+		        success:function(result){			       		  
+		       		location.reload();	       		
+		       	},		
+		    });
+		</c:if>
+	});
+	
+	$(".comment_button").click(function() {
+		var comment = $(".comment_area").val();
+		if($(".comment_area").val() == "") {
+			alert("댓글을 입력해주세요");
+			$(".comment_area").focus();
+		} else {
+			$.ajax({
+		        url:"pictures_comment_upload.do",
+		        type:"post",
+		        data: {pid:"${vo.pid}", ccomment:comment},
+		        success:function(){			       		  
+		       		location.reload();	       		
+		       	},		
+		    });
+		}
+	});
+	
+	$(".c_delete").click(function() {
+		var cid = $(this).attr("id");
+		$.ajax({
+	        url:"free_comment_delete.do",
+	        type:"post",
+	        data: {cid:cid},
+	        success:function(){			       		  
+	       		location.reload();	       		
+	       	},		
+	    });
+	});
+	
+	
+	$(".c_update").click(function() {
+		var name = $(this).attr("id").split("X");
+		
+		var html = "<div class='comment_box'>"
+		html += "<div class='comment_name_div'>";
+		html += "<textarea class='comment_area form-control comment_add_area'>"+ name[1] +"</textarea>";
+		html += "<div class='comment_button_div'>";
+		html += "<button class='comment_update_button'>수정하기</button></div></div></div>";
+		$(".comment_box").remove();
+		$(".commentsbox").append(html);
+		
+		$(".comment_update_button").click(function() {
+			var ccomment = $(".comment_add_area").val(); 
+			if($(".comment_add_area").val() == "") {
+				alert("댓글을 입력해주세요");
+				$(".comment_add_area").focus();
+			} else {
+				$.ajax({
+			        url:"free_comment_update.do",
+			        type:"post",
+			        data: {cid:name[0], ccomment:ccomment},
+			        success:function(){			       		  
+			       		location.reload();	       		
+			       	},		
+			    });
+			}
+		});
+		
+	});
+	
+	
+	$(".delete").click(function() {
+		var con_test = confirm("게시글을 삭제하시겠습니까?"); 
+    	if(con_test == true){ 
+    		$.ajax({
+		        url:"pictures_delete.do",
+		        type:"post",
+		        data: {pid:"${vo.pid}"},
+		        success:function(){			       		  
+		        	location.replace("diary_pictures.do"); 		
+		       	},		
+		    });
+    		
+    	}
+	});
+	
+});	
+</script>
 </head>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
@@ -278,6 +425,10 @@
 			<p class="title">펫 일기<span>Pet Diary</span></p>
 			<div class ="mainbox2 freebox">
 			<p class="subtitle">사진게시판</p>
+			<c:if test = "${vo.id eq session_id }">
+				<button type="button" class="delete">삭제</button>
+				<button type="button" class="update" onclick="location.href='diary_free_update.do?fid=${vo.fid}' ">수정</button>
+			</c:if>
 			<div class="writing_line"></div>
 			<p class="post_title">${vo.ptitle }</p>
 			<p class="name">${vo.id }</p>
@@ -289,14 +440,46 @@
 			<div class="post_line2"></div>
 			<p class="view">조회 ${vo.phit }</p>
 			<div class="writing_line2"></div>
-			<div class="contentsbox"></div>
+			<div class="contentsbox">
+				<div id="demo" class="carousel slide" data-ride="carousel"> 
+					<div class="carousel-inner"> <!-- 슬라이드 쇼 --> 
+						<c:forEach var = "vo"  items="${plist}"  begin="0" end="0">
+							<div class="carousel-item active"> <!--가로--> 
+								<img class="d-block w-100" src="upload/${vo.psfile }" width=400px; height=500px;> 
+							</div> 
+						</c:forEach>
+						<c:forEach var = "vo"  items="${plist}"  begin="1" end="${fn:length(plist)-1}">
+						<div class="carousel-item"> 
+							<img class="d-block w-100" src="upload/${vo.psfile }" width=400px; height=500px; >
+						 </div>
+						 </c:forEach> 
+					 <!-- / 슬라이드 쇼 끝 --> 
+					 <!-- 왼쪽 오른쪽 화살표 버튼 --> 
+			   		<c:if test="${fn:length(plist) ne 1 }">
+					 <a class="carousel-control-prev" href="#demo" data-slide="prev"> 
+					 	<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					  <!-- <span>Previous</span> --> 
+					  </a> 
+					  <a class="carousel-control-next" href="#demo" data-slide="next"> 
+					  	<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					   <!-- <span>Next</span> -->
+					   </a> <!-- / 화살표 버튼 끝 --> <!-- 인디케이터 --> 
+					   <ul class="carousel-indicators"> 
+						   		 <!--0번부터시작--> 
+						   		 <li data-target="#demo" data-slide-to="0" class="active"></li>
+						   		 <li data-target="#demo" data-slide-to="1"></li>
+						   		  <li data-target="#demo" data-slide-to="2"></li>
+					   	</ul> <!-- 인디케이터 끝 --> 
+			   		  </c:if>
+					</div>
+				</div>
 				<div class="recommendbox">
 					<p class="thumb_number">${vo.pheart }</p>
-					<button class="thumb">
+					<button class="thumb heart">
 					<img src="images/thumb_blue.png">
 					<p>추천</p>
 					</button>
-					<button class="thumb">
+					<button class="thumb nheart">
 					<img src="images/thumb_red.png">
 					<p>비추천</p>
 					</button>
@@ -306,9 +489,9 @@
 					<p>전체 댓글 <span class="all_comments_number">${count }</span>개</p>
 					<div class="commentsbox2">
 						<div class="commentsbox3">
-							<p>이름</p>
-							<p>내용</p>
-							<p>날짜</p>
+							<div class="id"><p><b>아이디</b></p></div>
+							<p><b>내용</b></p>
+							<p><b>날짜</b></p>
 						</div>
 						<c:forEach var = "vo"  items="${list}"  >
 							<div class="commentsbox3">
@@ -324,13 +507,25 @@
 					</div>
 				</div>	
 				<div class="write_comment">
-					<div class="comment_name_div">
-						<p class="comment_name">이름</p>
-						<textarea class="comment_area form-control" placeholder="댓글을 입력해주세요."></textarea>
-					</div>
-					<div class="comment_button_div">
-						<button class="comment_button">등록하기</button>
-					</div>
+					<c:if test = "${session_id ne null }">
+						<div class="comment_name_div">
+							<p class="comment_name">아이디<span>${session_id }</span></p>
+							<textarea class="comment_area form-control" placeholder="댓글을 입력해주세요."></textarea>
+						</div>
+						<div class="comment_button_div">
+							<button class="comment_button">등록하기</button>
+						</div>
+					</c:if>
+					<c:if test = "${session_id eq null }">
+						<div class="comment_name_div">
+							<p class="comment_name">아이디</p>
+							<p class="comment_name"></p>
+							<textarea class="comment_area form-control" placeholder="로그인 후 이용가능합니다." disabled></textarea>
+							<div class="comment_button_div">
+								<button class="comment_button" disabled>등록하기</button>
+							</div>
+						</div>
+					</c:if>
 				</div>
 			</div>
 		</div>

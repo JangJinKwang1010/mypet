@@ -297,13 +297,77 @@ public class DiaryController {
 		DiaryDAO.getPicturesHit(pid);
 		DiaryVO vo = DiaryDAO.getPicturesContents(pid);
 		ArrayList<DiaryVO> list = DiaryDAO.getPicturesCommentList(pid);
+		String psfile[] = vo.getPsfile().split("@");
+		String ptag[] = vo.getPtag().split("@");
+		ArrayList<DiaryVO> plist = new ArrayList<DiaryVO>();
+		
+		for (int i=0; i<ptag.length; i++) {		
+			DiaryVO dvo = new DiaryVO();
+			dvo.setPsfile(psfile[i+1]); dvo.setPtag(ptag[i]);
+			plist.add(dvo);
+		}
 				
 		mv.setViewName("diary/diary_pictures_contents");
 		mv.addObject("list", list);
 		mv.addObject("vo", vo);
+		mv.addObject("plist", plist);
 		mv.addObject("count", DiaryDAO.getPicturesCommentCount(pid));
 		
 		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/pictures_up_heart.do", method=RequestMethod.POST)
+	public void pictures_up_heart(HttpServletRequest request, String pid) {
+		HttpSession session = request.getSession(); //技记 积己
+		DiaryVO vo = new DiaryVO();
+		vo.setId((String)session.getAttribute("session_id"));
+		vo.setPid(pid);
+		
+		if (DiaryDAO.getPicturesUpInfo(vo) == 0) {
+			DiaryDAO.getPicturesUpHeart(vo);
+			DiaryDAO.getPicturesUpUpdate(pid);
+		} else {
+			DiaryDAO.getPicturesDownHeart(vo);
+			DiaryDAO.getPicturesDownUpdate(pid);
+		}
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/pictures_up_nheart.do", method=RequestMethod.POST)
+	public void pictures_up_nheart(HttpServletRequest request, String pid) {
+		HttpSession session = request.getSession(); //技记 积己
+		DiaryVO vo = new DiaryVO();
+		vo.setId((String)session.getAttribute("session_id"));
+		vo.setPid(pid);
+		
+		if (DiaryDAO.getPicturesDownInfo(vo) == 0) {
+			DiaryDAO.getPicturesUpNheart(vo);
+			DiaryDAO.getPicturesNupUpdate(pid);
+		} else {
+			DiaryDAO.getPicturesDownNheart(vo);
+			DiaryDAO.getPicturesNdownUpdate(pid);
+		}
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/pictures_comment_upload.do", method=RequestMethod.POST)
+	public void pictures_comment_upload(HttpServletRequest request, String pid, String ccomment) {
+		HttpSession session = request.getSession(); //技记 积己
+		DiaryVO vo = new DiaryVO();
+		vo.setId((String)session.getAttribute("session_id"));
+		vo.setPid(pid); vo.setCcomment(ccomment);
+		
+		DiaryDAO.getPicturesCommentUpload(vo);
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/pictures_delete.do", method=RequestMethod.POST)
+	public void pictures_delete(String pid) {		
+		DiaryDAO.getPicturesDelete(pid);
 	}
 	
 }

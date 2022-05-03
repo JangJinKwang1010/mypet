@@ -140,4 +140,52 @@
 		select * from mypet_comment where seq_id = #{pid} order by cdate
 	</select>
 	
+	<insert id="pictures_up_heart" parameterType="com.mypet.vo.DiaryVO">
+		insert into mypet_diary_heart values (#{id}, #{pid}, 'up')
+	</insert>
+	
+	<select id="pictures_up_info" parameterType="com.mypet.vo.DiaryVO" resultType="java.lang.Integer">
+		select count(*) from mypet_diary_heart where id=#{id} and seq_id=#{pid} and htype='up'
+	</select>
+	
+	<update id="pictures_up_update" parameterType="java.lang.String">
+		update mypet_pictures_diary set pheart = pheart+1 where pid = #{pid}
+	</update>
+	
+	<delete id="pictures_down_heart" parameterType="com.mypet.vo.DiaryVO">
+		delete from mypet_diary_heart where id=#{id} and seq_id=#{pid} and htype='up'
+	</delete>
+	
+	<update id="pictures_down_update" parameterType="java.lang.String">
+		update mypet_pictures_diary set pheart = pheart - 1 where pid = #{pid}
+	</update>
+	
+	<insert id="pictures_up_nheart" parameterType="com.mypet.vo.DiaryVO">
+		insert into mypet_diary_heart values (#{id}, #{pid}, 'down')
+	</insert>
+	
+	<select id="pictures_down_info" parameterType="com.mypet.vo.DiaryVO" resultType="java.lang.Integer">
+		select count(*) from mypet_diary_heart where id=#{id} and seq_id=#{pid} and htype='down'
+	</select>
+	
+	<update id="pictures_nup_update" parameterType="java.lang.String">
+		update mypet_pictures_diary set pnheart = pnheart+1 where pid = #{pid}
+	</update>
+	
+	<update id="pictures_ndown_update" parameterType="java.lang.String">
+		update mypet_pictures_diary set pnheart = pnheart - 1 where pid = #{pid}
+	</update>
+	
+	<delete id="pictures_down_nheart" parameterType="com.mypet.vo.DiaryVO">
+		delete from mypet_diary_heart where id=#{id} and seq_id=#{pid} and htype='down'
+	</delete>
+	
+	<insert id="pictures_comment_upload" parameterType="com.mypet.vo.DiaryVO">
+		insert into mypet_comment values(#{id}, 'c'||comment_seq.nextval, #{pid}, #{ccomment}, sysdate)
+	</insert>
+	
+	<delete id="pictures_delete" parameterType="java.lang.String">
+		delete from mypet_pictures_diary where pid=#{pid}
+	</delete>
+	
 </mapper>

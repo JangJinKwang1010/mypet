@@ -151,9 +151,57 @@ public class DiaryDAO {
 		return sqlSession.update(namespace+".pictures_hit", pid);
 	}
 	
-	public ArrayList<DiaryVO> getPicturesCommentList(String fid) {
-		List<DiaryVO> list = sqlSession.selectList(namespace+".pictures_comment_list", fid);		
+	public ArrayList<DiaryVO> getPicturesCommentList(String pid) {
+		List<DiaryVO> list = sqlSession.selectList(namespace+".pictures_comment_list", pid);		
 		return (ArrayList<DiaryVO>)list;
+	}
+	
+	public int getPicturesUpHeart(DiaryVO vo) {
+		return sqlSession.insert(namespace+".pictures_up_heart", vo);
+	}
+	
+	public int getPicturesUpInfo(DiaryVO vo) {
+		return sqlSession.selectOne(namespace+".pictures_up_info", vo);
+	}
+	
+	public int getPicturesUpUpdate(String pid) {
+		return sqlSession.update(namespace+".pictures_up_update", pid);
+	}
+	
+	public int getPicturesDownHeart(DiaryVO vo) {
+		return sqlSession.delete(namespace+".pictures_down_heart", vo);
+	}
+	
+	public int getPicturesDownUpdate(String pid) {
+		return sqlSession.update(namespace+".pictures_down_update", pid);
+	}
+	
+	public int getPicturesUpNheart(DiaryVO vo) {
+		return sqlSession.insert(namespace+".pictures_up_nheart", vo);
+	}
+	
+	public int getPicturesDownInfo(DiaryVO vo) {
+		return sqlSession.selectOne(namespace+".pictures_down_info", vo);
+	}
+	
+	public int getPicturesNupUpdate(String pid) {
+		return sqlSession.update(namespace+".pictures_nup_update", pid);
+	}
+	
+	public int getPicturesDownNheart(DiaryVO vo) {
+		return sqlSession.delete(namespace+".pictures_down_nheart", vo);
+	}
+	
+	public int getPicturesNdownUpdate(String pid) {
+		return sqlSession.update(namespace+".pictures_ndown_update", pid);
+	}
+	
+	public int getPicturesCommentUpload(DiaryVO vo) {
+		return sqlSession.insert(namespace+".pictures_comment_upload", vo);
+	}
+	
+	public int getPicturesDelete(String fid) {
+		return sqlSession.delete(namespace+".pictures_delete", fid);
 	}
 
 }
