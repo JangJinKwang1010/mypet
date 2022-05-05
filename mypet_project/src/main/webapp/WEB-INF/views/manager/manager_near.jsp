@@ -38,6 +38,7 @@
 <body>
 	<section class="section">
 	<div class="box">
+		<jsp:include page="manager_header.jsp"></jsp:include>
 		<jsp:include page="manager_commons.jsp"></jsp:include>
 		<div class="petbox">
 			<table class="petlist">

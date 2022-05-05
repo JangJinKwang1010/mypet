@@ -53,5 +53,14 @@
 	<select id="ccount" parameterType="java.lang.String" resultType="java.lang.Integer">
 		select count(*) from mypet_comment where id=#{id}
 	</select>
+	
+	<select id="member_list" resultType="com.mypet.vo.MemberVO">
+		select  rno, fid, id, ftitle, fcontent, fdate, fhit, fheart, fnheart
+		 from (select rownum rno, fid, id, ftitle, fcontent, fdate, fhit, fheart, fnheart
+		 from (select rno, fid, id, ftitle, fcontent, fdate, fhit, fheart, fnheart from (
+		select  rno, fid, id, ftitle, fcontent, to_char(fdate, 'yyyy-mm-dd') fdate, fhit, fheart, fnheart
+             from(select  rownum rno, id, pass, name, birth, gender, hp, email, addr1, addr2, mdate
+				     from(select * from mypet_free_diary order by fdate desc))	where rno between #{start} and #{end}) order by fid)) order by rno desc
+	</select>
 
 </mapper>

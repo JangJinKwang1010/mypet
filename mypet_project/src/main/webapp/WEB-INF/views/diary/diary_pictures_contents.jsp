@@ -466,9 +466,10 @@ $(document).ready(function() {
 					   </a> <!-- / 화살표 버튼 끝 --> <!-- 인디케이터 --> 
 					   <ul class="carousel-indicators"> 
 						   		 <!--0번부터시작--> 
-						   		 <li data-target="#demo" data-slide-to="0" class="active"></li>
-						   		 <li data-target="#demo" data-slide-to="1"></li>
-						   		  <li data-target="#demo" data-slide-to="2"></li>
+							   	 <li data-target="#demo" data-slide-to="0" class="active"></li>
+						   		<c:forEach var = "vo"  items="${plist}"  begin="1" end="${fn:length(plist)-1}">
+							   		 <li data-target="#demo" data-slide-to="1"></li>
+						   		  </c:forEach>
 					   	</ul> <!-- 인디케이터 끝 --> 
 			   		  </c:if>
 					</div>

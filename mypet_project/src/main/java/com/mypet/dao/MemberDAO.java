@@ -1,9 +1,15 @@
 package com.mypet.dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mypet.vo.DiaryVO;
 import com.mypet.vo.MemberVO;
 
 @Repository
@@ -62,6 +68,12 @@ public class MemberDAO {
 		return sqlSession.selectOne(namespace+".ccount", id);
 	}
 	
+	
+	/** °ü¸®ÀÚ **/
+	public ArrayList<MemberVO> getMemberList() {		
+		List<MemberVO> list = sqlSession.selectList(namespace+".member_list");		
+		return (ArrayList<MemberVO>)list;
+	}
 	
 
 }

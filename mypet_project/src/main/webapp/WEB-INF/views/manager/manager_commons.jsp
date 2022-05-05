@@ -19,40 +19,12 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
         vertical-align: baseline;
         background: transparent;
 }
-.menu1 {
-	background-color:rgb(245,245,245);
-}
 .menu1 li {
 	display:inline-block;
 	margin-right:30px;
 	padding: 5px 0;
 }
-.menu1 a{
-	color:black;
-}
-.menu1 a:hover {
-	color:rgb(147,196,228);
-}
-.menu1 ul {
-	text-align:right;
-}
-	.title_div {
-		width:100%;
-		height:200px;
-	}
-	.title {
-		margin-top:110px;
-		margin-left:100px;
-		float:left;
-		font-weight:bold;
-		font-size:30px;
-	}
-	.title>span {
-		margin-left:20px;
-		color:gray;
-		font-weight:normal;
-		font-size:20px;
-	}
+	
 	.mainbox2 {
 		display:inline-block;
 		width:200px; height:500px;
@@ -94,18 +66,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 
 </script>
 <body>
-	<div class="menu1">
-		<ul>			
-			<c:if test = "${empty session_id }">
-				<a class="home" href="http://14.47.84.213:9000/mypet/index.do"><li>HOME</li></a>
-			</c:if>
-			<c:if test = "${!empty session_id }">
-				<a class="home" href="http://14.47.84.213:9000/mypet/index.do"><li>HOME</li></a>
-				<a href="http://14.47.84.213:9000/mypet/logout.do"><li>로그아웃</li></a>
-			</c:if>			
-		</ul>		
-	</div>
-	<div class="title_div"><p class="title">마이펫 관리자<span>Mypet Manager</span></p></div>
+	
 	<div class ="mainbox2">
 		<div class="left_div">
 			<ul class="title_ul">

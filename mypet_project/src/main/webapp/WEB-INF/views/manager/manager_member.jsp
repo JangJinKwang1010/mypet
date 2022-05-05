@@ -1,23 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Mypet 관리자</title>
 <script src="js/jquery-3.6.0.min.js"></script>
 <style>
 
-.memberbox{
-	width:800px;
-	height:600px;
-	border:1px solid;
-	margin-left:400px;
-}
-.memberlist{
-	text-align:center;
-}
-
+	.memberbox{
+		width:800px;
+		height:600px;
+		border:1px solid gray;
+		margin-left:400px;
+		margin-bottom:100px;
+	}
+	.memberlist{
+		text-align:center;
+		width:100%;
+	}
+	.memberlist>thead>tr {
+		background-color:lightgray;
+	}
 
 </style>
 <script>
@@ -35,25 +40,28 @@
 <body>
 	<section class="section">
 	<div class="box">
+		<jsp:include page="manager_header.jsp"></jsp:include>
 		<jsp:include page="manager_commons.jsp"></jsp:include>
 		<div class="memberbox">
-			<table class="memberlist">
-				<thead style="border-bottom:1px solid; ">
+					<table class="memberlist">
+						<thead style="border-bottom:1px solid gray; ">
 							<tr>
-								<th width=100px;>번호</th>
-								<th width=200px>회원이름</th>
-								<th width=250px>회원아이디</th>
-								<th width=250px;>휴대폰번호</th>
+								<th>번호</th>
+								<th>회원이름</th>
+								<th>회원아이디</th>
+								<th>가입일자</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="member_content" style="border-bottom:1px solid lightgray;">
-								<th>1</th>
-								<td>이아이</td>
-								<td>test3</td>
-								<td>01012341234</td>
-							</tr>
-			</table>
+							<c:forEach var = "vo"  items="${list}"  >
+								<tr class="member_content" style="border-bottom:1px solid lightgray;">
+									<th>1</th>
+									<td>이아이</td>
+									<td>test3</td>
+									<td>01012341234</td>
+								</tr>
+							</c:forEach>
+				</table>
 		</div>
 	</div>
 	</section>
