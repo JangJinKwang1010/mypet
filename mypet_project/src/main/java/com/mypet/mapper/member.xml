@@ -55,7 +55,11 @@
 	</select>
 	
 	<select id="member_list" resultType="com.mypet.vo.MemberVO">
-		select rno, id, pass, name, birth, gender, hp, email, addr1, addr2, to_char(mdate, 'yyyy-mm-dd') mdate from (select * from (select rownum rno, id, pass, name, birth, gender, hp, email, addr1, addr2, mdate from mypet_member order by mdate) order by rno desc)
+		select rno, id, pass, name, birth, gender, hp, email, addr1, addr2, to_char(mdate, 'yyyy-mm-dd') mdate 
+		  from
+		    (select * from (select rownum rno, id, pass, name, birth, gender, hp, email, addr1, addr2, mdate from (
+		        select id, pass, name, birth, gender, hp, email, addr1, addr2, mdate from mypet_member order by mdate) ) 
+		      order by rno desc)
 	</select>
 
 </mapper>
