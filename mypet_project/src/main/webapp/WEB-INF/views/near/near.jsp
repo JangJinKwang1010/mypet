@@ -84,6 +84,32 @@
 		color:white;
 		font-size:20px;
 	}
+	.search_box{
+		float:right;
+		margin-top:30px;
+		width:600px;
+		height:50px;
+	}
+	.search_button {
+		border:none;
+		width:100px;
+		height:35px;
+		border-radius:10px;
+		font-weight:bold;
+		background-color:rgb(214,155,187);
+		color:white;
+		font-size:20px;
+	}
+	.search_box>.search_form{
+		display:inline-block;
+		width:50%;
+		height:30px;
+	}
+	.search_box>.select_form{
+		display:inline-block;
+		width:120px;
+		height:35px;
+	}
 	.user { text-align:left; margin:15px 30px; font-size:15px; }
 	
 	@media (min-width : 600px ) {
@@ -283,6 +309,15 @@ $(document).ready(function() {
 			<p class="title">내 근처의 펫<span>A pet near me</span></p>
 			<button onclick = "location.href='near_writing.do'" class="writing_button">글쓰기</button>
 			<div id="map"></div>
+			<div class="search_box">
+				<select class="form-select select_form">
+				<option>제목</option>
+				<option>품종</option>
+				<option>제목+내용</option>
+				</select>
+				<input type="text" class="form-control search_form">
+				<button class="search_button">검색</button>
+			</div>
 			<div class="list">
 			<c:if test="${!empty list}">
 				<c:forEach var = "vo"  items="${list}"  begin="0" end="2">
