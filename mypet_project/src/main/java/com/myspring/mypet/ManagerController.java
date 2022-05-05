@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mypet.dao.MemberDAO;
+import com.mypet.dao.MypageDAO;
 import com.mypet.vo.MemberVO;
 
 @Controller
@@ -16,6 +18,9 @@ public class ManagerController {
 	
 	@Autowired
 	private MemberDAO MemberDAO;
+	
+	@Autowired
+	private MypageDAO MypageDAO;
 	
 	@RequestMapping(value="/manager_commons.do") 
 	public String manager_commons() {
@@ -58,8 +63,15 @@ public class ManagerController {
 		return "manager/manager_pet_content";
 	}
 	
-	@RequestMapping(value="/manager_member_content.do") 
-	public String manager_member_content() {
-		return "manager/manager_member_content";
+	@RequestMapping(value="/manager_member_content.do", method=RequestMethod.GET) 
+	public ModelAndView manager_member_content(String id) {
+		ModelAndView mv = new ModelAndView();
+		
+		MemberVO vo = MypageDAO.getMemberInfo(id);
+		
+		mv.addObject("vo", vo);
+		mv.setViewName("manager/manager_member_content");
+		
+		return mv;
 	}
 }

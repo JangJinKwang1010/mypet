@@ -322,7 +322,15 @@
 	$(document).ready(function() {
 		$(".login_btn").click(function() {
 			loginform.submit();
-		});		
+		});	
+		
+		$(".main_pet_change").click(function() {
+		    var url = "mainpet.do";
+		    var name = "popup test";
+		    var option = "width = 500, height = 500, top = 150, left = 500, location = no"
+		    window.open(url, name, option);
+		});
+		
 	});
 	
 	function chat_open() {
@@ -332,12 +340,7 @@
         window.open(url, name, option);
 	};
 	
-	$(".main_pet_change").click(function() {
-	    var url = "mainpet.do";
-	    var name = "popup test";
-	    var option = "width = 500, height = 500, top = 150, left = 500, location = no"
-	    window.open(url, name, option);
-});
+	
 
 </script>
 </head>

@@ -2,10 +2,17 @@ package com.mypet.vo;
 
 public class MemberVO {
 String id, pass, name, hp, email, addr1, addr2, mdate, birth, birth1, birth2, birth3, gender;
-int mcount, dcount, ccount;
+int mcount, dcount, ccount, rno;
+	
+	
+	public int getRno() {
+		return rno;
+	}
+	
+	public void setRno(int rno) {
+		this.rno = rno;
+	}
 
-	
-	
 	public int getDcount() {
 		return dcount;
 	}

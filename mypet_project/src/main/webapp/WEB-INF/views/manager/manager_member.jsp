@@ -28,10 +28,11 @@
 <script>
 	$(document).ready(function(){
 		$(".member_content").click(function() {
-	    var url = "manager_member_content.do";
-	    var name = "popup test";
-	    var option = "width = 500, height = 500, top = 150, left = 500, location = no"
-	    window.open(url, name, option);
+			var id = $(this).attr("id");
+		    var url = "manager_member_content.do?id="+id;
+		    var name = "popup test";
+		    var option = "width = 500, height = 500, top = 150, left = 500, location = no"
+		    window.open(url, name, option);
 	});
 })
 	
@@ -47,18 +48,18 @@
 						<thead style="border-bottom:1px solid gray; ">
 							<tr>
 								<th>번호</th>
-								<th>회원이름</th>
-								<th>회원아이디</th>
+								<th>아이디</th>
+								<th>이름</th>
 								<th>가입일자</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach var = "vo"  items="${list}"  >
-								<tr class="member_content" style="border-bottom:1px solid lightgray;">
-									<th>1</th>
-									<td>이아이</td>
-									<td>test3</td>
-									<td>01012341234</td>
+								<tr class="member_content" style="border-bottom:1px solid lightgray;" id="${vo.id }">
+									<td>${vo.rno }</td>
+									<td>${vo.id }</td>
+									<td>${vo.name }</td>
+									<td>${vo.mdate }</td>
 								</tr>
 							</c:forEach>
 				</table>
