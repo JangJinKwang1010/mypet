@@ -15,6 +15,7 @@
 		border:1px solid gray;
 		margin-left:400px;
 		margin-bottom:100px;
+		overflow:scroll;
 	}
 	.memberlist{
 		text-align:center;
@@ -43,8 +44,8 @@
 	<div class="box">
 		<jsp:include page="manager_header.jsp"></jsp:include>
 		<jsp:include page="manager_commons.jsp"></jsp:include>
-		<div class="memberbox">
-					<table class="memberlist">
+		<div class="memberbox" >
+					<table class="memberlist" >
 						<thead style="border-bottom:1px solid gray; ">
 							<tr>
 								<th>번호</th>

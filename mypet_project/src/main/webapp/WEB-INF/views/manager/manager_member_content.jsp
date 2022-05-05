@@ -1,22 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Mypet 관리자</title>
 <style>
-	.box{
-		border:1px solid;
+	section {
+		text-align:center;
+	}
+	.box {
+		border:1px solid gray;
 		width:450px;
-		height:450px;
+		height:400px;
+		display:inline-block;
+		text-align:left;
 	}
 	.rightbox{
 		width:198px;
 		height:305px;
-		border-left:1px solid;
+		border-left:1px solid lightgray;
 		float:right;
-		border-bottom:1px solid;
 	}
 	.rightbox>button{
 		font-weight:bold;
@@ -39,70 +44,76 @@
 	.picture{
 		width:198px;
 		height:203px;
-		border-bottom:1px solid;
 	}
 	.box2{
 		width:251px;
 		height:50px;
-		border-bottom:1px solid;
+		border-bottom:1px solid lightgray;
 	}
-	.box3{
+	.box3 {
 		width:450px;
-		height:140px;
+		height:10px;
 	}
-	.box label{
+	label{
 		margin-left:5px;
-		font-size:12px;
+		font-size:14px;
 		font-weight:bold;
 	}
 	.box p{
 		margin-left:5px;
-		margin-top:-1px;
-		font-size:15px;
+		margin-top:3px;
+		font-size:14px;
 	}
 </style>
 </head>
 <body>
-	<p>staff only</p>
+<section>
+	<p style="font-size:18px;"><b>STAFF ONLY</b></p>
 	<div class="box">
 		<div class="rightbox">
 			<div class="picture">
-			<img src="images/player.png" width=100%; height=100%;>
+			<img src="images/human2.png" width=100%; height=100%;>
 			</div>
 			<div class="namebox">
 				<label>이름</label>
-				<p>숑숑이</p>
+				<p>${vo.name }</p>
 			</div>
 			<button>회원삭제</button>
 		</div>	
 		<div class="category box2">
-			<label>회원번호</label>
-			<p>1</p>
+			<label>가입일자</label>
+			<p>${vo.mdate }</p>
 		</div>	
 		<div class="kind box2">
 			<label>회원아이디</label>
-			<p>test3</p>
+			<p>${vo.id }</p>
 		</div>	
 		<div class="bulk box2">
 			<label>이메일</label>
-			<p>test3@naver.com</p>
+			<p>${vo.email }</p>
 		</div>	
 		<div class="startdate box2">
 			<label>휴대폰번호</label>
-			<p>01012341234</p>
+			<p>${vo.hp }</p>
 		</div>	
 		<div class="gender box2">
 			<label>성별</label>
-			<p>남자</p>
+			<c:if test="${vo.gender eq 'male' }">
+				<p>남자</p>
+			</c:if>
+			<c:if test="${vo.gender eq 'female' }">
+				<p>여자</p>
+			</c:if>
 		</div>	
 		<div class="birth box2">
 			<label>생년월일</label>
-			<p>1998년12월12일</p>
+			<p>${vo.birth }</p>
 		</div>	
 		<div class="coment box3">
 			<label>주소</label>
-			<p>충청남도 천안시 서북구 성환읍</p>
+			<p>${vo.addr1} ${vo.addr2 }</p>
 		</div>	
 	</div>
+</section>
 </body>
 </html>

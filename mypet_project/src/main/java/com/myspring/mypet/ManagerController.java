@@ -69,6 +69,12 @@ public class ManagerController {
 		
 		MemberVO vo = MypageDAO.getMemberInfo(id);
 		
+		String birth1 = vo.getBirth().substring(0, 4) + "³â";
+		String birth2 = vo.getBirth().substring(4, 6) + "¿ù";
+		String birth3 = vo.getBirth().substring(6, 8) + "ÀÏ";
+		
+		vo.setBirth(birth1 + " " + birth2 + " " + birth3);
+				
 		mv.addObject("vo", vo);
 		mv.setViewName("manager/manager_member_content");
 		
