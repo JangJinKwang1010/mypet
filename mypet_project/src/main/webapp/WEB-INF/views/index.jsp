@@ -331,6 +331,14 @@
         var option = "width = 815, height = 1000, top = 200, left = 350, location = no"
         window.open(url, name, option);
 	};
+	
+	$(".main_pet_change").click(function() {
+	    var url = "mainpet.do";
+	    var name = "popup test";
+	    var option = "width = 500, height = 500, top = 150, left = 500, location = no"
+	    window.open(url, name, option);
+});
+
 </script>
 </head>
 <body>
@@ -381,7 +389,7 @@
 				 		</div>
 				 		<div class="loginmyinf">				 			
 				 			<p>${session_id}<span>(${vo.email })</span></p>
-				 			<button>내정보</button>
+				 			<button onclick="location.href='mypage.do'">내정보</button>
 				 			<button onclick="chat_open()">채팅목록</button>
 				 			<p>가입 ${vo.mdate }</p>
 				 			<p><img src="images/visit.png" width=15px; height=15px;>방문 ${vo.mcount }회</p>
@@ -393,7 +401,7 @@
 				 				<img src="images/loginpet.png" width=95% height=95%>
 				 			</div>
 				 			<p>반련동물 이름</p>
-				 			<button>대표 반려동물 변경</button>
+				 			<button class="main_pet_change">대표 반려동물 변경</button>
 				 			<p>반련동물 품종</p>
 				 			<p>반련동물 크기</p>
 				 			<p>반련동물 생년월일</p>

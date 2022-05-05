@@ -50,5 +50,10 @@ public class IndexController {
 		return result;
 		
 	}
+	
+	@RequestMapping(value="/mainpet.do") 
+	public String mainpet() {
+		return "mainpet";
+	}
 
 }
