@@ -186,6 +186,13 @@
 		border-radius:5px;
 		color:white;
 	}
+	.end {
+		border:1px solid lightgray;
+		background-color:rgb(116,104,128);
+		width:100px; height:40px; 
+		border-radius:5px;
+		color:white;
+	}
 	
 	@media (min-width : 600px) {		
 		.section { background-color:rgb(200,171,217); }
@@ -250,6 +257,21 @@
 			} 
 		});
 		
+		$(".end").click(function(){
+			if (confirm("게시물을 마감처리 하시겠습니까?")) {	
+				$.ajax({
+	                type: "post",
+	                url: "near_end.do",             
+	                data:{nid:"${vo.nid}"},
+	                dataType: 'json',
+	                success: function (result) {
+	                	alert("게시물이 마감되었습니다");
+	                	location.replace("near.do");
+	                },
+	           }); 
+			} 
+		});
+		
 		
 		$(".chat").click(function() {
 			var id = $(".chat").attr("id");
@@ -299,6 +321,7 @@
 			<div class="button">
 				<button type="button" class="delete">삭제</button>
 				<button type="button" class="update" onclick="location.href='near_update.do?nid=${vo.nid}' ">수정</button>
+				<button type="button" class="end">마감</button>
 			</div>
 			</c:if>
 		</div>

@@ -3,6 +3,8 @@
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
      <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
      <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
+    <c:set var="today" value="<%=new java.util.Date()%>" />	
+    <c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy-MM-dd" /></c:set>
 <!DOCTYPE html>
 <html>
 <head>
@@ -162,6 +164,19 @@
 	
 	.more_div1 { display:inline-block; }
 	.more_div2 { display:none; }
+	
+	.end {
+		border:1px solid rgb(116,104,128);
+		display:inline-block;
+		position:relative;
+		bottom:80px; right:30px;
+		float:right;
+		background-color:rgb(116,104,128);
+		color:white;
+		border-radius:5px;
+		width:80px; height:30px;
+		padding-top:3px;
+	}
 </style>
 <script>
 $(document).ready(function() {
@@ -302,6 +317,10 @@ $(document).ready(function() {
 	
 	});
 	
+	$(".end_div").click(function() {
+		alert("이미 마감된 게시글입니다");	
+	});
+	
 	
 });
 
@@ -327,24 +346,50 @@ $(document).ready(function() {
 			<div class="list">
 			<c:if test="${!empty list}">
 				<c:forEach var = "vo"  items="${list}"  begin="0" end="2">
+					<c:if test = "${ date > vo.enddate }">
+					<div class="more_div1 end_div" >
+						<p class="p_title" ><span class="logo">${vo.category }</span>[${vo.kind }]<span class="text">${vo.title }</span></p>
+						<p class="option">
+							<span><img src="images/paw.png">경력 ${vo.work }</span>
+							<span><img src="images/calendar.png">${vo.startdate } ~ ${vo.enddate }</span>
+						</p>
+						<p class="user">${vo.id }(${vo.name }**)</p>					
+						<div class="end">마감</div>
+					</div>
+					</c:if>
+					<c:if test = "${ date <= vo.enddate }">
 					<div onclick="location.href='near_contents.do?nid=${vo.nid}' " class="more_div1">
 						<p class="p_title" ><span class="logo">${vo.category }</span>[${vo.kind }]<span class="text">${vo.title }</span></p>
 						<p class="option">
 							<span><img src="images/paw.png">경력 ${vo.work }</span>
 							<span><img src="images/calendar.png">${vo.startdate } ~ ${vo.enddate }</span>
 						</p>
-						<p class="user">${vo.id }(${vo.name }**)</p>
+						<p class="user">${vo.id }(${vo.name }**)</p>			
 					</div>
+					</c:if>
 				</c:forEach>
 				<c:forEach var = "vo"  items="${list}" begin="3" end="${fn:length(list)-1}" >		
-					<div onclick="location.href='near_contents.do?nid=${vo.nid}' " class="more_div2">
+					<c:if test = "${ date > vo.enddate }">
+					<div class="more_div1 end_div" >
 						<p class="p_title" ><span class="logo">${vo.category }</span>[${vo.kind }]<span class="text">${vo.title }</span></p>
 						<p class="option">
 							<span><img src="images/paw.png">경력 ${vo.work }</span>
 							<span><img src="images/calendar.png">${vo.startdate } ~ ${vo.enddate }</span>
 						</p>
-						<p class="user">${vo.id }(${vo.name }**)</p>
+						<p class="user">${vo.id }(${vo.name }**)</p>					
+						<div class="end">마감</div>
 					</div>
+					</c:if>
+					<c:if test = "${ date <= vo.enddate }">
+					<div onclick="location.href='near_contents.do?nid=${vo.nid}' " class="more_div1">
+						<p class="p_title" ><span class="logo">${vo.category }</span>[${vo.kind }]<span class="text">${vo.title }</span></p>
+						<p class="option">
+							<span><img src="images/paw.png">경력 ${vo.work }</span>
+							<span><img src="images/calendar.png">${vo.startdate } ~ ${vo.enddate }</span>
+						</p>
+						<p class="user">${vo.id }(${vo.name }**)</p>			
+					</div>
+					</c:if>
 				</c:forEach>
 			</c:if>
 			</div>

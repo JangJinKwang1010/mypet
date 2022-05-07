@@ -86,6 +86,10 @@ public class NearDAO {
 	public String getNearPet(String pid) {
 		return sqlSession.selectOne(namespace+".near_pet", pid);
 	}
+	
+	public int getNearEnd(String nid) {
+		return sqlSession.update(namespace+".near_end", nid);
+	}
 
 
 }

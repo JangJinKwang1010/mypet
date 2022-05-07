@@ -224,5 +224,22 @@ public class NearController {
 		return result;
 	}
 	
+	
+	@ResponseBody
+	@RequestMapping(value="/near_end.do", method=RequestMethod.POST)
+	public boolean near_end(HttpServletRequest request) {
+		boolean result = false;
+		
+		String nid = request.getParameter("nid");
+		int val = nearDAO.getNearEnd(nid);
+		
+		if (val!=0) {			
+				result = true;
+		}
+		
+		return result;
+		
+	}
+	
 
 }

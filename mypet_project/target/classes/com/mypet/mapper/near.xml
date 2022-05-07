@@ -23,11 +23,11 @@
 	</insert>
 	
 	<select id="near_list" resultType="com.mypet.vo.NearVO">
-		select *  from mypet_near order by startdate desc
+		select * from mypet_near order by startdate desc
 	</select>
 	
 	<select id="map_list" resultType="com.mypet.vo.NearVO">
-		select * from mypet_map
+		select m.* from mypet_map m, mypet_near n <![CDATA[ where m.nid = n.nid and sysdate - to_date(n.enddate, 'yyyy-mm-dd')  <  0 ]]>
 	</select>
 	
 	<select id="near_content" parameterType="java.lang.String" resultType="com.mypet.vo.NearVO">
@@ -73,5 +73,9 @@
 	<select id="near_pet" parameterType="java.lang.String" resultType="java.lang.String">
 		select category from mypet_pet where pid=#{pid}
 	</select>	
+	
+	<update id="near_end" parameterType="java.lang.String">
+		update mypet_near set enddate = to_char(sysdate - 1, 'yyyy-mm-dd') where nid=#{nid}
+	</update>
 
 </mapper>
