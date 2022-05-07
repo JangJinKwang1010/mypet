@@ -192,20 +192,24 @@ $(document).ready(function() {
 	    } 
 	});
 	
-	var main = document.createElement('div');
-	main.style.cssText = 'position: absolute; left: 0;bottom: 40px;  width:290px; height:120px; ';
-	var content = document.createElement('div');		
-	content.style.cssText = 'border:1px solid lightgray; overflow: auto; width:290px; height:120px; background-color:white; margin-left: -144px;text-align: left; font-size: 12px;font-family: "Malgun Gothic", dotum, "돋움", sans-serif;line-height: 1.5;';
-	main.appendChild(content);
-	var overlay;
 	
-	<c:forEach var = "vo"  items="${mlist}" varStatus="status">			
+	<c:forEach var = "vo"  items="${mlist}" varStatus="status">		
+	
 		
 		geocoder.addressSearch("${vo.addr}", function(result, status) {
+
+			var main = document.createElement('div');
+			main.style.cssText = 'position: absolute; left: 0;bottom: 40px;  width:290px; height:120px; ';
+			var content = document.createElement('div');		
+			content.style.cssText = 'border:1px solid lightgray; overflow: auto; width:290px; height:120px; background-color:white; margin-left: -144px;text-align: left; font-size: 12px;font-family: "Malgun Gothic", dotum, "돋움", sans-serif;line-height: 1.5;';
+			main.appendChild(content);
+			var overlay;
+			
 		    // 정상적으로 검색이 완료됐으면 
 		     if (status === kakao.maps.services.Status.OK) {
 
 		       var coords  = new kakao.maps.LatLng(result[0].y, result[0].x);
+		       		       
 		       <c:if test="${vo.category eq '고양이'}">
 		       		var imageSrc = "images/cat_maker.png"; // 마커이미지의 주소입니다    		    	   
 		      </c:if>
@@ -273,8 +277,10 @@ $(document).ready(function() {
 		     
 		  }	 
 
+		main.empty();
 		    
 	}); 
+		
 		
 	</c:forEach>
 	
