@@ -189,23 +189,86 @@ $(document).ready(function() {
 		center: new kakao.maps.LatLng(33.450701, 126.570667),
 		level: 1
 	};
-	var map = new kakao.maps.Map(mapContainer, mapOptions);	
+	var map = new kakao.maps.Map(mapContainer, mapOptions);		
 	
 	// 주소-좌표 변환 객체를 생성합니다
 	var geocoder = new kakao.maps.services.Geocoder();
 	
+	// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
+	var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+		
 	geocoder.addressSearch("${addr}", function(result, status) {
 
 	    // 정상적으로 검색이 완료됐으면 
-	     if (status === kakao.maps.services.Status.OK) {
+	     if (status === kakao.maps.services.Status.OK) {   		    	 
 
-	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
- 
-
+	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x); 
+	        
 	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 	        map.setCenter(coords);
+	        
+	    	// 장소 검색 객체를 생성합니다
+	    	var ps = new kakao.maps.services.Places(); 
+
+	    	// 키워드로 장소를 검색합니다
+	    	ps.keywordSearch('동물병원', placesSearchCB, {
+	    		location : coords
+	    	}); 
+
+	    	// 키워드 검색 완료 시 호출되는 콜백함수 입니다
+	    	function placesSearchCB (data, status, pagination) {
+	    	    if (status === kakao.maps.services.Status.OK) {
+
+	    	        for (var i=0; i<data.length; i++) {
+	    	            displayMarker(data[i]);    
+	    	        }       
+
+	    	    } 
+	    	}
+
+	    	// 지도에 마커를 표시하는 함수입니다
+	    	function displayMarker(place) {
+	    		
+	    		var imageSrc = "images/h-icon.png";
+	    		 var imageSize = new kakao.maps.Size(30, 35); // 마커이미지의 크기입니다
+	    	     var imageOption = {offset: new kakao.maps.Point(15, 39)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+	    	       
+	    	   // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+	    	   var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+	    	    
+	    	    // 마커를 생성하고 지도에 표시합니다
+	    	    var marker = new kakao.maps.Marker({
+	    	        map: map,
+	    	        position: new kakao.maps.LatLng(place.y, place.x),
+	    	        image:markerImage
+	    	    });
+
+	    	    // 마커에 클릭이벤트를 등록합니다
+	    	    kakao.maps.event.addListener(marker, 'click', function() {
+	    	        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+	    	        var html = '<div style="width:200px; padding:5px; font-size:12px; text-align:center; " class="hdiv">';
+	    	        html += '<p style="font-weight:bold; font-size:14px;">' +place.place_name + '</p>';	    	        
+	    	        if (place.phone == "") {
+	    	        	html += '<p style="position:absolute; bottom:23px; left:180px; font-size:18px; color:gray; cursor:pointer" class="close">X</p>';
+	    	        } else {	    	        	
+		    	        html += '<p style="position:absolute; bottom:40px; left:180px; font-size:18px; color:gray; cursor:pointer" class="close">X</p>';
+	    	        }
+	    	        html += '<p>' + place.address_name + '</p>';
+	    	        html += '<p>' + place .phone +'</div>';
+	    	        infowindow.setContent(html);
+	    	        infowindow.open(map, marker);
+	    	        
+	    	        $(".close").click(function() {
+	    	        	infowindow.close();
+	    	        });
+	    	        
+	    	    });
+	    	}
+
+	       
 	    } 
 	});
+
 	
 	
 	<c:forEach var = "vo"  items="${mlist}" varStatus="status">		
