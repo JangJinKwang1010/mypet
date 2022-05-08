@@ -129,20 +129,6 @@
 		.option { font-size:12px; margin:15px; }
 	}
 	
-	
-	
-    .wrap .info { z-index:-999; width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
-    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
-    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 13px;font-weight: bold;}
-    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
-    .info .close:hover {cursor: pointer;}
-    .info .body {position: relative;overflow: hidden;}
-    .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
-    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
-    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
-    .info:after {}
-    .info .link {color: #5085BB;}
     
     .btn_style {
 		width:65px;
@@ -177,6 +163,17 @@
 		width:80px; height:30px;
 		padding-top:3px;
 	}
+	
+	.info { margin-right:2px; margin-bottom:-2px; overflow-y:scroll; position:relative; display:inline-block; width:270px; height:105px; text-align: left; font-size: 12px; font-family: 'Malgun Gothic', dotum, '돋움'}
+ 	 
+    .info .title {padding: 5px; height: 25px;background: #eee; border-bottom: 1px solid #ddd; width:100%; font-weight: bold;}
+ 	.info .body {position: relative; overflow: hidden;}
+    .info .desc {position: relative; margin: 13px 0 0 90px;height: 75px;}
+    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
+    .info .link {color: #5085BB;}
+    
 </style>
 <script>
 $(document).ready(function() {
@@ -246,12 +243,12 @@ $(document).ready(function() {
 	    	    // 마커에 클릭이벤트를 등록합니다
 	    	    kakao.maps.event.addListener(marker, 'click', function() {
 	    	        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-	    	        var html = '<div style="width:200px; padding:5px; font-size:12px; text-align:center; " class="hdiv">';
+	    	        var html = '<div style="width:250px; padding:5px; font-size:12px; text-align:center; " class="hdiv">';
 	    	        html += '<p style="font-weight:bold; font-size:14px;">' +place.place_name + '</p>';	    	        
 	    	        if (place.phone == "") {
-	    	        	html += '<p style="position:absolute; bottom:23px; left:180px; font-size:18px; color:gray; cursor:pointer" class="close">X</p>';
+	    	        	html += '<p style="position:absolute; bottom:23px; left:230px; font-size:18px; color:gray; cursor:pointer" class="close">X</p>';
 	    	        } else {	    	        	
-		    	        html += '<p style="position:absolute; bottom:40px; left:180px; font-size:18px; color:gray; cursor:pointer" class="close">X</p>';
+		    	        html += '<p style="position:absolute; bottom:40px; left:230px; font-size:18px; color:gray; cursor:pointer" class="close">X</p>';
 	    	        }
 	    	        html += '<p>' + place.address_name + '</p>';
 	    	        html += '<p>' + place .phone +'</div>';
@@ -267,21 +264,15 @@ $(document).ready(function() {
 
 	       
 	    } 
-	});
+	});                                                                                                     
+	
+	
+	<c:forEach var = "vo"  items="${mlist}" varStatus="status">	
 
+		var html = "<div class='info'>";			
 	
-	
-	<c:forEach var = "vo"  items="${mlist}" varStatus="status">		
-	
-		
 		geocoder.addressSearch("${vo.addr}", function(result, status) {
-
-			var main = document.createElement('div');
-			main.style.cssText = 'position: absolute; left: 0;bottom: 40px;  width:290px; height:120px; ';
-			var content = document.createElement('div');		
-			content.style.cssText = 'border:1px solid lightgray; overflow: auto; width:290px; height:120px; background-color:white; margin-left: -144px;text-align: left; font-size: 12px;font-family: "Malgun Gothic", dotum, "돋움", sans-serif;line-height: 1.5;';
-			main.appendChild(content);
-			var overlay;
+			
 			
 		    // 정상적으로 검색이 완료됐으면 
 		     if (status === kakao.maps.services.Status.OK) {
@@ -300,29 +291,16 @@ $(document).ready(function() {
 			   // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
 			   var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
 		       
-			   var content2 = document.createElement('div');			   
-			   content2.innerHTML =  '<div class="info">' + 
-	            '        <div class="title" id="title">' + 
-	            '            ${vo.addr}' +
-	            '        </div>' + 
-	            '        <div class="body">' + 
-	            '            <div class="img">' +
-	            '                <img src="upload/${vo.vo.psfile}" width="73" height="70">' +
-	            '           </div>' + 
-	            '            <div class="desc">' + 
-	            '                <div class="ellipsis">[${vo.vo.category}] ${vo.vo.kind}</div>' + 
-	            '                <div class="jibun ellipsis">${vo.vo.pname}(${vo.vo.pgender}) ${vo.vo.pbirth}년</div>' + 
-	            '                <div><a href="near_contents.do?nid=${vo.nid}" target="_blank" class="link">게시물 보기</a></div>' + 
-	            '            </div>' + 
-	            '        </div>' + 
-	            '    </div>';  
-	            content.appendChild(content2);
+			   var html2 = '<div class="title" id="title">${vo.addr}</div>'+'<div class="body">' 
+			   + '<div class="img">' 
+			   + '<img src="upload/${vo.vo.psfile}" width="73" height="70">' 
+			   + '</div><div class="desc"><div class="ellipsis">[${vo.vo.category}] ${vo.vo.kind}</div>' 
+			   + '<div class="jibun ellipsis">${vo.vo.pname}(${vo.vo.pgender}) ${vo.vo.pbirth}년</div>' 
+			   + '<div><a href="near_contents.do?nid=${vo.nid}" target="_blank" class="link">게시물 보기</a></div>' 
+			   + '</div></div>';  
+			   
+	            html += html2;
 	            
-	            
-	            var content3 = document.createElement('div');
-	            content3.style.cssText = 'position: absolute; left: 0;bottom: -10px; width: 22px;height: 12px;background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png")';
-	            main.appendChild(content3);
-
 	        // 결과값으로 받은 위치를 마커로 표시합니다
 	        var marker = new kakao.maps.Marker({
 	            map: map,
@@ -330,35 +308,14 @@ $(document).ready(function() {
 	            image: markerImage // 마커이미지 설정 
 	        });
 	        
-		     // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-	        kakao.maps.event.addListener(marker, 'click', function() {
-	        	overlay  = new kakao.maps.CustomOverlay({
-			            content: main,
-			            map: map,
-			            position: marker.getPosition()       
-			        });
-	            overlay.setMap(map);	            
+	        kakao.maps.event.addListener(marker, 'click', function() {	        	
+	        	 infowindow.setContent(html);
+	    	     infowindow.open(map, marker);	        
+	    	     
 	        }); 		   
 		     
-		    var close = document.createElement('div');
-		    close.style.cssText = ' position: absolute; bottom:120px; left:-144px;width: 290px;height: 25px; background-color:rgb(230,230,230); border:1px solid lightgray; '
-	        var closeBtn = document.createElement('div');
-	        closeBtn.style.cssText = ' margin:5px; float:right;color: #888;width: 17px;height: 17px;background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png")';
-	        // 닫기 이벤트 추가
-	        closeBtn.onclick = function() {
-	            overlay.setMap(null);
-	        };
-	        close.appendChild(closeBtn)
-	        content.insertBefore(close, content.firstChild);
-		       	     
-		    
-		     
 		  }	 
-
-		main.empty();
-		    
-	}); 
-		
+	}); 	
 		
 	</c:forEach>
 	
