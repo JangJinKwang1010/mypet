@@ -44,10 +44,19 @@ public class NearController {
 			list.get(i).setCategory(nearDAO.getNearPet(list.get(i).getPid()));
 		}
 		
-		ArrayList<NearVO> mlist = nearDAO.getMapList();
-		for (int i=0; i<mlist.size(); i++) {
-			PetVO vo = petDAO.getPetContent(mlist.get(i).getPid());
-			mlist.get(i).setVo(vo);
+		ArrayList<NearVO> alist = nearDAO.getAddrList();	
+		ArrayList<ArrayList<NearVO>> Mlist = new ArrayList<ArrayList<NearVO>>();
+		ArrayList<NearVO> mlist = new ArrayList<NearVO>();
+		
+		for (int i=0; i<alist.size(); i++) {
+			mlist = nearDAO.getMapList(alist.get(i).getAddr());
+			
+			for (int j=0; j<mlist.size(); j++) {
+				PetVO vo = petDAO.getPetContent(mlist.get(j).getPid());
+				mlist.get(j).setVo(vo);				
+			}				
+			
+			Mlist.add(mlist);
 		}
 		
 		for (int i=0; i<list.size(); i++) {
@@ -58,8 +67,9 @@ public class NearController {
 			list.get(i).setStartdate(s[0]);
 			
 		}
+		mv.addObject("alist", alist);
 		mv.addObject("list", list);
-		mv.addObject("mlist", mlist);
+		mv.addObject("mlist", Mlist);
 		
 		mv.setViewName("near/near");
 		return mv;

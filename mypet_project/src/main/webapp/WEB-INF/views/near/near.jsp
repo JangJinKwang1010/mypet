@@ -174,6 +174,15 @@
     .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
     .info .link {color: #5085BB;}
     
+    .mclose {
+    	position:absolute; 
+    	cursor:pointer;
+    	left:235px;
+    	bottom:78px;
+    	font-size:18px;
+    	color:gray;
+    }
+    
 </style>
 <script>
 $(document).ready(function() {
@@ -267,54 +276,71 @@ $(document).ready(function() {
 	});                                                                                                     
 	
 	
-	<c:forEach var = "vo"  items="${mlist}" varStatus="status">	
+	<c:forEach var = "vo"  items="${alist}" varStatus="status">	
 
-		var html = "<div class='info'>";			
-	
 		geocoder.addressSearch("${vo.addr}", function(result, status) {
 			
+			var html = "<div class='info'>";		
 			
-		    // 정상적으로 검색이 완료됐으면 
-		     if (status === kakao.maps.services.Status.OK) {
-
-		       var coords  = new kakao.maps.LatLng(result[0].y, result[0].x);
-		       		       
-		       <c:if test="${vo.category eq '고양이'}">
-		       		var imageSrc = "images/cat_maker.png"; // 마커이미지의 주소입니다    		    	   
-		      </c:if>
-		      <c:if test="${vo.category eq '강아지'}">
-		    		var imageSrc = "images/dog_maker.png"; // 마커이미지의 주소입니다     		    	   
-	     	  </c:if>		
-		       var imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
-		       var imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-		         
-			   // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-			   var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
-		       
-			   var html2 = '<div class="title" id="title">${vo.addr}</div>'+'<div class="body">' 
-			   + '<div class="img">' 
-			   + '<img src="upload/${vo.vo.psfile}" width="73" height="70">' 
-			   + '</div><div class="desc"><div class="ellipsis">[${vo.vo.category}] ${vo.vo.kind}</div>' 
-			   + '<div class="jibun ellipsis">${vo.vo.pname}(${vo.vo.pgender}) ${vo.vo.pbirth}년</div>' 
-			   + '<div><a href="near_contents.do?nid=${vo.nid}" target="_blank" class="link">게시물 보기</a></div>' 
-			   + '</div></div>';  
-			   
-	            html += html2;
-	            
-	        // 결과값으로 받은 위치를 마커로 표시합니다
-	        var marker = new kakao.maps.Marker({
-	            map: map,
-	            position: coords,
-	            image: markerImage // 마커이미지 설정 
-	        });
-	        
-	        kakao.maps.event.addListener(marker, 'click', function() {	        	
-	        	 infowindow.setContent(html);
-	    	     infowindow.open(map, marker);	        
-	    	     
-	        }); 		   
+			
+			<c:forEach var = "mvo"  items="${mlist}" varStatus="status">	
+			
+				<c:forEach var = "mmvo"  items="${mvo}" varStatus="status">	
+				
+				
+			 <c:if test="${mmvo.addr eq vo.addr}">			 			 
+							
+				
+			    // 정상적으로 검색이 완료됐으면 
+			     if (status === kakao.maps.services.Status.OK) {
+	
+			       var coords  = new kakao.maps.LatLng(result[0].y, result[0].x);
+			       		       
+			       <c:if test="${mmvo.category eq '고양이'}">
+			       		var imageSrc = "images/cat_maker.png"; // 마커이미지의 주소입니다    		    	   
+			      </c:if>
+			      <c:if test="${mmvo.category eq '강아지'}">
+			    		var imageSrc = "images/dog_maker.png"; // 마커이미지의 주소입니다     		    	   
+		     	  </c:if>		
+			       var imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
+			       var imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+			         
+				   // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+				   var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+			       		       
+				   var html2 = '<div class="title" id="title">${vo.addr}</div>'+' <p class="mclose">X</p><div class="body">' 
+				   + '<div class="img">' 
+				   + '<img src="upload/${mmvo.vo.psfile}" width="73" height="70">' 
+				   + '</div><div class="desc"><div class="ellipsis">[${mmvo.vo.category}] ${mmvo.vo.kind}</div>' 
+				   + '<div class="jibun ellipsis">${mmvo.vo.pname}(${mmvo.vo.pgender}) ${mmvo.vo.pbirth}년</div>' 
+				   + '<div><a href="near_contents.do?nid=${mmvo.nid}" target="_blank" class="link">게시물 보기</a></div>' 
+				   + '</div></div>';  
+				   
+		            html += html2;
+		            
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords,
+		            image: markerImage // 마커이미지 설정 
+		        });
+		        
+		        kakao.maps.event.addListener(marker, 'click', function() {	        	
+		        	 infowindow.setContent(html);
+		    	     infowindow.open(map, marker);	    
+		    	     
+		    	     $(".mclose").click(function() {
+		    	        	infowindow.close();
+		    	        });
+		    	     
+		        }); 		
+		        
 		     
-		  }	 
+		 	}	 
+		      </c:if>
+		     </c:forEach>
+		     </c:forEach>
+		        
 	}); 	
 		
 	</c:forEach>

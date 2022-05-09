@@ -26,8 +26,12 @@
 		select * from mypet_near order by startdate desc
 	</select>
 	
+	<select id="addr_list" resultType="com.mypet.vo.NearVO">
+		select distinct(addr) from mypet_map group by addr
+	</select>
+	
 	<select id="map_list" resultType="com.mypet.vo.NearVO">
-		select m.* from mypet_map m, mypet_near n <![CDATA[ where m.nid = n.nid and sysdate - to_date(n.enddate, 'yyyy-mm-dd')  <  0 ]]>
+		select m.* from mypet_map m, mypet_near n <![CDATA[ where m.nid = n.nid and sysdate - to_date(n.enddate, 'yyyy-mm-dd')  <  0 and addr = #{addr} ]]>
 	</select>
 	
 	<select id="near_content" parameterType="java.lang.String" resultType="com.mypet.vo.NearVO">

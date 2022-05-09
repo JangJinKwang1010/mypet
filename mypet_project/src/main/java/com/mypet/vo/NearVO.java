@@ -5,8 +5,17 @@ public class NearVO {
 	String pid, latitude, longitude, nid, id, category, kind, startdate, enddate, title, content, work, addr, name;
 	int hit;
 	PetVO vo;
+	NearVO nvo;
 	
 	
+	
+	public NearVO getNvo() {
+		return nvo;
+	}
+
+	public void setNvo(NearVO nvo) {
+		this.nvo = nvo;
+	}
 
 	public PetVO getVo() {
 		return vo;

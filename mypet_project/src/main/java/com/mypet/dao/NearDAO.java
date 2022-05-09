@@ -38,8 +38,13 @@ public class NearDAO {
 		return (ArrayList<NearVO>)list;
 	}
 	
-	public ArrayList<NearVO> getMapList() {
-		List<NearVO> list = sqlSession.selectList(namespace+".map_list");		
+	public ArrayList<NearVO> getMapList(String addr) {
+		List<NearVO> list = sqlSession.selectList(namespace+".map_list", addr);		
+		return (ArrayList<NearVO>)list;
+	}
+	
+	public ArrayList<NearVO> getAddrList() {
+		List<NearVO> list = sqlSession.selectList(namespace+".addr_list");		
 		return (ArrayList<NearVO>)list;
 	}
 	
