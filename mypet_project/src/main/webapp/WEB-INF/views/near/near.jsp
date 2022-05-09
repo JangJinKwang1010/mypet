@@ -353,13 +353,15 @@ $(document).ready(function() {
 	});
 	
 	$("#more_btn").click(function() {
-		$(".more_div2").css("display","inline-block");
 		
-		if (flag == true) {
+		if (${fn:length(list)-1} <= 2) {
 			alert("마지막 페이지입니다");
+		} else if ($( ".more_div2" ).css( "display" ) == "inline-block") {
+			alert("마지막 페이지입니다");
+		} else {
+			$(".more_div2").css("display","inline-block");
 		}
 		
-		flag = true;
 	
 	});
 	
@@ -416,7 +418,7 @@ $(document).ready(function() {
 				</c:forEach>
 				<c:forEach var = "vo"  items="${list}" begin="3" end="${fn:length(list)-1}" >		
 					<c:if test = "${ date > vo.enddate }">
-					<div class="more_div1 end_div" >
+					<div class="more_div2 end_div" >
 						<p class="p_title" ><span class="logo">${vo.category }</span>[${vo.kind }]<span class="text">${vo.title }</span></p>
 						<p class="option">
 							<span><img src="images/paw.png">경력 ${vo.work }</span>
@@ -427,7 +429,7 @@ $(document).ready(function() {
 					</div>
 					</c:if>
 					<c:if test = "${ date <= vo.enddate }">
-					<div onclick="location.href='near_contents.do?nid=${vo.nid}' " class="more_div1">
+					<div onclick="location.href='near_contents.do?nid=${vo.nid}' " class="more_div2">
 						<p class="p_title" ><span class="logo">${vo.category }</span>[${vo.kind }]<span class="text">${vo.title }</span></p>
 						<p class="option">
 							<span><img src="images/paw.png">경력 ${vo.work }</span>

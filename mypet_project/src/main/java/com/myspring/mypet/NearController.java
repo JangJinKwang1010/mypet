@@ -206,6 +206,9 @@ public class NearController {
 		ModelAndView mv = new ModelAndView();
 		
 		NearVO vo = nearDAO.getNearContent(nid);
+		
+		vo.setCategory(nearDAO.getNearPet(vo.getPid()));
+		
 		mv.addObject("vo", vo);
 		mv.setViewName("near/near_update");		
 		

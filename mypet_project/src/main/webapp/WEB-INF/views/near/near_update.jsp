@@ -129,14 +129,7 @@
 				<div class="writing_line"></div>
 				<form id="form">
 				<select class="pet_select form-select" style="width:21%" name="kind">
-					<c:if test="${vo.kind eq '비숑'}">
-						<option value="비숑/강아지" selected>비숑</option>
-						<option value="페르시안고양이/고양이">페르시안고양이</option>
-					</c:if>
-					<c:if test="${vo.kind eq '페르시안고양이'}">
-						<option value="비숑/강아지" >비숑</option>
-						<option value="페르시안고양이/고양이" selected>페르시안고양이</option>
-					</c:if>
+						<option value="${vo.kind }/${vo.category}" >${vo.kind }</option>
 				</select>
 				<select class="pet_select form-select" style="width:41%" name="work">
 					<c:if test="${vo.work eq '1년 이하'}">
