@@ -74,5 +74,39 @@
  		select * from mypet_near where id=#{id} order by startdate desc
  	</select>
  	
+ 	<select id="mypage_post" parameterType="com.mypet.vo.DiaryVO" resultType="com.mypet.vo.DiaryVO">
+		select  rno, fid, id, ftitle, fcontent, fdate, fhit, fheart, fnheart
+		 from (select rownum rno, fid, id, ftitle, fcontent, fdate, fhit, fheart, fnheart
+		 from (select rno, fid, id, ftitle, fcontent, fdate, fhit, fheart, fnheart from (
+		select  rno, fid, id, ftitle, fcontent, to_char(fdate, 'yyyy-mm-dd') fdate, fhit, fheart, fnheart
+             from(select  rownum rno, fid, id, ftitle, fcontent, fdate, fhit, fheart, fnheart
+				     from(select * from mypet_free_diary where id=#{id} order by fdate desc))	where rno between #{startnum} and #{endnum}) order by fid)) order by rno desc
+	</select>
+	
+	<select id="post_target" parameterType="com.mypet.vo.DiaryVO" resultType="java.lang.Integer">
+		select count(num) from(select rownum num from mypet_free_diary where id=#{id}) where num >= #{pagenum}
+	</select>
+	
+		<select id="mypage_comment" parameterType="com.mypet.vo.DiaryVO" resultType="com.mypet.vo.DiaryVO">
+		select  rno, id, cid, seq_id, ccomment, cdate
+		 from (select rownum rno, id, cid, seq_id, ccomment, cdate
+		 from (select rno, id, cid, seq_id, ccomment, cdate from (
+		select  rno,  id, cid, seq_id, ccomment, to_char(cdate, 'yyyy-mm-dd') cdate
+             from(select  rownum rno, id, cid, seq_id, ccomment, cdate
+				     from(select * from mypet_comment where id=#{id} order by cdate desc))	where rno between #{startnum} and #{endnum}) order by cid)) order by rno desc
+	</select>
+	
+	<select id="comment_target" parameterType="com.mypet.vo.DiaryVO" resultType="java.lang.Integer">
+		select count(num) from(select rownum num from mypet_comment where id=#{id}) where num >= #{pagenum}
+	</select>
+	
+	<select id="ftitle_select" parameterType="java.lang.String" resultType="java.lang.String">
+		select ftitle from mypet_free_diary where fid=#{seq_id}
+	</select>
+	
+	<select id="ptitle_select" parameterType="java.lang.String" resultType="java.lang.String">
+		select ptitle from mypet_pictures_diary where pid=#{seq_id}
+	</select>
+ 	
  	
 </mapper>

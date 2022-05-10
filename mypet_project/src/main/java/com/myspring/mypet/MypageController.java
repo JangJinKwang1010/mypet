@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mypet.dao.DiaryDAO;
 import com.mypet.dao.MypageDAO;
 import com.mypet.dao.NearDAO;
 import com.mypet.vo.DiaryVO;
@@ -28,6 +29,9 @@ public class MypageController {
 	
 	@Autowired
 	private NearDAO NearDAO;
+	
+	@Autowired
+	private DiaryDAO DiaryDAO;
 	
 	@RequestMapping(value="/mypage.do") 
 	public String mypage() {
@@ -166,9 +170,93 @@ public class MypageController {
 		return result;
 	}
 	
-	@RequestMapping(value="/mypage_post.do") 
-	public String mypage_post() {
-		return "mypage/mypage_post";
+	@RequestMapping(value="/mypage_post.do",  method= {RequestMethod.GET,RequestMethod.POST}) 
+	public ModelAndView mypage_post(String pnum, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession(); //技记 积己
+		String id= (String)session.getAttribute("session_id");
+		int pageNumber = 1;
+		 
+		if(pnum != null) {
+	  		pageNumber = Integer.parseInt(pnum);
+	  	}
+		
+		int startnum = ((pageNumber-1)*7) +1;
+		int endnum = pageNumber*7; 
+		int pagenum = (pageNumber -1) * 7;
+		int target = 0;
+		
+		DiaryVO vo = new DiaryVO();
+		vo.setId(id); vo.setStartnum(startnum); vo.setEndnum(endnum); vo.setPagenum(pagenum);
+		
+		ArrayList<DiaryVO> post_list = MypageDAO.getMypagePost(vo);
+		for (int i=0; i<post_list.size(); i++) {
+			post_list.get(i).setC_count(DiaryDAO.getFreeCommentCount(post_list.get(i).getFid()));
+		}
+		
+		target = MypageDAO.getMypagePostTarget(vo);
+		
+		int targetpage = 0;
+		if(pageNumber != 1 ) {
+			targetpage = (target-2) / 10 ;
+		} else {
+			targetpage = (target-1) / 10 ;
+		}
+		
+		mv.addObject("list", post_list);
+		mv.addObject("targetpage", String.valueOf(targetpage));
+		mv.addObject("pageNumber", String.valueOf(pageNumber));
+		mv.setViewName("mypage/mypage_post");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="/mypage_comment.do", method= {RequestMethod.GET,RequestMethod.POST}) 
+	public ModelAndView mypage_comment(String pnum, HttpServletRequest request ) {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession(); //技记 积己
+		String id= (String)session.getAttribute("session_id");
+		int pageNumber = 1;
+		 
+		if(pnum != null) {
+	  		pageNumber = Integer.parseInt(pnum);
+	  	}
+		
+		int startnum = ((pageNumber-1)*7) +1;
+		int endnum = pageNumber*7; 
+		int pagenum = (pageNumber -1) * 7;
+		int target = 0;
+		
+		DiaryVO vo = new DiaryVO();
+		vo.setId(id); vo.setStartnum(startnum); vo.setEndnum(endnum); vo.setPagenum(pagenum);
+		
+		ArrayList<DiaryVO> comment_list = MypageDAO.getMypageComment(vo);
+		for (int i=0; i<comment_list.size(); i++) {
+			
+			if (comment_list.get(i).getSeq_id().substring(0, 1).equals("f")) {
+				comment_list.get(i).setFtitle(MypageDAO.getFtitleSelect(comment_list.get(i).getSeq_id()));
+				comment_list.get(i).setType("f");
+			} else {
+				comment_list.get(i).setPtitle(MypageDAO.getPtitleSelect(comment_list.get(i).getSeq_id()));
+				comment_list.get(i).setType("p");
+			}
+		}
+		
+		target = MypageDAO.getMypageCommentTarget(vo);
+		
+		int targetpage = 0;
+		if(pageNumber != 1 ) {
+			targetpage = (target-2) / 10 ;
+		} else {
+			targetpage = (target-1) / 10 ;
+		}
+		
+		mv.addObject("list", comment_list);
+		mv.addObject("targetpage", String.valueOf(targetpage));
+		mv.addObject("pageNumber", String.valueOf(pageNumber));
+		mv.setViewName("mypage/mypage_comment");
+		
+		return mv;
 	}
 	
 	@RequestMapping(value="/mypage_near.do") 

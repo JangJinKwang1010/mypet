@@ -12,6 +12,7 @@
 <script src="js/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
+<link href="css/page.css" rel="stylesheet">
 <style>
 	.section {
 		text-align:center;
@@ -73,8 +74,7 @@
 	.pagenum {
 		display:inline-block;
 	}
-	.page { text-align:center; }
-	.page>nav { display:inline-block; }
+	
 	.write {
 		float:right;
 		border:none;
@@ -101,6 +101,7 @@
 		display:inline-block;
 		color:black;
 		margin-top:15px; 
+		cursor:pointer;
 	}
 	.picture {
 		border:1px solid lightgray;
@@ -117,48 +118,7 @@
 	.picture_title:hover { text-decoration:underline; }
 	.picture_name, .picture_date { color:gray; font-size:14px; }
 	
-	.page { margin-top:20px; }
-	.pagination {
-	  display: inline-block;
-	  padding-left: 0;
-	  margin: 20px 0;
-	  border-radius: 4px;
-	}
-	.pagination > li {
-	  display: inline;
-	}
-	.pagination > li > a,
-	.pagination > li > span {
-	  position: relative;
-	  float: left;
-	  padding: 6px 12px;
-	  margin-left: -1px;
-	  line-height: 1.42857143;
-	  color: #337ab7;
-	  text-decoration: none;
-	  background-color: #fff;
-	  border: 1px solid #ddd;
-	}
-	.pagination > li:first-child > a,
-	.pagination > li:first-child > span {
-	  margin-left: 0;
-	  border-top-left-radius: 4px;
-	  border-bottom-left-radius: 4px;
-	}
-	.pagination > li:last-child > a,
-	.pagination > li:last-child > span {
-	  border-top-right-radius: 4px;
-	  border-bottom-right-radius: 4px;
-	}
-	.pagination > li > a:hover,
-	.pagination > li > span:hover,
-	.pagination > li > a:focus,
-	.pagination > li > span:focus {
-	  z-index: 2;
-	  color: #23527c;
-	  background-color: #eee;
-	  border-color: #ddd;
-	}
+	.page { margin-top:50px; }
 	
 	@media (min-width : 600px) {		
 		.section { background-color:rgb(247,179,42); }
@@ -193,17 +153,15 @@
 			<div class ="mainbox2 freebox">
 				<p class="subtitle"><span class="free_diary" onclick="location.href='diary_free.do'">자유게시판</span>사진게시판</p>
 				<div class="board">
-				<c:forEach var = "vo"  items="${pictures_list}"  >
-						<a href="diary_pictures_contents.do?pid=${vo.pid }">
-							<div class="picture_div">
-								<div class="picture">
-									<img src="upload/${vo.psfile }" width=100%; height=100%; >
-								</div>
-								<p class="picture_title">${vo.ptitle }<span>[${vo.pc_count }]</span></p>
-								<p class="picture_name">${vo.id }</p>
-								<p class="picture_date">${vo.pdate }<span> 조회 ${vo.phit }</span></p>
-							</div>					
-						</a>
+					<c:forEach var = "vo"  items="${pictures_list}"  >
+						<div class="picture_div" onclick= "location.href='diary_pictures_contents.do?pid=${vo.pid }'">
+							<div class="picture">
+								<img src="upload/${vo.psfile }" width=100%; height=100%; >
+							</div>
+							<p class="picture_title">${vo.ptitle }<span>[${vo.pc_count }]</span></p>
+							<p class="picture_name">${vo.id }</p>
+							<p class="picture_date">${vo.pdate }<span> 조회 ${vo.phit }</span></p>
+						</div>		
 					</c:forEach>					
 					<div class="page">
 						<nav aria-label="...">

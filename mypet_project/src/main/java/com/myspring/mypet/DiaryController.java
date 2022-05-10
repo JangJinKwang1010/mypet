@@ -41,7 +41,6 @@ public class DiaryController {
 		
 		ArrayList<DiaryVO> free_list = DiaryDAO.getFreeList(startnum,endnum);
 		for (int i=0; i<free_list.size(); i++) {
-			free_list.get(i).setFheart(DiaryDAO.getFreeUpList(free_list.get(i).getFid()));
 			free_list.get(i).setC_count(DiaryDAO.getFreeCommentCount(free_list.get(i).getFid()));
 		}
 		

@@ -108,7 +108,7 @@
 				        success:function(result){
 				       		if (result) {
 				       			alert("글이 등록되었습니다");
-				       			location.replace('diary.do');
+				       			location.replace('diary_free.do');
 				       		} else {
 				       			alert("글이 등록되지 않았습니다");		       
 				       			location.reload();

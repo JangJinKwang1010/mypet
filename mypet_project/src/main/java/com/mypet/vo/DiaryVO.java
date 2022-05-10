@@ -4,11 +4,41 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class DiaryVO {
 	
-	String id, ftitle, fcontent, fdate, fid, ccomment, cdate, cid, pid, ptitle, pfile, psfile, ptag, pdate, true_ptag;	
-	int fheart, fnheart, fhit, rno, c_count, pheart, pnheart, phit, pc_count;
+	String id, ftitle, fcontent, fdate, fid, ccomment, cdate, cid, pid, ptitle, pfile, psfile, ptag, pdate, true_ptag, seq_id, type;	
+	int fheart, fnheart, fhit, rno, c_count, pheart, pnheart, phit, pc_count, startnum, endnum, pagenum;
 	CommonsMultipartFile pfile0, pfile1, pfile2, pfile3, pfile4, pfile5, pfile6, pfile7, pfile8, pfile9, pfile10;	
 	
 	
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getSeq_id() {
+		return seq_id;
+	}
+	public void setSeq_id(String seq_id) {
+		this.seq_id = seq_id;
+	}
+	public int getPagenum() {
+		return pagenum;
+	}
+	public void setPagenum(int pagenum) {
+		this.pagenum = pagenum;
+	}
+	public int getStartnum() {
+		return startnum;
+	}
+	public void setStartnum(int startnum) {
+		this.startnum = startnum;
+	}
+	public int getEndnum() {
+		return endnum;
+	}
+	public void setEndnum(int endnum) {
+		this.endnum = endnum;
+	}
 	public int getPc_count() {
 		return pc_count;
 	}

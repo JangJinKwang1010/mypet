@@ -63,6 +63,7 @@
 									<td>${vo.mdate }</td>
 								</tr>
 							</c:forEach>
+						</tbody>
 				</table>
 		</div>
 	</div>

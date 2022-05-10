@@ -1,7 +1,9 @@
 package com.mypet.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +70,32 @@ public class MypageDAO {
 	public ArrayList<NearVO> getMypageNear(String id) {
 		List<NearVO> list = sqlSession.selectList(namespace+".mypage_near", id);		
 		return (ArrayList<NearVO>)list;
+	}
+	
+	public ArrayList<DiaryVO> getMypagePost(DiaryVO vo) {		
+		List<DiaryVO> list = sqlSession.selectList(namespace+".mypage_post", vo);		
+		return (ArrayList<DiaryVO>)list;
+	}
+	
+	public int getMypagePostTarget(DiaryVO vo) {
+		return sqlSession.selectOne(namespace+".post_target", vo);
+	}
+	
+	public ArrayList<DiaryVO> getMypageComment(DiaryVO vo) {		
+		List<DiaryVO> list = sqlSession.selectList(namespace+".mypage_comment", vo);		
+		return (ArrayList<DiaryVO>)list;
+	}
+	
+	public int getMypageCommentTarget(DiaryVO vo) {
+		return sqlSession.selectOne(namespace+".comment_target", vo);
+	}
+	
+	public String getFtitleSelect(String seq_id) {
+		return sqlSession.selectOne(namespace+".ftitle_select", seq_id);
+	}
+	
+	public String getPtitleSelect(String seq_id) {
+		return sqlSession.selectOne(namespace+".ptitle_select", seq_id);
 	}
 
 }
