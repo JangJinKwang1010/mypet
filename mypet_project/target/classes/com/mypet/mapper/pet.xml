@@ -34,11 +34,15 @@
 	</select>
 	
 	<select id="rpet" parameterType="java.lang.String" resultType="com.mypet.vo.PetVO">
-		select * from mypet_pet where id=#{id} and rpet='Y'
+		select id, pid, category, kind, bulk, startdate, pname, pkg, pgender, pbirth, TRUNC(MONTHS_BETWEEN(SYSDATE, PBIRTH)/12, 0) as page, pcomment, pfile, psfile, pdate from mypet_pet where id=#{id} and rpet='Y'
 	</select>
 	
 	<update id="rpet_update" parameterType="java.lang.String">
 		update mypet_pet set rpet = 'Y' where pid=#{pid}
+	</update>
+	
+	<update id="rpet_all_update" parameterType="java.lang.String">
+		update mypet_pet set rpet = 'N' where id=#{id}
 	</update>
 
 </mapper>

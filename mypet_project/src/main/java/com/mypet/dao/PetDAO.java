@@ -56,5 +56,9 @@ public class PetDAO {
 	public int getRpetUpdate(String pid) {
 		return sqlSession.update(namespace+".rpet_update", pid);
 	}
+	
+	public int getRpetAllUpdate(String id) {
+		return sqlSession.update(namespace+".rpet_all_update", id);
+	}
 
 }

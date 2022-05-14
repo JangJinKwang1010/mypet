@@ -40,9 +40,10 @@ public class ChatDAO {
 		return (ArrayList<ChatVO>)list;
 	}
 	
-	public ArrayList<ChatVO> getChatFromIdList(String to_id) {
-		List<ChatVO> list = sqlSession.selectList(namespace+".chat_from_id_list", to_id);		
-		return (ArrayList<ChatVO>)list;
+	public String getChatLast(ChatVO vo) {
+		return sqlSession.selectOne(namespace+".chat_last", vo);
 	}
+	
+	
 
 }

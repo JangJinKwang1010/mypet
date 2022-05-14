@@ -86,9 +86,13 @@ public class IndexController {
 	
 	@ResponseBody
 	@RequestMapping(value="/rpet_update.do", method=RequestMethod.POST)
-	public boolean rpet_update(String pid) {
+	public boolean rpet_update(HttpServletRequest request, String pid) {
 		boolean result = false;
 		
+		HttpSession session = request.getSession(); //技记 积己
+		String id = (String)session.getAttribute("session_id");
+		
+		PetDAO.getRpetAllUpdate(id);
 		int val = PetDAO.getRpetUpdate(pid);
 		
 		if (val!=0) {

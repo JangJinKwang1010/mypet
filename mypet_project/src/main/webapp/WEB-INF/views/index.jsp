@@ -236,7 +236,7 @@
 	.banner {
 		width:100%;
 		height:250px;
-		background-image:url("http://14.47.84.213:9000/mypet/images/banner.png");
+		background-image:url("http://localhost:9000/mypet/images/banner.png");
 		margin-top:250px;
 		text-align:center;
 	}
@@ -283,6 +283,8 @@
 		color:white;
 	}
 	.rpet { margin-top:10px; }
+	.loginmypet p { font-size:13px; }
+	.loginmypet b { font-size:14px; }
 	
 	@media (min-width: 1600px) {
 		.loginmyinf { width:450px; }
@@ -312,7 +314,6 @@
 		.loginboxhigh2>a { margin:30px 10px 0 0; }
 		.loginmyinf { width:90%; }
 		.loginpicture{display:none;}
-		.loginmypet>p {font-size:13px;}
 		.loginmypet>button{font-size:12px; margin-top:-20px;}
 		.banner .bannertext {color:black;}
 		.banner .bannertext:hover {color:white;}
@@ -416,11 +417,12 @@
 				 				<img src="upload/${pvo.psfile }" width=95% height=95%>
 				 			</div>
 				 			<c:if test="${rpet eq 1}">
-					 			<p>${pvo.pname }</p>
+					 			<p style="margin-top:10px;"><b>이름</b>  ${pvo.pname } (${pvo.pgender })</p>
 					 			<button class="main_pet_change">대표 반려동물 설정</button>
-					 			<p>${pvo.kind }</p>
-					 			<p>${pvo.bulk } ${pvo.pkg }</p>
-					 			<p>${pvo.pbirth }</p>
+					 			<p><b>종류</b>  ${pvo.category }</p>
+					 			<p><b>품종</b>  ${pvo.kind }</p>
+					 			<p><b>크기</b>  ${pvo.bulk } ${pvo.pkg }</p>
+					 			<p><b>생년월일</b>  ${pvo.pbirth } (${pvo.page}년)</p>
 				 			</c:if>				 			
 				 		</div>
 			 			</c:if>

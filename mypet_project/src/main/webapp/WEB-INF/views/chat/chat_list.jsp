@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Mypet</title>
 <script src="js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript"	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 </head>
 <style>
 	html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
@@ -41,6 +39,7 @@
 		border-right:1px solid lightgray;
 		padding-top:20px; padding-left:20px;
 		cursor:pointer;
+		float:left;
 	}
 	.left_img {
 		width:50px; height:50px;
@@ -52,7 +51,7 @@
 	.left_box>p { margin-left:10px; float:left; }
 	.left_box>p:nth-child(2) { font-size:16px; font-weight:bold; }
 	.left_box>p:last-child { font-size:14px; margin-top:5px; color:gray; }
-	#check {  box-shadow: 0 0 0 2px rgb(0,66,132) inset;  }
+	#check {    }
 	
 	.center { background-color:rgb(240,240,240); width:500px; height:95%; display:inline-block; float:right; display:inline-block; }
 	.center_chat { width:100%; height:90%; overflow-y: scroll; overflow-x: hidden; }
@@ -81,82 +80,223 @@
 <script>
 $(document).ready(function() {
 	
-	chatinfo();
-	chathistory();
+	if("${from_id}" != "") {
+		var id = "${from_id}";
+		mclick(id);
+	}
 	
-	/* var reloadChat = setInterval(function() {
-		chathistory();
-	}, 1000); */
+	var htmlOut3;
 	
-	$(".send").click(function() {
-		send();
-	});
+	$.ajax({
+        type: "post",
+        url: "chat_info.do",             
+        data:{from_id:"${from_id}"},
+        dataType: 'json',
+        success: function (data) {
+        	for(var idx in data){
+        	var htmlOut = "";
+        		if (data[idx].from_id != "${session_id}") {        			
+        			htmlOut += ' <div class="left_box" id="'+ data[idx].from_id +'"><div class="left_img"> <img src="images/human2.png" width=100%; height=100%;></div>' ;
+        			htmlOut += ' <p>'+data[idx].from_id+'</p></br><p>'+data[idx].last+'</p>';	   
+        		} else {
+        			htmlOut += ' <div class="left_box" id ="'+ data[idx].to_id +'"><div class="left_img"> <img src="images/human2.png" width=100%; height=100%;></div>' ;
+        			htmlOut += ' <p>'+data[idx].to_id+'</p></br><p>'+data[idx].last+'</p>';	               	
+        		}
+	            $(".left").append(htmlOut);            	
+        	} 
+        },    	
+   }); 
 	
-	document.querySelector('#message').addEventListener('keypress', function (e) {
-	    if (e.key === 'Enter') {
-	    	send();
-	    }
-	});
-	
-	function send() {
-		if($("#message").val() == "") {
-			alert("메세지를 입력해주세요");
-			$("#message").focus();
-		} else {
+	function mclick(id) {
+		$(".center_enter").remove();	    
 			$.ajax({
-                type: "post",
-                url: "chat_upload.do",             
-                data:{from_id:"${from_id}", content:$('#message').val()},
-                dataType: 'json',
-                success: function (result) {
-                	$("#message").val("").focus();
-                	chathistory();                	
-                },
-           }); 
-		}
+		        type: "post",
+		        url: "chat_history.do",             
+		        data:{id:id},
+		        dataType: 'json',
+		        success: function (data) {
+		        	var htmlOut = "";
+		        	for(var idx in data){
+			        	if (data[idx].to_id == "${session_id}") {
+			        		htmlOut += ' <div class="div"><div class="cdate" style="text-align:right; margin-left:40px;">' + data[idx].cdate + '</div>';
+			        	    htmlOut += ' <div class="me">'+data[idx].content+'</div></div>';     
+			        	} else {
+			        		htmlOut += ' <div class="div"><div class="cdate" style="margin-left:5px;">' + data[idx].cdate + '</div>';
+			        	    htmlOut += ' <div class="you">'+data[idx].content+'</div></div>';      
+			        	}
+		        	} 	        	
+		    		$(".center_chat").empty();
+		            $(".center_chat").append(htmlOut);
+		            $('.center_chat').scrollTop($('.center_chat')[0].scrollHeight);
+		        },   
+		   }); 
+			
+			htmlOut3 = '<div class="center_enter"><input type="text" class="form-control" id="message" autocomplete="off" ><button type="button"  class="send" id="' + id +'">전송</button></div>';
+			$(".center").append(htmlOut3);
+			
+			$(".send").click(function() {
+				var id = $(this).attr("id");			
+				if($("#message").val() == "") {
+					alert("메세지를 입력해주세요");
+					$("#message").focus();
+				} else {
+					if (id != "") {
+						$.ajax({
+			                type: "post",
+			                url: "chat_upload.do",             
+			                data:{from_id:id, content:$('#message').val()},
+			                dataType: 'json',
+			                success: function (result) {
+			                	$("#message").val("").focus();
+			                },
+			           }); 
+					} else {
+						$.ajax({
+			                type: "post",
+			                url: "chat_upload.do",             
+			                data:{from_id:"${from_id}", content:$('#message').val()},
+			                dataType: 'json',
+			                success: function (result) {
+			                	$("#message").val("").focus();
+			                },
+			           }); 
+					}		
+				}
+				mclick(id);
+			});
+			
+			document.querySelector('#message').addEventListener('keypress', function (e) {
+			    if (e.key === 'Enter') {
+			    	var id = $(this).next().attr("id");				
+					if($("#message").val() == "") {
+						alert("메세지를 입력해주세요");
+						$("#message").focus();
+					} else {
+						if (id != "") {
+							$.ajax({
+				                type: "post",
+				                url: "chat_upload.do",             
+				                data:{from_id:id, content:$('#message').val()},
+				                dataType: 'json',
+				                success: function (result) {
+				                	$("#message").val("").focus();     
+				                },
+				           }); 
+						} else {
+							$.ajax({
+				                type: "post",
+				                url: "chat_upload.do",             
+				                data:{from_id:"${from_id}", content:$('#message').val()},
+				                dataType: 'json',
+				                success: function (result) {
+				                	$("#message").val("").focus();
+				                },
+				           }); 
+						}	
+					}
+					mclick(id);
+			    }
+			});	
 	};
+
 	
-	function chathistory() {
+	$(document).on("click", ".left_box", function() {	
+		$(".left_box").css("box-shadow", "none");
+		$(this).css("box-shadow", "0 0 0 2px rgb(0,66,132) inset");
+	    var id = $(this).attr("id");	    
+	    $(".center_enter").remove();
+	    
 		$.ajax({
-            type: "post",
-            url: "chat_history.do",             
-            data:{from_id:"${from_id}"},
-            dataType: 'json',
-            success: function (data) {
-            	var htmlOut = "";
-            	for(var idx in data){
-            	if (data[idx].to_id == "${session_id}") {
-            		htmlOut += ' <div class="div"><div class="cdate" style="text-align:right; margin-left:40px;">' + data[idx].cdate + '</div>';
-            	    htmlOut += ' <div class="me">'+data[idx].content+'</div></div>';            		
-            	} else {
-            		htmlOut += ' <div class="div"><div class="cdate" style="margin-left:5px;">' + data[idx].cdate + '</div>';
-            	    htmlOut += ' <div class="you">'+data[idx].content+'</div></div>';            
-            	}
-            	} 
-            	$(".center_chat").empty();
+	        type: "post",
+	        url: "chat_history.do",             
+	        data:{id:id},
+	        dataType: 'json',
+	        success: function (data) {
+	        	var htmlOut = "";
+	        	for(var idx in data){
+		        	if (data[idx].to_id == "${session_id}") {
+		        		htmlOut += ' <div class="div"><div class="cdate" style="text-align:right; margin-left:40px;">' + data[idx].cdate + '</div>';
+		        	    htmlOut += ' <div class="me">'+data[idx].content+'</div></div>';     
+		        	} else {
+		        		htmlOut += ' <div class="div"><div class="cdate" style="margin-left:5px;">' + data[idx].cdate + '</div>';
+		        	    htmlOut += ' <div class="you">'+data[idx].content+'</div></div>';      
+		        	}
+	        	} 	        	
+	    		$(".center_chat").empty();
 	            $(".center_chat").append(htmlOut);
 	            $('.center_chat').scrollTop($('.center_chat')[0].scrollHeight);
-            },
-       }); 
-	};
+	        },
+	   }); 
+		
+		var htmlOut2 = '<div class="center_enter"><input type="text" class="form-control" id="message" autocomplete="off" ><button type="button"  class="send" id="' + id +'">전송</button></div>';
+		$(".center").append(htmlOut2);
+		
+		$(".send").click(function() {
+			var id = $(this).attr("id");			
+			if($("#message").val() == "") {
+				alert("메세지를 입력해주세요");
+				$("#message").focus();
+			} else {
+				if (id != "") {
+					$.ajax({
+		                type: "post",
+		                url: "chat_upload.do",             
+		                data:{from_id:id, content:$('#message').val()},
+		                dataType: 'json',
+		                success: function (result) {
+		                	$("#message").val("").focus();
+		                },
+		           }); 
+				} else {
+					$.ajax({
+		                type: "post",
+		                url: "chat_upload.do",             
+		                data:{from_id:"${from_id}", content:$('#message').val()},
+		                dataType: 'json',
+		                success: function (result) {
+		                	$("#message").val("").focus();
+		                },
+		           }); 
+				}		
+			}
+			mclick(id);
+		});
+		
+		document.querySelector('#message').addEventListener('keypress', function (e) {
+		    if (e.key === 'Enter') {
+		    	var id = $(this).next().attr("id");				
+				if($("#message").val() == "") {
+					alert("메세지를 입력해주세요");
+					$("#message").focus();
+				} else {
+					if (id != "") {
+						$.ajax({
+			                type: "post",
+			                url: "chat_upload.do",             
+			                data:{from_id:id, content:$('#message').val()},
+			                dataType: 'json',
+			                success: function (result) {
+			                	$("#message").val("").focus();     
+			                },
+			           }); 
+					} else {
+						$.ajax({
+			                type: "post",
+			                url: "chat_upload.do",             
+			                data:{from_id:"${from_id}", content:$('#message').val()},
+			                dataType: 'json',
+			                success: function (result) {
+			                	$("#message").val("").focus();
+			                },
+			           }); 
+					}				
+				}
+				mclick(id);
+		    }
+		});	
+		
+	});
 	
-	function chatinfo() {
-		$.ajax({
-            type: "post",
-            url: "chat_info.do",             
-            data:{from_id:"${from_id}"},
-            dataType: 'json',
-            success: function (data) {
-            	var htmlOut = "";
-            	for(var idx in data){
-            		htmlOut += ' <div class="left_box" id="check"><div class="left_img"> <img src="images/human2.png" width=100%; height=100%;></div>' ;
-            	    htmlOut += ' <p>'+data[idx].from_id+'</p></br>';
-            	} 
-            	$(".left").empty();
-	            $(".left").append(htmlOut);            	
-            },
-       }); 
-	}
 	
 });
 </script>
@@ -165,11 +305,7 @@ $(document).ready(function() {
 		<div class="title">채팅 목록</div>
 		<div class="left"></div>
 		<div class="center">
-			<div class="center_chat"></div>
-			<div class="center_enter">
-				<input type="text" class="form-control" id="message" >
-				<button type="button"  class="send">전송</button>
-			</div>
+			<div class="center_chat"></div>			
 		</div>
 		<div class="foot"></div>
 	</section>

@@ -52,11 +52,11 @@ public class ChatController {
 	
 	@ResponseBody
 	@RequestMapping(value="/chat_history.do", method=RequestMethod.POST)
-	public ArrayList<ChatVO> chat_history(HttpServletRequest request, String from_id) {
+	public ArrayList<ChatVO> chat_history(HttpServletRequest request, String id) {
 		ArrayList<ChatVO> list = new ArrayList<ChatVO>();
 		HttpSession session = request.getSession(); //技记 积己
 		ChatVO vo = new ChatVO();
-		vo.setFrom_id(from_id);
+		vo.setFrom_id(id);
 		vo.setTo_id((String)session.getAttribute("session_id"));
 		
 		list = ChatDAO.getChatHistory(vo);		
@@ -82,10 +82,14 @@ public class ChatController {
 		}
 		
 		list = ChatDAO.getChatInfoList(vo);	
-		ArrayList<ChatVO> from_list = ChatDAO.getChatFromIdList((String)session.getAttribute("session_id"));
+		for (int i=0; i<list.size(); i++) {
+			vo.setFrom_id(list.get(i).getFrom_id()); vo.setTo_id(list.get(i).getTo_id());
+			list.get(i).setLast(ChatDAO.getChatLast(vo));
+		}
 		
 		return list; 
 		
 	}
+	
 	
 }

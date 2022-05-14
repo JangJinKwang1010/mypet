@@ -2,7 +2,16 @@ package com.mypet.vo;
 
 public class ChatVO {
 
-	String from_id, to_id, content, cdate, cid;
+	String from_id, to_id, content, cdate, cid, last;
+
+	
+	public String getLast() {
+		return last;
+	}
+
+	public void setLast(String last) {
+		this.last = last;
+	}
 
 	public String getFrom_id() {
 		return from_id;

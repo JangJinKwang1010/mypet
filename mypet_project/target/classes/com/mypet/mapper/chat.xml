@@ -12,7 +12,9 @@
     	</insert>
     	
     	<select id="chat_history" parameterType="com.mypet.vo.ChatVO" resultType="com.mypet.vo.ChatVO">
-    		select * from mypet_chat where to_id=#{to_id} or from_id=#{to_id} order by cdate
+    		select * from mypet_chat where to_id=#{to_id} and from_id=#{from_id}
+    		union
+    		select * from mypet_chat where from_id=#{to_id} and to_id=#{from_id}
     	</select>
     	
     	<select id="chat_info_check" parameterType="com.mypet.vo.ChatVO" resultType="java.lang.Integer">
@@ -24,14 +26,14 @@
     	</insert>
     	
     	<select id="chat_info_list" parameterType="com.mypet.vo.ChatVO" resultType="com.mypet.vo.ChatVO">
-    		select * from mypet_chat_info where to_id = #{to_id} or from_id=#{to_id} order by idate desc
+    		select * from mypet_chat_info where to_id = #{to_id} or from_id=#{to_id}  order by idate desc
     	</select>
     	
-    	<select id="chat_from_id_list" parameterType="java.lang.String" resultType="com.mypet.vo.ChatVO">
-    		select to_id from mypet_chat_info where from_id =#{from_id}
+    	<select id="chat_last" parameterType="com.mypet.vo.ChatVO" resultType="java.lang.String">
+    		select content from (select * from (select * from mypet_chat where to_id=#{to_id} and from_id= #{from_id}
     		union
-    		select from_id from mypet_chat_info where to_id=#{to_id}
-    	</select> 
-    
+    		select * from mypet_chat where from_id= #{to_id} and to_id= #{from_id} ) order by cid desc) where rownum=1
+    	</select>
+    	
     
     </mapper>
