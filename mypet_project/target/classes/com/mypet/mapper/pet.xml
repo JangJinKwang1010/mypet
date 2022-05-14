@@ -10,7 +10,7 @@
 	</select>
 	
 	<insert id="care_upload" parameterType="com.mypet.vo.PetVO">
-		insert into mypet_care values(#{id}, #{name}, #{birth}, #{gender}, #{hp}, #{email}, #{addr}, #{cfile}, #{sfile}, 'P', sysdate)
+		insert into mypet_care values(#{id}, #{name}, #{birth}, #{gender}, #{hp}, #{email}, #{addr}, #{cfile}, #{sfile}, 'P', sysdate, 'N')
 	</insert>
 	
 	<insert id="pet_upload" parameterType="com.mypet.vo.PetVO">
@@ -28,5 +28,17 @@
 	<select id="pet_content" parameterType="java.lang.String" resultType="com.mypet.vo.PetVO">
 		select id, pid, category, kind, bulk, startdate, pname, pkg, pgender, TRUNC(MONTHS_BETWEEN(SYSDATE, PBIRTH)/12, 0) as pbirth, pcomment, pfile, psfile, pdate from mypet_pet where pid=#{pid}
 	</select>
+	
+	<select id="index_pet" parameterType="java.lang.String" resultType="com.mypet.vo.PetVO">
+		select * from mypet_pet where id=#{id} order by pdate desc
+	</select>
+	
+	<select id="rpet" parameterType="java.lang.String" resultType="com.mypet.vo.PetVO">
+		select * from mypet_pet where id=#{id} and rpet='Y'
+	</select>
+	
+	<update id="rpet_update" parameterType="java.lang.String">
+		update mypet_pet set rpet = 'Y' where pid=#{pid}
+	</update>
 
 </mapper>

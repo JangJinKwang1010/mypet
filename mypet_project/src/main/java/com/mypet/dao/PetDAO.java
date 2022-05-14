@@ -43,5 +43,18 @@ public class PetDAO {
 	public PetVO getPetContent(String pid) {
 		return sqlSession.selectOne(namespace+".pet_content", pid);
 	}
+	
+	public ArrayList<PetVO> getIndexPet(String id) {
+		List<PetVO> list = sqlSession.selectList(namespace+".index_pet", id);		
+		return (ArrayList<PetVO>)list;
+	}
+	
+	public PetVO getRpet(String id) {
+		return sqlSession.selectOne(namespace+".rpet", id);
+	}
+	
+	public int getRpetUpdate(String pid) {
+		return sqlSession.update(namespace+".rpet_update", pid);
+	}
 
 }

@@ -107,9 +107,9 @@ function selectAll(selectAll)  {
 						</c:if>
 						<c:forEach var = "vo"  items="${list}"  >
 								<tr>
-									<td><input type="checkbox" name='check' ></td>
+									<td><input type="checkbox" name='check'  style="width:30px;"></td>
 									<td class="btitle" style="width:300px; color:rgb(53,128,187); " onclick="location.href='diary_free_contents.do?fid=${vo.fid}' ">${vo.ftitle }</td>
-									<td>${vo.fdate }</td>
+									<td style="width:200px;">${vo.fdate }</td>
 									<td>${vo.c_count }</td>
 									<td>${vo.fhit }</td>
 									<td>${vo.fheart }</td>

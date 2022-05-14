@@ -1,22 +1,30 @@
 package com.myspring.mypet;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mypet.dao.MemberDAO;
+import com.mypet.dao.PetDAO;
 import com.mypet.vo.MemberVO;
+import com.mypet.vo.PetVO;
 
 @Controller
 public class IndexController {
 	
 	@Autowired
 	private MemberDAO MemberDAO;
+	
+	@Autowired
+	private PetDAO PetDAO;
 	
 	@RequestMapping(value="/index.do") 
 	public ModelAndView index(HttpServletRequest request) {
@@ -28,7 +36,17 @@ public class IndexController {
 			MemberVO vo = MemberDAO.getIndexInfo(id);
 			int Dcount = MemberDAO.getDcount(id);
 			int Ccount = MemberDAO.getCcount(id);
+			PetVO pvo = PetDAO.getRpet(id);
+			
+			if (pvo == null) {
+				mv.addObject("rpet", "0");
+			} else {
+				mv.addObject("rpet", "1");
+			}
+			
 			vo.setDcount(Dcount);  vo.setCcount(Ccount);
+			
+			mv.addObject("pvo", pvo);
 			mv.addObject("vo", vo);
 		}
 		
@@ -52,8 +70,32 @@ public class IndexController {
 	}
 	
 	@RequestMapping(value="/mainpet.do") 
-	public String mainpet() {
-		return "mainpet";
+	public ModelAndView mainpet(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		
+		HttpSession session = request.getSession(); //技记 积己
+		String id = (String)session.getAttribute("session_id");
+		
+		ArrayList<PetVO> list = PetDAO.getIndexPet(id);
+		
+		mv.setViewName("mainpet");
+		mv.addObject("list", list);
+		
+		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/rpet_update.do", method=RequestMethod.POST)
+	public boolean rpet_update(String pid) {
+		boolean result = false;
+		
+		int val = PetDAO.getRpetUpdate(pid);
+		
+		if (val!=0) {
+			result = true;
+		}
+		
+		return result;
 	}
 
 }

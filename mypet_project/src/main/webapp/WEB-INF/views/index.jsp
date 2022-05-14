@@ -282,6 +282,8 @@
 		font-weight:normal;
 		color:white;
 	}
+	.rpet { margin-top:10px; }
+	
 	@media (min-width: 1600px) {
 		.loginmyinf { width:450px; }
 		.loginmypet { margin-left:-8px; width:95.5%; }
@@ -399,17 +401,29 @@
 				 			<p><img src="images/write.png" width=15px; height=15px;>내가 쓴 글 ${vo.dcount }개</p>
 				 			<p><img src="images/comment.png" width=15px; height=15px;>내가 쓴 댓글 ${vo.ccount }개</p>
 				 		</div>
+				 		<c:if test="${rpet eq 0}">
 				 		<div class="loginmypet">
 				 			<div class="loginpetpicture">
 				 				<img src="images/loginpet.png" width=95% height=95%>
-				 			</div>
-				 			<p>반련동물 이름</p>
-				 			<button class="main_pet_change">대표 반려동물 변경</button>
-				 			<p>반련동물 품종</p>
-				 			<p>반련동물 크기</p>
-				 			<p>반련동물 생년월일</p>
-				 			<p>반련동물 특이사항</p>
+				 			</div>	
+				 				<p>　</p>
+				 				<button class="main_pet_change rpet">대표 반려동물 설정</button>
 				 		</div>
+			 			</c:if>
+			 			<c:if test="${rpet eq 1}">
+				 		<div class="loginmypet">
+				 			<div class="loginpetpicture">
+				 				<img src="upload/${pvo.psfile }" width=95% height=95%>
+				 			</div>
+				 			<c:if test="${rpet eq 1}">
+					 			<p>${pvo.pname }</p>
+					 			<button class="main_pet_change">대표 반려동물 설정</button>
+					 			<p>${pvo.kind }</p>
+					 			<p>${pvo.bulk } ${pvo.pkg }</p>
+					 			<p>${pvo.pbirth }</p>
+				 			</c:if>				 			
+				 		</div>
+			 			</c:if>
 				 	</div>
 				</div>			
 			</c:if>

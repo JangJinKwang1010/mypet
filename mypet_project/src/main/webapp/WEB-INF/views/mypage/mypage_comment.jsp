@@ -103,12 +103,12 @@ function selectAll(selectAll)  {
 						</c:if>
 						<c:forEach var = "vo"  items="${list}"  >
 							<tr>
-								<td><input type="checkbox" name="check" ></td>
+								<td><input type="checkbox" name="check" style="width:35px;" ></td>
 								<c:if test="${vo.type eq 'f' }">
-									<td class="btitle" style="width:300px; color:rgb(53,128,187); " onclick="location.href='diary_free_contents.do?fid=${vo.seq_id}' ">${vo.ftitle }</td>
+									<td class="btitle" style="width:315px; color:rgb(53,128,187); " onclick="location.href='diary_free_contents.do?fid=${vo.seq_id}' ">${vo.ftitle }</td>
 								</c:if>
 								<c:if test="${vo.type eq 'p' }">
-									<td class="btitle" style="width:300px; color:rgb(53,128,187); " onclick="location.href='diary_pictures_contents.do?pid=${vo.seq_id}' ">${vo.ptitle }</td>
+									<td class="btitle" style="width:310px; color:rgb(53,128,187); " onclick="location.href='diary_pictures_contents.do?pid=${vo.seq_id}' ">${vo.ptitle }</td>
 								</c:if>
 								<td style="width:380px">${vo.ccomment }</td>
 								<td>${vo.cdate }</td>
