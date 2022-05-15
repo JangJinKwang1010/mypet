@@ -134,6 +134,48 @@
 		    });
 		});
 		
+		$(".mypage_heart").click(function() {
+			$.ajax({
+		        url:"mypage_pass_proc.do",
+		        type:"post",
+		        success:function(result){			       		  
+		       		if (result) {
+		       			location.replace("mypage_heart.do"); 		
+		       		} else {
+		       			alert("비밀번호 확인 후 이용가능합니다");
+		       		}
+		       	},		
+		    });
+		});
+		
+		$(".mypage_career").click(function() {
+			$.ajax({
+		        url:"mypage_pass_proc.do",
+		        type:"post",
+		        success:function(result){			       		  
+		       		if (result) {
+		       			location.replace("mypage_career.do"); 		
+		       		} else {
+		       			alert("비밀번호 확인 후 이용가능합니다");
+		       		}
+		       	},		
+		    });
+		});
+		
+		$(".mypage_pet").click(function() {
+			$.ajax({
+		        url:"mypage_pass_proc.do",
+		        type:"post",
+		        success:function(result){			       		  
+		       		if (result) {
+		       			location.replace("mypage_pet.do"); 		
+		       		} else {
+		       			alert("비밀번호 확인 후 이용가능합니다");
+		       		}
+		       	},		
+		    });
+		});
+		
 	});
 </script>
 <body>
@@ -147,14 +189,14 @@
 				<li class="mypage_update">개인정보수정</li>
 				<li class="mypage_pass">비밀번호변경</li>
 				<li class="mypage_delete">회원탈퇴</li>
+				<li  class="mypage_career">경력 관리 </li>
+				<li  class="mypage_pet">펫 관리</li>
 			</ul>
 			
 			<ul class="title_ul">
 				<li>이용현황</li>
 			</ul>
 			<ul class="menu_ul">
-				<li  class="">돌보미 관리 </li>
-				<li  class="">펫 관리</li>
 				<li  class="mypage_near">내 근처의 펫</li>
 				<li class="mypage_post">게시물 관리</li>
 				<li class="mypage_heart">좋아요 관리</li>

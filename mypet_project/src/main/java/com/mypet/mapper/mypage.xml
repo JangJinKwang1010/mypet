@@ -107,6 +107,26 @@
 	<select id="ptitle_select" parameterType="java.lang.String" resultType="java.lang.String">
 		select ptitle from mypet_pictures_diary where pid=#{seq_id}
 	</select>
+	
+	<delete id="mypage_pet_delete" parameterType="java.lang.String" >
+		{call
+	        declare
+	        begin
+		 		delete from mypet_map where pid=#{pid};
+		 		delete from mypet_heart where nid in (select nid from mypet_near where pid=#{pid});
+		 		delete from mypet_near where pid=#{pid};
+		 		delete from mypet_pet where pid=#{pid};
+	 	end
+    }
+	</delete>
+	
+	<delete id="mypage_career_delete" parameterType="java.lang.String">
+		delete from mypet_career where cid=#{cid}
+	</delete>
+	
+	<select id="mypage_heart" parameterType="java.lang.String" resultType="com.mypet.vo.NearVO">
+		select * from mypet_heart where id=#{id}
+	</select>
  	
  	
 </mapper>

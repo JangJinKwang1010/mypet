@@ -106,17 +106,18 @@ $(document).ready(function() {
 	}, function(){
 		$("#more_img").attr("src", "images/btn2.png");
 	});
-
+	
 	$("#more_btn").click(function() {
-		$(".more_div2").css("display","inline-block");
 		
-		if (flag) {
+		if (${fn:length(list)-1} <= 2) {
 			alert("마지막 페이지입니다");
-		}
-
-		flag = true;
-				
+		} else if ($( ".more_div2" ).css( "display" ) == "inline-block") {
+			alert("마지막 페이지입니다");
+		} else {
+			$(".more_div2").css("display","inline-block");
+		}	
 	});
+	
 })
 </script>
 </head>
@@ -127,8 +128,8 @@ $(document).ready(function() {
 			<jsp:include page="mypage_commons.jsp"></jsp:include>
 			<div class="main postmanager">
 				<p class="title2">내 근처의 펫<span></span></p>
-			<div class="list">
 			<c:if test="${!empty list}">
+			<div class="list">
 				<c:forEach var = "vo"  items="${list}"  begin="0" end="2">
 					<div onclick="location.href='near_contents.do?nid=${vo.nid}' " class="more_div1">
 						<p class="p_title" ><span class="logo">${vo.category }</span>[${vo.kind }]<span class="text">${vo.title }</span></p>
@@ -149,13 +150,16 @@ $(document).ready(function() {
 						<p class="user">${vo.id }(${vo.name }**)</p>
 					</div>
 				</c:forEach>
-			</c:if>
 			</div>
 			<div>
 				<button type="button" class="btn_style" id="more_btn">more
 					<img src="images/btn2.png" id="more_img">
 				</button>
 			</div>
+			</c:if>			
+			<c:if test="${fn:length(list) eq 0}">
+				<div class="list" style="margin-bottom:50px; margin-top:-50px;"><p>등록된 내 근처의 펫 게시물이 없습니다.</p></div>
+			</c:if>
 		</div>			
 			</div>
 		</div>

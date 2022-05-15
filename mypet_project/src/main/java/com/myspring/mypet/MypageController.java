@@ -1,7 +1,9 @@
 package com.myspring.mypet;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,14 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mypet.dao.CareDAO;
 import com.mypet.dao.DiaryDAO;
 import com.mypet.dao.MypageDAO;
 import com.mypet.dao.NearDAO;
+import com.mypet.dao.PetDAO;
+import com.mypet.vo.CareVO;
 import com.mypet.vo.DiaryVO;
 import com.mypet.vo.MemberVO;
 import com.mypet.vo.NearVO;
+import com.mypet.vo.PetVO;
 
 @Controller
 public class MypageController {
@@ -34,6 +41,12 @@ public class MypageController {
 	
 	@Autowired
 	private DiaryDAO DiaryDAO;
+	
+	@Autowired
+	private PetDAO PetDAO;
+	
+	@Autowired
+	private CareDAO CareDAO;
 	
 	@RequestMapping(value="/mypage.do") 
 	public String mypage() {
@@ -285,8 +298,47 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value="/mypage_heart.do") 
-	public String mypage_heart() {
-		return "mypage/mypage_heart";
+	public ModelAndView mypage_heart(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession(); //技记 积己
+		String id= (String)session.getAttribute("session_id");
+		
+		ArrayList<NearVO> list = MypageDAO.getMypageHeart(id);
+		for (int i=0; i<list.size(); i++) {
+			list.set(i, NearDAO.getNearContent(list.get(i).getNid()));
+		}
+		
+		mv.addObject("list", list);
+		mv.setViewName("mypage/mypage_heart");
+		return mv;
+	}
+	
+	@RequestMapping(value="/mypage_career.do") 
+	public ModelAndView mypage_career(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession(); //技记 积己
+		String id= (String)session.getAttribute("session_id");
+		
+		ArrayList<CareVO> list = CareDAO.getInfoCareer(id);		
+		
+		mv.addObject("list", list);
+		mv.setViewName("mypage/mypage_career");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="/mypage_pet.do") 
+	public ModelAndView mypage_pet(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession(); //技记 积己
+		String id= (String)session.getAttribute("session_id");
+		
+		ArrayList<PetVO> list=  PetDAO.getPetList(id);
+		
+		mv.addObject("list", list);
+		mv.setViewName("mypage/mypage_pet");		
+		
+		return mv;
 	}
 	
 	@ResponseBody
@@ -302,6 +354,85 @@ public class MypageController {
 		
 		return result;
 		
+	}
+	
+	@RequestMapping(value="/mypage_pet_add.do")
+	public String mypage_pet_add() {
+		return "mypage/mypage_pet_add";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/mypage_pet_add_proc.do", method=RequestMethod.POST)
+	public boolean mypage_pet_add_proc(MultipartHttpServletRequest request, PetVO vo) throws Exception {
+		boolean result = false;
+		
+		HttpSession session = request.getSession(); // 技记 积己
+		// 肺弊牢 雀盔沥焊 啊廉坷扁
+		String id = (String) session.getAttribute("session_id");
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+		String attach_path = "\\resources\\upload\\";
+		System.out.println(root_path+attach_path);
+
+		// rfname 吝汗规瘤 贸府
+		UUID uuid = UUID.randomUUID();
+
+		// DB历厘 
+		vo.setPfile(vo.getPfile1().getOriginalFilename());
+		vo.setPsfile(uuid + 	"_" + vo.getCfile()); 
+		vo.setId(id);	
+			
+		int val = PetDAO.getPetUpload(vo);
+			 
+		 if (val != 0) { 
+			 result = true; 
+			 
+			 if (result) {
+				 File f = new File(root_path + attach_path + vo.getPsfile()); 
+				 vo.getPfile1().transferTo(f);
+			 }
+		}
+		
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/mypage_pet_delete.do", method=RequestMethod.POST)
+	public void mypage_pet_delete(String pid) {		
+		MypageDAO.getMypagePetDelete(pid);		
+	}
+	
+	@RequestMapping(value="/mypage_career_add.do")
+	public String mypage_career_add() {
+		return "mypage/mypage_career_add";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/mypage_career_add_proc.do", method=RequestMethod.POST)
+	public boolean mypage_career_add_proc(HttpServletRequest request, CareVO vo) {
+		boolean result = false;
+		
+		HttpSession session = request.getSession(); // 技记 积己
+		// 肺弊牢 雀盔沥焊 啊廉坷扁
+		String id = (String) session.getAttribute("session_id");
+		vo.setId(id);
+		
+		if (vo.getEnddate() == null) {
+			vo.setEnddate("null");
+		}
+		
+		int val = CareDAO.getCareerUpload(vo);
+		
+		if (val!=0) {
+			result = true;
+		}
+		
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/mypage_career_delete.do", method=RequestMethod.POST)
+	public void mypage_career_delete(String cid) {		
+		MypageDAO.getMypageCareerDelete(cid);		
 	}
 	
 }

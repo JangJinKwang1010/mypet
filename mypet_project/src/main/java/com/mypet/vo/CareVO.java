@@ -4,10 +4,19 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class CareVO {
 	
-	String id, pass, name, hp, email, addr, mdate, birth, gender, cfile, sfile, category, kind, bulk, startdate, enddate;
+	String id, pass, name, hp, email, addr, mdate, birth, gender, cfile, sfile, category, kind, bulk, startdate, enddate, cid;
 	String true_category, true_kind, true_bulk, true_startdate, true_enddate;
 	CommonsMultipartFile file1;	
 	
+	
+	public String getCid() {
+		return cid;
+	}
+
+	public void setCid(String cid) {
+		this.cid = cid;
+	}
+
 	public String getTrue_category() {
 		return true_category;
 	}

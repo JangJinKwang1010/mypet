@@ -97,5 +97,18 @@ public class MypageDAO {
 	public String getPtitleSelect(String seq_id) {
 		return sqlSession.selectOne(namespace+".ptitle_select", seq_id);
 	}
+	
+	public int getMypagePetDelete(String pid) {
+		return sqlSession.delete(namespace+".mypage_pet_delete", pid);
+	}
+	
+	public int getMypageCareerDelete(String cid) {
+		return sqlSession.delete(namespace+".mypage_career_delete", cid);
+	}
+	
+	public ArrayList<NearVO> getMypageHeart(String id) {
+		List<NearVO> list = sqlSession.selectList(namespace+".mypage_heart", id);		
+		return (ArrayList<NearVO>)list;
+	}
 
 }

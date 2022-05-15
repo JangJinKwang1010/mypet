@@ -15,7 +15,7 @@
 	</insert>
 	
 	<insert id="career_upload" parameterType="com.mypet.vo.CareVO">
-		insert into mypet_career values(#{id}, #{category}, #{kind}, #{bulk}, #{startdate}, #{enddate})
+		insert into mypet_career values('c'||career_seq.nextval, #{id}, #{category}, #{kind}, #{bulk}, #{startdate}, #{enddate})
 	</insert>
 
 	<select id="care_result" parameterType="java.lang.String" resultType="java.lang.Integer">
@@ -27,7 +27,7 @@
 	</select>
 	
 	<select id="info_career" parameterType="java.lang.String" resultType="com.mypet.vo.CareVO">
-		select * from mypet_career where id=#{id}
+		select cid, id, category, kind, bulk, startdate, nvl(enddate, '양육중') enddate from mypet_career where id=#{id}
 	</select>
 
 </mapper>

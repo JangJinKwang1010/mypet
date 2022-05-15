@@ -414,7 +414,7 @@
 			 			<c:if test="${rpet eq 1}">
 				 		<div class="loginmypet">
 				 			<div class="loginpetpicture">
-				 				<img src="upload/${pvo.psfile }" width=95% height=95%>
+				 				<img src="upload/${pvo.psfile }" width=100% height=100%>
 				 			</div>
 				 			<c:if test="${rpet eq 1}">
 					 			<p style="margin-top:10px;"><b>이름</b>  ${pvo.pname } (${pvo.pgender })</p>
