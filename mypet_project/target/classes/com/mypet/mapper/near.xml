@@ -26,6 +26,26 @@
 		select * from mypet_near order by startdate desc
 	</select>
 	
+	<select id="near_list_vo" resultType="com.mypet.vo.NearVO">
+		<choose>
+			<when test = "search_select.equals('제목') ">		
+				select * from mypet_near where title like '%'||#{search_text}||'%' order by startdate desc
+			</when>	
+			<when test = "search_select.equals('품종')">			
+				select * from mypet_near where kind like '%'||#{search_text}||'%' order by startdate desc
+			</when>			
+			<otherwise>	
+				select * from (select * from mypet_near where title like '%'||#{search_text}||'%' 
+				union
+				select * from mypet_near where content like '%'||#{search_text}||'%' ) order by startdate desc				
+			</otherwise>			
+			</choose>
+	</select>
+	
+	<select id="addr_list_vo" resultType="com.mypet.vo.NearVO">
+		select distinct(addr) from mypet_map where nid=#{nid} group by addr
+	</select>
+	
 	<select id="addr_list" resultType="com.mypet.vo.NearVO">
 		select distinct(addr) from mypet_map group by addr
 	</select>

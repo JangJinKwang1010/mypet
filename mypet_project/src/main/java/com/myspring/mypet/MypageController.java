@@ -1,6 +1,7 @@
 package com.myspring.mypet;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -83,6 +85,8 @@ public class MypageController {
 		String id = (String)session.getAttribute("session_id");
 		if (id != null) {
 			MemberVO vo = MypageDAO.getMemberInfo(id);
+			String birth[] = vo.getBirth().split(" ");
+			vo.setBirth(birth[0]);
 			mv.addObject("vo", vo);
 		}
 		mv.setViewName("mypage/mypage_update");
@@ -279,4 +283,25 @@ public class MypageController {
 		
 		return mv;
 	}
+	
+	@RequestMapping(value="/mypage_heart.do") 
+	public String mypage_heart() {
+		return "mypage/mypage_heart";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/comment_all_delete.do", method=RequestMethod.POST)
+	public boolean free_comment_delete(@RequestParam(value="cid[]") List<String> cid) {
+		
+		boolean result = false;
+				
+		for (int i = 0; i<cid.size(); i++) {
+			 DiaryDAO.getFreeCommentDelete(cid.get(i));	
+			 result = true;
+		}
+		
+		return result;
+		
+	}
+	
 }

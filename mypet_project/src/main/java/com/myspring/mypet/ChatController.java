@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mypet.dao.CareDAO;
 import com.mypet.dao.ChatDAO;
+import com.mypet.vo.CareVO;
 import com.mypet.vo.ChatVO;
 
 @Controller
@@ -20,6 +22,9 @@ public class ChatController {
 	
 	@Autowired
 	private ChatDAO ChatDAO;
+
+	@Autowired
+	private CareDAO CareDAO;
 	
 	
 	@RequestMapping(value="/chat_list.do", method=RequestMethod.GET)
@@ -89,6 +94,23 @@ public class ChatController {
 		
 		return list; 
 		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/care_result.do", method= RequestMethod.POST)
+	public boolean chat_result(HttpServletRequest request) {
+		boolean result = false;
+		
+		HttpSession session = request.getSession(); //技记 积己
+		String id = (String)session.getAttribute("session_id");
+		
+		CareVO vo = CareDAO.getInfoCare(id);
+		if (vo != null) {
+			result = true;
+		}
+		
+		
+		return result;
 	}
 	
 	

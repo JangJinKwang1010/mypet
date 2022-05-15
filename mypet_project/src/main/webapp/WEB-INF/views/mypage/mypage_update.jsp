@@ -172,6 +172,10 @@
 						<li><input type="text" value="${vo.name}" class="form-control" readonly></li>
 					</ul>
 					<ul>
+						<li><label>생년월일</label></li>
+						<li><input type="text" value="${vo.birth}" class="form-control" readonly></li>
+					</ul>
+					<ul>
 						<li><label>휴대폰 번호</label></li>
 						<li><input type="text" value="${vo.hp }" class="form-control" readonly></li>
 					</ul>

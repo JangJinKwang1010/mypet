@@ -153,6 +153,8 @@
 				<li>이용현황</li>
 			</ul>
 			<ul class="menu_ul">
+				<li  class="">돌보미 관리 </li>
+				<li  class="">펫 관리</li>
 				<li  class="mypage_near">내 근처의 펫</li>
 				<li class="mypage_post">게시물 관리</li>
 				<li class="mypage_heart">좋아요 관리</li>

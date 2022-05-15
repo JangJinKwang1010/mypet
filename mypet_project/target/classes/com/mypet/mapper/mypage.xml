@@ -7,7 +7,7 @@
 <mapper namespace="mapper.mypage">
 
 	<select id="member_info"  parameterType="java.lang.String" resultType="com.mypet.vo.MemberVO">
-		select id, pass, name, birth, gender, hp, email, addr1, addr2, to_char(mdate, 'yyyy-mm-dd') mdate from mypet_member where id=#{id}
+		select id, pass, name, to_date(birth, 'YYYY-MM-DD') as birth, gender, hp, email, addr1, addr2, to_char(mdate, 'yyyy-mm-dd') mdate from mypet_member where id=#{id}
 	</select>
 	
  	<select id="mypage_inpass" parameterType="com.mypet.vo.MemberVO" resultType="java.lang.Integer">

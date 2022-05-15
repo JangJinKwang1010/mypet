@@ -21,5 +21,13 @@
 	<select id="care_result" parameterType="java.lang.String" resultType="java.lang.Integer">
 		select count(*) from mypet_care where id=#{id} and ctype = 'C'
 	</select>
+	
+	<select id="info_care" parameterType="java.lang.String" resultType="com.mypet.vo.CareVO">
+		select * from mypet_care where id=#{id} and ctype='P'
+	</select>
+	
+	<select id="info_career" parameterType="java.lang.String" resultType="com.mypet.vo.CareVO">
+		select * from mypet_career where id=#{id}
+	</select>
 
 </mapper>

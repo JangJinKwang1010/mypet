@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mypet.dao.CareDAO;
 import com.mypet.dao.MemberDAO;
 import com.mypet.dao.PetDAO;
+import com.mypet.vo.CareVO;
 import com.mypet.vo.MemberVO;
 import com.mypet.vo.PetVO;
 
@@ -25,6 +27,9 @@ public class IndexController {
 	
 	@Autowired
 	private PetDAO PetDAO;
+	
+	@Autowired
+	private CareDAO CareDAO;
 	
 	@RequestMapping(value="/index.do") 
 	public ModelAndView index(HttpServletRequest request) {
@@ -100,6 +105,20 @@ public class IndexController {
 		}
 		
 		return result;
+	}
+	
+	@RequestMapping(value="/info.do", method=RequestMethod.GET)
+	public ModelAndView getInfo(String id) {
+		ModelAndView mv = new ModelAndView();
+		
+		CareVO vo = CareDAO.getInfoCare(id);
+		ArrayList<CareVO> list = CareDAO.getInfoCareer(id);
+		
+		mv.addObject("vo", vo);
+		mv.addObject("list", list);
+		mv.setViewName("info");
+		
+		return mv;
 	}
 
 }

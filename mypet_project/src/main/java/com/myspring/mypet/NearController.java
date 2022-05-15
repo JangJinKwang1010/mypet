@@ -30,46 +30,99 @@ public class NearController {
 	@Autowired
 	private MemberDAO memberDAO;
 	
-	@RequestMapping(value="/near.do")
-	public ModelAndView near(HttpServletRequest request) {
+	@RequestMapping(value="/near.do", method= {RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView near(HttpServletRequest request, String search_select, String search_text) {		
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession(); //技记 积己
-		if (session.getAttribute("session_id") != null) {
-			String addr = nearDAO.getaddr_select((String)session.getAttribute("session_id"));
+		
+		if (search_select == null) {
+			if (session.getAttribute("session_id") != null) {
+				String addr = nearDAO.getaddr_select((String)session.getAttribute("session_id"));
+				mv.addObject("addr", addr);
+			}		
+			
+			ArrayList<NearVO> list = nearDAO.getNearList();
+			for (int i=0; i<list.size(); i++) {
+				list.get(i).setCategory(nearDAO.getNearPet(list.get(i).getPid()));
+			}
+			
+			ArrayList<NearVO> alist = nearDAO.getAddrList();	
+			ArrayList<ArrayList<NearVO>> Mlist = new ArrayList<ArrayList<NearVO>>();
+			ArrayList<NearVO> mlist = new ArrayList<NearVO>();
+			
+			for (int i=0; i<alist.size(); i++) {
+				mlist = nearDAO.getMapList(alist.get(i).getAddr());
+				
+				for (int j=0; j<mlist.size(); j++) {
+					PetVO vo = petDAO.getPetContent(mlist.get(j).getPid());
+					mlist.get(j).setVo(vo);				
+				}				
+				
+				Mlist.add(mlist);
+			}
+			
+			for (int i=0; i<list.size(); i++) {
+				String name = memberDAO.getName(list.get(i).getId());
+				list.get(i).setName(name.substring(0, 1));
+				
+				String s[] = list.get(i).getStartdate().split(" ");
+				list.get(i).setStartdate(s[0]);
+				
+			}
+			
+			mv.addObject("alist", alist);
+			mv.addObject("list", list);
+			mv.addObject("mlist", Mlist);
+			
+		} else {
+			
+			String addr = null;
+			
+			if (session.getAttribute("session_id") != null) {
+				addr = nearDAO.getaddr_select((String)session.getAttribute("session_id"));
+			}		
+			
+			NearVO vo = new NearVO();
+			vo.setSearch_select(search_select); vo.setSearch_text(search_text);
+			
+			ArrayList<NearVO> list = nearDAO.getNearListVO(vo);
+			ArrayList<NearVO> alist = new ArrayList<NearVO>();
+			
+			for (int i=0; i<list.size(); i++) {
+				list.get(i).setCategory(nearDAO.getNearPet(list.get(i).getPid()));				
+				alist.add(nearDAO.getAddrListVO(list.get(i).getNid()));	
+			}			
+			
+			ArrayList<ArrayList<NearVO>> Mlist = new ArrayList<ArrayList<NearVO>>();
+			ArrayList<NearVO> mlist = new ArrayList<NearVO>();
+			
+			for (int i=0; i<alist.size(); i++) {
+				mlist = nearDAO.getMapList(alist.get(i).getAddr());
+				
+				for (int j=0; j<mlist.size(); j++) {
+					addr = mlist.get(j).getAddr();
+					PetVO pvo = petDAO.getPetContent(mlist.get(j).getPid());
+					mlist.get(j).setVo(pvo);				
+				}				
+				
+				Mlist.add(mlist);
+			}
+			
+			for (int i=0; i<list.size(); i++) {
+				String name = memberDAO.getName(list.get(i).getId());
+				list.get(i).setName(name.substring(0, 1));
+				
+				String s[] = list.get(i).getStartdate().split(" ");
+				list.get(i).setStartdate(s[0]);
+				
+			}
+			
+			mv.addObject("alist", alist);
+			mv.addObject("list", list);
+			mv.addObject("mlist", Mlist);
 			mv.addObject("addr", addr);
+			
 		}		
-		
-		ArrayList<NearVO> list = nearDAO.getNearList();
-		for (int i=0; i<list.size(); i++) {
-			list.get(i).setCategory(nearDAO.getNearPet(list.get(i).getPid()));
-		}
-		
-		ArrayList<NearVO> alist = nearDAO.getAddrList();	
-		ArrayList<ArrayList<NearVO>> Mlist = new ArrayList<ArrayList<NearVO>>();
-		ArrayList<NearVO> mlist = new ArrayList<NearVO>();
-		
-		for (int i=0; i<alist.size(); i++) {
-			mlist = nearDAO.getMapList(alist.get(i).getAddr());
-			
-			for (int j=0; j<mlist.size(); j++) {
-				PetVO vo = petDAO.getPetContent(mlist.get(j).getPid());
-				mlist.get(j).setVo(vo);				
-			}				
-			
-			Mlist.add(mlist);
-		}
-		
-		for (int i=0; i<list.size(); i++) {
-			String name = memberDAO.getName(list.get(i).getId());
-			list.get(i).setName(name.substring(0, 1));
-			
-			String s[] = list.get(i).getStartdate().split(" ");
-			list.get(i).setStartdate(s[0]);
-			
-		}
-		mv.addObject("alist", alist);
-		mv.addObject("list", list);
-		mv.addObject("mlist", Mlist);
 		
 		mv.setViewName("near/near");
 		return mv;

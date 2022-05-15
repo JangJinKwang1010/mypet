@@ -95,6 +95,15 @@ public class NearDAO {
 	public int getNearEnd(String nid) {
 		return sqlSession.update(namespace+".near_end", nid);
 	}
+	
+	public ArrayList<NearVO> getNearListVO(NearVO vo) {
+		List<NearVO> list = sqlSession.selectList(namespace+".near_list_vo", vo);		
+		return (ArrayList<NearVO>)list;
+	}
+	
+	public NearVO getAddrListVO(String nid) {
+		return sqlSession.selectOne(namespace+".addr_list_vo", nid);		
+	}
 
 
 }

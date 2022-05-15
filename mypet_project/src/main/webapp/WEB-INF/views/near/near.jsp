@@ -89,7 +89,7 @@
 	.search_box{
 		float:right;
 		margin-top:30px;
-		width:600px;
+		width:800px;
 		height:50px;
 	}
 	.search_button {
@@ -102,12 +102,22 @@
 		color:white;
 		font-size:20px;
 	}
-	.search_box>.search_form{
+	.all_button {
+		border:none;
+		width:100px;
+		height:35px;
+		border-radius:10px;
+		font-weight:bold;
+		background-color:rgb(176,138,162);
+		color:white;
+		font-size:20px;
+	}
+	.search_box .search_form{
 		display:inline-block;
 		width:50%;
 		height:30px;
 	}
-	.search_box>.select_form{
+	.search_box .select_form{
 		display:inline-block;
 		width:120px;
 		height:35px;
@@ -369,6 +379,15 @@ $(document).ready(function() {
 		alert("이미 마감된 게시글입니다");	
 	});
 	
+	$(".search_button").click(function() {
+		if($(".search_form").val() == "") {
+			alert("검색하실 단어를 입력해주세요");
+			$(".search_form").focus();
+		} else {
+			searchform.submit();
+		}
+	});
+	
 	
 });
 
@@ -383,13 +402,16 @@ $(document).ready(function() {
 			<button onclick = "location.href='near_writing.do'" class="writing_button">글쓰기</button>
 			<div id="map"></div>
 			<div class="search_box">
-				<select class="form-select select_form">
-				<option>제목</option>
-				<option>품종</option>
-				<option>제목+내용</option>
+			<form name= "searchform" action= "near.do" method="post"  autocomplete="off" >
+				<select class="form-select select_form" name="search_select">
+				<option value="제목">제목</option>
+				<option value="품종">품종</option>
+				<option value="제목+내용">제목+내용</option>
 				</select>
-				<input type="text" class="form-control search_form">
-				<button class="search_button">검색</button>
+				<input type="text" class="form-control search_form" name="search_text">
+				<button type="button" class="search_button">검색</button>
+				<button type="button"  class="all_button" onclick = "location.href='near.do'" >전체</button>
+			</form>
 			</div>
 			<div class="list">
 			<c:if test="${!empty list}">

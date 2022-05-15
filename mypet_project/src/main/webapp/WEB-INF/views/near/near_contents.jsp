@@ -274,11 +274,23 @@
 		
 		
 		$(".chat").click(function() {
-			var id = $(".chat").attr("id");
-			var url = "chat_list.do?id="+id;
-	        var name = "popup test";
-	        var option = "width = 815, height = 1000, top = 200, left = 350, location = no"
-	        window.open(url, name, option);
+			$.ajax({
+                type: "post",
+                url: "care_result.do",
+                dataType: 'json',
+                success: function (result) {
+                	if(result) {
+                		var id = $(".chat").attr("id");
+            			var url = "chat_list.do?id="+id;
+            	        var name = "popup test";
+            	        var option = "width = 815, height = 1000, top = 200, left = 350, location = no"
+            	        window.open(url, name, option);
+                	} else {
+                		alert("돌보미 등록 후 이용가능합니다");
+                	}
+                },
+           });			
+			
 		});
 		
 	});

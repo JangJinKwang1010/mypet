@@ -2,6 +2,7 @@ package com.myspring.mypet;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mypet.dao.DiaryDAO;
@@ -157,8 +158,10 @@ public class DiaryController {
 	
 	@ResponseBody
 	@RequestMapping(value="/free_comment_delete.do", method=RequestMethod.POST)
-	public void free_comment_delete(String cid) {
-		DiaryDAO.getFreeCommentDelete(cid);
+	public void free_comment_delete(String cid) {		
+		
+		 DiaryDAO.getFreeCommentDelete(cid);	
+		
 	}
 	
 	@ResponseBody

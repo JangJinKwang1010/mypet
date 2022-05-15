@@ -76,6 +76,9 @@
 	}
 	
 	.foot { background-color:rgb(72,115,210); width:100%; height:20px; float:left; margin-top:10px; }
+	
+	.info_btn { margin-left:10px; }
+	
 </style>
 <script>
 $(document).ready(function() {
@@ -97,15 +100,23 @@ $(document).ready(function() {
         	var htmlOut = "";
         		if (data[idx].from_id != "${session_id}") {        			
         			htmlOut += ' <div class="left_box" id="'+ data[idx].from_id +'"><div class="left_img"> <img src="images/human2.png" width=100%; height=100%;></div>' ;
-        			htmlOut += ' <p>'+data[idx].from_id+'</p></br><p>'+data[idx].last+'</p>';	   
+        			htmlOut += ' <p>'+data[idx].from_id+'</p> <button class="info_btn" id="'+ data[idx].from_id +'">정보보기</button></br><p>'+data[idx].last+'</p>';	   
         		} else {
         			htmlOut += ' <div class="left_box" id ="'+ data[idx].to_id +'"><div class="left_img"> <img src="images/human2.png" width=100%; height=100%;></div>' ;
-        			htmlOut += ' <p>'+data[idx].to_id+'</p></br><p>'+data[idx].last+'</p>';	               	
+        			htmlOut += ' <p>'+data[idx].to_id+'</p><button class="info_btn" id="'+ data[idx].to_id +'">정보보기</button></br><p>'+data[idx].last+'</p>';	               	
         		}
 	            $(".left").append(htmlOut);            	
         	} 
         },    	
    }); 
+	
+	$(document).on("click", ".info_btn", function() {
+		var url = "info.do?id="+$(this).attr("id");
+	    var name = "popup test2";
+	    var option = "width = 500, height = 300, top = 150, left = 500, location = no "
+	    window.open(url, name, option);
+		
+	});
 	
 	function mclick(id) {
 		$(".center_enter").remove();	    
@@ -200,7 +211,8 @@ $(document).ready(function() {
 	};
 
 	
-	$(document).on("click", ".left_box", function() {	
+	$(document).on("click", ".left_box", function() {		
+		
 		$(".left_box").css("box-shadow", "none");
 		$(this).css("box-shadow", "0 0 0 2px rgb(0,66,132) inset");
 	    var id = $(this).attr("id");	    

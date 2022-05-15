@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
  <c:set var="pageNumber" value='${pageNumber}' />
 <c:set var="targetpage" value='${targetpage}' />
 <!DOCTYPE html>
@@ -54,8 +55,8 @@
 		padding:12px 10px;
 		cursor:pointer;
 	}
-	.bbtn { border-right:1px solid lightgray; }
-	.cbtn { margin-left:-5px; color:rgb(245,137,123); font-weight:bold; }
+	.btn_div>div:first-child { border-right:1px solid lightgray; color:rgb(245,137,123); font-weight:bold; }
+	.btn_div>div:last-child { margin-left:-5px;}
 	
 	table { width:100%; text-align:center;}
 	thead>tr { border-bottom:1px solid lightgray; height:40px; color:rgb(71,71,71); }
@@ -68,48 +69,12 @@
 	.delete { border:2px solid lightgray; background-color:rgb(240,240,240); margin:5px; }
 </style>
 <script>
-
 function selectAll(selectAll)  {
 	  const checkboxes = document.getElementsByName('check');	  
 	  checkboxes.forEach((checkbox) => {
 	    checkbox.checked = selectAll.checked;
 	  })
 	}
-	
-	$(document).ready(function() {
-		
-		$(".delete").click(function() {		
-			var cid = [];
-			
-			if($("input[type^=checkbox]").is(":checked") == false) {
-				alert("삭제할 리뷰를 선택해주세요");
-				
-			} else {				
-			  $('.checkbox:checked').each(function(){
-			        cid.push($(this).attr("id"));
-			   });
-			  				
-				var con_test = confirm("선택한 댓글을 삭제하시겠습니까?"); 		
-				
-	        	if(con_test == true){ 
-	        		$.ajax({
-	    		        url:"comment_all_delete.do",
-	    		        type:"post",
-	    		        data: {cid:cid},
-	    		        dataType : "json",
-	    		        success:function(result){			      
-	    		        	if (result) {
-		    		        	location.reload();		    		        		
-	    		        	}
-	    		       	},		
-	    		    });
-	        		
-	        	}
-			}
-
-			
-		});
-	});
 </script>
 </head>
 <body>
@@ -120,36 +85,37 @@ function selectAll(selectAll)  {
 			<div class="main postmanager">
 				<p class="title2">게시물 관리</p>
 					<div class="btn_div">
-						<div onclick="location.href='mypage_post.do' " class="bbtn">내가 쓴 글</div>
-						<div onclick="location.href='mypage_comment.do' " class="cbtn">내가 쓴 댓글</div>
+						<div onclick="location.href='mypage_post.do' ">내가 쓴 글</div>
+						<div onclick="location.href='mypage_comment.do' ">내가 쓴 댓글</div>
 						<table>
 						<thead>
 							<tr>
-								<th><input type="checkbox"  onclick='selectAll(this)' value='selectall'  ></th>
+								<th><input type="checkbox"  onclick='selectAll(this)' value='selectall'></th>
 								<th>제목</th>
-								<th>내용</th>
 								<th>날짜</th>
+								<th>댓글수</th>
+								<th>조회수</th>
+								<th>좋아요</th>
+								<th>싫어요</th>
 							</tr>
 						</thead>
 						<tbody>
 						<c:if test="${empty list }">
 							<tr>
-								<td colspan = 7>작성된 댓글이 없습니다</td>
+								<td colspan = 7>작성된 게시글이 없습니다</td>
 							</tr>
 						</c:if>
 						<c:forEach var = "vo"  items="${list}"  >
-							<tr>
-								<td><input type="checkbox" name="check" style="width:35px;" id="${vo.cid }" class="checkbox" ></td>
-								<c:if test="${vo.type eq 'f' }">
-									<td class="btitle" style="width:315px; color:rgb(53,128,187); " onclick="location.href='diary_free_contents.do?fid=${vo.seq_id}' ">${vo.ftitle }</td>
-								</c:if>
-								<c:if test="${vo.type eq 'p' }">
-									<td class="btitle" style="width:310px; color:rgb(53,128,187); " onclick="location.href='diary_pictures_contents.do?pid=${vo.seq_id}' ">${vo.ptitle }</td>
-								</c:if>
-								<td style="width:380px">${vo.ccomment }</td>
-								<td>${vo.cdate }</td>
-							</tr>
-						</c:forEach>
+								<tr>
+									<td><input type="checkbox" name='check'  style="width:30px;"></td>
+									<td class="btitle" style="width:300px; color:rgb(53,128,187); " onclick="location.href='diary_free_contents.do?fid=${vo.fid}' ">${vo.ftitle }</td>
+									<td style="width:200px;">${vo.fdate }</td>
+									<td>${vo.c_count }</td>
+									<td>${vo.fhit }</td>
+									<td>${vo.fheart }</td>
+									<td>${vo.fnheart }</td>
+								</tr>	
+						</c:forEach>						
 						</tbody>
 						</table>
 					<button type="button"  class="delete">삭제</button>
@@ -164,7 +130,7 @@ function selectAll(selectAll)  {
 								int targetPage = Integer.parseInt(String.valueOf(pageContext.getAttribute("targetpage")));
 								if(startPage != 1) {
 							%>
-								<li><a href="mypage_comment.do?pnum=<%= startPage -1 %>"><span><</span></a></li>
+								<li><a href="mypage_post.do?pnum=<%= startPage -1 %>"><span><</span></a></li>
 							<%
 								} else {
 							%>
@@ -173,22 +139,22 @@ function selectAll(selectAll)  {
 								}
 								for(int i = startPage; i < Integer.parseInt(pageNumber); i++) {
 							%>
-								<li><a href="mypage_comment.do?pnum=<%= i %>" style="color: #000000;"><%= i %></a></li>
+								<li><a href="mypage_post.do?pnum=<%= i %>" style="color: #000000;"><%= i %></a></li>
 							<%
 								}
 							%>
-								<li class="active_page" ><a href="diary_free.do?pnum=<%= pageNumber %>" style="background-color: #337ab7;color: #ffffff;"><%= pageNumber %></a></li>
+								<li class="active_page" ><a href="mypage_post.do?pnum=<%= pageNumber %>" style="background-color: #337ab7;color: #ffffff;"><%= pageNumber %></a></li>
 							<%
 								for(int i = Integer.parseInt(pageNumber) + 1; i <= targetPage + Integer.parseInt(pageNumber); i++) {
 									if(i < startPage +10) {
 							%>
-								<li><a href="mypage_comment.do?pnum=<%= i %>" style="color: #000000;"><%= i %></a></li>
+								<li><a href="mypage_post.do?pnum=<%= i %>" style="color: #000000;"><%= i %></a></li>
 							<%
 									}
 								}
 								if(targetPage + Integer.parseInt(pageNumber) > startPage + 9){
 							%>
-								<li><a href="mypage_comment.do?pnum=<%= startPage + 10 %>" style= "color: #000000;"><span>></span></a></li>
+								<li><a href="mypage_post.do?pnum=<%= startPage + 10 %>" style= "color: #000000;"><span>></span></a></li>
 							<%
 								} else {
 							%>
