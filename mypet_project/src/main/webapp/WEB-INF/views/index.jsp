@@ -449,7 +449,7 @@
 				<p>내 근처의 펫</p>
 				<p class="bannertext">내가 등록한 주소를 기반으로<br>돌보미 서비스를 원하는 주변의 사람들과<br>채팅을 통해 반려동물을 맡기거나<br>나의 반려동물을 위해 돌보미를 구해보세요.</p>
 			</div>
-			<div class="bannermenu4" onclick="location.href='diary.do'">
+			<div class="bannermenu4" onclick="location.href='diary_free.do'">
 				<img src="images/bannericon2.png">
 				<p>펫 일기</p>
 				<p class="bannertext">반려동물을 사랑하는 사람들과<br>자유롭게 소통하고<br>나의 반려동물의 사진을<br>사진게시판에 올려 자랑해보세요.</p>

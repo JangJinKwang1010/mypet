@@ -57,6 +57,7 @@
 	        declare
 	        begin
 		 		delete from mypet_comment where id=#{id};
+		 		delete from mypet_pictures_diary where id=#{id};
 		 		delete from mypet_diary_heart where id=#{id};
 		 		delete from mypet_free_diary where id=#{id};
 		 		delete from mypet_heart where id=#{id};

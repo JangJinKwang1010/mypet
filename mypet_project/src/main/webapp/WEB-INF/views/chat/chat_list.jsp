@@ -100,10 +100,16 @@ $(document).ready(function() {
         	var htmlOut = "";
         		if (data[idx].from_id != "${session_id}") {        			
         			htmlOut += ' <div class="left_box" id="'+ data[idx].from_id +'"><div class="left_img"> <img src="images/human2.png" width=100%; height=100%;></div>' ;
-        			htmlOut += ' <p>'+data[idx].from_id+'</p> <button class="info_btn" id="'+ data[idx].from_id +'">정보보기</button></br><p>'+data[idx].last+'</p>';	   
+        			htmlOut += ' <p>'+data[idx].from_id+'</p> <button class="info_btn" id="'+ data[idx].from_id +'">정보보기</button></br><p>';
+        			if (data[idx].last != null) {
+	        			htmlOut += data[idx].last+'</p>';	           				
+        			}
         		} else {
         			htmlOut += ' <div class="left_box" id ="'+ data[idx].to_id +'"><div class="left_img"> <img src="images/human2.png" width=100%; height=100%;></div>' ;
-        			htmlOut += ' <p>'+data[idx].to_id+'</p><button class="info_btn" id="'+ data[idx].to_id +'">정보보기</button></br><p>'+data[idx].last+'</p>';	               	
+        			htmlOut += ' <p>'+data[idx].to_id+'</p><button class="info_btn" id="'+ data[idx].to_id +'">정보보기</button></br><p>';
+        			if (data[idx].last != null) {
+	        			htmlOut += data[idx].last+'</p>';	           				
+        			}
         		}
 	            $(".left").append(htmlOut);            	
         	} 
@@ -159,6 +165,7 @@ $(document).ready(function() {
 			                dataType: 'json',
 			                success: function (result) {
 			                	$("#message").val("").focus();
+			                	mclick(id);
 			                },
 			           }); 
 					} else {
@@ -169,11 +176,11 @@ $(document).ready(function() {
 			                dataType: 'json',
 			                success: function (result) {
 			                	$("#message").val("").focus();
+								mclick(id);
 			                },
 			           }); 
 					}		
 				}
-				mclick(id);
 			});
 			
 			document.querySelector('#message').addEventListener('keypress', function (e) {
@@ -191,6 +198,7 @@ $(document).ready(function() {
 				                dataType: 'json',
 				                success: function (result) {
 				                	$("#message").val("").focus();     
+				                	mclick(id);
 				                },
 				           }); 
 						} else {
@@ -201,6 +209,7 @@ $(document).ready(function() {
 				                dataType: 'json',
 				                success: function (result) {
 				                	$("#message").val("").focus();
+				                	mclick(id);
 				                },
 				           }); 
 						}	
@@ -257,6 +266,7 @@ $(document).ready(function() {
 		                dataType: 'json',
 		                success: function (result) {
 		                	$("#message").val("").focus();
+		                	mclick(id);
 		                },
 		           }); 
 				} else {
@@ -267,11 +277,11 @@ $(document).ready(function() {
 		                dataType: 'json',
 		                success: function (result) {
 		                	$("#message").val("").focus();
+		                	mclick(id);
 		                },
 		           }); 
 				}		
 			}
-			mclick(id);
 		});
 		
 		document.querySelector('#message').addEventListener('keypress', function (e) {
@@ -289,6 +299,7 @@ $(document).ready(function() {
 			                dataType: 'json',
 			                success: function (result) {
 			                	$("#message").val("").focus();     
+			                	mclick(id);
 			                },
 			           }); 
 					} else {
@@ -299,11 +310,11 @@ $(document).ready(function() {
 			                dataType: 'json',
 			                success: function (result) {
 			                	$("#message").val("").focus();
+			                	mclick(id);
 			                },
 			           }); 
 					}				
 				}
-				mclick(id);
 		    }
 		});	
 		

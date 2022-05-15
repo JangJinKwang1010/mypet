@@ -46,7 +46,7 @@
 		border:1px solid lightgray;
 		border-radius:10px;
 		width:250px; height:300px;
-		margin:10px 20px;
+		margin:10px 10px;
 		display:inline-block;
 		text-align:center;
 	}
@@ -118,8 +118,8 @@
 			<jsp:include page="mypage_commons.jsp"></jsp:include>
 			<div class="main postmanager">
 				<p class="title2">펫 관리</p>
-				<c:forEach var = "vo"  items="${list}"  >
 				<div class="pet_div">
+				<c:forEach var = "vo"  items="${list}"  >
 					<div class="pet_dtl">
 						<div class="pet_img"><img src="upload/${vo.psfile }" width=100%; height=100%;></div>
 						<p><b>이름</b> ${vo.pname }(${vo.pgender })</p>
@@ -129,8 +129,8 @@
 						<button type="button" class="delete" id="${vo.pid }">삭제</button>
 						<button type="button" class="update" id="${vo.pid }">수정</button>
 					</div>
-				</div>
 				</c:forEach>	
+				</div>
 				<c:if test="${fn:length(list) eq 0}">
 					<div class="career_div">등록된 경력사항이 없습니다</div>
 				</c:if>	
