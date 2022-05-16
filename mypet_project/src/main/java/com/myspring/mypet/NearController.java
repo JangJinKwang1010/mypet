@@ -137,6 +137,10 @@ public class NearController {
 		NearVO nvo = new NearVO();
 		nvo.setId((String)session.getAttribute("session_id"));
 		nvo.setNid(nid);
+		if (nvo.getId()== null) {
+			nvo.setId("admin");
+		}
+			
 		int val = nearDAO.getNearHeartResult(nvo);
 		int count = nearDAO.getNearHeartCount(nid);
 		mv.addObject("count", count);

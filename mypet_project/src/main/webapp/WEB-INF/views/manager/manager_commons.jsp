@@ -86,7 +86,8 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 			</ul>
 			<ul class="menu_ul">
 				<a href="manager_near.do"><li>내 근처의 펫</li></a>
-				<a href="manager_diary.do"><li>펫 일기</li></a>
+				<a href="manager_free_diary.do"><li>자유게시판</li></a>
+				<a href="manager_pictures_diary.do"><li>사진게시판</li></a>
 			</ul>		
 		</div>			
 	</div>

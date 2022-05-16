@@ -24,6 +24,7 @@
 	.memberlist>thead>tr {
 		background-color:lightgray;
 	}
+	.member_content { cursor:pointer }
 
 </style>
 <script>
@@ -32,7 +33,7 @@
 			var id = $(this).attr("id");
 		    var url = "manager_member_content.do?id="+id;
 		    var name = "popup test";
-		    var option = "width = 500, height = 500, top = 150, left = 500, location = no"
+		    var option = "width = 500, height = 600, top = 100, left = 500, location = no"
 		    window.open(url, name, option);
 	});
 })

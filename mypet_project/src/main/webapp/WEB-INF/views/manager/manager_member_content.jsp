@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Mypet 관리자</title>
+<script src="js/jquery-3.6.0.min.js"></script>
 <style>
 	section {
 		text-align:center;
@@ -13,7 +14,7 @@
 	.box {
 		border:1px solid gray;
 		width:450px;
-		height:400px;
+		height:500px;
 		display:inline-block;
 		text-align:left;
 	}
@@ -64,8 +65,34 @@
 		margin-top:3px;
 		font-size:14px;
 	}
+	.paw{
+ 			width:10px;
+ 			height:10px;
+ 			padding:3px;
+ 		}
 </style>
 </head>
+<script>
+	$(document).ready(function() {
+		
+		$(".delete").click(function() {
+			var con_test = confirm("선택한 회원을 삭제하시겠습니까?"); 
+        	if(con_test == true){ 
+        		$.ajax({
+    		        url:"manager_member_delete.do",
+    		        type:"post",
+    		        data: {id:"${vo.id}"},
+    		        success:function(){			       		  
+    		        	opener.document.location.reload();
+    		        	window.close(); //창 닫기		
+    		       	},		
+    		    });
+        		
+        	}
+		});
+		
+	});
+</script>
 <body>
 <section>
 	<p style="font-size:18px;"><b>STAFF ONLY</b></p>
@@ -78,7 +105,7 @@
 				<label>이름</label>
 				<p>${vo.name }</p>
 			</div>
-			<button>회원삭제</button>
+			<button type="button" class="delete" >회원삭제</button>
 		</div>	
 		<div class="category box2">
 			<label>가입일자</label>
@@ -112,6 +139,18 @@
 		<div class="coment box3">
 			<label>주소</label>
 			<p>${vo.addr1} ${vo.addr2 }</p>
+			<label>경력사항</label>
+			<c:if test="${empty list }">
+				<p>경력사항이 없습니다</p>
+			</c:if>
+			<c:forEach var = "vo"  items="${list}" >
+			<c:if test="${vo.enddate eq null }">
+				<p class="p3"><img class="paw" src="images/paw.png">[${vo.category }]   ${vo.kind }		${vo.bulk }			${vo.startdate } ~ 양육중</p>
+			</c:if>
+			<c:if test="${vo.enddate ne null }">
+				<p class="p3"><img class="paw" src="images/paw.png">[${vo.category }]   ${vo.kind }		${vo.bulk }			${vo.startdate } ~ ${vo.enddate }</p>
+			</c:if>
+			</c:forEach>
 		</div>	
 	</div>
 </section>

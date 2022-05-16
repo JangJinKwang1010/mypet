@@ -101,5 +101,17 @@
 	<update id="near_end" parameterType="java.lang.String">
 		update mypet_near set enddate = to_char(sysdate - 1, 'yyyy-mm-dd') where nid=#{nid}
 	</update>
+	
+	<select id="manager_near_list" resultType="com.mypet.vo.NearVO">
+		select rno, id, nid, title, startdate 
+		  from
+		    (select * from (select rownum rno, id, nid, title, startdate from (
+		        select id, nid, title, startdate  from mypet_near order by startdate) ) 
+		      order by rno desc)
+	</select>
+	
+	<delete id="manager_heart_delete" parameterType="java.lang.String">
+		delete from mypet_heart where nid=#{nid}
+	</delete>
 
 </mapper>

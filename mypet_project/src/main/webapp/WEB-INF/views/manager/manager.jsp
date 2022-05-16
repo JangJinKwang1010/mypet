@@ -62,7 +62,9 @@
 			if($(".logindata1").val() == "admin" && $(".logindata2").val() == "admin") {
 				location.href = 'manager_member.do';
 			} else {
-				alert("관리자 로그인 실패")
+				alert("관리자 로그인 실패");
+				$(".logindata2").val("");
+				$(".logindata1").val("").focus();
 			}
 		});
 	});

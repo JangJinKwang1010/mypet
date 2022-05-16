@@ -3,12 +3,20 @@ package com.mypet.vo;
 public class NearVO {
 	
 	String pid, latitude, longitude, nid, id, category, kind, startdate, enddate, title, content, work, addr, name, search_select, search_text;
-	int hit;
+	int hit, rno;
 	PetVO vo;
 	NearVO nvo;
 	
 	
 	
+	public int getRno() {
+		return rno;
+	}
+
+	public void setRno(int rno) {
+		this.rno = rno;
+	}
+
 	public String getSearch_select() {
 		return search_select;
 	}

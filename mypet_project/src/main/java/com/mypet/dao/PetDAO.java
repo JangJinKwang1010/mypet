@@ -60,5 +60,14 @@ public class PetDAO {
 	public int getRpetAllUpdate(String id) {
 		return sqlSession.update(namespace+".rpet_all_update", id);
 	}
+	
+	public ArrayList<PetVO> getManagerPetList() {
+		List<PetVO> list = sqlSession.selectList(namespace+".manager_pet_list");		
+		return (ArrayList<PetVO>)list;
+	}
+	
+	public PetVO getManagerPetContent(String pid) {
+		return sqlSession.selectOne(namespace+".manager_pet_content", pid);
+	}
 
 }

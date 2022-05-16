@@ -4,19 +4,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Mypet관리자</title>
+<script src="js/jquery-3.6.0.min.js"></script>
 <style>
-	.box{
-		border:1px solid;
+	section {
+		text-align:center;
+	}
+	.box {
+		border:1px solid gray;
 		width:450px;
-		height:450px;
+		height:400px;
+		display:inline-block;
+		text-align:left;
 	}
 	.rightbox{
 		width:198px;
 		height:305px;
-		border-left:1px solid;
+		border-left:1px solid lightgray;
 		float:right;
-		border-bottom:1px solid;
 	}
 	.rightbox>button{
 		font-weight:bold;
@@ -39,70 +44,92 @@
 	.picture{
 		width:198px;
 		height:203px;
-		border-bottom:1px solid;
 	}
 	.box2{
 		width:251px;
 		height:50px;
-		border-bottom:1px solid;
+		border-bottom:1px solid lightgray;
 	}
-	.box3{
+	.box3 {
 		width:450px;
-		height:140px;
+		height:10px;
 	}
-	.box label{
+	label{
 		margin-left:5px;
-		font-size:12px;
+		font-size:14px;
 		font-weight:bold;
 	}
 	.box p{
 		margin-left:5px;
-		margin-top:-1px;
-		font-size:15px;
+		margin-top:3px;
+		font-size:14px;
 	}
 </style>
 </head>
+<script>
+	$(document).ready(function() {
+		
+		$(".delete").click(function() {
+			var con_test = confirm("선택한 펫을 삭제하시겠습니까?"); 
+        	if(con_test == true){ 
+        		$.ajax({
+    		        url:"manager_pet_delete.do",
+    		        type:"post",
+    		        data: {pid:"${vo.pid}"},
+    		        success:function(){			       		  
+    		        	opener.document.location.reload();
+    		        	window.close(); //창 닫기		
+    		       	},		
+    		    });
+        		
+        	}
+		});
+		
+	});
+</script>
 <body>
-	<p>staff only</p>
+<section>
+	<p style="font-size:18px;"><b>STAFF ONLY</b></p>
 	<div class="box">
 		<div class="rightbox">
 			<div class="picture">
-			<img src="images/qltyd.png" width=100%; height=100%;>
+			<img src="upload/${vo.psfile }" width=100%; height=100%;>
 			</div>
 			<div class="namebox">
 				<label>이름</label>
-				<p>숑숑이</p>
+				<p>${vo.pname }</p>
 			</div>
-			<button>펫삭제</button>
+			<button type="button" class="delete">펫삭제</button>
 		</div>	
 		<div class="category box2">
 			<label>분류</label>
-			<p>강아지</p>
+			<p>${vo.category }</p>
 		</div>	
 		<div class="kind box2">
 			<label>품종</label>
-			<p>비숑</p>
+			<p>${vo.kind }</p>
 		</div>	
 		<div class="bulk box2">
 			<label>크기</label>
-			<p>소형견</p>
+			<p>${vo.bulk }</p>
 		</div>	
 		<div class="startdate box2">
 			<label>입양날짜</label>
-			<p>2022년1월1일</p>
+			<p>${vo.startdate }</p>
 		</div>	
 		<div class="gender box2">
 			<label>성별</label>
-			<p>여자</p>
+			<p>${vo.pgender }</p>
 		</div>	
 		<div class="birth box2">
 			<label>생년월일</label>
-			<p>2021년12월1일</p>
+			<p>${vo.pbirth }</p>
 		</div>	
 		<div class="coment box3">
 			<label>특이사항</label>
-			<p>호흡기질환이 있어요.</p>
+			<p>${vo.pcomment }</p>
 		</div>	
 	</div>
+</section>
 </body>
 </html>

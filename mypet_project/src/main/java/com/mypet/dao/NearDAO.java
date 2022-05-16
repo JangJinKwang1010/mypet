@@ -104,6 +104,15 @@ public class NearDAO {
 	public NearVO getAddrListVO(String nid) {
 		return sqlSession.selectOne(namespace+".addr_list_vo", nid);		
 	}
+	
+	public ArrayList<NearVO> getManagerNearList() {
+		List<NearVO> list = sqlSession.selectList(namespace+".manager_near_list");		
+		return (ArrayList<NearVO>)list;
+	}
+	
+	public int getManagerHeartDelete(String nid) {
+		return sqlSession.delete(namespace+".manager_heart_delete", nid);
+	}
 
 
 }

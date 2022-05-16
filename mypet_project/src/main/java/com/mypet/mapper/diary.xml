@@ -188,4 +188,21 @@
 		delete from mypet_pictures_diary where pid=#{pid}
 	</delete>
 	
+	<select id="manager_free_list" resultType="com.mypet.vo.DiaryVO">
+		select rno, fid, id, ftitle, fcontent, fhit, fheart, fnheart, to_char(fdate, 'yyyy-mm-dd') fdate 
+		  from
+		    (select * from (select rownum rno, fid, id, ftitle, fdate, fcontent, fhit, fheart, fnheart from (
+		        select fid, id, ftitle, fdate, fcontent, fhit, fheart, fnheart from mypet_free_diary order by fdate) ) 
+		      order by rno desc)
+	</select>
+	
+	
+	<select id="manager_pictures_list" resultType="com.mypet.vo.DiaryVO">
+		select rno, pid, id, ptitle, to_char(pdate, 'yyyy-mm-dd') pdate 
+		  from
+		    (select * from (select rownum rno, pid, id, ptitle, pdate  from (
+		        select pid, id, ptitle, pdate from mypet_pictures_diary order by pdate) ) 
+		      order by rno desc)
+	</select>
+	
 </mapper>

@@ -5,10 +5,17 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 public class PetVO {
 	
 	String pid, id, pass, name, hp, email, addr, birth, gender, cfile, sfile, category, kind, bulk, startdate, pname, pkg, pgender, pbirth, pcomment, pfile, psfile, img, pdate, rpet, page;
+	int rno;
 	CommonsMultipartFile file1;
 	CommonsMultipartFile pfile1, pfile2, pfile3, pfile4, pfile5, pfile6, pfile7, pfile8, pfile9, pfile10;	
 	
 	
+	public int getRno() {
+		return rno;
+	}
+	public void setRno(int rno) {
+		this.rno = rno;
+	}
 	public String getPage() {
 		return page;
 	}

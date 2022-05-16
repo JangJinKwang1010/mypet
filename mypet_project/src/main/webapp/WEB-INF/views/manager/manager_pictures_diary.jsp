@@ -9,7 +9,7 @@
 <script src="js/jquery-3.6.0.min.js"></script>
 <style>
 
-.nearbox{
+.freebox{
 	width:800px;
 	height:600px;
 	border:1px solid gray;
@@ -17,30 +17,32 @@
 	margin-bottom:100px;
 	overflow:scroll;
 }
-.nearlist{
+.freelist{
 	text-align:center;
 	width:100%;
 }
-.nearlist>thead>tr {
+.freelist>thead>tr {
 		background-color:lightgray;
-	}
+}
 .delete {
 	border:1px solid lightgray;
 	border-radius:10px;
 	margin:5px 0;
 }
-.near_content:hover { text-decoration:underline; cursor:pointer;}
+.free_content:hover { text-decoration:underline; cursor:pointer;}
+
+
 </style>
 <script>
 	$(document).ready(function(){
 		$(".delete").click(function() {
-			var nid = $(this).attr("id");
+			var pid = $(this).attr("id");
 			var con_test = confirm("선택한 글을 삭제하시겠습니까?"); 
         	if(con_test == true){ 
         		$.ajax({
-    		        url:"manager_near_delete.do",
+    		        url:"manager_pictures_delete.do",
     		        type:"post",
-    		        data: {nid:nid},
+    		        data: {pid:pid},
     		        success:function(){			       		  
     		        	location.reload();
     		       	},		
@@ -48,7 +50,7 @@
         		
         	}
 		});
-	});
+})
 	
 </script>
 </head>
@@ -57,12 +59,12 @@
 	<div class="box">
 		<jsp:include page="manager_header.jsp"></jsp:include>
 		<jsp:include page="manager_commons.jsp"></jsp:include>
-		<div class="nearbox">
-			<table class="nearlist">
+		<div class="freebox">
+			<table class="freelist">
 				<thead style="border-bottom:1px solid; ">
 							<tr>
 								<th width=100px;>번호</th>
-								<th width=400px;>제목</th>
+								<th width=450px;>제목</th>
 								<th width=100px>글쓴이</th>
 								<th width=100px>등록일</th>
 								<th width=100px;>삭제</th>
@@ -72,10 +74,10 @@
 							<c:forEach var = "vo"  items="${list}"  >
 								<tr  style="border-bottom:1px solid lightgray;" >
 									<td>${vo.rno }</td>
-									<td  onclick="window.open('near_contents.do?nid=${vo.nid}')" class="near_content">${vo.title }</td>
+									<td  onclick="window.open('diary_pictures_contents.do?pid=${vo.pid}')" class="free_content">${vo.ptitle }</td>
 									<td>${vo.id }</td>
-									<td>${vo.startdate }</td>
-									<td><button type="button" class="delete" id="${vo.nid }">삭제</button></td>
+									<td>${vo.pdate }</td>
+									<td><button type="button" class="delete" id="${vo.pid }">삭제</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>

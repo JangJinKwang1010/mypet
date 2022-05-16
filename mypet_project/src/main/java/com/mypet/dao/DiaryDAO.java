@@ -203,5 +203,15 @@ public class DiaryDAO {
 	public int getPicturesDelete(String fid) {
 		return sqlSession.delete(namespace+".pictures_delete", fid);
 	}
+	
+	public ArrayList<DiaryVO> getManagerFreeList() {
+		List<DiaryVO> list = sqlSession.selectList(namespace+".manager_free_list");		
+		return (ArrayList<DiaryVO>)list;
+	}
+	
+	public ArrayList<DiaryVO> getManagerPicturesList() {
+		List<DiaryVO> list = sqlSession.selectList(namespace+".manager_pictures_list");		
+		return (ArrayList<DiaryVO>)list;
+	}
 
 }

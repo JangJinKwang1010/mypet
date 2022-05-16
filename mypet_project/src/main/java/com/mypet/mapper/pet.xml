@@ -44,5 +44,18 @@
 	<update id="rpet_all_update" parameterType="java.lang.String">
 		update mypet_pet set rpet = 'N' where id=#{id}
 	</update>
+	
+	
+	<select id="manager_pet_list" resultType="com.mypet.vo.PetVO">
+		select rno, id, pid, category, kind, bulk, startdate, pname, pkg, pgender, pbirth, pcomment, pfile, psfile, to_char(pdate, 'yyyy-mm-dd') pdate 
+		  from
+		    (select * from (select rownum rno, id, pid, category, kind, bulk, startdate, pname, pkg, pgender, pbirth, pcomment, pfile, psfile, pdate from (
+		        select id, pid, category, kind, bulk, startdate, pname, pkg, pgender, pbirth, pcomment, pfile, psfile, pdate from mypet_pet order by pdate) ) 
+		      order by rno desc)
+	</select>
+	
+	<select id="manager_pet_content" parameterType="java.lang.String" resultType="com.mypet.vo.PetVO">
+		select id, pid, category, kind, bulk, startdate, pname, pkg, pgender, pbirth, pcomment, pfile, psfile, pdate from mypet_pet where pid=#{pid}
+	</select>
 
 </mapper>
