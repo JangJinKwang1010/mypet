@@ -27,6 +27,24 @@
 		font-size:30px;
 		margin-left:100px;
 	}
+	.menu {
+		margin-top:170px;
+		float:left;
+		margin-left:-300px;
+		font-weight:bold;
+		font-size:20px;
+		color:rgb(72,115,210);
+		cursor:pointer;
+	}
+	.span { 
+		margin-top:170px;
+		float:left;
+		font-size:20px;
+		font-weight:normal; 
+		margin-left:-250px;
+		color:black; 
+		cursor:pointer;
+	}	
 	.title>span {
 		margin-left:20px;
 		color:gray;
@@ -399,6 +417,7 @@ $(document).ready(function() {
 	<section class="section">
 		<div class="back">
 			<p class="title">내 근처의 펫<span>A pet near me</span></p>
+			<p class="menu" onclick="location.href='near.do' ">구인</p><span class="span" onclick="location.href='near2.do' ">구직</span>
 			<button onclick = "location.href='near_writing.do'" class="writing_button">글쓰기</button>
 			<div id="map"></div>
 			<div class="search_box">

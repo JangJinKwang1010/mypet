@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mypet.dao.MemberDAO;
+import com.mypet.dao.MypageDAO;
 import com.mypet.dao.NearDAO;
 import com.mypet.dao.PetDAO;
+import com.mypet.vo.MemberVO;
 import com.mypet.vo.NearVO;
 import com.mypet.vo.PetVO;
 
@@ -29,6 +31,9 @@ public class NearController {
 	
 	@Autowired
 	private MemberDAO memberDAO;
+	
+	@Autowired
+	private MypageDAO mypageDAO;
 	
 	@RequestMapping(value="/near.do", method= {RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView near(HttpServletRequest request, String search_select, String search_text) {		
@@ -309,6 +314,107 @@ public class NearController {
 		
 		return result;
 		
+	}
+	
+	@RequestMapping(value="/near2.do")
+	public ModelAndView near2() {
+		ModelAndView mv = new ModelAndView();
+		
+		ArrayList<NearVO> list = nearDAO.getNearList2();
+		for (int i=0; i<list.size(); i++) {
+			MemberVO vo = mypageDAO.getMemberInfo(list.get(i).getId());
+			list.get(i).setEmail(vo.getEmail());
+			String addr[] = vo.getAddr1().split(" ");
+			list.get(i).setAddr(addr[0]+" "+addr[1]);
+		}
+		
+		mv.addObject("list", list);		
+		mv.setViewName("near/near2");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="/near_writing2.do")
+	public String near_writing2() {
+		return "near/near_writing2";
+	}
+	@ResponseBody
+	@RequestMapping(value="/near_upload2.do", method=RequestMethod.POST)
+	public boolean near_upload2(HttpServletRequest request, NearVO vo) {
+		HttpSession session = request.getSession(); //技记 积己
+		boolean result = false;
+		
+		vo.setId((String)session.getAttribute("session_id"));
+		
+		int val = nearDAO.getNearUpload2(vo);
+		
+		if (val!=0) {			
+				result = true;	
+		}		
+		
+		return result;
+		
+	}
+	
+	@RequestMapping(value="/near_contents2.do", method=RequestMethod.GET)
+	public ModelAndView near_contents2(String nid, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession(); //技记 积己
+		
+		nearDAO.getHit2(nid);
+		NearVO nvo = new NearVO();
+		nvo.setId((String)session.getAttribute("session_id"));
+		nvo.setNid(nid);
+				
+		NearVO vo = nearDAO.getNearContent2(nid);
+				
+		mv.addObject("vo", vo);
+		mv.setViewName("near/near_contents2");
+		
+		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/near_delete2.do", method=RequestMethod.POST)
+	public boolean near_delete2(HttpServletRequest request) {
+		boolean result = false;
+		
+		String nid = request.getParameter("nid");
+		int val = nearDAO.getNearDelete2(nid);		
+		
+		if (val!=0) {
+			result =true;
+		}
+		
+		return result;		
+		
+	}
+	
+	@RequestMapping(value="/near_update2.do", method=RequestMethod.GET)
+	public ModelAndView near_update2(String nid) {
+		ModelAndView mv = new ModelAndView();
+				
+		NearVO vo = nearDAO.getNearContent2(nid);			
+		
+		mv.addObject("vo", vo);
+		mv.setViewName("near/near_update2");		
+		
+		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/near_update_upload2.do", method=RequestMethod.POST)
+	public boolean near_upadate_upload2(NearVO vo) {
+		boolean result = false;
+		
+		int val = nearDAO.getNearUpdateUpload2(vo);
+		
+			
+			if (val!=0) {
+				result = true;				
+			}
+		
+		return result;
 	}
 	
 

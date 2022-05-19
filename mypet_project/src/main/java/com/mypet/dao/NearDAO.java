@@ -113,6 +113,31 @@ public class NearDAO {
 	public int getManagerHeartDelete(String nid) {
 		return sqlSession.delete(namespace+".manager_heart_delete", nid);
 	}
+	
+	public int getNearUpload2(NearVO vo) {
+		return sqlSession.insert(namespace+".near_upload2", vo);
+	}
+	
+	public ArrayList<NearVO> getNearList2() {
+		List<NearVO> list = sqlSession.selectList(namespace+".near_list2");		
+		return (ArrayList<NearVO>)list;
+	}
+	
+	public NearVO getNearContent2(String nid) {
+		return sqlSession.selectOne(namespace+".near_content2", nid);
+	}
+	
+	public int getHit2(String nid) {
+		return sqlSession.update(namespace+".hit2", nid);
+	}
+	
+	public int getNearDelete2(String nid) {
+		return sqlSession.delete(namespace+".near_delete2", nid);
+	}
+	
+	public int getNearUpdateUpload2(NearVO vo) {
+		return sqlSession.update(namespace+".near_update_upload2", vo);
+	}
 
 
 }

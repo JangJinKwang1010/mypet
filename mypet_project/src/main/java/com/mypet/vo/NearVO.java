@@ -2,13 +2,37 @@ package com.mypet.vo;
 
 public class NearVO {
 	
-	String pid, latitude, longitude, nid, id, category, kind, startdate, enddate, title, content, work, addr, name, search_select, search_text;
+	String pid, latitude, longitude, nid, id, category, kind, startdate, enddate, title, content, work, addr, name, search_select, search_text, email, nid2, ndate;
 	int hit, rno;
 	PetVO vo;
 	NearVO nvo;
 	
 	
 	
+	public String getNdate() {
+		return ndate;
+	}
+
+	public void setNdate(String ndate) {
+		this.ndate = ndate;
+	}
+
+	public String getNid2() {
+		return nid2;
+	}
+
+	public void setNid2(String nid2) {
+		this.nid2 = nid2;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public int getRno() {
 		return rno;
 	}

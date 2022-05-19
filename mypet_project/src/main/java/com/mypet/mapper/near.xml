@@ -113,5 +113,29 @@
 	<delete id="manager_heart_delete" parameterType="java.lang.String">
 		delete from mypet_heart where nid=#{nid}
 	</delete>
+	
+	<insert id="near_upload2" parameterType="com.mypet.vo.NearVO">
+		insert into mypet_near2 values('n'||near2_seq.nextval, #{id},  #{kind},  #{work}, #{title}, #{content}, 0, sysdate)
+	</insert>
+	
+	<select id="near_list2" resultType="com.mypet.vo.NearVO">
+		select * from mypet_near2 order by ndate desc
+	</select>
+	
+	<select id="near_content2" parameterType="java.lang.String" resultType="com.mypet.vo.NearVO">
+		select * from mypet_near2 where nid2=#{nid}
+	</select>
+	
+	<update id="hit2" parameterType="java.lang.String">
+		update mypet_near2 set hit=hit+1 where nid2=#{nid}
+	</update>
+	
+	<delete id="near_delete2" parameterType="java.lang.String">
+		delete from mypet_near2 where nid2=#{nid}
+	</delete>
+	
+	<update id="near_update_upload2" parameterType="com.mypet.vo.NearVO">
+		update mypet_near2 set work=#{work}, title=#{title}, content=#{content} where nid2=#{nid2} 
+	</update>
 
 </mapper>
